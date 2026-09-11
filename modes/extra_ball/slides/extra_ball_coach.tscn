@@ -1,0 +1,41 @@
+; Copyright (C) 2026 One More Game - All Rights Reserved
+; Unauthorized copying of this file, via any medium is strictly prohibited
+; Proprietary and confidential
+
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_slide"]
+[ext_resource type="VideoStream" path="res://images/micro_clips/extra_ball_coach_two_balls.ogv" id="2_video"]
+[ext_resource type="FontFile" path="res://fonts/King Of The Hill 2.ttf" id="3_font"]
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="4_player"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+script = ExtResource("1_slide")
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+stream = ExtResource("2_video")
+volume_db = -80.0
+autoplay = true
+script = ExtResource("4_player")
+
+[node name="ExtraBall" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_font")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 256.0
+offset_right = 1360.0
+offset_bottom = 544.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 100
+text = "EXTRA BALL"
+horizontal_alignment = 1
+vertical_alignment = 1

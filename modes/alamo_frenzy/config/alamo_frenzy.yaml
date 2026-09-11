@@ -1,0 +1,310 @@
+#config_version=6
+
+mode:
+  start_events: player_alamo_target_hits{value == 12 and current_player.any_mb_active == 0}
+  stop_events: timer_alamo_frenzy_mode_countdown_complete, ball_ended, multiball_strickland_multiball_started, multiball_rainey_multiball_started, multiball_grill_mb_started
+  priority: 500
+
+timers:
+  alamo_frenzy_mode_countdown:
+    start_value: 15
+    end_value: 0
+    direction: down
+    start_running: true
+    bcp: true
+
+slide_player:
+  mode_alamo_frenzy_started: 
+    alamo_frenzy_slide:
+      expire: 1s
+
+variable_player:
+  mode_alamo_frenzy_started:
+    alamo_frenzy_hits:
+      int: 0
+      action: set
+    alamo_frenzy_total:
+      int: 0
+      action: set
+  alamo_frenzy_scoring_hit:
+    alamo_frenzy_hits:
+      int: 1
+      action: add
+    alamo_frenzy_total:
+      int: 250000 * current_player.pf_multiplier
+      action: add
+  s_right_inlane_active:
+    score: 100 * current_player.pf_multiplier
+  s_p_target_active:
+    score: 250000 * current_player.pf_multiplier
+  s_r_target_active:
+    score: 250000 * current_player.pf_multiplier
+  s_o_target_active:
+    score: 250000 * current_player.pf_multiplier
+  s_p2_target_active:
+    score: 250000 * current_player.pf_multiplier
+  s_a_target_active:
+    score: 250000 * current_player.pf_multiplier
+  s_n_target_active:
+    score: 250000 * current_player.pf_multiplier
+  s_e_target_active:
+    score: 250000 * current_player.pf_multiplier
+  s_top_inline_drop_active:
+    score: 250000 * current_player.pf_multiplier
+  s_middle_inline_drop_active:
+    score: 250000 * current_player.pf_multiplier
+  s_bottom_inline_drop_active:
+    score: 250000 * current_player.pf_multiplier
+  s_left_ramp_enter_active:
+    score: 250000 * current_player.pf_multiplier
+  s_right_ramp_enter_active:
+    score: 250000 * current_player.pf_multiplier
+  s_left_outlane_active:
+    score: 100 * current_player.pf_multiplier
+    tags: drain
+  s_left_inlane_active:
+    score: 50 * current_player.pf_multiplier
+  s_left_sling_active:
+    score: 10 * current_player.pf_multiplier
+  s_right_sling_active:
+    score: 10 * current_player.pf_multiplier
+  s_right_outlane_active:
+    score: 100 * current_player.pf_multiplier
+    tags: drain
+  s_ladybird_target_active:
+    score: 250000 * current_player.pf_multiplier
+  s_right_ramp_standup_active:
+    score: 250000 * current_player.pf_multiplier
+  s_left_orbit_enter_active:
+    score: 250000 * current_player.pf_multiplier
+  s_left_spinner_active:
+    score: 250000 * current_player.pf_multiplier
+  s_center_spinner_active:
+    score: 250000 * current_player.pf_multiplier
+  s_left_pop_bumper_active:
+    score: 250000 * current_player.pf_multiplier
+  s_right_pop_bumper_active:
+    score: 250000 * current_player.pf_multiplier
+  s_left_rollover_lane_active:
+    score: 50 * current_player.pf_multiplier
+  s_middle_rollover_lane_active:
+    score: 50 * current_player.pf_multiplier
+  s_right_rollover_lane_active:
+    score: 50 * current_player.pf_multiplier
+  s_right_orbit_exit_active:
+    score: 250000 * current_player.pf_multiplier
+  s_left_inner_horseshoe_active:
+    score: 250000 * current_player.pf_multiplier
+  # s_right_inner_horseshoe_active:
+  #   score: 100 * current_player.pf_multiplier
+
+widget_player:  
+  widget_alamo_can_widget3_active:
+    alamo_can_widget3:
+      expire: 1s
+  widget_alamo_can_widget2_active:
+    alamo_can_widget2:
+      expire: 1s
+  widget_alamo_can_widget_active:
+    alamo_can_widget:
+      expire: 1s
+  widget_alamo_can_widget4_active:
+    alamo_can_widget4:
+      expire: 1s
+  widget_alamo_can_widget5_active:
+    alamo_can_widget5:
+      expire: 1s
+  widget_alamo_can_widget6_active:
+    alamo_can_widget6:
+      expire: 1s
+  widget_alamo_can_widget7_active:
+    alamo_can_widget7:
+      expire: 1s
+  widget_alamo_can_widget8_active:
+    alamo_can_widget8:
+      expire: 1s
+  mode_alamo_frenzy_started: 
+    alamo_can_widget:
+      slide: alamo_frenzy_slide
+    alamo_can_widget2:
+      slide: alamo_frenzy_slide
+    alamo_can_widget3:
+      slide: alamo_frenzy_slide
+  slide_alamo_frenzy_slide_active:
+    alamo_can_widget4:
+      slide: alamo_frenzy_slide
+    alamo_can_widget5:
+      slide: alamo_frenzy_slide
+    alamo_can_widget6:
+      slide: alamo_frenzy_slide
+    alamo_can_widget7:
+      slide: alamo_frenzy_slide
+    alamo_can_widget8:
+      slide: alamo_frenzy_slide
+  
+  
+
+    
+  
+
+event_player:
+  alamo_frenzy_scoring_hit:
+    - alamo_frenzy_widget_hit
+    - alamo_frenzy_hoo_yeah_hit
+  s_p_target_active: alamo_frenzy_scoring_hit
+  s_r_target_active: alamo_frenzy_scoring_hit
+  s_o_target_active: alamo_frenzy_scoring_hit
+  s_p2_target_active: alamo_frenzy_scoring_hit
+  s_a_target_active: alamo_frenzy_scoring_hit
+  s_n_target_active: alamo_frenzy_scoring_hit
+  s_e_target_active: alamo_frenzy_scoring_hit
+  s_top_inline_drop_active: alamo_frenzy_scoring_hit
+  s_middle_inline_drop_active: alamo_frenzy_scoring_hit
+  s_bottom_inline_drop_active: alamo_frenzy_scoring_hit
+  s_left_ramp_enter_active: alamo_frenzy_scoring_hit
+  s_right_ramp_enter_active: alamo_frenzy_scoring_hit
+  s_ladybird_target_active: alamo_frenzy_scoring_hit
+  s_right_ramp_standup_active: alamo_frenzy_scoring_hit
+  s_left_orbit_enter_active: alamo_frenzy_scoring_hit
+  s_right_orbit_exit_active: alamo_frenzy_scoring_hit
+  s_left_inner_horseshoe_active: alamo_frenzy_scoring_hit
+  s_left_spinner_active: alamo_frenzy_scoring_hit
+  s_center_spinner_active: alamo_frenzy_scoring_hit
+  s_left_pop_bumper_active: alamo_frenzy_scoring_hit
+  s_right_pop_bumper_active: alamo_frenzy_scoring_hit
+
+random_event_player:
+  alamo_frenzy_widget_hit:
+    events:
+      - widget_alamo_can_widget_active
+      - widget_alamo_can_widget2_active
+      - widget_alamo_can_widget3_active
+      - widget_alamo_can_widget4_active
+      - widget_alamo_can_widget5_active
+      - widget_alamo_can_widget6_active
+      - widget_alamo_can_widget7_active
+      - widget_alamo_can_widget8_active
+  alamo_frenzy_hoo_yeah_hit:
+    events:
+      - play_peggy_ho_yeah_boggle_win_alamo
+      - play_peggy_ho_yeah_boggle_championship_alamo
+      - play_peggy_ho_yeah_leanne_fight_alamo
+    force_different: true
+
+counters:
+  alamo_frenzy_hit_counter:
+    count_events: alamo_frenzy_scoring_hit
+    count_complete_value: 5
+    reset_on_complete: true
+
+light_player:
+  mode_alamo_frenzy_started:
+    l_p_target: FFA000
+    l_r_target: FFA000
+    l_o_target: FFA000
+    l_p2_target: FFA000
+    l_a_target: FFA000
+    l_n_target: FFA000
+    l_e_target: FFA000
+    l_left_orbit: FFA000
+    l_left_ramp: FFA000
+    l_left_horseshoe: FFA000
+    l_center_spinner: FFA000
+    l_right_ramp: FFA000
+    l_right_orbit: FFA000
+
+show_player:
+  mode_alamo_frenzy_started:
+    alamo_frenzy_start:
+      loops: 1
+      priority: 510
+  timer_alamo_frenzy_mode_countdown_tick{ticks == 5}:
+    alamo_frenzy_hurry:
+      key: alamo_hurry
+      loops: -1
+      priority: 520
+  timer_alamo_frenzy_mode_countdown_complete:
+    alamo_hurry: stop
+    alamo_frenzy_six_pack:
+      loops: 2
+      priority: 530
+      speed: 0.8
+  logicblock_alamo_frenzy_hit_counter_complete:
+    alamo_frenzy_six_pack:
+      loops: 1
+      priority: 530
+
+  s_p_target_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_p_target}}
+  s_r_target_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_r_target}}
+  s_o_target_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_o_target}}
+  s_p2_target_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_p2_target}}
+  s_a_target_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_a_target}}
+  s_n_target_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_n_target}}
+  s_e_target_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_e_target}}
+  s_left_ramp_enter_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_left_ramp}}
+  s_right_ramp_enter_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_right_ramp}}
+  s_left_orbit_enter_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_left_orbit}}
+  s_right_orbit_exit_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_right_orbit}}
+  s_left_spinner_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_left_orbit}}
+  s_center_spinner_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_center_spinner}}
+  s_left_pop_bumper_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_gi1}}
+  s_right_pop_bumper_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_gi2}}
+  s_ladybird_target_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_left_horseshoe}}
+  s_right_ramp_standup_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_right_ramp}}
+  s_top_inline_drop_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_strickland_multiball}}
+  s_middle_inline_drop_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_strickland_multiball}}
+  s_bottom_inline_drop_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_strickland_multiball}}
+  s_left_inner_horseshoe_active:
+    alamo_frenzy_shot_hit: {loops: 1, priority: 515, show_tokens: {light: l_left_horseshoe}}
+
+sound_player:
+  play_peggy_ho_yeah_boggle_win_alamo:
+    peggy_ho_yeah_boggle_win:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+      max_queue_time: 0
+  play_peggy_ho_yeah_boggle_championship_alamo:
+    peggy_ho_yeah_boggle_championship:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+      max_queue_time: 0
+  play_peggy_ho_yeah_leanne_fight_alamo:
+    peggy_ho_yeah_leanne_fight:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+      max_queue_time: 0
+  mode_alamo_frenzy_started:
+    peggy_intro:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+    opening_beer:
+      bus: effects
+      volume: 0.45
+  logicblock_alamo_frenzy_hit_counter_complete:
+    award_chime:
+      bus: effects
+      volume: 0.34
+  timer_alamo_frenzy_mode_countdown_complete:
+    success_sting:
+      bus: effects
+      volume: 0.34

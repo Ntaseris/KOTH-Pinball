@@ -1,0 +1,34 @@
+#show_version=6
+
+- duration: 1
+  lights:
+    l_playfield_10X: 0
+    l_wizard: yellow
+- duration: 1
+  lights:
+    l_wizard: 0
+    l_playfield_2X: yellow
+- duration: 1
+  lights:
+    l_playfield_2X: 0
+    l_playfield_3X: yellow
+- duration: 1
+  lights:
+    l_playfield_3X: 0
+    l_playfield_4X: yellow
+- duration: 1
+  lights:
+    l_playfield_4X: 0
+    l_playfield_5X: yellow
+- duration: 1
+  lights:
+    l_playfield_5X: 0
+    l_lock_1: green
+- duration: 1
+  lights:
+    l_lock_1: 0
+    l_lock_2: green
+- duration: 1
+  lights:
+    l_lock_2: 0
+    l_playfield_10X: yellow

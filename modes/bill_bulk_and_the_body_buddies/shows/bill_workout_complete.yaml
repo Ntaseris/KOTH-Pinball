@@ -1,0 +1,18 @@
+#show_version=6
+
+- duration: 0.12s
+  lights:
+    l_left_ramp: yellow
+    l_right_ramp: off
+- duration: 0.12s
+  lights:
+    l_left_ramp: white
+    l_right_ramp: yellow
+- duration: 0.12s
+  lights:
+    l_left_ramp: off
+    l_right_ramp: white
+- duration: 0.12s
+  lights:
+    l_left_ramp: off
+    l_right_ramp: off

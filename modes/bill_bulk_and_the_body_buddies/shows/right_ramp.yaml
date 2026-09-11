@@ -1,0 +1,8 @@
+#show_version=6
+
+- duration: 0.45s
+  lights:
+    l_right_ramp: yellow
+- duration: 0.3s
+  lights:
+    l_right_ramp: off

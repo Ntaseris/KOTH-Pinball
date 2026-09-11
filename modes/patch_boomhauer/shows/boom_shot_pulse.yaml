@@ -1,0 +1,18 @@
+#show_version=6
+
+- duration: 0.65s
+  lights:
+    l_p2_target: yellow
+    l_a_target: yellow
+    l_n_target: yellow
+    l_e_target: yellow
+    l_right_orbit: yellow
+    l_right_ramp: yellow
+- duration: 0.65s
+  lights:
+    l_p2_target: 3D3300
+    l_a_target: 3D3300
+    l_n_target: 3D3300
+    l_e_target: 3D3300
+    l_right_orbit: 3D3300
+    l_right_ramp: 3D3300

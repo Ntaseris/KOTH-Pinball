@@ -1,0 +1,19 @@
+#config_version=6
+
+mode:
+  start_events: mission_select_wizard_mode_selected{current_player.any_mb_active == 0}
+  stop_events: ball_ended, timer_wizard_mode_countdown_complete
+  priority: 300
+
+slide_player:
+  mode_wizard_mode_started: 
+    wizard_mode:
+      expire: 45s
+
+timers:
+  wizard_mode_countdown:
+    start_value: 45
+    end_value: 0
+    direction: down
+    start_running: true
+    bcp: true

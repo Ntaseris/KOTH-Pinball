@@ -1,0 +1,124 @@
+[gd_scene load_steps=7 format=3 uid="uid://csnh8miqk052h"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_f85lm"]
+[ext_resource type="Script" uid="uid://bih7rh22x0mra" path="res://addons/mpf-gmc/classes/mpf_text_input.gd" id="2_2og1r"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_uvfwc"]
+[ext_resource type="Texture2D" uid="uid://bltkup1dcbwmo" path="res://images/Hank Face.webp" id="4_3u4l6"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_variable"]
+
+[sub_resource type="Theme" id="Theme_ulrma"]
+default_font = ExtResource("3_uvfwc")
+default_font_size = 80
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_f85lm")
+
+[node name="PlayerNumber" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 744.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(1, 0.839216, 0.478431, 1)
+theme_override_fonts/font = ExtResource("3_uvfwc")
+theme_override_font_sizes/font_size = 68
+text = "PLAYER 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_variable")
+variable_type = 1
+variable_name = "player_num"
+template_string = "PLAYER %d"
+
+[node name="Award" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 112.0
+offset_right = 744.0
+offset_bottom = 210.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_uvfwc")
+theme_override_font_sizes/font_size = 54
+text = "KING OF THE HILL"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+script = ExtResource("5_variable")
+variable_type = 1
+variable_name = "award"
+
+[node name="PlayerScore" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 210.0
+offset_right = 744.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(0.403922, 0.854902, 1, 1)
+theme_override_fonts/font = ExtResource("3_uvfwc")
+theme_override_font_sizes/font_size = 64
+text = "5,000,000"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_variable")
+variable_type = 1
+variable_name = "value"
+template_string = "SCORE  %s"
+comma_separate = true
+
+[node name="EnterInitials" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 300.0
+offset_right = 744.0
+offset_bottom = 356.0
+theme_override_colors/font_color = Color(0.75, 0.75, 0.75, 1)
+theme_override_fonts/font = ExtResource("3_uvfwc")
+theme_override_font_sizes/font_size = 38
+text = "ENTER INITIALS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MPFTextInput" type="HFlowContainer" parent="." node_paths=PackedStringArray("display_node")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 468.0
+offset_right = 744.0
+offset_bottom = 704.0
+theme = SubResource("Theme_ulrma")
+alignment = 1
+script = ExtResource("2_2og1r")
+max_length = 3
+min_length = 1
+display_node = NodePath("../RichTextLabel")
+highlight_color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+theme_override_fonts/normal_font = ExtResource("3_uvfwc")
+layout_mode = 0
+offset_left = 24.0
+offset_top = 350.0
+offset_right = 744.0
+offset_bottom = 480.0
+theme_override_font_sizes/normal_font_size = 120
+bbcode_enabled = true
+text = "[pulse freq=3.0 color=#000000ff ease=-1.0]A[/pulse]"
+fit_content = true
+scroll_active = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(824, 384)
+scale = Vector2(1.52222, 1.638)
+texture = ExtResource("4_3u4l6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -224.0
+offset_right = 536.0
+offset_bottom = 768.0
+color = Color(0, 0, 0, 1)

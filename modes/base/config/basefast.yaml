@@ -1,0 +1,53 @@
+#config_version=6
+
+mode:
+  start_events: s_start_active, ball_started
+  stop_events: ball_will_end
+  priority: 100
+
+
+slide_player:
+  mode_base_started: base
+
+variable_player:
+  s_left_sling_active: 
+    score: 150
+  s_right_sling_active: 
+    score: 150
+  s_right_flipper_active: 
+    score: 25
+  s_left_flipper_active: 
+    score: 25
+
+light_player:
+  mode_base_started: 
+    l_h_lane:
+      color: blue
+    l_a_lane: 
+      color: purple
+    l_n_lane:
+      color: blue
+    l_k_lane: 
+      color: purple
+    l_playfield_2X:
+      color: green
+    l_playfield_3X:
+      color: green
+    l_playfield_4X:
+      color: green
+    l_playfield_5X:
+      color: green
+    l_playfield_10X:
+      color: green
+    l_lock_1:
+      color: green
+    l_lock_2:
+      color: green
+    l_wizard:
+      color: orange
+    l_a_target: 
+      color: red
+    l_n_target:
+      color: red
+    l_e_target:
+      color: red

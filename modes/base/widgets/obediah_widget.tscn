@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cukue7niirab1"]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_bbos3"]
+[ext_resource type="Texture2D" uid="uid://bby1tdvnd4arw" path="res://images/obediah.png" id="2_1c7ri"]
+
+[node name="MPFWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_bbos3")
+metadata/_custom_type_script = "uid://bxyndbnvgf15b"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+top_level = true
+position = Vector2(1288, 680)
+scale = Vector2(0.32439, 0.328221)
+texture = ExtResource("2_1c7ri")

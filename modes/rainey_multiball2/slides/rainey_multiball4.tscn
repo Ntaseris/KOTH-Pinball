@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0a4pp8w50t6"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_ywfx6"]
+[ext_resource type="Texture2D" uid="uid://yln7ilshowvl" path="res://images/rainey_street_hill_house.jpeg" id="2_yshgm"]
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="3_1lji0"]
+[ext_resource type="Texture2D" uid="uid://cb3dwbxbpi8ya" path="res://images/alamo beer can.png" id="4_0digy"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="5_eb377"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="6_85h5f"]
+[ext_resource type="Theme" uid="uid://b4fbuks3kqs3a" path="res://body_md.tres" id="7_nc16m"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ywfx6")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(685.909, 383.651)
+scale = Vector2(9.09455, 5.12465)
+texture = ExtResource("2_yshgm")
+
+[node name="score" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("5_eb377")
+layout_mode = 0
+offset_left = 22.0
+offset_top = 371.0
+offset_right = 1376.0
+offset_bottom = 426.0
+theme_override_font_sizes/font_size = 150
+text = "1,000,000"
+horizontal_alignment = 1
+script = ExtResource("6_85h5f")
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 8.0
+offset_right = 232.0
+offset_bottom = 136.0
+
+[node name="ball" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("5_eb377")
+layout_mode = 2
+offset_left = 16.0
+offset_top = 72.0
+offset_right = 145.0
+offset_bottom = 125.0
+theme = ExtResource("7_nc16m")
+theme_override_font_sizes/font_size = 50
+text = "Ball 1"
+script = ExtResource("6_85h5f")
+variable_name = "ball"
+template_string = "ball %s"
+
+[node name="player" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("5_eb377")
+layout_mode = 2
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 206.0
+offset_bottom = 69.0
+theme = ExtResource("7_nc16m")
+theme_override_font_sizes/font_size = 50
+text = "Player 1"
+script = ExtResource("6_85h5f")
+variable_name = "number"
+template_string = "player %s  "
+min_players = 1
+max_players = 4
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = 120.0
+offset_right = 1368.0
+offset_bottom = 264.0

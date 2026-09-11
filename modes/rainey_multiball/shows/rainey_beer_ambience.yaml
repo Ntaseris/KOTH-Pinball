@@ -1,0 +1,44 @@
+#show_version=6
+# Copyright (C) 2026 One More Game - All Rights Reserved
+# Unauthorized copying of this file, via any medium is strictly prohibited
+# Proprietary and confidential
+
+- duration: 160ms
+  lights:
+    l_gi1: 4A1700
+    l_gi2: 120300
+    l_gi3: 351000
+    l_gi4: "080100"
+    l_gi5: 401300
+    l_gi6: 180400
+    l_gi7: 180400
+    l_gi8: 180400
+    l_grill1: orange
+    l_grill9: 401000
+    l_grill17: 180300
+- duration: 160ms
+  lights:
+    l_gi1: 180400
+    l_gi2: 4A1700
+    l_gi3: 120300
+    l_gi4: 351000
+    l_gi5: "080100"
+    l_gi6: 401300
+    l_gi7: 401300
+    l_gi8: 401300
+    l_grill1: 180300
+    l_grill9: orange
+    l_grill17: 401000
+- duration: 160ms
+  lights:
+    l_gi1: 401300
+    l_gi2: 180400
+    l_gi3: 4A1700
+    l_gi4: 120300
+    l_gi5: 351000
+    l_gi6: "080100"
+    l_gi7: "080100"
+    l_gi8: "080100"
+    l_grill1: 401000
+    l_grill9: 180300
+    l_grill17: orange

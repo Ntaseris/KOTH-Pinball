@@ -1,0 +1,245 @@
+[gd_scene load_steps=10 format=3 uid="uid://bjh013jbgmlbk"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_em8eq"]
+[ext_resource type="VideoStream" uid="uid://d32033lis5ulm" path="res://images/Arlen Intro.ogv" id="2_fsd7s"]
+[ext_resource type="Script" uid="uid://cff0owk0jvkka" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_2ujdb"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="4_wq2wj"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_vqlu4"]
+[ext_resource type="PackedScene" path="res://modes/base/slides/player_badges.tscn" id="6_badges"]
+
+[sub_resource type="Animation" id="Animation_ud5x3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MPFVideoPlayer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1wm5j"]
+resource_name = "removed"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MPFVideoPlayer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_upx75"]
+_data = {
+&"RESET": SubResource("Animation_ud5x3"),
+&"removed": SubResource("Animation_1wm5j")
+}
+
+[node name="MPFSlide" type="Control" node_paths=PackedStringArray("animation_player")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1365.0
+offset_bottom = 766.0
+script = ExtResource("1_em8eq")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_left = -219.5
+offset_top = -124.3
+offset_right = 1146.5
+offset_bottom = 643.7
+scale = Vector2(1.322, 1.322)
+stream = ExtResource("2_fsd7s")
+volume_db = -80.0
+autoplay = true
+script = ExtResource("3_2ujdb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_upx75")
+}
+
+[node name="Label" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("4_wq2wj")
+layout_mode = 0
+offset_left = -6.0
+offset_top = 706.0
+offset_right = 1362.0
+offset_bottom = 792.0
+theme_override_font_sizes/font_size = 38
+text = "Press both flippers to skip"
+horizontal_alignment = 1
+
+[node name="PlayerBadges" parent="." instance=ExtResource("6_badges")]
+
+[node name="player1_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("4_wq2wj")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 320.0
+offset_bottom = 128.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 38
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("5_vqlu4")
+variable_type = 4
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player2_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("4_wq2wj")
+layout_mode = 0
+offset_left = 320.0
+offset_top = 48.0
+offset_right = 624.0
+offset_bottom = 128.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 38
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("5_vqlu4")
+variable_type = 5
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player3_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("4_wq2wj")
+layout_mode = 0
+offset_left = 752.0
+offset_top = 48.0
+offset_right = 1024.0
+offset_bottom = 128.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 38
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("5_vqlu4")
+variable_type = 6
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player4_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("4_wq2wj")
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 48.0
+offset_right = 1368.0
+offset_bottom = 128.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 38
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("5_vqlu4")
+variable_type = 7
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player 1" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("4_wq2wj")
+layout_mode = 0
+offset_left = 8.0
+offset_right = 320.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 40
+text = "player 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player 2" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("4_wq2wj")
+layout_mode = 0
+offset_left = 312.0
+offset_right = 624.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 40
+text = "player 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player 3" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("4_wq2wj")
+layout_mode = 0
+offset_left = 752.0
+offset_right = 1024.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 40
+text = "player 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player 4" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("4_wq2wj")
+layout_mode = 0
+offset_left = 1024.0
+offset_right = 1368.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 40
+
+[node name="ball" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("4_wq2wj")
+layout_mode = 0
+offset_left = 624.0
+offset_top = 57.0
+offset_right = 752.0
+offset_bottom = 111.0
+theme_override_colors/font_color = Color(1, 0.82, 0.18, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 40
+text = "Ball 1"
+horizontal_alignment = 1
+script = ExtResource("5_vqlu4")
+variable_name = "ball"
+template_string = "ball %s"
+
+[node name="player" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("4_wq2wj")
+layout_mode = 0
+offset_left = 600.0
+offset_top = 2.0
+offset_right = 776.0
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(1, 0.82, 0.18, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 44
+text = "Player 1"
+horizontal_alignment = 1
+script = ExtResource("5_vqlu4")
+variable_name = "number"
+template_string = "player %s"
+min_players = 1
+max_players = 4
+text = "player 4"
+horizontal_alignment = 1
+vertical_alignment = 1

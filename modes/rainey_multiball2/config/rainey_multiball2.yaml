@@ -1,0 +1,57 @@
+#config_version=6
+
+mode:
+  start_events: mode_rainey_multiball_stopped
+  stop_events: multiball_rainey_multiball2_ended
+  priority: 250
+
+show_player:
+  multiball_rainey_multiball2_shoot_again:
+    flash_color:
+      key: ball_save
+      speed: 4
+      show_tokens:
+        lights: l_ball_save
+        color: orange
+  multiball_rainey_multiball2_shoot_again_ended:
+    ball_save: stop
+    
+
+multiballs:
+    rainey_multiball2:
+        ball_count: 3
+        ball_count_type: total
+        shoot_again: 30s
+        start_events: logicblock_mb_counter2_complete{current_player.any_mb_active == 0}
+
+light_player:
+  logicblock_mb_counter2_hit{hits==1}:
+    l_lock_1:
+      color: green
+  logicblock_mb_counter2_hit{hits==2}:
+    l_lock_2:
+      color: green
+  multiball_rainey_multiball2_started:
+    l_lock_1: stop
+    l_lock_2: stop
+    l_lock_lit: off
+  logicblock_light_rainey_multiball2_ball_lock_counter_complete:
+    l_lock_lit:
+      color: green
+
+  
+  
+
+counters:
+  mb_counter2:
+    enable_events: logicblock_light_rainey_multiball2_ball_lock_counter_complete
+    count_events: s_center_spinner_active
+    count_complete_value: 3
+    disable_events: multiball_grill_mb_started, multiball_strickland_multiball_started
+  
+
+slide_player:
+  multiball_rainey_multiball2_started: 
+    rainey_multiball3:
+      expire: 2s
+  slide_rainey_multiball3_inactive: rainey_multiball4

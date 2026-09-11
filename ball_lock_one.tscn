@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://m71rravc6xwh"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_iots1"]
+[ext_resource type="VideoStream" uid="uid://4f76n16vf15p" path="res://images/ball_lock/King.of.the.Hill.S03E24.Take.Me.Out.of.the.Ball.Game.1080p.DSNP.WEB-DL.AAC2.0.H.264-NTb-00.15.58.630-00.16.03.767-seg4.ogv" id="2_es8bw"]
+[ext_resource type="Script" uid="uid://cff0owk0jvkka" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_j5syy"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="4_d82cb"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_iots1")
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("2_es8bw")
+autoplay = true
+script = ExtResource("3_j5syy")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 1368.0
+offset_bottom = 256.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 6
+theme_override_fonts/font = ExtResource("4_d82cb")
+theme_override_font_sizes/font_size = 80
+text = "ball lock 1"
+horizontal_alignment = 1

@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct2nv72686sb5"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_q1efp"]
+[ext_resource type="Texture2D" uid="uid://d3eythyba1xux" path="res://images/dog_dale_rules.jpeg" id="2_8rci8"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_ra04d"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_q1efp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(684, 385.067)
+scale = Vector2(1.34114, 0.997222)
+texture = ExtResource("2_8rci8")
+
+[node name="Label" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_ra04d")
+layout_mode = 0
+offset_top = 64.0
+offset_right = 1376.0
+offset_bottom = 280.0
+theme_override_font_sizes/font_size = 120
+text = "dog dale afternoon"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_ra04d")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 488.0
+offset_right = 1384.0
+offset_bottom = 608.0
+theme_override_font_sizes/font_size = 60
+text = "shoot 5 fire shots
+
+Center spinner raises every fire value"
+horizontal_alignment = 1

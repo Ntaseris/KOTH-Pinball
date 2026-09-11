@@ -1,0 +1,357 @@
+[gd_scene load_steps=13 format=3 uid="uid://y2jj08e2r5qi"]
+
+[ext_resource type="PackedScene" path="res://modes/base/slides/player_badges.tscn" id="13_badges"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_1m5la"]
+[ext_resource type="Texture2D" uid="uid://ckuiibekwu210" path="res://images/grill_mb.jpeg" id="2_mqf41"]
+[ext_resource type="Texture2D" path="res://images/king_of_the_hill_fence_restoration_candidate.png" id="4_uk1bv"]
+[ext_resource type="Texture2D" uid="uid://clkfwska2dwkm" path="res://images/base_player_image.png" id="5_1woex"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="6_1pq1s"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="7_0ugwo"]
+[ext_resource type="Theme" uid="uid://b4fbuks3kqs3a" path="res://body_md.tres" id="8_m35tj"]
+[ext_resource type="Texture2D" uid="uid://q1dqwtm558um" path="res://images/manger_babies-removebg-preview.png" id="9_ss77b"]
+[ext_resource type="VideoStream" uid="uid://c7wpvvbmkjj3h" path="res://images/grill_loop.ogv" id="10_1woex"]
+[ext_resource type="Script" uid="uid://cff0owk0jvkka" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="11_1pq1s"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_1m5la")
+metadata/_custom_type_script = "uid://30oouok838l"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(684, 384.5)
+scale = Vector2(0.86125, 0.854444)
+texture = ExtResource("2_mqf41")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(684, 384)
+scale = Vector2(0.817, 0.816)
+texture = ExtResource("4_uk1bv")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(672, 120)
+texture = ExtResource("5_1woex")
+
+[node name="score" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 22.0
+offset_top = 356.0
+offset_right = 1376.0
+offset_bottom = 488.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 112
+text = "1,000,000"
+horizontal_alignment = 1
+script = ExtResource("7_0ugwo")
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 8.0
+offset_right = 232.0
+offset_bottom = 136.0
+
+[node name="ball" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 1368.0
+offset_bottom = 101.0
+theme = ExtResource("8_m35tj")
+theme_override_font_sizes/font_size = 30
+text = "Ball 1"
+horizontal_alignment = 1
+script = ExtResource("7_0ugwo")
+variable_name = "ball"
+template_string = "ball %s"
+
+[node name="player" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 1368.0
+offset_bottom = 77.0
+theme = ExtResource("8_m35tj")
+theme_override_font_sizes/font_size = 30
+text = "Player 1"
+horizontal_alignment = 1
+script = ExtResource("7_0ugwo")
+variable_name = "number"
+template_string = "player %s  "
+min_players = 1
+max_players = 4
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = 120.0
+offset_right = 1368.0
+offset_bottom = 264.0
+
+[node name="PlayerBadges" parent="." instance=ExtResource("13_badges")]
+
+[node name="player1_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 320.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 30
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("7_0ugwo")
+variable_type = 4
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player2_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 320.0
+offset_top = 48.0
+offset_right = 624.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 30
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("7_0ugwo")
+variable_type = 5
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player3_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 752.0
+offset_top = 48.0
+offset_right = 1024.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 30
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("7_0ugwo")
+variable_type = 6
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player4_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 48.0
+offset_right = 1368.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 30
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("7_0ugwo")
+variable_type = 7
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player 1" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 8.0
+offset_right = 320.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 35
+text = "player 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player 2" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 312.0
+offset_right = 624.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 35
+text = "player 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player 3" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 752.0
+offset_right = 1024.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 35
+text = "player 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player 4" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 1024.0
+offset_right = 1368.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 35
+text = "player 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1223.5, 616.5)
+scale = Vector2(0.642, 0.578)
+texture = ExtResource("9_ss77b")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1149.0
+offset_top = 551.0
+offset_right = 1302.0
+offset_bottom = 691.0
+color = Color(0, 0.94902, 1, 1)
+
+[node name="Label2" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 110.0
+offset_top = 150.0
+offset_right = 1258.0
+offset_bottom = 250.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 88
+text = "Grill Multiball"
+horizontal_alignment = 1
+
+[node name="Objective" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 80.0
+offset_top = 246.0
+offset_right = 1288.0
+offset_bottom = 302.0
+theme_override_colors/font_color = Color(1, 0.72, 0.12, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 43
+text = "COMPLETE THE 3 ORANGE ORDERS"
+horizontal_alignment = 1
+
+[node name="ShotGuide" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 80.0
+offset_top = 298.0
+offset_right = 1288.0
+offset_bottom = 350.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 31
+text = "LEFT ORBIT  •  LEFT RAMP  •  RIGHT ORBIT"
+horizontal_alignment = 1
+
+[node name="OrderProgress" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 50.0
+offset_top = 535.0
+offset_right = 455.0
+offset_bottom = 610.0
+theme_override_colors/font_color = Color(1, 0.72, 0.12, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 43
+text = "ORDERS 0 / 3"
+horizontal_alignment = 1
+script = ExtResource("7_0ugwo")
+variable_name = "grill_order_progress"
+template_string = "ORDERS %s / 3"
+
+[node name="Heat" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 455.0
+offset_top = 535.0
+offset_right = 790.0
+offset_bottom = 610.0
+theme_override_colors/font_color = Color(1, 0.35, 0.08, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 43
+text = "HEAT 0"
+horizontal_alignment = 1
+script = ExtResource("7_0ugwo")
+variable_name = "grill_heat"
+template_string = "HEAT %s"
+
+[node name="JackpotValue" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 790.0
+offset_top = 535.0
+offset_right = 1318.0
+offset_bottom = 610.0
+theme_override_colors/font_color = Color(1, 0.85, 0.18, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 38
+text = "JACKPOT 1,000,000"
+horizontal_alignment = 1
+script = ExtResource("7_0ugwo")
+variable_name = "grill_jackpot_value"
+comma_separate = true
+template_string = "JACKPOT %s"
+
+[node name="CashoutGuide" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("6_1pq1s")
+layout_mode = 0
+offset_left = 80.0
+offset_top = 638.0
+offset_right = 1288.0
+offset_bottom = 710.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 39
+text = "BUILD HEAT WITH SPINNERS  •  RIGHT RAMP CASHES OUT"
+horizontal_alignment = 1
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+show_behind_parent = true
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+stream = ExtResource("10_1woex")
+volume_db = -5.0
+autoplay = true
+loop = true
+script = ExtResource("11_1pq1s")
+metadata/_custom_type_script = "uid://cff0owk0jvkka"

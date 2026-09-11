@@ -1,0 +1,41 @@
+#show_version=6
+
+- duration: 240ms
+  lights:
+    l_gi1: "300018"
+    l_gi2: "080020"
+    l_gi3: "480028"
+    l_gi4: "100030"
+    l_gi5: "380020"
+    l_gi6: "080018"
+    l_gi7: "080018"
+    l_gi8: "080018"
+    l_boom_1: FF3B9D
+    l_boom_2: "500020"
+    l_boom_3: "180030"
+- duration: 240ms
+  lights:
+    l_gi1: "080018"
+    l_gi2: "300018"
+    l_gi3: "080020"
+    l_gi4: "480028"
+    l_gi5: "100030"
+    l_gi6: "380020"
+    l_gi7: "380020"
+    l_gi8: "380020"
+    l_boom_1: "180030"
+    l_boom_2: FF3B9D
+    l_boom_3: "500020"
+- duration: 240ms
+  lights:
+    l_gi1: "380020"
+    l_gi2: "080018"
+    l_gi3: "300018"
+    l_gi4: "080020"
+    l_gi5: "480028"
+    l_gi6: "100030"
+    l_gi7: "100030"
+    l_gi8: "100030"
+    l_boom_1: "500020"
+    l_boom_2: "180030"
+    l_boom_3: FF3B9D

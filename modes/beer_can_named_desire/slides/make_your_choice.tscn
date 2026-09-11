@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://cb5bx1nj8xmn0"]
+
+[ext_resource type="Script" uid="uid://dru3usokwlhd3" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_pggpp"]
+[ext_resource type="Texture2D" uid="uid://con8t3mdm6vnv" path="res://images/beercan_bg.jpeg" id="2_rmr77"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_40ypu"]
+[ext_resource type="Script" uid="uid://dpe3dq8axt3g7" path="res://addons/mpf-gmc/classes/mpf_carousel.gd" id="4_3dac4"]
+[ext_resource type="Texture2D" uid="uid://xc6qq2jcwtou" path="res://images/hank_hill.jpg" id="5_j4c5x"]
+[ext_resource type="Texture2D" uid="uid://cdiqp021etmf4" path="res://images/dandy_don.webp" id="6_e5kiu"]
+
+[node name="Control" type="Control" unique_id=2099337913]
+layout_mode = 3
+anchor_left = 0.01
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pggpp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=468467663]
+position = Vector2(678.34, 384)
+scale = Vector2(1.35285, 1)
+texture = ExtResource("2_rmr77")
+
+[node name="Label" type="Label" parent="." unique_id=734763546]
+theme_override_fonts/font = ExtResource("3_40ypu")
+layout_mode = 0
+offset_left = -14.0
+offset_top = 9.0
+offset_right = 1362.0
+offset_bottom = 152.0
+theme_override_font_sizes/font_size = 120
+text = "make your choice"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Label3" type="Label" parent="." unique_id=1102652539]
+theme_override_fonts/font = ExtResource("3_40ypu")
+layout_mode = 0
+offset_left = 1242.34
+offset_top = 320.0
+offset_right = 1330.34
+offset_bottom = 477.0
+theme_override_font_sizes/font_size = 150
+text = ">"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=1857262933]
+theme_override_fonts/font = ExtResource("3_40ypu")
+layout_mode = 0
+offset_left = 18.34
+offset_top = 320.0
+offset_right = 106.34
+offset_bottom = 477.0
+theme_override_font_sizes/font_size = 150
+text = "<"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="." unique_id=1833064179]
+theme_override_fonts/font = ExtResource("3_40ypu")
+layout_mode = 0
+offset_left = 2.0
+offset_top = 565.0
+offset_right = 650.0
+offset_bottom = 635.0
+theme_override_font_sizes/font_size = 64
+text = "Dandy Don"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Label5" type="Label" parent="." unique_id=1322330833]
+theme_override_fonts/font = ExtResource("3_40ypu")
+layout_mode = 0
+offset_left = 706.0
+offset_top = 565.0
+offset_right = 1346.0
+offset_bottom = 635.0
+theme_override_font_sizes/font_size = 64
+text = "Hank hill"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="DandyRules" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_40ypu")
+layout_mode = 0
+offset_left = 2.0
+offset_top = 630.0
+offset_right = 650.0
+offset_bottom = 700.0
+theme_override_font_sizes/font_size = 34
+text = "SAFE BET - 3 MILLION NOW"
+horizontal_alignment = 1
+
+[node name="HankRules" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_40ypu")
+layout_mode = 0
+offset_left = 706.0
+offset_top = 630.0
+offset_right = 1346.0
+offset_bottom = 700.0
+theme_override_font_sizes/font_size = 34
+text = "TAKE THE SHOT - 10 SEC FOR 10 MILLION"
+horizontal_alignment = 1
+
+[node name="Controls" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_40ypu")
+layout_mode = 0
+offset_top = 710.0
+offset_right = 1376.0
+offset_bottom = 760.0
+theme_override_font_sizes/font_size = 28
+text = "LEFT / RIGHT FLIPPERS CHOOSE - BOTH FLIPPERS CONFIRM"
+horizontal_alignment = 1
+
+[node name="MPFCarousel" type="Control" parent="." unique_id=695752707]
+anchors_preset = 0
+script = ExtResource("4_3dac4")
+carousel_name = "beercan_carousel"
+
+[node name="hank_hill" type="Sprite2D" parent="MPFCarousel" unique_id=6281478]
+position = Vector2(1024, 388)
+scale = Vector2(0.388889, 0.303704)
+
+[node name="dandy_don" type="Sprite2D" parent="MPFCarousel" unique_id=980365098]
+position = Vector2(328.625, 389.375)
+scale = Vector2(0.732307, 0.458745)
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1066287153]
+position = Vector2(328.625, 389.375)
+scale = Vector2(0.732307, 0.458745)
+texture = ExtResource("6_e5kiu")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=65637556]
+position = Vector2(1024, 388)
+scale = Vector2(0.388889, 0.303704)
+texture = ExtResource("5_j4c5x")

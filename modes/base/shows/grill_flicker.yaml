@@ -1,0 +1,133 @@
+#show_version=6
+
+- duration: 55ms
+  lights:
+    l_grill1: orange
+    l_grill2: orange
+    l_grill3: red
+    l_grill4: yellow
+    l_grill5: orange
+    l_grill6: red
+    l_grill7: 440000
+    l_grill8: red
+
+- duration: 35ms
+  lights:
+    l_grill1: red
+    l_grill2: orange
+    l_grill3: orange
+    l_grill4: orange
+    l_grill5: yellow
+    l_grill6: orange
+    l_grill7: red
+    l_grill8: 440000
+
+- duration: 100ms
+  lights:
+    l_grill1: 440000
+    l_grill2: red
+    l_grill3: orange
+    l_grill4: orange
+    l_grill5: orange
+    l_grill6: yellow
+    l_grill7: orange
+    l_grill8: red
+
+- duration: 40ms
+  lights:
+    l_grill1: red
+    l_grill2: 440000
+    l_grill3: red
+    l_grill4: orange
+    l_grill5: orange
+    l_grill6: orange
+    l_grill7: yellow
+    l_grill8: orange
+
+- duration: 80ms
+  lights:
+    l_grill1: orange
+    l_grill2: red
+    l_grill3: 440000
+    l_grill4: red
+    l_grill5: orange
+    l_grill6: orange
+    l_grill7: orange
+    l_grill8: yellow
+
+- duration: 30ms
+  lights:
+    l_grill1: orange
+    l_grill2: yellow
+    l_grill3: orange
+    l_grill4: 440000
+    l_grill5: red
+    l_grill6: orange
+    l_grill7: red
+    l_grill8: orange
+
+- duration: 110ms
+  lights:
+    l_grill1: red
+    l_grill2: orange
+    l_grill3: yellow
+    l_grill4: orange
+    l_grill5: 440000
+    l_grill6: red
+    l_grill7: orange
+    l_grill8: red
+
+- duration: 45ms
+  lights:
+    l_grill1: yellow
+    l_grill2: orange
+    l_grill3: orange
+    l_grill4: red
+    l_grill5: orange
+    l_grill6: 440000
+    l_grill7: red
+    l_grill8: orange
+
+- duration: 70ms
+  lights:
+    l_grill1: orange
+    l_grill2: yellow
+    l_grill3: red
+    l_grill4: orange
+    l_grill5: red
+    l_grill6: orange
+    l_grill7: 440000
+    l_grill8: orange
+
+- duration: 35ms
+  lights:
+    l_grill1: orange
+    l_grill2: orange
+    l_grill3: yellow
+    l_grill4: orange
+    l_grill5: orange
+    l_grill6: red
+    l_grill7: orange
+    l_grill8: 440000
+
+- duration: 120ms
+  lights:
+    l_grill1: red
+    l_grill2: red
+    l_grill3: orange
+    l_grill4: yellow
+    l_grill5: orange
+    l_grill6: orange
+    l_grill7: red
+    l_grill8: orange
+
+- duration: 50ms
+  lights:
+    l_grill1: orange
+    l_grill2: red
+    l_grill3: red
+    l_grill4: orange
+    l_grill5: yellow
+    l_grill6: orange
+    l_grill7: orange
+    l_grill8: red

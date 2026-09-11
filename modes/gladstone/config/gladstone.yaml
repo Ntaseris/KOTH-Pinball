@@ -1,0 +1,282 @@
+#config_version=6
+
+mode:
+  start_events: mission_select_gladstone_selected{current_player.any_mb_active == 0}
+  stop_events:
+    - ball_ending
+    - ball_drain
+    - mode_bonus_will_start
+    - timer_gladstone_mode_countdown_complete
+    - slide_gladstone_finish_removed
+  priority: 130
+
+slide_player:
+  mode_gladstone_started:
+    hey_gladstone_rules:
+      expire: 3s
+      priority: 1000
+  slide_hey_gladstone_rules_inactive:
+    gladstone:
+      expire: 79s
+      priority: 500
+  gladstone_mode_complete:
+    gladstone_finish:
+      action: play
+      expire: 6s
+      priority: 1100
+
+sound_player:
+  mode_gladstone_started:
+    dale_gladstone_thirty_seconds:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  gladstone_employee_fired:
+    jackpot_hit:
+      bus: effects
+      volume: 0.17
+  gladstone_mass_layoff_collect:
+    hank_youre_fired:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  gladstone_mass_layoff_lit:
+    dale_gladstone_anyone_else:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  gladstone_mode_complete:
+    success_sting:
+      bus: effects
+      volume: 0.34
+    dale_gladstone_very_decisive:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  timer_gladstone_mode_countdown_complete:
+    no_goals_hank:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+timers:
+  gladstone_mode_countdown:
+    start_value: 82
+    end_value: 0
+    direction: down
+    start_running: true
+    bcp: true
+    control_events:
+      - event: gladstone_mode_complete
+        action: stop
+
+variable_player:
+  mode_gladstone_started:
+    modes: 1
+    gladstone_completed:
+      int: 0
+      action: set
+    employees_fired:
+      int: 0
+      action: set
+    gladstone_layoffs:
+      int: 0
+      action: set
+    gladstone_layoff_value:
+      int: 5000000
+      action: set
+    gladstone_play_active:
+      int: 1
+      action: set
+  gladstone_employee_fired:
+    score: 500000 * current_player.pf_multiplier
+    employees_fired: 1
+  gladstone_mass_layoff_collect:
+    score: current_player.gladstone_layoff_value * current_player.pf_multiplier
+    gladstone_layoffs: 1
+    gladstone_layoff_value: 2500000
+    employees_fired:
+      int: 0
+      action: set
+  gladstone_mode_complete:
+    gladstone_completed:
+      int: 1
+      action: set
+    gladstone_play_active:
+      int: 0
+      action: set
+  player_score{source=="gladstone"}:
+    gladstone_total: change
+
+shot_profiles:
+  gladstone_employee:
+    states:
+      - name: employed
+        show: led_color
+        show_tokens:
+          color: red
+      - name: fired
+        show: "off"
+
+shots:
+  gladstone_p:
+    switch: s_p_target
+    hit_events: pocket_sand_hit_gladstone_p
+    profile: gladstone_employee
+    show_tokens:
+      light: l_p_target
+    reset_events: mode_gladstone_started, gladstone_mass_layoff_collect
+  gladstone_r:
+    switch: s_r_target
+    hit_events: pocket_sand_hit_gladstone_r
+    profile: gladstone_employee
+    show_tokens:
+      light: l_r_target
+    reset_events: mode_gladstone_started, gladstone_mass_layoff_collect
+  gladstone_o:
+    switch: s_o_target
+    hit_events: pocket_sand_hit_gladstone_o
+    profile: gladstone_employee
+    show_tokens:
+      light: l_o_target
+    reset_events: mode_gladstone_started, gladstone_mass_layoff_collect
+  gladstone_p2:
+    switch: s_p2_target
+    hit_events: pocket_sand_hit_gladstone_p2
+    profile: gladstone_employee
+    show_tokens:
+      light: l_p2_target
+    reset_events: mode_gladstone_started, gladstone_mass_layoff_collect
+  gladstone_a:
+    switch: s_a_target
+    hit_events: pocket_sand_hit_gladstone_a
+    profile: gladstone_employee
+    show_tokens:
+      light: l_a_target
+    reset_events: mode_gladstone_started, gladstone_mass_layoff_collect
+  gladstone_n:
+    switch: s_n_target
+    hit_events: pocket_sand_hit_gladstone_n
+    profile: gladstone_employee
+    show_tokens:
+      light: l_n_target
+    reset_events: mode_gladstone_started, gladstone_mass_layoff_collect
+  gladstone_e:
+    switch: s_e_target
+    hit_events: pocket_sand_hit_gladstone_e
+    profile: gladstone_employee
+    show_tokens:
+      light: l_e_target
+    reset_events: mode_gladstone_started, gladstone_mass_layoff_collect
+  gladstone_layoff:
+    switch: s_right_ramp_exit
+    hit_events: pocket_sand_hit_gladstone_layoff
+    start_enabled: false
+    enable_events: gladstone_mass_layoff_lit
+    disable_events: gladstone_mass_layoff_collect, gladstone_mode_complete
+
+shot_groups:
+  gladstone_employees:
+    shots: gladstone_p, gladstone_r, gladstone_o, gladstone_p2, gladstone_a, gladstone_n, gladstone_e
+    disable_events: gladstone_mode_complete
+
+counters:
+  gladstone_firings:
+    count_events: gladstone_employee_fired
+    starting_count: 0
+    count_complete_value: 7
+    reset_on_complete: false
+    disable_on_complete: false
+    reset_events: mode_gladstone_started, gladstone_mass_layoff_collect
+    events_when_complete: gladstone_mass_layoff_lit
+  gladstone_collect_limit:
+    count_events: gladstone_mass_layoff_collect
+    starting_count: 0
+    count_complete_value: 3
+    reset_on_complete: false
+    events_when_complete: gladstone_mode_complete
+
+event_player:
+  gladstone_employees_employed_hit{current_player.gladstone_play_active == 1}:
+    gladstone_employee_fired
+  gladstone_layoff_hit{current_player.gladstone_play_active == 1}:
+    gladstone_mass_layoff_collect
+  pocket_sand_mode_spot_attempt{current_player.gladstone_play_active == 1 and device.shots.gladstone_p.state_name == "employed"}:
+    - pocket_sand_hit_gladstone_p
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{current_player.gladstone_play_active == 1 and device.shots.gladstone_p.state_name != "employed" and device.shots.gladstone_r.state_name == "employed"}:
+    - pocket_sand_hit_gladstone_r
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{current_player.gladstone_play_active == 1 and device.shots.gladstone_p.state_name != "employed" and device.shots.gladstone_r.state_name != "employed" and device.shots.gladstone_o.state_name == "employed"}:
+    - pocket_sand_hit_gladstone_o
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{current_player.gladstone_play_active == 1 and device.shots.gladstone_p.state_name != "employed" and device.shots.gladstone_r.state_name != "employed" and device.shots.gladstone_o.state_name != "employed" and device.shots.gladstone_p2.state_name == "employed"}:
+    - pocket_sand_hit_gladstone_p2
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{current_player.gladstone_play_active == 1 and device.shots.gladstone_p.state_name != "employed" and device.shots.gladstone_r.state_name != "employed" and device.shots.gladstone_o.state_name != "employed" and device.shots.gladstone_p2.state_name != "employed" and device.shots.gladstone_a.state_name == "employed"}:
+    - pocket_sand_hit_gladstone_a
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{current_player.gladstone_play_active == 1 and device.shots.gladstone_p.state_name != "employed" and device.shots.gladstone_r.state_name != "employed" and device.shots.gladstone_o.state_name != "employed" and device.shots.gladstone_p2.state_name != "employed" and device.shots.gladstone_a.state_name != "employed" and device.shots.gladstone_n.state_name == "employed"}:
+    - pocket_sand_hit_gladstone_n
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{current_player.gladstone_play_active == 1 and device.shots.gladstone_p.state_name != "employed" and device.shots.gladstone_r.state_name != "employed" and device.shots.gladstone_o.state_name != "employed" and device.shots.gladstone_p2.state_name != "employed" and device.shots.gladstone_a.state_name != "employed" and device.shots.gladstone_n.state_name != "employed" and device.shots.gladstone_e.state_name == "employed"}:
+    - pocket_sand_hit_gladstone_e
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{current_player.gladstone_play_active == 1 and current_player.employees_fired >= 7 and device.shots.gladstone_layoff.enabled == True}:
+    - pocket_sand_hit_gladstone_layoff
+    - pocket_sand_spotted
+
+show_player:
+  gladstone_p_employed_hit:
+    gladstone_fire_flash:
+      loops: 1
+      priority: 132
+      show_tokens:
+        light: l_p_target
+  gladstone_r_employed_hit:
+    gladstone_fire_flash:
+      loops: 1
+      priority: 132
+      show_tokens:
+        light: l_r_target
+  gladstone_o_employed_hit:
+    gladstone_fire_flash:
+      loops: 1
+      priority: 132
+      show_tokens:
+        light: l_o_target
+  gladstone_p2_employed_hit:
+    gladstone_fire_flash:
+      loops: 1
+      priority: 132
+      show_tokens:
+        light: l_p2_target
+  gladstone_a_employed_hit:
+    gladstone_fire_flash:
+      loops: 1
+      priority: 132
+      show_tokens:
+        light: l_a_target
+  gladstone_n_employed_hit:
+    gladstone_fire_flash:
+      loops: 1
+      priority: 132
+      show_tokens:
+        light: l_n_target
+  gladstone_e_employed_hit:
+    gladstone_fire_flash:
+      loops: 1
+      priority: 132
+      show_tokens:
+        light: l_e_target
+  gladstone_mass_layoff_lit:
+    gladstone_layoff_ready:
+      loops: -1
+      priority: 131
+  gladstone_mass_layoff_collect:
+    gladstone_layoff_ready:
+      action: stop
+    gladstone_layoff_collect:
+      loops: 1
+      priority: 133
+  gladstone_mode_complete:
+    gladstone_layoff_ready:
+      action: stop
+    gladstone_complete:
+      loops: 2
+      priority: 135

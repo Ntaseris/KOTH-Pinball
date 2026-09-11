@@ -1,0 +1,5 @@
+persist: true
+
+mode:
+  start_events: game_started
+  priority: 100

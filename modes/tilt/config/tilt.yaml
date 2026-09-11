@@ -1,0 +1,75 @@
+#config_version=6
+
+mode:
+  code: mpf.modes.tilt.code.tilt.Tilt
+  priority: 1000000
+  start_events: machine_reset_phase_3
+  game_mode: false
+  stop_on_ball_end: false
+
+tilt:
+  tilt_warning_switch_tag: tilt_warning
+  tilt_switch_tag: tilt
+  slam_tilt_switch_tag: slam_tilt
+  warnings_to_tilt: 3
+  # A single shove can make the physical bob close repeatedly while it swings.
+  # Treat those closures as one warning instead of advancing toward a tilt.
+  multiple_hit_window: 1s
+  settle_time: 5s
+  tilt_warnings_player_var: tilt_warnings
+  reset_warnings_events: ball_ended
+
+sound_player:
+  tilt_warning_1:
+    hank_anger_problem_idiots:
+      bus: effects
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  tilt_warning_2:
+    bobby_whos_next:
+      bus: effects
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  tilt:
+    bobby_thats_my_purse:
+      bus: effects
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+show_player:
+  tilt_warning_1:
+    tilt_warning_one:
+      loops: 1
+      priority: 1000
+  tilt_warning_2:
+    tilt_warning_two:
+      loops: 1
+      priority: 1100
+  tilt:
+    tilt_full:
+      key: tilt_full
+      loops: -1
+      priority: 1200
+  tilt_clear:
+    tilt_full: stop
+
+# Remove MPF's inherited full-screen black tilt slide. Warnings and TILT are
+# rendered by the red overlay widget below on whichever game slide is active.
+slide_player:
+  _overwrite: true
+
+widget_player:
+  tilt_warning_1:
+    tilt_message:
+      expire: 1s
+      priority: 10000
+      tokens: {text: WARNING}
+  tilt_warning_2:
+    tilt_message:
+      expire: 1s
+      priority: 10000
+      tokens: {text: DANGER}
+  tilt:
+    tilt_message:
+      priority: 10000
+      tokens: {text: TILT}
+  tilt_clear:
+    tilt_message:
+      action: remove

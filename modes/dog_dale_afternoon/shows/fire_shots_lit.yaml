@@ -1,0 +1,9 @@
+#show_version=6
+
+- duration: 125ms
+  lights:
+    l_right_orbit: red
+- duration: 125ms
+  lights:
+    l_right_orbit: yellow
+- duration: 125ms

@@ -1,0 +1,59 @@
+; Copyright (C) 2026 One More Game - All Rights Reserved
+; Unauthorized copying of this file, via any medium is strictly prohibited
+; Proprietary and confidential
+
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_slide"]
+[ext_resource type="VideoStream" path="res://images/micro_clips/visual_candidates/video_game_explosion.ogv" id="2_video"]
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_player"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="4_font"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_variable"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+script = ExtResource("1_slide")
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+stream = ExtResource("2_video")
+volume_db = -80.0
+autoplay = true
+script = ExtResource("3_player")
+
+[node name="JackpotTitle" type="Label" parent="."]
+offset_left = 84.0
+offset_top = 62.0
+offset_right = 1284.0
+offset_bottom = 210.0
+theme_override_colors/font_color = Color(1, 0.72, 0.12, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 112
+text = "SUPER JACKPOT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JackpotValue" type="Label" parent="."]
+offset_left = 120.0
+offset_top = 225.0
+offset_right = 1248.0
+offset_bottom = 355.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 11
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 88
+text = "1,000,000"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_variable")
+variable_name = "strickland_super_jackpot_value"
+comma_separate = true

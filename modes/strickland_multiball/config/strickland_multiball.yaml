@@ -1,0 +1,296 @@
+#config_version=6
+
+mode:
+  start_events: strickland_multiball_sequence_done{current_player.any_mb_active == 0}
+  stop_events: multiball_strickland_multiball_ended
+  priority: 250
+
+sound_player:
+  mode_strickland_multiball_started:
+    koth_theme:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.18
+      fade_in: 500ms
+    strickland_its_a_gas_jingle:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  mode_strickland_multiball_stopped:
+    koth_theme:
+      action: stop
+      bus: music
+      fade_out: 500ms
+  logicblock_pop_bumper_counter_hit{count == 3}:
+    hank_strickland_liquid_and_gas:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+      max_queue_time: 0
+  logicblock_pop_bumper_counter_hit{count == 5}:
+    award_chime:
+      bus: effects
+      volume: 0.22
+  logicblock_pop_bumper_counter_hit{count == 6}:
+    hank_strickland_propane_accessories:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+      max_queue_time: 0
+  logicblock_pop_bumper_counter_hit{count == 9}:
+    award_chime:
+      bus: effects
+      volume: 0.32
+  slide_strickland_spatula_and_friend_inactive{current_player.strickland_mb_active == 1}:
+    buck_strickland_good_times:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+      max_queue_time: 0
+  super_jackpot_collect_hit:
+    buck_strickland_its_great:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+      max_queue_time: 0
+
+widget_player:
+  pop_bumper_counter_complete:
+    strickland_jackpot_ready:
+      action: play
+  super_jackpot_collect_hit:
+    strickland_jackpot_ready:
+      action: remove
+
+show_player:
+  mode_strickland_multiball_started:
+    "off":
+      key: strickland_other_multiball_suppression
+      priority: 260
+      show_tokens:
+        lights: l_lock_lit, l_strickland_multiball
+    strickland_qualified:
+      loops: 1
+      speed: 1.4
+      priority: 335
+  mode_strickland_multiball_will_stop:
+    strickland_other_multiball_suppression:
+      action: stop
+    strickland_ambience:
+      action: stop
+    strickland_jackpot_ready:
+      action: stop
+
+  multiball_strickland_multiball_started:
+    strickland_multiball_start:
+      loops: 1
+      speed: 2
+      priority: 360
+    strickland_ambience:
+      key: strickland_ambience
+      loops: -1
+      priority: 255
+  left_pop_bumper_hit:
+    base_target_pulse:
+      loops: 1
+      priority: 270
+      show_tokens: {light: l_gi1, color: orange}
+  right_pop_bumper_hit:
+    base_target_pulse:
+      loops: 1
+      priority: 270
+      show_tokens: {light: l_gi2, color: blue}
+
+  pop_bumper_hits_hit:
+    strickland_pop_progress:
+      loops: 1
+      priority: 330
+
+  pop_bumper_counter_complete:
+    strickland_jackpot_ready:
+      key: strickland_jackpot_ready
+      loops: -1
+      priority: 360
+
+  super_jackpot_collect_hit:
+    strickland_jackpot_ready:
+      action: stop
+    strickland_jackpot_collect:
+      loops: 3
+      priority: 2000
+  ball_save_strickland_multiball_timer_start:
+    flash_color:
+      key: ball_save
+      loops: -1
+      speed: 7
+      priority: 500
+      show_tokens:
+        lights: l_ball_save
+        color: cyan
+  multiball_strickland_multiball_shoot_again:
+    flash_color:
+      key: strickland_ball_save_burst
+      loops: 3
+      speed: 7
+      priority: 800
+      show_tokens:
+        lights: "l_ball_save, l_gi1, l_gi2, l_gi3, l_gi4, l_gi5, l_gi6, l_gi7, l_gi8"
+        color: white
+  multiball_strickland_multiball_shoot_again_ended:
+    ball_save: stop
+
+multiballs:
+    strickland_multiball:
+        ball_count: 3
+        ball_count_type: total
+        shoot_again: 30s
+        start_events: timer_strickland_rules_complete
+
+timers:
+  strickland_rules:
+    start_value: 3
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    start_running: true
+
+event_player:
+  left_orbit_post_combo_hit{current_player.strickland_jackpot_lit == 0}:
+    - left_orbit_post_release
+  pocket_sand_multiball_spot_attempt{current_player.strickland_mb_active == 1 and current_player.strickland_jackpot_lit == 1}:
+    - super_jackpot_collect_hit
+    - pocket_sand_spotted
+    - pocket_sand_strickland_super_cleanup|100ms
+  pocket_sand_multiball_spot_attempt{current_player.strickland_mb_active == 1 and current_player.strickland_jackpot_lit == 0}:
+    - pop_bumper_hits_hit
+    - pocket_sand_spotted
+
+shots:
+  left_pop_bumper:
+    switch: s_left_pop_bumper
+    enable_events: multiball_strickland_multiball_started
+    disable_events: multiball_strickland_multiball_ended
+  right_pop_bumper:
+    switch: s_right_pop_bumper
+    enable_events: multiball_strickland_multiball_started
+    disable_events: multiball_strickland_multiball_ended
+  super_jackpot_collect:
+    switch: s_left_orbit_enter
+    enable_events: pop_bumper_counter_complete
+    disable_events: super_jackpot_collect_hit
+
+shot_groups:
+  pop_bumper_hits:
+    shots: left_pop_bumper, right_pop_bumper
+
+
+counters:
+  pop_bumper_counter:
+    starting_count: 0
+    count_complete_value: 10
+    events_when_complete: pop_bumper_counter_complete
+    enable_events: multiball_strickland_multiball_started
+    disable_events: multiball_strickland_multiball_ended
+    start_enabled: false
+    persist_state: true
+    reset_on_complete: false
+    restart_events: super_jackpot_collect_hit
+    count_events: pop_bumper_hits_hit
+
+achievements:
+  strickland_super_jackpot:
+    show_when_started: off
+    show_when_completed: off
+    reset_events: strickland_super_jackpot_complete
+    start_events: pop_bumper_counter_complete
+    complete_events: super_jackpot_collect_hit
+    events_when_completed: strickland_super_jackpot_complete
+    restart_after_stop_possible: true
+
+
+
+variable_player:
+  multiball_strickland_multiball_started:
+    strickland_mb_active:
+      int: 1
+      action: set
+    strickland_jackpot_lit:
+      int: 0
+      action: set
+    strickland_super_jackpot_value:
+      int: 1000000 * current_player.pf_multiplier
+      action: set
+  multiball_strickland_multiball_ended:
+    strickland_mb_active:
+      int: 0
+      action: set
+    strickland_jackpot_lit:
+      int: 0
+      action: set
+  pop_bumper_counter_complete:
+    strickland_jackpot_lit:
+      int: 1
+      action: set
+  pocket_sand_strickland_super_cleanup:
+    strickland_jackpot_lit:
+      int: 0
+      action: set
+  s_left_orbit_enter_inactive{current_player.strickland_jackpot_lit == 1}:
+    strickland_jackpot_lit:
+      int: 0
+      action: set
+  pop_bumper_hits_hit:
+    strickland_super_jackpot_value:
+      int: 50000 * current_player.pf_multiplier
+  strickland_super_jackpot_complete:
+    score: current_player.strickland_super_jackpot_value
+  
+
+slide_player:
+  mode_strickland_multiball_started:
+    strickland_multiball:
+      expire: 3s
+      priority: 1100
+  multiball_strickland_multiball_started:
+    strickland_multiball_2:
+      action: play
+      priority: 500
+  pop_bumper_counter_complete:
+    strickland_spatula_and_friend:
+      expire: 6.6s
+      priority: 1300
+  slide_strickland_spatula_and_friend_inactive{current_player.strickland_mb_active == 1}:
+    strickland_multiball_2:
+      action: play
+      priority: 500
+  super_jackpot_collect_hit:
+    strickland_spatula_and_friend:
+      action: remove
+  play_strickland_super_propane:
+    strickland_propane_boom:
+      expire: 9.2s
+      priority: 1300
+  play_strickland_super_video_game_explosion:
+    strickland_video_game_explosion:
+      expire: 4.1s
+      priority: 1300
+  play_strickland_super_video_game_knockdown:
+    strickland_video_game_knockdown:
+      expire: 2.55s
+      priority: 1300
+  slide_strickland_propane_boom_inactive{current_player.strickland_mb_active == 1}:
+    strickland_multiball_2:
+      action: play
+      priority: 500
+  slide_strickland_video_game_explosion_inactive{current_player.strickland_mb_active == 1}:
+    strickland_multiball_2:
+      action: play
+      priority: 500
+  slide_strickland_video_game_knockdown_inactive{current_player.strickland_mb_active == 1}:
+    strickland_multiball_2:
+      action: play
+      priority: 500
+
+random_event_player:
+  super_jackpot_collect_hit:
+    events:
+      - play_strickland_super_propane
+      - play_strickland_super_video_game_explosion
+      - play_strickland_super_video_game_knockdown
+    force_different: true

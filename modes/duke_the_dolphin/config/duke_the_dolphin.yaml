@@ -1,0 +1,357 @@
+#config_version=6
+
+mode:
+  start_events: mission_select_duke_the_dolphin_selected{current_player.any_mb_active == 0}
+  stop_events:
+    - ball_ending
+    - ball_drain
+    - mode_bonus_will_start
+    - timer_duke_the_dolphin_mode_countdown_complete
+    - slide_duke_the_dolphin_finish_removed
+  priority: 130
+
+slide_player:
+  mode_duke_the_dolphin_started:
+    duke_the_dolphin_rules:
+      expire: 3s
+      priority: 1000
+  slide_duke_the_dolphin_rules_inactive:
+    duke_the_dolphin:
+      expire: 45s
+      priority: 500
+  logicblock_duke_counter_complete:
+    duke_the_dolphin_finish:
+      action: play
+      expire: 6s
+      priority: 1100
+
+ball_holds:
+  duke_finish:
+    balls_to_hold: 1
+    hold_devices: bd_scoop
+    enable_events: duke_final_rescue_lit
+    disable_events: slide_duke_the_dolphin_finish_removed
+    release_one_events: slide_duke_the_dolphin_finish_removed
+
+sound_player:
+  mode_duke_the_dolphin_started:
+    hank_duke_get_out_of_pool:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  duke_rescue_hit:
+    jackpot_hit:
+      bus: effects
+      volume: 0.2
+  duke_chase_phase_started:
+    hank_run_run_run:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  timer_duke_the_dolphin_mode_countdown_complete:
+    hank_that_thing_attacked_me:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  timer_duke_the_dolphin_mode_countdown_tick{ticks == 10}:
+    hank_duke_what_do_i_do:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  logicblock_duke_counter_complete:
+    hank_duke_that_is_perfect:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+timers:
+  duke_the_dolphin_mode_countdown:
+    start_value: 45
+    end_value: 0
+    direction: down
+    start_running: false
+    bcp: true
+    control_events:
+      - event: duke_play_started
+        action: start
+      - event: logicblock_duke_counter_complete
+        action: stop
+  random_event_timer:
+    start_value: 0
+    end_value: 4
+    direction: up
+    restart_on_complete: true
+    start_running: false
+    control_events:
+      - event: duke_play_started
+        action: start
+      - event: logicblock_duke_counter_complete
+        action: stop
+      - event: duke_chase_phase_started
+        action: stop
+  duke_chase_timer:
+    start_value: 0
+    end_value: 2
+    direction: up
+    restart_on_complete: true
+    start_running: false
+    control_events:
+      - event: duke_chase_phase_started
+        action: start
+      - event: duke_final_rescue_lit
+        action: stop
+      - event: logicblock_duke_counter_complete
+        action: stop
+
+variable_player:
+  mode_duke_the_dolphin_started:
+    modes: 1
+    duke_the_dolphin_completed:
+      int: 0
+      action: set
+    duke_rescues:
+      int: 0
+      action: set
+    duke_play_active:
+      int: 0
+      action: set
+    duke_phase:
+      int: 1
+      action: set
+  duke_play_started:
+    duke_play_active:
+      int: 1
+      action: set
+  duke_rescue_hit:
+    duke_rescues: 1
+  duke_rescue_hit{current_player.duke_phase == 1}:
+    score: (1000000 + (current_player.duke_rescues - 1) * 250000) * current_player.pf_multiplier
+  duke_rescue_hit{current_player.duke_phase == 2}:
+    score: (2000000 + (current_player.duke_rescues - 4) * 500000) * current_player.pf_multiplier
+  duke_chase_phase_started:
+    duke_phase:
+      int: 2
+      action: set
+  duke_final_rescue_hit:
+    score: 5000000 * current_player.pf_multiplier
+    duke_rescues: 1
+  logicblock_duke_counter_complete:
+    duke_the_dolphin_completed:
+      int: 1
+      action: set
+    duke_play_active:
+      int: 0
+      action: set
+  player_score{source=="duke_the_dolphin"}:
+    duke_the_dolphin_total: change
+
+random_event_player:
+  duke_choose_next_shot:
+    events:
+      - advance_shot_1_duke
+      - advance_shot_2_duke
+      - advance_shot_3_duke
+      - advance_shot_4_duke
+      - advance_shot_5_duke
+    force_all: true
+    force_different: true
+
+light_player:
+  player_shot_shot_1_duke_enabled{value == True and current_player.duke_phase == 1}:
+    l_left_orbit:
+      color: blue
+  player_shot_shot_2_duke_enabled{value == True and current_player.duke_phase == 1}:
+    l_left_ramp:
+      color: blue
+  player_shot_shot_3_duke_enabled{value == True and current_player.duke_phase == 1}:
+    l_center_spinner:
+      color: blue
+  player_shot_shot_4_duke_enabled{value == True and current_player.duke_phase == 1}:
+    l_right_ramp:
+      color: blue
+  player_shot_shot_5_duke_enabled{value == True and current_player.duke_phase == 1}:
+    l_right_orbit:
+      color: blue
+  player_shot_shot_1_duke_enabled{value == True and current_player.duke_phase == 2}:
+    l_left_orbit:
+      color: magenta
+  player_shot_shot_2_duke_enabled{value == True and current_player.duke_phase == 2}:
+    l_left_ramp:
+      color: magenta
+  player_shot_shot_3_duke_enabled{value == True and current_player.duke_phase == 2}:
+    l_center_spinner:
+      color: magenta
+  player_shot_shot_4_duke_enabled{value == True and current_player.duke_phase == 2}:
+    l_right_ramp:
+      color: magenta
+  player_shot_shot_5_duke_enabled{value == True and current_player.duke_phase == 2}:
+    l_right_orbit:
+      color: magenta
+  player_shot_shot_1_duke_enabled{value == False}:
+    l_left_orbit: off
+  player_shot_shot_2_duke_enabled{value == False}:
+    l_left_ramp: off
+  player_shot_shot_3_duke_enabled{value == False}:
+    l_center_spinner: off
+  player_shot_shot_4_duke_enabled{value == False}:
+    l_right_ramp: off
+  player_shot_shot_5_duke_enabled{value == False}:
+    l_right_orbit: off
+  duke_final_rescue_lit:
+    l_scoop:
+      color: yellow
+  duke_final_rescue_hit:
+    l_scoop: off
+
+shots:
+  shot_1_duke:
+    switch: s_left_orbit_enter
+    start_enabled: false
+    enable_events: advance_shot_1_duke
+    disable_events: advance_shot_2_duke, advance_shot_3_duke, advance_shot_4_duke, advance_shot_5_duke, duke_final_rescue_lit, logicblock_duke_counter_complete
+  shot_2_duke:
+    switch: s_left_ramp_exit
+    start_enabled: false
+    enable_events: advance_shot_2_duke
+    disable_events: advance_shot_1_duke, advance_shot_3_duke, advance_shot_4_duke, advance_shot_5_duke, duke_final_rescue_lit, logicblock_duke_counter_complete
+  shot_3_duke:
+    switch: s_center_spinner
+    start_enabled: false
+    enable_events: advance_shot_3_duke
+    disable_events: advance_shot_1_duke, advance_shot_2_duke, advance_shot_4_duke, advance_shot_5_duke, duke_final_rescue_lit, logicblock_duke_counter_complete
+  shot_4_duke:
+    switch: s_right_ramp_exit
+    start_enabled: false
+    enable_events: advance_shot_4_duke
+    disable_events: advance_shot_1_duke, advance_shot_2_duke, advance_shot_3_duke, advance_shot_5_duke, duke_final_rescue_lit, logicblock_duke_counter_complete
+  shot_5_duke:
+    switch: s_right_orbit_exit
+    start_enabled: false
+    enable_events: advance_shot_5_duke
+    disable_events: advance_shot_1_duke, advance_shot_2_duke, advance_shot_3_duke, advance_shot_4_duke, duke_final_rescue_lit, logicblock_duke_counter_complete
+  shot_duke_final_rescue:
+    switch: s_scoop
+    start_enabled: false
+    enable_events: duke_final_rescue_lit
+    disable_events: duke_final_rescue_hit, timer_duke_the_dolphin_mode_countdown_complete, logicblock_duke_counter_complete
+
+event_player:
+  slide_duke_the_dolphin_rules_removed:
+    - duke_play_started
+    - duke_choose_next_shot
+  timer_random_event_timer_complete:
+    duke_choose_next_shot
+  timer_duke_chase_timer_complete:
+    duke_choose_next_shot
+  shot_1_duke_hit{current_player.duke_play_active == 1}:
+    duke_rescue_hit
+  shot_2_duke_hit{current_player.duke_play_active == 1}:
+    duke_rescue_hit
+  shot_3_duke_hit{current_player.duke_play_active == 1}:
+    duke_rescue_hit
+  shot_4_duke_hit{current_player.duke_play_active == 1}:
+    duke_rescue_hit
+  shot_5_duke_hit{current_player.duke_play_active == 1}:
+    duke_rescue_hit
+  duke_rescue_hit{current_player.duke_rescues < 2}:
+    duke_choose_next_shot
+  duke_rescue_hit{current_player.duke_rescues > 2 and current_player.duke_rescues < 5}:
+    duke_choose_next_shot
+  logicblock_duke_counter_hit{count == 3}:
+    duke_chase_phase_started
+  duke_chase_phase_started:
+    duke_choose_next_shot
+  logicblock_duke_counter_hit{count == 6}:
+    duke_final_rescue_lit
+  shot_duke_final_rescue_hit:
+    duke_final_rescue_hit
+  pocket_sand_mode_spot_attempt{device.shots.shot_1_duke.enabled == True}:
+    - shot_1_duke_hit
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{device.shots.shot_2_duke.enabled == True}:
+    - shot_2_duke_hit
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{device.shots.shot_3_duke.enabled == True}:
+    - shot_3_duke_hit
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{device.shots.shot_4_duke.enabled == True}:
+    - shot_4_duke_hit
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{device.shots.shot_5_duke.enabled == True}:
+    - shot_5_duke_hit
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{device.shots.shot_duke_final_rescue.enabled == True}:
+    - shot_duke_final_rescue_hit
+    - pocket_sand_spotted
+
+counters:
+  duke_counter:
+    count_events: duke_rescue_hit, duke_final_rescue_hit
+    count_complete_value: 7
+    disable_on_complete: true
+
+show_player:
+  duke_chase_phase_started:
+    base_qualification_celebration:
+      loops: 2
+      speed: 2.5
+      priority: 134
+      show_tokens: {color: magenta}
+  duke_final_rescue_lit:
+    flash_color:
+      key: duke_final_rescue
+      speed: 5
+      priority: 134
+      show_tokens:
+        lights: l_scoop
+        color: yellow
+  duke_final_rescue_hit:
+    duke_final_rescue:
+      action: stop
+  shot_1_duke_hit:
+    duke_splash:
+      loops: 1
+      priority: 132
+      show_tokens:
+        light: l_left_orbit
+  shot_2_duke_hit:
+    duke_splash:
+      loops: 1
+      priority: 132
+      show_tokens:
+        light: l_left_ramp
+  shot_3_duke_hit:
+    duke_splash:
+      loops: 1
+      priority: 132
+      show_tokens:
+        light: l_center_spinner
+  shot_4_duke_hit:
+    duke_splash:
+      loops: 1
+      priority: 132
+      show_tokens:
+        light: l_right_ramp
+  shot_5_duke_hit:
+    duke_splash:
+      loops: 1
+      priority: 132
+      show_tokens:
+        light: l_right_orbit
+  logicblock_duke_counter_complete:
+    duke_final_rescue:
+      action: stop
+    duke_complete:
+      loops: 2
+      priority: 135
+
+widget_player:
+  duke_chase_phase_started:
+    duke_chase_phase:
+      expire: 1.8s
+  duke_final_rescue_lit:
+    duke_final_rescue:
+      action: play
+  duke_final_rescue_hit:
+    duke_final_rescue:
+      action: remove
+  mode_duke_the_dolphin_stopped:
+    duke_chase_phase:
+      action: remove
+    duke_final_rescue:
+      action: remove

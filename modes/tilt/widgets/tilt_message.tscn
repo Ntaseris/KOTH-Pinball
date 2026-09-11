@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_widget"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="2_font"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="3_variable"]
+
+[node name="MPFWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1366.0
+offset_bottom = 768.0
+mouse_filter = 2
+script = ExtResource("1_widget")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 250.0
+offset_right = 1286.0
+offset_bottom = 518.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 132
+text = "WARNING"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_variable")
+variable_type = 1
+variable_name = "text"
+template_string = "%s"

@@ -1,0 +1,31 @@
+#show_version=6
+# Copyright (C) 2026 One More Game - All Rights Reserved
+# Unauthorized copying of this file, via any medium is strictly prohibited
+# Proprietary and confidential
+
+- duration: 80ms
+  lights:
+    l_playfield_2X: white
+- duration: 80ms
+  lights:
+    l_playfield_2X: yellow
+    l_playfield_3X: white
+- duration: 80ms
+  lights:
+    l_playfield_2X: off
+    l_playfield_3X: yellow
+    l_playfield_4X: white
+- duration: 80ms
+  lights:
+    l_playfield_3X: off
+    l_playfield_4X: yellow
+    l_playfield_5X: white
+- duration: 80ms
+  lights:
+    l_playfield_4X: off
+    l_playfield_5X: yellow
+    l_playfield_10X: white
+- duration: 1ms
+  lights:
+    l_playfield_5X: off
+    l_playfield_10X: off

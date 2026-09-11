@@ -1,0 +1,429 @@
+#config_version=6
+
+mode:
+  start_events: mission_select_bill_mini_wizard_selected{current_player.any_mb_active == 0}
+  stop_events:
+    - multiball_bill_mini_wizard_multiball_ended{current_player.bill_mw_failed == 0}
+    - ball_save_bill_violetta_return_saving_ball
+    - ball_ending
+  priority: 260
+
+multiballs:
+  bill_mini_wizard_multiball:
+    ball_count: 2
+    ball_count_type: total
+    shoot_again: 10s
+    start_events: mode_bill_mini_wizard_started
+
+ball_saves:
+  bill_violetta_return:
+    active_time: 20s
+    auto_launch: true
+    balls_to_save: 1
+    only_last_ball: true
+    enable_events: bill_violetta_hit
+    disable_events: ball_save_bill_violetta_return_saving_ball, ball_ending
+
+timers:
+  bill_violetta_move:
+    start_value: 0
+    end_value: 5
+    direction: up
+    restart_on_complete: true
+    start_running: false
+    control_events:
+      - event: bill_mw_play_started
+        action: start
+      - event: bill_mw_jackpot_collected
+        action: restart
+      - event: bill_violetta_hit
+        action: stop
+      - event: bill_escape_super_collected
+        action: stop
+
+counters:
+  bill_mw_jackpot_counter:
+    count_events: bill_mw_jackpot_collected
+    count_complete_value: 6
+    events_when_complete: bill_escape_super_lit
+    disable_on_complete: true
+    reset_on_complete: false
+
+random_event_player:
+  bill_choose_violetta:
+    events:
+      - bill_violetta_left_orbit
+      - bill_violetta_left_ramp
+      - bill_violetta_center_spinner
+      - bill_violetta_right_ramp
+      - bill_violetta_right_orbit
+    force_all: true
+    force_different: true
+  bill_mw_jackpot_presentation:
+    events:
+      - play_bill_mw_jackpot_1
+      - play_bill_mw_jackpot_2
+      - play_bill_mw_jackpot_3
+    force_all: true
+
+shots:
+  bill_safe_left_orbit:
+    switch: s_left_orbit_enter
+    start_enabled: false
+    hit_events: pocket_sand_hit_bill_safe_left_orbit
+    enable_events: bill_violetta_left_ramp, bill_violetta_center_spinner, bill_violetta_right_ramp, bill_violetta_right_orbit, bill_victory_lap_started
+    disable_events: bill_violetta_left_orbit, bill_escape_super_lit, bill_violetta_hit
+  bill_safe_left_ramp:
+    switch: s_left_ramp_exit
+    start_enabled: false
+    hit_events: pocket_sand_hit_bill_safe_left_ramp
+    enable_events: bill_violetta_left_orbit, bill_violetta_center_spinner, bill_violetta_right_ramp, bill_violetta_right_orbit, bill_victory_lap_started
+    disable_events: bill_violetta_left_ramp, bill_escape_super_lit, bill_violetta_hit
+  bill_safe_center_spinner:
+    switch: s_center_spinner
+    start_enabled: false
+    hit_events: pocket_sand_hit_bill_safe_center_spinner
+    enable_events: bill_violetta_left_orbit, bill_violetta_left_ramp, bill_violetta_right_ramp, bill_violetta_right_orbit, bill_victory_lap_started
+    disable_events: bill_violetta_center_spinner, bill_escape_super_lit, bill_violetta_hit
+  bill_safe_right_ramp:
+    switch: s_right_ramp_exit
+    start_enabled: false
+    hit_events: pocket_sand_hit_bill_safe_right_ramp
+    enable_events: bill_violetta_left_orbit, bill_violetta_left_ramp, bill_violetta_center_spinner, bill_violetta_right_orbit, bill_victory_lap_started
+    disable_events: bill_violetta_right_ramp, bill_escape_super_lit, bill_violetta_hit
+  bill_safe_right_orbit:
+    switch: s_right_orbit_exit
+    start_enabled: false
+    hit_events: pocket_sand_hit_bill_safe_right_orbit
+    enable_events: bill_violetta_left_orbit, bill_violetta_left_ramp, bill_violetta_center_spinner, bill_violetta_right_ramp, bill_victory_lap_started
+    disable_events: bill_violetta_right_orbit, bill_escape_super_lit, bill_violetta_hit
+
+  bill_hazard_left_orbit:
+    switch: s_left_orbit_enter
+    start_enabled: false
+    enable_events: bill_violetta_left_orbit
+    disable_events: bill_violetta_left_ramp, bill_violetta_center_spinner, bill_violetta_right_ramp, bill_violetta_right_orbit, bill_escape_super_lit, bill_violetta_hit
+  bill_hazard_left_ramp:
+    switch: s_left_ramp_exit
+    start_enabled: false
+    enable_events: bill_violetta_left_ramp
+    disable_events: bill_violetta_left_orbit, bill_violetta_center_spinner, bill_violetta_right_ramp, bill_violetta_right_orbit, bill_escape_super_lit, bill_violetta_hit
+  bill_hazard_center_spinner:
+    switch: s_center_spinner
+    start_enabled: false
+    enable_events: bill_violetta_center_spinner
+    disable_events: bill_violetta_left_orbit, bill_violetta_left_ramp, bill_violetta_right_ramp, bill_violetta_right_orbit, bill_escape_super_lit, bill_violetta_hit
+  bill_hazard_right_ramp:
+    switch: s_right_ramp_exit
+    start_enabled: false
+    enable_events: bill_violetta_right_ramp
+    disable_events: bill_violetta_left_orbit, bill_violetta_left_ramp, bill_violetta_center_spinner, bill_violetta_right_orbit, bill_escape_super_lit, bill_violetta_hit
+  bill_hazard_right_orbit:
+    switch: s_right_orbit_exit
+    start_enabled: false
+    enable_events: bill_violetta_right_orbit
+    disable_events: bill_violetta_left_orbit, bill_violetta_left_ramp, bill_violetta_center_spinner, bill_violetta_right_ramp, bill_escape_super_lit, bill_violetta_hit
+
+  bill_escape_scoop:
+    switch: s_scoop
+    start_enabled: false
+    enable_events: bill_escape_super_lit
+    disable_events: bill_escape_super_collected, bill_violetta_hit
+
+variable_player:
+  mode_bill_mini_wizard_started:
+    bill_mini_wizard_completed:
+      int: 0
+      action: set
+    bill_mw_active:
+      int: 1
+      action: set
+    bill_mw_failed:
+      int: 0
+      action: set
+    bill_mw_jackpots:
+      int: 0
+      action: set
+    bill_mw_jackpot_value:
+      int: 2000000
+      action: set
+    bill_mw_jackpot_total:
+      int: 0
+      action: set
+    bill_mw_last_award:
+      int: 0
+      action: set
+  multiball_bill_mini_wizard_multiball_started:
+    any_mb_active: 1
+  multiball_bill_mini_wizard_multiball_ended:
+    any_mb_active: -1
+  mode_bill_mini_wizard_stopped:
+    bill_mw_active:
+      int: 0
+      action: set
+
+  logicblock_bill_mw_jackpot_counter_hit{count == 1}:
+    score: 2000000 * current_player.pf_multiplier
+    bill_mw_last_award:
+      int: 2000000 * current_player.pf_multiplier
+      action: set
+    bill_mw_jackpot_total: 2000000 * current_player.pf_multiplier
+  logicblock_bill_mw_jackpot_counter_hit{count == 2}:
+    score: 2500000 * current_player.pf_multiplier
+    bill_mw_last_award:
+      int: 2500000 * current_player.pf_multiplier
+      action: set
+    bill_mw_jackpot_total: 2500000 * current_player.pf_multiplier
+  logicblock_bill_mw_jackpot_counter_hit{count == 3}:
+    score: 6000000 * current_player.pf_multiplier
+    bill_mw_last_award:
+      int: 6000000 * current_player.pf_multiplier
+      action: set
+    bill_mw_jackpot_total: 6000000 * current_player.pf_multiplier
+  logicblock_bill_mw_jackpot_counter_hit{count == 4}:
+    score: 3500000 * current_player.pf_multiplier
+    bill_mw_last_award:
+      int: 3500000 * current_player.pf_multiplier
+      action: set
+    bill_mw_jackpot_total: 3500000 * current_player.pf_multiplier
+  logicblock_bill_mw_jackpot_counter_hit{count == 5}:
+    score: 4000000 * current_player.pf_multiplier
+    bill_mw_last_award:
+      int: 4000000 * current_player.pf_multiplier
+      action: set
+    bill_mw_jackpot_total: 4000000 * current_player.pf_multiplier
+  logicblock_bill_mw_jackpot_counter_hit{count == 6}:
+    score: 13500000 * current_player.pf_multiplier
+    bill_mw_last_award:
+      int: 13500000 * current_player.pf_multiplier
+      action: set
+    bill_mw_jackpot_total: 13500000 * current_player.pf_multiplier
+  logicblock_bill_mw_jackpot_counter_hit:
+    bill_mw_jackpots:
+      int: device.counters.bill_mw_jackpot_counter.value
+      action: set
+    bill_mw_jackpot_value: 500000
+
+  bill_escape_super_collected:
+    score: (10000000 * current_player.pf_multiplier) + current_player.bill_mw_jackpot_total
+    bill_mw_last_award:
+      int: (10000000 * current_player.pf_multiplier) + current_player.bill_mw_jackpot_total
+      action: set
+    bill_mini_wizard_completed:
+      int: 1
+      action: set
+  bill_completion_awarded:
+    score: 15000000 * current_player.pf_multiplier
+  bill_victory_jackpot:
+    score: 5000000 * current_player.pf_multiplier
+    bill_mw_last_award:
+      int: 5000000 * current_player.pf_multiplier
+      action: set
+  bill_violetta_hit:
+    bill_mw_failed:
+      int: 1
+      action: set
+
+event_player:
+  slide_bill_mini_wizard_inactive:
+    - bill_mw_play_started
+    - bill_choose_violetta
+  timer_bill_violetta_move_complete:
+    - bill_choose_violetta
+  logicblock_bill_mw_jackpot_counter_hit:
+    - bill_mw_jackpot_presentation|50ms
+
+  bill_safe_left_orbit_hit{current_player.bill_mini_wizard_completed == 0}: bill_mw_jackpot_collected
+  bill_safe_left_ramp_hit{current_player.bill_mini_wizard_completed == 0}: bill_mw_jackpot_collected
+  bill_safe_center_spinner_hit{current_player.bill_mini_wizard_completed == 0}: bill_mw_jackpot_collected
+  bill_safe_right_ramp_hit{current_player.bill_mini_wizard_completed == 0}: bill_mw_jackpot_collected
+  bill_safe_right_orbit_hit{current_player.bill_mini_wizard_completed == 0}: bill_mw_jackpot_collected
+  bill_safe_left_orbit_hit{current_player.bill_mini_wizard_completed == 1}: bill_victory_jackpot
+  bill_safe_left_ramp_hit{current_player.bill_mini_wizard_completed == 1}: bill_victory_jackpot
+  bill_safe_center_spinner_hit{current_player.bill_mini_wizard_completed == 1}: bill_victory_jackpot
+  bill_safe_right_ramp_hit{current_player.bill_mini_wizard_completed == 1}: bill_victory_jackpot
+  bill_safe_right_orbit_hit{current_player.bill_mini_wizard_completed == 1}: bill_victory_jackpot
+
+  bill_hazard_left_orbit_hit: bill_violetta_hit
+  bill_hazard_left_ramp_hit: bill_violetta_hit
+  bill_hazard_center_spinner_hit: bill_violetta_hit
+  bill_hazard_right_ramp_hit: bill_violetta_hit
+  bill_hazard_right_orbit_hit: bill_violetta_hit
+  bill_violetta_hit:
+    - cmd_flippers_disable
+  ball_save_bill_violetta_return_saving_ball:
+    - cmd_flippers_enable
+  bill_escape_scoop_hit:
+    - bill_escape_super_collected
+    - bill_completion_awarded
+    - bill_victory_lap_started
+
+  pocket_sand_multiball_spot_attempt{current_player.bill_mw_active == 1 and device.shots.bill_escape_scoop.enabled == True}:
+    - bill_escape_scoop_hit
+    - pocket_sand_spotted
+  pocket_sand_multiball_spot_attempt{current_player.bill_mw_active == 1 and device.shots.bill_escape_scoop.enabled == False and device.shots.bill_safe_left_orbit.enabled == True}:
+    - pocket_sand_hit_bill_safe_left_orbit
+    - pocket_sand_spotted
+  pocket_sand_multiball_spot_attempt{current_player.bill_mw_active == 1 and device.shots.bill_escape_scoop.enabled == False and device.shots.bill_safe_left_orbit.enabled == False and device.shots.bill_safe_left_ramp.enabled == True}:
+    - pocket_sand_hit_bill_safe_left_ramp
+    - pocket_sand_spotted
+  pocket_sand_multiball_spot_attempt{current_player.bill_mw_active == 1 and device.shots.bill_escape_scoop.enabled == False and device.shots.bill_safe_left_orbit.enabled == False and device.shots.bill_safe_left_ramp.enabled == False and device.shots.bill_safe_center_spinner.enabled == True}:
+    - pocket_sand_hit_bill_safe_center_spinner
+    - pocket_sand_spotted
+  pocket_sand_multiball_spot_attempt{current_player.bill_mw_active == 1 and device.shots.bill_escape_scoop.enabled == False and device.shots.bill_safe_left_orbit.enabled == False and device.shots.bill_safe_left_ramp.enabled == False and device.shots.bill_safe_center_spinner.enabled == False and device.shots.bill_safe_right_ramp.enabled == True}:
+    - pocket_sand_hit_bill_safe_right_ramp
+    - pocket_sand_spotted
+  pocket_sand_multiball_spot_attempt{current_player.bill_mw_active == 1 and device.shots.bill_escape_scoop.enabled == False and device.shots.bill_safe_left_orbit.enabled == False and device.shots.bill_safe_left_ramp.enabled == False and device.shots.bill_safe_center_spinner.enabled == False and device.shots.bill_safe_right_ramp.enabled == False and device.shots.bill_safe_right_orbit.enabled == True}:
+    - pocket_sand_hit_bill_safe_right_orbit
+    - pocket_sand_spotted
+
+light_player:
+  bill_violetta_left_orbit:
+    l_left_orbit: purple
+    l_left_ramp: yellow
+    l_center_spinner: yellow
+    l_right_ramp: yellow
+    l_right_orbit: yellow
+  bill_violetta_left_ramp:
+    l_left_orbit: yellow
+    l_left_ramp: purple
+    l_center_spinner: yellow
+    l_right_ramp: yellow
+    l_right_orbit: yellow
+  bill_violetta_center_spinner:
+    l_left_orbit: yellow
+    l_left_ramp: yellow
+    l_center_spinner: purple
+    l_right_ramp: yellow
+    l_right_orbit: yellow
+  bill_violetta_right_ramp:
+    l_left_orbit: yellow
+    l_left_ramp: yellow
+    l_center_spinner: yellow
+    l_right_ramp: purple
+    l_right_orbit: yellow
+  bill_violetta_right_orbit:
+    l_left_orbit: yellow
+    l_left_ramp: yellow
+    l_center_spinner: yellow
+    l_right_ramp: yellow
+    l_right_orbit: purple
+  bill_escape_super_lit:
+    l_left_orbit: off
+    l_left_ramp: off
+    l_center_spinner: off
+    l_right_ramp: off
+    l_right_orbit: off
+    l_scoop: gold
+  bill_victory_lap_started:
+    l_left_orbit: yellow
+    l_left_ramp: yellow
+    l_center_spinner: yellow
+    l_right_ramp: yellow
+    l_right_orbit: yellow
+    l_scoop: off
+  bill_violetta_hit:
+    l_left_orbit: purple
+    l_left_ramp: purple
+    l_center_spinner: purple
+    l_right_ramp: purple
+    l_right_orbit: purple
+
+show_player:
+  ball_save_bill_mini_wizard_multiball_timer_start:
+    flash_color:
+      key: bill_mw_ball_save
+      loops: -1
+      speed: 7
+      priority: 500
+      show_tokens: {lights: l_ball_save, color: cyan}
+  multiball_bill_mini_wizard_multiball_shoot_again:
+    flash_color:
+      key: bill_mw_ball_save_burst
+      loops: 3
+      speed: 7
+      priority: 800
+      show_tokens: {lights: l_ball_save, color: white}
+  multiball_bill_mini_wizard_multiball_shoot_again_ended:
+    bill_mw_ball_save: stop
+  bill_mw_jackpot_presentation:
+    bill_mw_jackpot_collect:
+      loops: 1
+      priority: 330
+  bill_escape_super_lit:
+    flash_color:
+      key: bill_escape_super
+      speed: 5
+      priority: 320
+      show_tokens: {lights: l_scoop, color: gold}
+  bill_escape_super_collected:
+    bill_escape_super: stop
+    bill_mw_escape_super:
+      loops: 2
+      priority: 350
+  bill_violetta_hit:
+    bill_mw_violetta_fail:
+      loops: 2
+      priority: 1000
+
+slide_player:
+  mode_bill_mini_wizard_started:
+    bill_mini_wizard:
+      expire: 4.5s
+      priority: 1000
+  slide_bill_mini_wizard_inactive:
+    bill_mini_wizard2:
+      priority: 500
+
+widget_player:
+  play_bill_mw_jackpot_1:
+    bill_mw_jackpot_1:
+      expire: 1.6s
+      priority: 900
+  play_bill_mw_jackpot_2:
+    bill_mw_jackpot_2:
+      expire: 1.6s
+      priority: 900
+  play_bill_mw_jackpot_3:
+    bill_mw_jackpot_3:
+      expire: 1.6s
+      priority: 900
+  bill_escape_super_lit:
+    bill_mw_escape_ready:
+      priority: 700
+  bill_escape_super_collected:
+    bill_mw_escape_ready:
+      action: remove
+    bill_mw_escape_collected:
+      expire: 4s
+      priority: 1100
+  bill_violetta_hit:
+    bill_mw_violetta_fail:
+      expire: 5s
+      priority: 1200
+
+sound_player:
+  mode_bill_mini_wizard_started:
+    bill_mw_violetta_intro:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.8, attack: 0.03, release: 0.25, release_point: 0.0}
+  play_bill_mw_jackpot_1:
+    bill_mw_yes:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.03, release: 0.2, release_point: 0.0}
+  play_bill_mw_jackpot_2:
+    bill_mw_not_your_cousin:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.03, release: 0.2, release_point: 0.0}
+  play_bill_mw_jackpot_3:
+    bill_mw_no_she_is:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.03, release: 0.2, release_point: 0.0}
+  bill_violetta_hit:
+    bill_mw_blood_cousin:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.9, attack: 0.02, release: 0.3, release_point: 0.0}
+  bill_escape_super_collected:
+    bill_mw_thirty_five_years:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.85, attack: 0.03, release: 0.3, release_point: 0.0}

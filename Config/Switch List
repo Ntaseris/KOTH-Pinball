@@ -1,0 +1,45 @@
+P target
+R target
+O target
+P target right
+A target
+N target
+E target
+Top inline drop
+Middle inline drop
+Bottom inline drop
+L ramp enter
+L ramp exit
+R ramp enter
+R ramp exit
+L outlane
+L inlane
+L sling
+R sling
+R inlane
+R outlane
+L ramp standup
+R ramp standup
+L orbit enter
+L orbit spinner
+L orbit exit
+Center spinner
+Left pop bumper
+R pop bumper
+Bottom pop bumper
+L top rollover
+Center top rollover
+R top rollover
+R orbit exit
+Plunger lane exit
+Plunger lane
+L inner horseshoe
+R inner horseshoe
+Scoop
+trough 1
+trough 2
+trough 3
+trough 4
+trough 5
+trough 6
+R orbit enter

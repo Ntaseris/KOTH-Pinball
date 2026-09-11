@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_widget"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="2_font"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="3_variable"]
+
+[node name="MPFWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+script = ExtResource("1_widget")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 206.0
+offset_right = 340.0
+offset_bottom = 246.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+text = "SUPER SPINNERS"
+horizontal_alignment = 1
+
+[node name="Spins" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 246.0
+offset_right = 174.0
+offset_bottom = 282.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+text = "SPINS 0"
+horizontal_alignment = 1
+script = ExtResource("3_variable")
+variable_name = "super_spinner_spins"
+template_string = "SPINS %s"
+
+[node name="Value" type="Label" parent="."]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 246.0
+offset_right = 356.0
+offset_bottom = 282.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+text = "25,000 / SPIN"
+horizontal_alignment = 1
+script = ExtResource("3_variable")
+variable_name = "super_spinner_value"
+template_string = "%s / SPIN"
+comma_separate = true
+
+[node name="Total" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 282.0
+offset_right = 356.0
+offset_bottom = 318.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+text = "TOTAL 0"
+horizontal_alignment = 1
+script = ExtResource("3_variable")
+variable_name = "super_spinners_total"
+template_string = "TOTAL %s"
+comma_separate = true

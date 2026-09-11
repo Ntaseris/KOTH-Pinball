@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://csi36pl71mcig"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_wnpjw"]
+[ext_resource type="Texture2D" uid="uid://drm5boh0fcpvx" path="res://images/King.of.the.Hill.S04E06.A.Beer.Can.Named.Desire.1080p.DSNP.WEB-DL.AAC2.0.H.264-NTb-00.05.16.760.jpeg" id="2_c8v2w"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_p106k"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_wnpjw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(688, 388)
+scale = Vector2(1.075, 1.07778)
+texture = ExtResource("2_c8v2w")
+
+[node name="Label" type="Label" parent="."]
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_p106k")
+layout_mode = 0
+offset_left = 60.0
+offset_top = 72.0
+offset_right = 1316.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 86
+text = "beercan named desire"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_p106k")
+layout_mode = 0
+offset_left = 80.0
+offset_top = 485.0
+offset_right = 1296.0
+offset_bottom = 690.0
+theme_override_font_sizes/font_size = 46
+text = "First choose your player
+Dandy Don - safe 3 million now
+Hank - 10 seconds for 10 million"
+horizontal_alignment = 1

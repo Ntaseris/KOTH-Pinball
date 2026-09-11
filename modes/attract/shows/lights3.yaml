@@ -1,0 +1,226 @@
+#show_version=6
+- time: 0
+#No change this frame - take another step
+#  lights:
+- time: '+0.08'
+    
+- time: '+0.08'
+  lights:
+    l_dale_2: '0E2F20'
+    l_hank_2: '0051B6'
+    
+- time: '+0.08'
+  lights:
+    l_dale_2: '1B593C'
+    
+- time: '+0.08'
+  lights:
+    l_dale_1: '1B593C'
+    l_hank_1: '0051B6'
+    l_left_ramp: '7A2AB9'
+    
+- time: '+0.08'
+  lights:
+    l_boom_2: '0000C1'
+    
+- time: '+0.08'
+  lights:
+    l_bill_2: 'C87900'
+    l_boom_2: '0001C8'
+    l_dale_3: '1B593C'
+    l_hank_3: '0051B6'
+    l_o_target: '7A2AB9'
+    l_p_target: '0000C8'
+    l_r_target: '0000C8'
+    l_right_ramp: 'C43E1E'
+    
+- time: '+0.08'
+  lights:
+    l_bill_1: '1A583B'
+    l_boom_1: '0051B6'
+    l_left_orbit: '7A2AB9'
+    l_right_ramp: 'C8401F'
+    
+- time: '+0.08'
+  lights:
+    l_bill_1: '1B593C'
+    l_boom_2: '0000C8'
+    l_boom_3: '0051B5'
+    l_p2_target: 'C87900'
+    
+- time: '+0.08'
+  lights:
+    l_a_target: 'C87900'
+    l_bill_3: '1B593C'
+    l_boom_3: '0051B6'
+    l_mystery: 'BF06A0'
+    
+- time: '+0.08'
+  lights:
+    l_left_horseshoe: '150112'
+    l_n_target: 'C87900'
+    l_right_orbit: '792712'
+    l_wizard: '1B593C'
+    
+- time: '+0.08'
+  lights:
+    l_left_horseshoe: 'BF06A0'
+    l_playfield_3X: '0051B6'
+    l_playfield_4X: '1B593C'
+    l_right_orbit: 'C8401F'
+    l_scoop: 'BF06A0'
+    
+- time: '+0.08'
+  lights:
+    l_e_target: 'C87900'
+    l_playfield_2X: '0051B6'
+    l_playfield_5X: '040D09'
+    
+- time: '+0.08'
+  lights:
+    l_lock_lit: 'C70101'
+    l_playfield_5X: '1B593C'
+    
+- time: '+0.08'
+  lights:
+    l_boom_2: '0002C8'
+    l_lock_1: '000204'
+    
+- time: '+0.08'
+  lights:
+    l_boom_2: '0000C8'
+    l_center_spinner: 'C70101'
+    l_lock_1: '0051B6'
+    l_lock_2: '1B593C'
+    l_playfield_10X: '1B593C'
+    
+- time: '+0.08'
+  lights:
+    l_a_lane: '0051B6'
+    l_n_lane: '195438'
+    
+- time: '+0.08'
+  lights:
+    l_n_lane: '1B593C'
+    
+- time: '+0.08'
+  lights:
+    l_h_lane: '0051B6'
+    
+- time: '+0.08'
+  lights:
+    l_boom_2: '0001C8'
+    l_k_lane: '1B593C'
+    l_strickland_multiball: '0051B6'
+    
+- time: '+0.08'
+  lights:
+    l_boom_2: '0000C8'
+    
+- time: '+0.08'
+  lights:
+    l_boom_2: '0008C6'
+    
+- time: '+0.08'
+  lights:
+    l_bill_2: 'C37902'
+    
+- time: '+0.08'
+  lights:
+    l_bill_2: 'C87900'
+    l_boom_2: '0000C8'
+    
+- time: '+0.08'
+  lights:
+    l_bill_2: 'AB740A'
+    
+- time: '+0.08'
+  lights:
+    l_bill_2: '9C710F'
+    
+- time: '+0.08'
+  lights:
+    l_bill_2: '957012'
+    l_boom_2: '0001C8'
+    l_left_rollover_lane: 'C70101'
+    l_middle_rollover_lane: '8B0001'
+    
+- time: '+0.08'
+  lights:
+    l_left_rollover_lane: 'C70101'
+    l_bill_2: '916F13'
+    l_boom_2: '0003C7'
+    l_middle_rollover_lane: 'C70101'
+    l_right_rollover_lane: 'C70101'
+    
+- time: '+0.08'
+  lights:
+    l_o_target: '7227BA'
+    
+- time: '+0.08'
+  lights:
+    l_bill_2: '997110'
+    l_boom_2: '0001C8'
+    l_o_target: '6A24BB'
+    
+- time: '+0.08'
+  lights:
+    l_ball_save: '1B593C'
+    l_bill_2: '947012'
+    l_boom_2: '000FC5'
+    l_o_target: '6222BC'
+    
+- time: '+0.08'
+  lights:
+    l_bill_2: '7F6C19'
+    l_boom_2: '001AC2'
+    l_o_target: '5B1FBD'
+    
+
+- time: '+0.02'
+  lights:
+    l_dale_2: '000000'
+    l_hank_2: '000000'
+    l_dale_1: '000000'
+    l_hank_1: '000000'
+    l_left_ramp: '000000'
+    l_boom_2: '000000'
+    l_bill_2: '000000'
+    l_dale_3: '000000'
+    l_hank_3: '000000'
+    l_o_target: '000000'
+    l_p_target: '000000'
+    l_r_target: '000000'
+    l_right_ramp: '000000'
+    l_bill_1: '000000'
+    l_boom_1: '000000'
+    l_left_orbit: '000000'
+    l_boom_3: '000000'
+    l_p2_target: '000000'
+    l_a_target: '000000'
+    l_bill_3: '000000'
+    l_mystery: '000000'
+    l_left_horseshoe: '000000'
+    l_n_target: '000000'
+    l_right_orbit: '000000'
+    l_wizard: '000000'
+    l_playfield_3X: '000000'
+    l_playfield_4X: '000000'
+    l_scoop: '000000'
+    l_e_target: '000000'
+    l_playfield_2X: '000000'
+    l_playfield_5X: '000000'
+    l_lock_lit: '000000'
+    l_lock_1: '000000'
+    l_center_spinner: '000000'
+    l_lock_2: '000000'
+    l_playfield_10X: '000000'
+    l_a_lane: '000000'
+    l_n_lane: '000000'
+    l_h_lane: '000000'
+    l_k_lane: '000000'
+    l_strickland_multiball: '000000'
+    l_left_rollover_lane: '000000'
+    l_middle_rollover_lane: '000000'
+    l_right_rollover_lane: '000000'
+    l_ball_save: '000000'

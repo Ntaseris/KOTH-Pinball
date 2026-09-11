@@ -1,0 +1,2621 @@
+#config_version=6
+
+mode:
+  start_events: ball_will_start
+  stop_events: ball_will_end
+  priority: 100
+
+
+slide_player:
+  mission_select_beer_can_named_desire_selected: #mode_beercan_carousel_started: 
+    beer_can_named_desire_rules:
+      expire: 4s
+  beercan_carousel_dandy_don_selected:
+    make_your_choice: 
+      action: remove
+    beercan_carousel_mode_total:
+      expire: 3s
+      priority: 9000
+  beercan_carousel_hank_hill_selected:
+    make_your_choice:
+      action: remove
+  mode_beercan_carousel_stopped:
+    make_your_choice:
+      action: remove
+  mode_beer_can_named_desire_started:
+    make_your_choice:
+      action: remove
+  slide_beer_can_named_desire_rules_removed: make_your_choice
+  stop_mode_skillshot: base
+  mode_bill_bulk_and_the_body_buddies_stopped{current_player.bill_bulk_and_the_body_buddies_completed == 0}:
+    bill_bulk_and_the_body_buddies_mode_total:
+      expire: 3s
+      priority: 9000
+  mode_the_heat_waver_stopped{current_player.the_heat_waver_completed == 0}:
+    the_heat_waver_mode_total:
+      expire: 3s
+      priority: 9000
+  mode_beat_the_surfer_stopped{current_player.beat_the_surfer_completed == 0}:
+    beat_the_surfer_mode_total:
+      expire: 3s
+      priority: 9000
+  mode_dog_dale_afternoon_stopped{current_player.dog_dale_afternoon_completed == 0}:
+    dog_dale_afternoon_mode_total:
+      expire: 3s
+      priority: 9000
+  mode_beer_can_named_desire_stopped{current_player.beer_can_named_desire_completed == 0}:
+    make_your_choice:
+      action: remove
+    beer_can_mode_total:
+      expire: 3s
+      priority: 9000
+  shot_beercan_right_ramp_hit:
+    beer_can_hank_success:
+      expire: 2.5s
+      priority: 9100
+  dog_dale_afternoon_done:
+    dog_dale_afternoon_finish:
+      expire: 5.9s
+      priority: 9100
+  the_heat_waver_done:
+    the_heat_waver_finish:
+      expire: 5s
+      priority: 9100
+  timer_beer_can_named_desire_mode_countdown_complete:
+    beer_can_hank_missed:
+      expire: 2.5s
+      priority: 9100
+  #beercan_carousel_dandy_don_selected:
+    #beercan_carousel_mode_total:
+      #expire: 3s
+      #priority: 9000
+  mode_duke_the_dolphin_stopped{current_player.duke_the_dolphin_completed == 0}:
+    duke_the_dolphin_mode_total:
+      expire: 3s
+      priority: 9000
+  mode_patch_boomhauer_stopped{current_player.patch_boomhauer_completed == 0}:
+    patch_boomhauer_mode_total:
+      expire: 3s
+      priority: 9000
+  mode_gladstone_stopped{current_player.gladstone_completed == 0}:
+    gladstone_mode_total:
+      expire: 3s
+      priority: 9000
+  light_rainey_multiball_ball_lock_complete:
+    lock_is_lit:
+      expire: 2.6s
+  timer_alamo_frenzy_mode_countdown_complete:
+    alamo_frenzy_mode_total:
+      expire: 3s
+      priority: 9000
+  
+
+light_player:
+  mode_base_started:
+    l_gi1:
+      color: white
+    l_gi2:
+      color: white
+    l_gi3:
+      color: white
+    l_gi4:
+      color: white
+    l_gi5:
+      color: white
+    l_gi6:
+      color: white
+    l_gi7:
+      color: white
+    l_gi8:
+      color: white
+  logicblock_captive_pf_x_counter_complete:
+    l_playfield_2X:
+      color: yellow
+  timer_pf_x_timer_complete:
+    l_playfield_2X: off
+
+  mode_bill_bulk_and_the_body_buddies_started: 
+    l_bill_1:
+      color: orange
+    l_scoop: off
+  mode_beat_the_surfer_started:
+    l_boom_1:
+      color: orange
+    l_scoop: off
+  mode_beer_can_named_desire_started:
+    l_hank_1:
+      color: orange
+    l_scoop: off
+  beercan_carousel_dandy_don_selected:
+    l_hank_1:
+      color: orange
+  mode_patch_boomhauer_started:
+    l_boom_2:
+      color: orange
+    l_scoop: off
+  mode_dog_dale_afternoon_started:
+    l_dale_1:
+      color: orange
+    l_scoop: off
+  mode_duke_the_dolphin_started:
+    l_hank_2:
+      color: orange
+    l_scoop: off
+  mode_gladstone_started:
+    l_dale_2:
+      color: orange
+    l_scoop: off
+  mode_the_heat_waver_started:
+    l_bill_2:
+      color: orange
+    l_scoop: off
+  #mode_bill_mini_wizard_started:
+    #l_bill_3:
+      #color: orange
+  #mode_dale_mini_wizard_started:
+    #l_dale_3:
+      #color: orange
+  #mode_hank_mini_wizard_started:
+    #l_hank_3:
+      #color: orange
+  #mode_boom_mini_wizard_started:
+    #l_boom_3:
+      #color: orange
+  enable_mystery:
+    l_mystery:
+      color: red
+  end_mystery:
+    l_mystery: off
+  qualify_mission_lit_complete:
+    l_scoop:
+      color: red
+  restore_mode_scoop_lit:
+    l_scoop:
+      color: red
+  mode_mission_select_started:
+    l_scoop: off
+  mode_bill_mini_wizard_started:
+    l_scoop: off
+  mode_hank_mini_wizard_started:
+    l_scoop: off
+  mode_dale_mini_wizard_started:
+    l_scoop: off
+  mode_boom_mini_wizard_started:
+    l_scoop: off
+  mode_wizard_mode_started:
+    l_scoop: off
+  multiball_strickland_multiball_started:
+    l_scoop: off
+    l_strickland_multiball: off
+  multiball_rainey_multiball_started:
+    l_scoop: off
+  multiball_grill_mb_started:
+    l_scoop: off
+  ball_will_end:
+    l_scoop: off
+    l_playfield_2X: off
+  reset_inline_drop_bank:
+    l_strickland_multiball: off
+  # multiball_rainey_multiball_ended:
+  #   l_rainey_multiball:
+  #     color: orange
+  player_extra_balls{value > 0}:
+    l_ball_save:
+      color: yellow
+  #s_grill1_active:
+    # l_grill1:
+    #   color: red
+    # l_grill2:
+    #   color: red
+    # l_grill3:
+    #   color: red
+    # l_grill4:
+    #   color: red
+    # l_grill5:
+    #   color: red
+    # l_grill6:
+    #   color: red
+    # l_grill7:
+    #   color: red
+    # l_grill8:
+    #   color: red
+    # l_grill9:
+    #   color: red
+    # l_grill10: 
+    #   color: red
+    # l_grill11:
+    #   color: red
+    # l_grill12:
+    #   color: red
+    # l_grill13:
+    #   color: red
+    # l_grill14:
+    #   color: red
+    # l_grill15:
+    #   color: red
+    # l_grill16:
+    #   color: red
+    # l_grill17:
+    #   color: red
+    # l_grill18:
+    #   color: red
+    # l_grill19:
+    #   color: red
+    # l_grill20:
+    #   color: red
+    # l_grill21:
+    #   color: red
+    # l_grill22:
+    #   color: red
+    # l_grill23:
+    #   color: red
+    # l_grill24:
+      # color: red
+
+  
+  
+  
+  
+  
+
+
+
+
+
+sound_player:
+  mode_base_started:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_beat_the_surfer_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_beer_can_named_desire_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_bill_bulk_and_the_body_buddies_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_patch_boomhauer_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_dog_dale_afternoon_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_duke_the_dolphin_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_gladstone_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_the_heat_waver_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_bill_mini_wizard_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_hank_mini_wizard_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_dale_mini_wizard_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_boom_mini_wizard_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_wizard_mode_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_strickland_multiball_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_rainey_multiball_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_grill_mb_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_beercan_carousel_stopped:
+    base_song_loop:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.22
+      fade_in: 500ms
+
+  mode_mission_select_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  mode_beat_the_surfer_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  mode_beer_can_named_desire_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  mode_bill_bulk_and_the_body_buddies_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  mode_patch_boomhauer_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  mode_dog_dale_afternoon_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  mode_duke_the_dolphin_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  mode_gladstone_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  mode_the_heat_waver_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  mode_bill_mini_wizard_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  mode_hank_mini_wizard_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  mode_dale_mini_wizard_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  mode_boom_mini_wizard_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  mode_wizard_mode_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  multiball_strickland_multiball_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  multiball_rainey_multiball_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  multiball_grill_mb_started:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  ball_will_end:
+    base_song_loop:
+      action: stop
+      bus: music
+      fade_out: 500ms
+
+  play_hank_ball_drain_1:
+    hank_ball_drain:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_hank_ball_drain_2:
+    hank_ball_drain_2:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_hank_ball_drain_3:
+    hank_ball_drain3:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_hank_ball_drain_4:
+    hank_ball_drain4:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_kahn_ball_drain:
+    kahn_drain:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_kahn_ball_drain_laugh:
+    kahn_laugh:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_hank_pain_is_unbearable:
+    hank_pain_is_unbearable:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_gamer_shot_in_the_face:
+    gamer_shot_in_the_face:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_bobby_no_more_family_time:
+    bobby_no_more_family_time:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_dale_wake_me_when_its_over:
+    dale_wake_me_when_its_over:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_history_boomhauer:
+    history_boomhauer:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+  play_hank_careless_ballsave:
+    hank_careless_ballsave:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_hank_rush_it_ballsave:
+    hank_rush_it_ballsave:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_hank_ready_to_step_back_in:
+    hank_ready_to_step_back_in:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_bobby_kick_extra_ball:
+    bobby_kick:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_peggy_blowing_my_mind:
+    peggy_you_are_blowing_my_mind:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_gamer_awesome:
+    gamer_awesome:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_hank_thats_my_boy:
+    hank_thats_my_boy:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_peggy_ho_yeah_boggle_win:
+    peggy_ho_yeah_boggle_win:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+  qualify_mission_lit_complete:
+    propane_mode_qualified:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+    award_chime:
+      bus: effects
+      volume: 0.28
+
+  enable_mystery:
+    boomhauer_hit_the_surprise:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+    award_chime:
+      bus: effects
+      volume: 0.28
+
+
+  light_rainey_multiball_ball_lock_lit_complete:
+    award_chime:
+      bus: effects
+      volume: 0.28
+
+  drop_target_bank_metallica_bank_down:
+    hank_taste_the_meat_not_the_heat:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+  logicblock_grill_mb_counter_complete:
+    award_chime:
+      bus: effects
+      volume: 0.3
+    hank_propane_liquid_and_gas:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+  player_alamo{value == 6}:
+    award_chime:
+      bus: effects
+      volume: 0.22
+  player_alamo{value == 18}:
+    award_chime:
+      bus: effects
+      volume: 0.26
+
+  logicblock_captive_pf_x_counter_complete:
+    hank_do_i_look_like_i_know_what_a_jpeg_is:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+    award_chime:
+      bus: effects
+      volume: 0.3
+  timer_pf_x_timer_complete:
+    hank_picture_of_a_hot_dog:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+  play_propane_bumper_1:
+    propane_bumper_1:
+      bus: effects
+      volume: 0.4
+  play_propane_bumper_2:
+    propane_bumper_2:
+      bus: effects
+      volume: 0.4
+  play_propane_bumper_3:
+    propane_bumper_3:
+      bus: effects
+      volume: 0.4
+
+  play_target_tick_1:
+    target_tick_1:
+      bus: effects
+      volume: 0.22
+  play_target_tick_2:
+    target_tick_2:
+      bus: effects
+      volume: 0.22
+  play_target_tick_3:
+    target_tick_3:
+      bus: effects
+      volume: 0.22
+
+  s_top_inline_drop_active:
+    drop_clack:
+      bus: effects
+      volume: 0.32
+  s_middle_inline_drop_active:
+    drop_clack:
+      bus: effects
+      volume: 0.32
+  s_bottom_inline_drop_active:
+    drop_clack:
+      bus: effects
+      volume: 0.32
+  logicblock_drop_sequence_complete:
+    drop_complete:
+      bus: effects
+      volume: 0.38
+
+  s_scoop_active:
+    scoop_capture:
+      bus: effects
+      volume: 0.45
+  play_scoop_eject_sound:
+    scoop_eject:
+      bus: effects
+      volume: 0.42
+
+  s_left_ramp_exit_active:
+    ramp_finish:
+      bus: effects
+      volume: 0.2
+  s_right_ramp_exit_active:
+    ramp_finish:
+      bus: effects
+      volume: 0.2
+  s_left_orbit_enter_active:
+    orbit_swish:
+      bus: effects
+      volume: 0.18
+  s_right_orbit_exit_active:
+    orbit_swish:
+      bus: effects
+      volume: 0.18
+
+  light_rainey_multiball_ball_lock_complete:
+    ball_lock_clunk:
+      bus: effects
+      volume: 0.45
+  grill_lock_confirmed:
+    ball_lock_clunk:
+      bus: effects
+      volume: 0.45
+
+  mode_mystery_started:
+    mystery_shimmer:
+      bus: effects
+      volume: 0.24
+
+  rainey_left_orbit_jackpot:
+    jackpot_hit:
+      bus: effects
+      volume: 0.4
+  rainey_left_ramp_jackpot:
+    jackpot_hit:
+      bus: effects
+      volume: 0.4
+  rainey_right_ramp_jackpot:
+    jackpot_hit:
+      bus: effects
+      volume: 0.4
+  rainey_right_orbit_jackpot:
+    jackpot_hit:
+      bus: effects
+      volume: 0.4
+  rainey_super_jackpot_collected:
+    jackpot_hit:
+      bus: effects
+      volume: 0.5
+  super_jackpot_collect_hit:
+    jackpot_hit:
+      bus: effects
+      volume: 0.5
+
+  beat_the_surfer_done:
+    success_sting:
+      bus: effects
+      volume: 0.34
+  dog_dale_afternoon_done:
+    success_sting:
+      bus: effects
+      volume: 0.34
+  bill_bulk_and_the_body_buddies_done:
+    success_sting:
+      bus: effects
+      volume: 0.34
+  the_heat_waver_done:
+    success_sting:
+      bus: effects
+      volume: 0.34
+  shot_beercan_right_ramp_hit:
+    success_sting:
+      bus: effects
+      volume: 0.34
+  logicblock_duke_counter_complete:
+    success_sting:
+      bus: effects
+      volume: 0.34
+
+  timer_beat_the_surfer_mode_countdown_complete:
+    failure_sting:
+      bus: effects
+      volume: 0.3
+  timer_dog_dale_afternoon_mode_countdown_complete:
+    failure_sting:
+      bus: effects
+      volume: 0.3
+  timer_bill_bulk_and_the_body_buddies_mode_countdown_complete:
+    failure_sting:
+      bus: effects
+      volume: 0.3
+  timer_patch_boomhauer_mode_countdown_complete:
+    failure_sting:
+      bus: effects
+      volume: 0.3
+  timer_the_heat_waver_mode_countdown_complete:
+    failure_sting:
+      bus: effects
+      volume: 0.3
+  timer_beer_can_named_desire_mode_countdown_complete:
+    failure_sting:
+      bus: effects
+      volume: 0.3
+  timer_duke_the_dolphin_mode_countdown_complete:
+    failure_sting:
+      bus: effects
+      volume: 0.3
+
+  extra_ball_awarded:
+    award_chime:
+      bus: effects
+      volume: 0.3
+  skillshot_lit_hit:
+    hank_my_aim_is_deadly:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+    award_chime:
+      bus: effects
+      volume: 0.28
+  skillshot_off_hit:
+    failure_sting:
+      bus: effects
+      volume: 0.15
+  # s_left_ramp_standup_active:
+  #   opening_beer:
+  #     bus: effects
+  s_right_ramp_standup_active:
+    opening_beer:
+      bus: effects
+  s_scoop_standup_left_active:
+    opening_beer:
+      bus: effects
+  s_scoop_standup_right_active:
+    opening_beer:
+      bus: effects
+  s_left_spinner_active:
+    steak_spinner:
+      action: play
+      bus: effects
+      volume: 0.35
+  s_center_spinner_active:
+    steak_spinner:
+      action: play
+      bus: effects
+      volume: 0.35
+  timer_steak_spinner_stop_complete:
+    steak_spinner:
+      action: stop
+
+random_event_player:
+  ball_drain{current_player.strickland_mb_running == 0 and current_player.rainey_mb_running == 0 and current_player.grill_mb_running == 0}:
+    events:
+      - play_hank_ball_drain_1
+      - play_hank_ball_drain_2
+      - play_hank_ball_drain_3
+      - play_hank_ball_drain_4
+      - play_kahn_ball_drain
+      - play_kahn_ball_drain_laugh
+      - play_hank_pain_is_unbearable
+      - play_gamer_shot_in_the_face
+      - play_bobby_no_more_family_time
+      - play_dale_wake_me_when_its_over
+      - play_history_boomhauer
+
+  ball_save_default_saving_ball:
+    events:
+      - play_hank_careless_ballsave
+      - play_hank_rush_it_ballsave
+      - play_hank_ready_to_step_back_in
+
+  extra_ball_awarded:
+    events:
+      - play_bobby_kick_extra_ball
+      - play_peggy_blowing_my_mind
+      - play_gamer_awesome
+      - play_hank_thats_my_boy
+      - play_peggy_ho_yeah_boggle_win
+
+  s_left_pop_bumper_active:
+    events:
+      - play_propane_bumper_1
+      - play_propane_bumper_2
+      - play_propane_bumper_3
+
+  s_right_pop_bumper_active:
+    events:
+      - play_propane_bumper_1
+      - play_propane_bumper_2
+      - play_propane_bumper_3
+
+  s_p_target_active:
+    events: [play_target_tick_1, play_target_tick_2, play_target_tick_3]
+  s_r_target_active:
+    events: [play_target_tick_1, play_target_tick_2, play_target_tick_3]
+  s_o_target_active:
+    events: [play_target_tick_1, play_target_tick_2, play_target_tick_3]
+  s_p2_target_active:
+    events: [play_target_tick_1, play_target_tick_2, play_target_tick_3]
+  s_a_target_active:
+    events: [play_target_tick_1, play_target_tick_2, play_target_tick_3]
+  s_n_target_active:
+    events: [play_target_tick_1, play_target_tick_2, play_target_tick_3]
+  s_e_target_active:
+    events: [play_target_tick_1, play_target_tick_2, play_target_tick_3]
+  s_ladybird_target_active:
+    events: [play_target_tick_1, play_target_tick_2, play_target_tick_3]
+  s_captive_ball_standup_active:
+    events: [play_target_tick_1, play_target_tick_2, play_target_tick_3]
+
+variable_player:
+  mode_base_started{current_player.mission_qualified == 1}:
+    base_objective:
+      string: "EPISODE LIT • SHOOT SCOOP"
+      action: set
+  restore_mode_scoop_lit:
+    base_objective:
+      string: "EPISODE LIT • SHOOT SCOOP"
+      action: set
+  logicblock_grill_mb_counter_complete:
+    base_objective:
+      string: "GRILL OPEN • LOCK 3 BALLS"
+      action: set
+  multiball_lock_grill_lock_locked_ball{total_balls_locked == 1}:
+    base_objective:
+      string: "GRILL LOCK 1 / 3"
+      action: set
+  multiball_lock_grill_lock_locked_ball{total_balls_locked == 2}:
+    base_objective:
+      string: "GRILL LOCK 2 / 3"
+      action: set
+  light_rainey_multiball_ball_lock_complete:
+    base_objective:
+      string: "RAINEY LIT • SPIN 3X TO START"
+      action: set
+  mode_base_started:
+    base_objective:
+      string: "HIT P-R-O • SCOOP STARTS AN EPISODE"
+      action: set
+    pf_multiplier:
+      int: 1
+      action: set
+    mode_running:
+      int: 0
+      action: set
+    grill_mb_running:
+      int: 0
+      action: set
+    any_mb_active:
+      int: 0
+      action: set
+    rainey_mb_used_this_ball:
+      int: 0
+      action: set
+    base_slide_visible:
+      int: 1
+      action: set
+    manger_babies_cashed_out_this_ball:
+      int: 0
+      action: set
+  slide_base_active:
+    base_slide_visible:
+      int: 1
+      action: set
+  slide_base_inactive:
+    base_slide_visible:
+      int: 0
+      action: set
+  logicblock_captive_pf_x_counter_complete:
+    pf_multiplier:
+      int: 2
+      action: set
+  ball_will_end:
+    pf_multiplier:
+      int: 1
+      action: set
+  timer_pf_x_timer_complete:
+    pf_multiplier:
+      int: 1
+      action: set
+  multiball_strickland_multiball_started:
+    strickland_mb_running:
+      int: 1
+      action: set
+    any_mb_active:
+      int: 1
+      action: add
+  multiball_strickland_multiball_ended:
+    strickland_mb_running:
+      int: 0
+      action: set
+    any_mb_active:
+      int: -1
+      action: add
+  multiball_rainey_multiball_started:
+    rainey_mb_running:
+      int: 1
+      action: set
+    rainey_mb_used_this_ball:
+      int: 1
+      action: set
+    any_mb_active:
+      int: 1
+      action: add
+    propane_ui_pane_complete:
+      int: 0
+      action: set
+  multiball_rainey_multiball_ended:
+    rainey_mb_running:
+      int: 0
+      action: set
+    any_mb_active:
+      int: -1
+      action: add
+  multiball_grill_mb_started:
+    grill_mb_running:
+      int: 1
+      action: set
+    any_mb_active:
+      int: 1
+      action: add
+  multiball_grill_mb_ended:
+    grill_mb_running:
+      int: 0
+      action: set
+    any_mb_active:
+      int: -1
+      action: add
+  multiball_grill_mb_stopped:
+    grill_mb_running:
+      int: 0
+      action: set
+  qualify_mission_lit_complete:
+    base_objective:
+      string: "EPISODE LIT • SHOOT SCOOP"
+      action: set
+    mission_qualified:
+      int: 1
+      action: set
+    propane_ui_pro_complete:
+      int: 1
+      action: set
+  light_rainey_multiball_ball_lock_lit_complete:
+    propane_ui_pane_complete:
+      int: 1
+      action: set
+  mode_mission_select_started:
+    propane_ui_pro_complete:
+      int: 0
+      action: set
+    mission_qualified:
+      int: 0
+      action: set
+  enable_mystery:
+    mystery_qualified:
+      int: 1
+      action: set
+  end_mystery:
+    mystery_qualified:
+      int: 0
+      action: set
+  mode_beat_the_surfer_started:
+    mode_running:
+      int: 1
+      action: set
+  mode_beat_the_surfer_stopped:
+    mode_running:
+      int: 0
+      action: set
+  mode_beer_can_named_desire_started:
+    mode_running:
+      int: 1
+      action: set
+  mode_beer_can_named_desire_stopped:
+    mode_running:
+      int: 0
+      action: set
+  mode_bill_bulk_and_the_body_buddies_started:
+    mode_running:
+      int: 1
+      action: set
+  mode_bill_bulk_and_the_body_buddies_stopped:
+    mode_running:
+      int: 0
+      action: set
+  mode_patch_boomhauer_started:
+    mode_running:
+      int: 1
+      action: set
+  mode_patch_boomhauer_stopped:
+    mode_running:
+      int: 0
+      action: set
+  mode_dog_dale_afternoon_started:
+    mode_running:
+      int: 1
+      action: set
+  mode_dog_dale_afternoon_stopped:
+    mode_running:
+      int: 0
+      action: set
+  mode_duke_the_dolphin_started:
+    mode_running:
+      int: 1
+      action: set
+  mode_duke_the_dolphin_stopped:
+    mode_running:
+      int: 0
+      action: set
+  mode_gladstone_started:
+    mode_running:
+      int: 1
+      action: set
+  mode_gladstone_stopped:
+    mode_running:
+      int: 0
+      action: set
+  mode_the_heat_waver_started:
+    mode_running:
+      int: 1
+      action: set
+  mode_the_heat_waver_stopped:
+    mode_running:
+      int: 0
+      action: set
+  mode_bill_mini_wizard_started:
+    mode_running:
+      int: 1
+      action: set
+  mode_bill_mini_wizard_stopped:
+    mode_running:
+      int: 0
+      action: set
+  mode_dale_mini_wizard_started:
+    mode_running:
+      int: 1
+      action: set
+  mode_dale_mini_wizard_stopped:
+    mode_running:
+      int: 0
+      action: set
+  mode_hank_mini_wizard_started:
+    mode_running:
+      int: 1
+      action: set
+  mode_hank_mini_wizard_stopped:
+    mode_running:
+      int: 0
+      action: set
+  mode_boom_mini_wizard_started:
+    mode_running:
+      int: 1
+      action: set
+  mode_boom_mini_wizard_stopped:
+    mode_running:
+      int: 0
+      action: set
+  mode_wizard_mode_started:
+    mode_running:
+      int: 1
+      action: set
+  mode_wizard_mode_stopped:
+    mode_running:
+      int: 0
+      action: set
+  s_right_inlane_active:
+    score: 5000 * current_player.pf_multiplier
+  s_p_target_active:
+    score: 10000 * current_player.pf_multiplier
+  s_r_target_active:
+    score: 10000 * current_player.pf_multiplier
+  s_o_target_active:
+    score: 10000 * current_player.pf_multiplier
+  s_p2_target_active:
+    score: 10000 * current_player.pf_multiplier
+  s_a_target_active:
+    score: 10000 * current_player.pf_multiplier
+  s_n_target_active:
+    score: 10000 * current_player.pf_multiplier
+  s_e_target_active:
+    score: 10000 * current_player.pf_multiplier
+  s_ladybird_target_active:
+    score: 10000 * current_player.pf_multiplier
+  s_top_inline_drop_active:
+    score: 10000 * current_player.pf_multiplier
+  s_middle_inline_drop_active:
+    score: 10000 * current_player.pf_multiplier
+  s_bottom_inline_drop_active:
+    score: 10000 * current_player.pf_multiplier
+  s_left_ramp_exit_active:
+    score: 25000 * current_player.pf_multiplier
+  s_right_ramp_exit_active:
+    score: 25000 * current_player.pf_multiplier
+  s_left_outlane_active:
+    score: 5000 * current_player.pf_multiplier
+    tags: drain
+  s_left_inlane_active:
+    score: 5000 * current_player.pf_multiplier
+  s_left_sling_active:
+    score: 1000 * current_player.pf_multiplier
+  s_right_sling_active:
+    score: 1000 * current_player.pf_multiplier
+  s_right_outlane_active:
+    score: 5000 * current_player.pf_multiplier
+    tags: drain
+  # s_left_ramp_standup_active:
+  #   score: 100
+  #   alamo: 1
+  s_right_ramp_standup_active:
+    score: 10000 * current_player.pf_multiplier
+  s_right_ramp_standup_active{current_player.any_mb_active == 0}:
+    alamo:
+      int: 1
+      action: add
+    alamo_this_ball:
+      int: 1
+      action: add
+    alamo_target_hits:
+      int: 1
+      action: add
+  s_left_orbit_enter_active:
+    score: 25000 * current_player.pf_multiplier
+  s_left_spinner_active:
+    score: 1000 * current_player.pf_multiplier
+  s_center_spinner_active:
+    score: 1000 * current_player.pf_multiplier
+  s_left_pop_bumper_active:
+    score: 1000 * current_player.pf_multiplier
+  s_right_pop_bumper_active:
+    score: 1000 * current_player.pf_multiplier
+  s_left_rollover_lane_active:
+    score: 5000 * current_player.pf_multiplier
+  s_middle_rollover_lane_active:
+    score: 5000 * current_player.pf_multiplier
+  s_right_rollover_lane_active:
+    score: 5000 * current_player.pf_multiplier
+  s_right_orbit_exit_active:
+    score: 25000 * current_player.pf_multiplier
+  s_left_inner_horseshoe_active:
+    score: 25000 * current_player.pf_multiplier
+  s_captive_ball_standup_active: 
+     score: 50000 * current_player.pf_multiplier
+  s_scoop_standup_left_active:
+    score: 10000 * current_player.pf_multiplier
+  s_scoop_standup_left_active{current_player.any_mb_active == 0}:
+    alamo:
+      int: 1
+      action: add
+    alamo_this_ball:
+      int: 1
+      action: add
+    alamo_target_hits:
+      int: 1
+      action: add
+  s_scoop_standup_right_active:
+    score: 10000 * current_player.pf_multiplier
+  s_scoop_standup_right_active{current_player.any_mb_active == 0}:
+    alamo:
+      int: 1
+      action: add
+    alamo_this_ball:
+      int: 1
+      action: add
+    alamo_target_hits:
+      int: 1
+      action: add
+  s_scoop_active:
+    score: 25000 * current_player.pf_multiplier
+  s_luanne_active:
+    score: 25000 * current_player.pf_multiplier
+  s_grill1_active:
+    score: 10000 * current_player.pf_multiplier
+  s_grill2_active:
+    score: 10000 * current_player.pf_multiplier
+  s_grill3_active:
+    score: 10000 * current_player.pf_multiplier
+
+  multiball_scoring_hit:
+    score: 25000 * current_player.pf_multiplier
+  
+
+
+ball_saves:
+  default:
+    active_time: 10s
+    hurry_up_time: 2s
+    grace_period: 2s
+    enable_events: mode_base_started
+    disable_events: multiball_grill_mb_started
+    timer_start_events: s_plunger_lane_exit_active, balldevice_bd_plunger_ball_eject_success
+    auto_launch: true
+    balls_to_save: 1
+    debug: true
+  mb_luanne_ballsave:
+    active_time: 10s
+    enable_events: luanne_cashout_4
+    disable_events: ball_will_end
+    auto_launch: true
+    balls_to_save: 1
+  # luanne:
+  #   active_time: 10s
+  #   hurry_up_time: 2s
+  #   grace_period: 2s
+  #   enable_events: ball_started
+  #   timer_start_events: ball_save_mb_luanne_ballsave_enabled
+  #   auto_launch: true
+  #   balls_to_save: 1
+  #   debug: true
+
+ball_holds:
+  mystery_scoop:
+    balls_to_hold: 1
+    hold_devices: bd_scoop
+    enable_events: enable_mystery, restore_mystery_hold
+    disable_events: end_mystery, qualify_mission_lit_complete
+    release_one_events: end_mystery
+  mission_select:
+    balls_to_hold: 1
+    hold_devices: bd_scoop
+    enable_events: qualify_mission_lit_complete, mode_mission_select_starting
+    disable_events: mode_mission_select_stopping
+    release_one_events: 
+      - slide_beat_the_surfer_rules_inactive
+      - beercan_carousel_hank_hill_selected 
+      - beercan_carousel_dandy_don_selected
+      - slide_bill_bulk_and_the_body_buddies_rules_inactive
+      - slide_patch_boomhauer_rules_inactive
+      - slide_dog_dale_afternoon_rules_inactive
+      - slide_duke_the_dolphin_rules_inactive
+      - slide_hey_gladstone_rules_inactive
+      - slide_the_heat_waver_rules_inactive
+      - slide_bill_mini_wizard_rules_inactive
+      - slide_dale_mini_wizard_rules_inactive
+      - slide_hank_mini_wizard_rules_inactive
+      - slide_boom_mini_wizard_rules_inactive
+      - slide_wizard_mode_rules_inactive
+
+      
+
+
+
+show_player:
+  ball_drain{current_player.strickland_mb_running == 0 and current_player.rainey_mb_running == 0 and current_player.grill_mb_running == 0}:
+    base_ball_drain:
+      key: base_ball_drain
+      loops: 1
+      priority: 340
+
+  s_plunger_lane_exit_active{current_player.mode_running == 0 and current_player.any_mb_active == 0}:
+    base_ball_launch:
+      loops: 1
+      priority: 210
+
+  qualify_p_target_hit:
+    base_target_pulse:
+      loops: 1
+      priority: 220
+      show_tokens: {light: l_p_target, color: 00AEEF}
+  qualify_r_target_hit:
+    base_target_pulse:
+      loops: 1
+      priority: 220
+      show_tokens: {light: l_r_target, color: 00AEEF}
+  qualify_o_target_hit:
+    base_target_pulse:
+      loops: 1
+      priority: 220
+      show_tokens: {light: l_o_target, color: 00AEEF}
+
+  rainey_multiball_ball_lock_p2_target_hit:
+    base_target_pulse:
+      loops: 1
+      priority: 220
+      show_tokens: {light: l_p2_target, color: green}
+  rainey_multiball_ball_lock_a_target_hit:
+    base_target_pulse:
+      loops: 1
+      priority: 220
+      show_tokens: {light: l_a_target, color: green}
+  rainey_multiball_ball_lock_n_target_hit:
+    base_target_pulse:
+      loops: 1
+      priority: 220
+      show_tokens: {light: l_n_target, color: green}
+  rainey_multiball_ball_lock_e_target_hit:
+    base_target_pulse:
+      loops: 1
+      priority: 220
+      show_tokens: {light: l_e_target, color: green}
+
+  qualify_mission_lit_complete:
+    base_qualification_celebration:
+      loops: 1
+      priority: 230
+      show_tokens: {color: 00AEEF}
+    flash_color:
+      key: mode_scoop_ready
+      speed: 2
+      priority: 150
+      show_tokens: {lights: l_scoop, color: red}
+  restore_mode_scoop_lit:
+    flash_color:
+      key: mode_scoop_ready
+      speed: 2
+      priority: 150
+      show_tokens: {lights: l_scoop, color: red}
+  mode_mission_select_started:
+    mode_scoop_ready: stop
+  multiball_strickland_multiball_started:
+    mode_scoop_ready: stop
+    rainey_lock_ready: stop
+    grill_lock_ready_show: stop
+    strickland_multiball_lit: stop
+  multiball_strickland_multiball_ended:
+    flash_color:
+      key: strickland_cooldown
+      loops: 3
+      speed: 5
+      priority: 360
+      show_tokens:
+        lights: "l_gi1, l_gi2, l_gi3, l_gi4, l_gi5, l_gi6, l_gi7, l_gi8"
+        color: red
+  multiball_rainey_multiball_started:
+    mode_scoop_ready: stop
+    rainey_lock_ready: stop
+    grill_lock_ready_show: stop
+    strickland_multiball_lit: stop
+  multiball_rainey_multiball_ended:
+    flash_color:
+      key: rainey_cooldown
+      loops: 3
+      speed: 5
+      priority: 360
+      show_tokens:
+        lights: "l_gi1, l_gi2, l_gi3, l_gi4, l_gi5, l_gi6, l_gi7, l_gi8"
+        color: blue
+  multiball_grill_mb_started:
+    mode_scoop_ready: stop
+    rainey_lock_ready: stop
+    grill_lock_ready_show: stop
+    strickland_multiball_lit: stop
+  multiball_grill_mb_ended:
+    flash_color:
+      key: grill_cooldown
+      loops: 3
+      speed: 5
+      priority: 360
+      show_tokens:
+        lights: "l_gi1, l_gi2, l_gi3, l_gi4, l_gi5, l_gi6, l_gi7, l_gi8"
+        color: orange
+  ball_will_end:
+    base_ball_drain: stop
+    mode_scoop_ready: stop
+    rainey_lock_ready: stop
+    grill_lock_ready_show: stop
+    pf_2x_hurry: stop
+
+  light_rainey_multiball_ball_lock_lit_complete:
+    base_qualification_celebration:
+      loops: 1
+      priority: 230
+      show_tokens: {color: green}
+    rainey_multiball_lock_show:
+      key: rainey_lock_ready
+      priority: 320
+
+  logicblock_mb_counter_hit{hits==1}:
+    base_target_pulse:
+      loops: 1
+      priority: 225
+      show_tokens: {light: l_lock_1, color: green}
+  logicblock_mb_counter_hit{hits==2}:
+    base_target_pulse:
+      loops: 2
+      priority: 225
+      show_tokens: {light: l_lock_2, color: green}
+
+  logicblock_grill_mb_counter_complete:
+    base_qualification_celebration:
+      loops: 1
+      priority: 230
+      show_tokens: {color: orange}
+    flash_color:
+      key: grill_lock_ready_show
+      speed: 3
+      priority: 320
+      show_tokens: {lights: l_right_ramp, color: orange}
+  logicblock_grill_mb_counter_hit:
+    flash_color:
+      key: grill_spinner_progress_pulse
+      loops: 2
+      speed: 7
+      priority: 310
+      show_tokens: {lights: "l_left_orbit, l_center_spinner, l_right_ramp", color: orange}
+  player_grill_lock_ready{value == 1}:
+    flash_color:
+      key: grill_lock_ready_show
+      speed: 3
+      priority: 320
+      show_tokens: {lights: l_right_ramp, color: orange}
+  refresh_grill_lock_indicator{current_player.grill_lock_ready == 1}:
+    flash_color:
+      key: grill_lock_ready_show
+      speed: 3
+      priority: 320
+      show_tokens: {lights: l_right_ramp, color: orange}
+  grill_lock_confirmed:
+    grill_lock_ready_show: stop
+    base_qualification_celebration:
+      loops: 1
+      priority: 230
+      speed: 1.8
+      show_tokens: {color: orange}
+
+  drop_target_bank_metallica_bank_down:
+    base_target_pulse:
+      loops: 1
+      priority: 220
+      show_tokens: {light: l_strickland_multiball, color: white}
+    flash_color:
+      key: strickland_multiball_lit
+      speed: 4
+      show_tokens:
+        lights: l_strickland_multiball
+        color: white
+  strickland_multiball_sequence_done:
+    base_qualification_celebration:
+      loops: 1
+      priority: 230
+      show_tokens: {color: red}
+
+  logicblock_captive_pf_x_counter_complete:
+    base_2x_start:
+      loops: 1
+      priority: 230
+  timer_pf_x_timer_tick{ticks == 5}:
+    flash_color:
+      key: pf_2x_hurry
+      speed: 5
+      priority: 160
+      show_tokens: {lights: l_playfield_2X, color: yellow}
+  timer_pf_x_timer_complete:
+    pf_2x_hurry: stop
+
+  s_left_ramp_exit_active{current_player.mode_running == 0 and current_player.any_mb_active == 0}:
+    base_left_trail:
+      loops: 1
+      priority: 205
+      show_tokens: {color: orange}
+  s_left_orbit_enter_active{current_player.mode_running == 0 and current_player.any_mb_active == 0}:
+    base_left_trail:
+      loops: 1
+      priority: 205
+      speed: 1.4
+      show_tokens: {color: 00AEEF}
+  s_right_ramp_exit_active{current_player.mode_running == 0 and current_player.any_mb_active == 0}:
+    base_right_trail:
+      loops: 1
+      priority: 205
+      show_tokens: {color: orange}
+  s_right_orbit_exit_active{current_player.mode_running == 0 and current_player.any_mb_active == 0}:
+    base_right_trail:
+      loops: 1
+      priority: 205
+      speed: 1.4
+      show_tokens: {color: 00AEEF}
+
+  ball_save_default_timer_start:
+    flash_color:
+      key: ball_save
+      speed: 3
+      priority: 310
+      show_tokens:
+        lights: l_ball_save
+        color: orange
+  ball_save_default_hurry_up:
+    flash_color:
+      key: ball_save
+      speed: 8
+      priority: 310
+      show_tokens:
+        lights: l_ball_save
+        color: orange
+  ball_save_default_disabled:
+    ball_save: stop
+
+  reset_inline_drop_bank:
+    strickland_multiball_lit: stop
+
+  ball_save_mb_luanne_ballsave_enabled:
+    flash_color:
+      key: ball_save
+      speed: 6
+      priority: 320
+      show_tokens:
+        lights: l_ball_save
+        color: orange
+  ball_save_mb_luanne_ballsave_disabled:
+    ball_save: stop
+  #achievement_qualify_mission_state_started:
+    #flash_color:
+      #speed: .5
+      #show_tokens:
+        #led: l_scoop
+        #color: red
+  #mode_skillshot_stopped:
+    #output4: 
+      #loops: 3
+
+  
+
+shot_profiles:
+  mission_qualify:
+    states:
+      - name: unlit
+        show: "off"
+      - name: lit
+        show: "on"
+  rainey_multiball_ball_lock:
+    states:
+      - name: unlit
+        show: "off"
+      - name: lit
+        show: "on"
+  scoop_mode_start:
+    states:
+      - name: unlit
+        show: "off"
+      - name: lit
+        show: "on"
+  # captive_drop:
+  #   advance_on_hit: true
+  #   states:
+  #     - name: down
+  #       show: on
+  #     - name: up
+  #       show: off
+
+
+widget_player:
+  # MPF itself only accepts added players while the current player is on ball 1.
+  # player_added supplies num, but it does not supply a ball event argument.
+  player_added{num > 1}:
+    player_added:
+      expire: 1s
+      priority: 10000
+  logicblock_grill_mb_counter_hit{count == 1 and current_player.any_mb_active == 0}:
+    grill_spinner_hint:
+      expire: 2.4s
+  logicblock_grill_mb_counter_complete{current_player.any_mb_active == 0}:
+    grill_lock_lit:
+      expire: 3.2s
+      priority: 10000
+  slide_beat_the_surfer_rules_active:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  slide_beer_can_named_desire_rules_active:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  slide_bill_bulk_and_the_body_buddies_rules_active:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  slide_dog_dale_afternoon_rules_active:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  slide_duke_the_dolphin_rules_active:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  slide_hey_gladstone_rules_active:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  slide_patch_boomhauer_rules_active:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  mission_select_patch_boomhauer_selected:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  mode_patch_boomhauer_started:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  slide_the_heat_waver_rules_active:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  mission_select_the_heat_waver_selected:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  mode_the_heat_waver_started:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  slide_grill_mb_rules_active:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  slide_rainey_multiball_rules_active:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  slide_base_active:
+    alamo_beer_widget:
+      slide: base
+      action: play
+  # Cans remain collectible during these live single-ball modes. Keep the HUD
+  # off rules, intro, video, milestone, and finish slides by opting in only the
+  # primary gameplay slide for each eligible mode.
+  slide_beat_the_surfer_active:
+    alamo_beer_widget:
+      slide: beat_the_surfer
+      action: play
+  slide_beat_the_surfer_inactive:
+    alamo_beer_widget:
+      slide: beat_the_surfer
+      action: remove
+  slide_beer_can_named_desire_active:
+    alamo_beer_widget:
+      slide: beer_can_named_desire
+      action: play
+  slide_beer_can_named_desire_inactive:
+    alamo_beer_widget:
+      slide: beer_can_named_desire
+      action: remove
+  slide_bill_bulk_and_the_body_buddies_active:
+    alamo_beer_widget:
+      slide: bill_bulk_and_the_body_buddies
+      action: play
+  slide_bill_bulk_and_the_body_buddies_inactive:
+    alamo_beer_widget:
+      slide: bill_bulk_and_the_body_buddies
+      action: remove
+  slide_patch_boomhauer_active:
+    alamo_beer_widget:
+      slide: patch_boomhauer
+      action: play
+  slide_patch_boomhauer_inactive:
+    alamo_beer_widget:
+      slide: patch_boomhauer
+      action: remove
+  slide_dog_dale_afternoon_active:
+    alamo_beer_widget:
+      slide: dog_dale_afternoon
+      action: play
+  slide_dog_dale_afternoon_inactive:
+    alamo_beer_widget:
+      slide: dog_dale_afternoon
+      action: remove
+  slide_duke_the_dolphin_active:
+    alamo_beer_widget:
+      slide: duke_the_dolphin
+      action: play
+  slide_duke_the_dolphin_inactive:
+    alamo_beer_widget:
+      slide: duke_the_dolphin
+      action: remove
+  slide_gladstone_active:
+    alamo_beer_widget:
+      slide: gladstone
+      action: play
+  slide_gladstone_inactive:
+    alamo_beer_widget:
+      slide: gladstone
+      action: remove
+  slide_the_heat_waver_active:
+    alamo_beer_widget:
+      slide: the_heat_waver
+      action: play
+  slide_the_heat_waver_inactive:
+    alamo_beer_widget:
+      slide: the_heat_waver
+      action: remove
+  slide_bill_mini_wizard2_active:
+    alamo_beer_widget:
+      slide: bill_mini_wizard2
+      action: play
+  slide_hank_mini_wizard_active:
+    alamo_beer_widget:
+      slide: hank_mini_wizard
+      action: play
+  slide_dale_mini_wizard_active:
+    alamo_beer_widget:
+      slide: dale_mini_wizard
+      action: play
+  slide_boom_mini_wizard_active:
+    alamo_beer_widget:
+      slide: boom_mini_wizard
+      action: play
+  slide_wizard_mode_active:
+    alamo_beer_widget:
+      slide: wizard_mode
+      action: play
+  mission_select_beer_can_named_desire_selected:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  slide_beercan_carousel_mode_total_inactive:
+    alamo_beer_widget:
+      slide: base
+  slide_beer_can_mode_total_inactive:
+    alamo_beer_widget:
+      slide: base
+  ball_started:
+    alamo_beer_widget:
+      slide: base
+  qualify_p_target_hit{current_player.base_slide_visible == 1}:
+    propane_widget_p:
+      slide: base
+  qualify_r_target_hit{current_player.base_slide_visible == 1}:
+    propane_widget_r:
+      slide: base
+  qualify_o_target_hit{current_player.base_slide_visible == 1}:
+    propane_widget_o:
+      slide: base
+  restore_qualify_p_widget:
+    propane_widget_p:
+      slide: base
+  restore_qualify_r_widget:
+    propane_widget_r:
+      slide: base
+  restore_qualify_o_widget:
+    propane_widget_o:
+      slide: base
+  restore_rainey_p2_widget:
+    propane_widget_pp:
+      slide: base
+  restore_rainey_a_widget:
+    propane_widget_a:
+      slide: base
+  restore_rainey_n_widget:
+    propane_widget_n:
+      slide: base
+  restore_rainey_e_widget:
+    propane_widget_e:
+      slide: base
+  friendly_neighbor_award_p{current_player.base_slide_visible == 1}:
+    propane_widget_p:
+      slide: base
+  friendly_neighbor_award_r{current_player.base_slide_visible == 1}:
+    propane_widget_r:
+      slide: base
+  friendly_neighbor_award_o{current_player.base_slide_visible == 1}:
+    propane_widget_o:
+      slide: base
+  rainey_multiball_ball_lock_p2_target_hit{current_player.base_slide_visible == 1}:
+    propane_widget_pp:
+      slide: base
+  rainey_multiball_ball_lock_a_target_hit{current_player.base_slide_visible == 1}:
+    propane_widget_a:
+      slide: base
+  rainey_multiball_ball_lock_n_target_hit{current_player.base_slide_visible == 1}:
+    propane_widget_n:
+      slide: base
+  rainey_multiball_ball_lock_e_target_hit{current_player.base_slide_visible == 1}:
+    propane_widget_e:
+      slide: base
+  friendly_neighbor_award_p2{current_player.base_slide_visible == 1}:
+    propane_widget_pp:
+      slide: base
+  friendly_neighbor_award_a{current_player.base_slide_visible == 1}:
+    propane_widget_a:
+      slide: base
+  friendly_neighbor_award_n{current_player.base_slide_visible == 1}:
+    propane_widget_n:
+      slide: base
+  friendly_neighbor_award_e{current_player.base_slide_visible == 1}:
+    propane_widget_e:
+      slide: base
+  skillshot_lit_hit:
+    skillshot_widget:
+      slide: base
+      expire: 2s
+  skillshot_off_hit:
+    skillshot_missed:
+      slide: base
+      expire: 2s
+  qualify_mission_lit_complete:
+    episode_qualified:
+      slide: base
+      expire: 4.3s
+      priority: 1200
+  mode_mission_select_started:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+    propane_widget_p:
+      slide: base
+      action: remove
+    propane_widget_r:
+      slide: base
+      action: remove
+    propane_widget_o:
+      slide: base
+      action: remove
+  slide_lock_is_lit_active:
+    propane_widget_pp:
+      slide: base
+      action: remove
+    propane_widget_a:
+      slide: base
+      action: remove
+    propane_widget_n:
+      slide: base
+      action: remove
+    propane_widget_e:
+      slide: base
+      action: remove
+  slide_base_inactive:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+    propane_widget_p:
+      slide: base
+      action: remove
+    propane_widget_r:
+      slide: base
+      action: remove
+    propane_widget_o:
+      slide: base
+      action: remove
+    propane_widget_pp:
+      slide: base
+      action: remove
+    propane_widget_a:
+      slide: base
+      action: remove
+    propane_widget_n:
+      slide: base
+      action: remove
+    propane_widget_e:
+      slide: base
+      action: remove
+  mode_super_spinners_started:
+    super_spinners_texas:
+      slide: base
+  timer_super_spinners_mode_countdown_started: super_spinners_timer_widget
+  timer_super_spinners_mode_countdown_complete:
+    super_spinners_texas:
+      slide: base
+      action: remove
+    super_spinners_timer_widget:
+      slide: base
+      action: remove
+  mode_super_spinners_stopped:
+    super_spinners_texas:
+      slide: base
+      action: remove
+    super_spinners_timer_widget:
+      slide: base
+      action: remove
+  slide_alamo_frenzy_slide_removed: 
+    texas_timer:
+      slide: base
+    alamo_frenzy_label:
+      slide: base
+  timer_alamo_frenzy_mode_countdown_complete:
+    texas_timer:
+      slide: base
+      action: remove
+    alamo_frenzy_label:
+      slide: base
+      action: remove
+    alamo_frenzy_timer_widget:
+      slide: base
+      action: remove
+  mode_alamo_frenzy_stopped:
+    texas_timer:
+      slide: base
+      action: remove
+    alamo_frenzy_label:
+      slide: base
+      action: remove
+    alamo_frenzy_timer_widget:
+      slide: base
+      action: remove
+  multiball_strickland_multiball_started:
+    texas_timer:
+      slide: base
+      action: remove
+    alamo_frenzy_label:
+      slide: base
+      action: remove
+    alamo_frenzy_timer_widget:
+      slide: base
+      action: remove
+  multiball_rainey_multiball_started:
+    texas_timer:
+      slide: base
+      action: remove
+    alamo_frenzy_label:
+      slide: base
+      action: remove
+    alamo_frenzy_timer_widget:
+      slide: base
+      action: remove
+    propane_widget_pp:
+      slide: base
+      action: remove
+    propane_widget_a:
+      slide: base
+      action: remove
+    propane_widget_n:
+      slide: base
+      action: remove
+    propane_widget_e:
+      slide: base
+      action: remove
+  timer_alamo_frenzy_mode_countdown_started: alamo_frenzy_timer_widget
+  ball_save_default_saving_ball:
+    ball_save:
+      slide: base
+      expire: 3s
+  refresh_alamo_counter{current_player.base_slide_visible == 1}:
+    alamo_beer_widget:
+      slide: base
+      action: play
+  mb_reginald_complete:
+    reginald_widget:
+      slide: base
+      action: play
+  mb_restore_reginald:
+    reginald_widget:
+      slide: base
+      action: play
+  mb_obediah_complete:
+    obediah_widget:
+      slide: base
+      action: play
+  mb_restore_obediah:
+    obediah_widget:
+      slide: base
+      action: play
+  mb_hosea_complete:
+    hosea_widget:
+      slide: base
+      action: play
+  mb_restore_hosea:
+    hosea_widget:
+      slide: base
+      action: play
+  mb_gurgle_complete:
+    gurgle_widget:
+      slide: base
+      action: play
+  mb_restore_gurgle:
+    gurgle_widget:
+      slide: base
+      action: play
+  mb_cycle_reset:
+    reginald_widget:
+      slide: base
+      action: remove
+    obediah_widget:
+      slide: base
+      action: remove
+    hosea_widget:
+      slide: base
+      action: remove
+    gurgle_widget:
+      slide: base
+      action: remove
+  mode_manger_babies_stopped:
+    alamo_beer_widget:
+      slide: base
+      action: remove
+  logicblock_captive_pf_x_counter_complete: 
+    2xtruck:
+      slide: base
+      action: play
+    playfield_2x_started:
+      slide: base
+      expire: 3.2s
+      priority: 1200
+  timer_pf_x_timer_complete:
+    2xtruck:
+      slide: base
+      action: remove
+    playfield_2x_timeout:
+      slide: base
+      expire: 2.9s
+      priority: 1200
+  ball_will_end:
+    2xtruck:
+      slide: base
+      action: remove 
+
+  drop_target_bank_metallica_bank_down:
+    strickland_multiball_lit:
+      slide: base
+      expire: 2.7s
+      priority: 1200
+
+  enable_mystery:
+    mystery_lit:
+      slide: base
+      expire: 5s
+      priority: 1200
+  luanne_cashout_1:
+    manger_babies_cashout:
+      slide: base
+      expire: 3.8s
+      priority: 1200
+    manger_babies_cashout_1_award:
+      slide: base
+      expire: 3.8s
+      priority: 1210
+  luanne_cashout_2:
+    manger_babies_cashout:
+      slide: base
+      expire: 3.8s
+      priority: 1200
+    manger_babies_cashout_2_award:
+      slide: base
+      expire: 3.8s
+      priority: 1210
+  luanne_cashout_3:
+    manger_babies_cashout:
+      slide: base
+      expire: 3.8s
+      priority: 1200
+    manger_babies_cashout_3_award:
+      slide: base
+      expire: 3.8s
+      priority: 1210
+  luanne_cashout_4:
+    manger_babies_cashout:
+      slide: base
+      expire: 3.8s
+      priority: 1200
+    manger_babies_cashout_4_award:
+      slide: base
+      expire: 3.8s
+      priority: 1210
+
+  
+  
+  
+
+
+timers:
+  strickland_bbq_pop_block:
+    start_value: 0
+    end_value: 1
+    direction: up
+    tick_interval: 6s
+    start_running: false
+    control_events:
+      - event: s_left_rollover_lane_active
+        action: restart
+      - event: s_middle_rollover_lane_active
+        action: restart
+      - event: s_right_rollover_lane_active
+        action: restart
+      - event: ball_will_end
+        action: stop
+  pf_x_timer:
+    start_value: 30
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    start_running: false
+    control_events:
+      - event: logicblock_captive_pf_x_counter_complete
+        action: restart
+  steak_spinner_stop:
+    start_value: 1
+    end_value: 0
+    direction: down
+    tick_interval: 500ms
+    start_running: false
+    control_events:
+      - event: s_left_spinner_active
+        action: restart
+      - event: s_center_spinner_active
+        action: restart
+  up_post_raise_duration:
+    start_value: 2
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    start_running: false
+    control_events:
+      - event: left_orbit_post_release
+        action: restart
+      - event: ball_will_end
+        action: stop
+sequence_shots:
+  left_orbit_post_combo:
+    switch_sequence:
+      - s_left_spinner
+      - s_left_orbit_enter
+    sequence_timeout: 2s
+    cancel_events: ball_will_end, tilt
+
+event_player:
+  test_whack_a_mole_mystery_flow:
+    - ball_hold_mystery_scoop_held_ball
+    - mystery_whack_a_mole|100ms
+  player_alamo: refresh_alamo_counter
+  strickland_pop_hit{not device.timers.strickland_bbq_pop_block.running}:
+    - strickland_pop_allowed
+  s_right_inlane_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_p_target_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_r_target_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_o_target_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_p2_target_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_a_target_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_n_target_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_e_target_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_ladybird_target_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_top_inline_drop_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_middle_inline_drop_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_bottom_inline_drop_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_left_ramp_exit_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_right_ramp_exit_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_left_outlane_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_left_inlane_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_left_sling_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_right_sling_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_right_outlane_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_right_ramp_standup_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_left_orbit_enter_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_left_spinner_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_center_spinner_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_left_pop_bumper_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_right_pop_bumper_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_left_rollover_lane_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_middle_rollover_lane_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_right_rollover_lane_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_right_orbit_exit_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_left_inner_horseshoe_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_captive_ball_standup_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_scoop_standup_left_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_scoop_standup_right_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_scoop_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_luanne_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_grill1_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_grill2_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+  s_grill3_active{current_player.any_mb_active > 0}: multiball_scoring_hit
+
+  s_left_pop_bumper_active: strickland_pop_hit
+  s_right_pop_bumper_active: strickland_pop_hit
+  s_scoop_active: play_scoop_eject_sound|250ms
+  ball_will_end:
+    - stop_mode_mission_select
+    - stop_mode_beercan_carousel
+    - stop_mode_beat_the_surfer
+    - stop_mode_beer_can_named_desire
+    - stop_mode_bill_bulk_and_the_body_buddies
+    - stop_mode_patch_boomhauer
+    - stop_mode_dog_dale_afternoon
+    - stop_mode_duke_the_dolphin
+    - stop_mode_gladstone
+    - stop_mode_the_heat_waver
+    - stop_mode_bill_mini_wizard
+    - stop_mode_dale_mini_wizard
+    - stop_mode_hank_mini_wizard
+    - stop_mode_boom_mini_wizard
+    - stop_mode_wizard_mode
+    - reset_drop_sequence
+  s_right_ramp_standup_active{current_player.strickland_mb_running == 0}:
+    - reset_inline_drop_bank
+    - reset_drop_sequence
+  logicblock_lb_hank_complete_count_updated{value % 2 == 1 and current_player.any_mb_active == 0}: enable_mystery
+  beercan_carousel_dandy_don_selected:
+    - beer_can_done
+  beercan_carousel_hank_hill_selected:
+    - beer_can_done
+  mode_base_started:
+    - start_mode_sequential_drops
+    - manger_babies_ball_ready
+  mode_base_started{current_player.mission_qualified == 1 and current_player.strickland_mb_running == 0 and current_player.rainey_mb_running == 0 and current_player.grill_mb_running == 0 and current_player.mode_running == 0}:
+    - restore_mode_scoop_lit
+    
+  multiball_grill_mb_started:
+    - end_mystery
+  multiball_strickland_multiball_started:
+    - end_mystery
+  multiball_rainey_multiball_started:
+    - end_mystery
+  multiball_strickland_multiball_ended:
+    - reset_inline_drop_bank
+    - reset_drop_sequence
+    - restore_mode_scoop_lit{current_player.mission_qualified == 1 and current_player.mode_running == 0}
+  multiball_rainey_multiball_ended:
+    - restore_mode_scoop_lit{current_player.mission_qualified == 1 and current_player.mode_running == 0}
+  multiball_grill_mb_ended:
+    - restore_mode_scoop_lit{current_player.mission_qualified == 1 and current_player.mode_running == 0}
+  slide_base_active{device.shots.qualify_p_target.state_name == "lit"}:
+    - restore_qualify_p_widget
+  slide_base_active{device.shots.qualify_r_target.state_name == "lit"}:
+    - restore_qualify_r_widget
+  slide_base_active{device.shots.qualify_o_target.state_name == "lit"}:
+    - restore_qualify_o_widget
+  slide_base_active{device.shots.rainey_multiball_ball_lock_p2_target.state_name == "lit"}:
+    - restore_rainey_p2_widget
+  slide_base_active{device.shots.rainey_multiball_ball_lock_a_target.state_name == "lit"}:
+    - restore_rainey_a_widget
+  slide_base_active{device.shots.rainey_multiball_ball_lock_n_target.state_name == "lit"}:
+    - restore_rainey_n_widget
+  slide_base_active{device.shots.rainey_multiball_ball_lock_e_target.state_name == "lit"}:
+    - restore_rainey_e_widget
+  slide_base_active{current_player.propane_ui_pro_complete == 1}:
+    - restore_qualify_p_widget
+    - restore_qualify_r_widget
+    - restore_qualify_o_widget
+  slide_base_active{current_player.propane_ui_pane_complete == 1}:
+    - restore_rainey_p2_widget
+    - restore_rainey_a_widget
+    - restore_rainey_n_widget
+    - restore_rainey_e_widget
+  player_selected_mission{current_player.mystery_qualified == 1}:
+    - restore_mystery_hold
+
+  # Friendly Neighbor behaviour for PRO qualify targets.
+  # If a lit target is hit again, award an adjacent unlit target instead.
+  qualify_p_target_lit_hit{device.shots.qualify_r_target.state_name == "unlit"}:
+    - friendly_neighbor_award_r
+  qualify_o_target_lit_hit{device.shots.qualify_r_target.state_name == "unlit"}:
+    - friendly_neighbor_award_r
+  qualify_r_target_lit_hit{device.shots.qualify_p_target.state_name == "unlit"}:
+    - friendly_neighbor_award_p
+  qualify_r_target_lit_hit{device.shots.qualify_p_target.state_name != "unlit" and device.shots.qualify_o_target.state_name == "unlit"}:
+    - friendly_neighbor_award_o
+
+  # Friendly Neighbor behaviour for PANE lock targets.
+  # If a lit target is hit again, award an adjacent unlit target instead.
+  rainey_multiball_ball_lock_p2_target_lit_hit{device.shots.rainey_multiball_ball_lock_a_target.state_name == "unlit"}:
+    - friendly_neighbor_award_a
+  rainey_multiball_ball_lock_a_target_lit_hit{device.shots.rainey_multiball_ball_lock_p2_target.state_name == "unlit"}:
+    - friendly_neighbor_award_p2
+  rainey_multiball_ball_lock_a_target_lit_hit{device.shots.rainey_multiball_ball_lock_p2_target.state_name != "unlit" and device.shots.rainey_multiball_ball_lock_n_target.state_name == "unlit"}:
+    - friendly_neighbor_award_n
+  rainey_multiball_ball_lock_n_target_lit_hit{device.shots.rainey_multiball_ball_lock_a_target.state_name == "unlit"}:
+    - friendly_neighbor_award_a
+  rainey_multiball_ball_lock_n_target_lit_hit{device.shots.rainey_multiball_ball_lock_a_target.state_name != "unlit" and device.shots.rainey_multiball_ball_lock_e_target.state_name == "unlit"}:
+    - friendly_neighbor_award_e
+  rainey_multiball_ball_lock_e_target_lit_hit{device.shots.rainey_multiball_ball_lock_n_target.state_name == "unlit"}:
+    - friendly_neighbor_award_n
+ 
+
+
+
+
+
+counters:
+  captive_pf_x_counter:
+    count_events: s_captive_ball_standup_active
+    count_complete_value: 3
+    starting_count: 0
+    reset_on_complete: true
+    persist_state: false
+shots:
+  qualify_p_target:
+    switch: s_p_target
+    enable_events: slide_skillshot_inactive
+    disable_events: slide_skillshot_active
+    advance_events: friendly_neighbor_award_p
+    reset_events: mode_mission_select_started
+    profile: mission_qualify
+    show_tokens:
+      light: l_p_target
+  qualify_r_target:
+    switch: s_r_target
+    enable_events: slide_skillshot_inactive
+    disable_events: slide_skillshot_active
+    advance_events: friendly_neighbor_award_r
+    reset_events: mode_mission_select_started
+    profile: mission_qualify
+    show_tokens:
+      light: l_r_target
+  qualify_o_target:
+    switch: s_o_target
+    enable_events: slide_skillshot_inactive
+    disable_events: slide_skillshot_active
+    advance_events: friendly_neighbor_award_o
+    reset_events: mode_mission_select_started
+    profile: mission_qualify
+    show_tokens:
+      light: l_o_target
+  mode_scoop:
+    switch: s_scoop
+    enable_events:
+      - qualify_mission_lit_complete{current_player.strickland_mb_running == 0 and current_player.rainey_mb_running == 0 and current_player.grill_mb_running == 0 and current_player.mode_running == 0}
+      - restore_mode_scoop_lit
+    disable_events:
+      - mode_mission_select_started
+      - mode_beat_the_surfer_started
+      - mode_beer_can_named_desire_started
+      - mode_bill_bulk_and_the_body_buddies_started
+      - mode_patch_boomhauer_started
+      - mode_dog_dale_afternoon_started
+      - mode_duke_the_dolphin_started
+      - mode_gladstone_started
+      - mode_the_heat_waver_started
+      - mode_bill_mini_wizard_started
+      - mode_hank_mini_wizard_started
+      - mode_dale_mini_wizard_started
+      - mode_boom_mini_wizard_started
+      - mode_wizard_mode_started
+      - multiball_strickland_multiball_started
+      - multiball_rainey_multiball_started
+      - multiball_grill_mb_started
+      - ball_will_end
+  rainey_multiball_ball_lock_p2_target:
+    switch: s_p2_target
+    advance_events: friendly_neighbor_award_p2
+    reset_events: multiball_rainey_multiball_started
+    show_tokens:
+      light: l_p2_target
+    profile: rainey_multiball_ball_lock
+  rainey_multiball_ball_lock_a_target:
+    switch: s_a_target
+    advance_events: friendly_neighbor_award_a
+    reset_events: multiball_rainey_multiball_started
+    show_tokens:
+      light: l_a_target
+    profile: rainey_multiball_ball_lock
+  rainey_multiball_ball_lock_n_target:
+    switch: s_n_target
+    advance_events: friendly_neighbor_award_n
+    reset_events: multiball_rainey_multiball_started
+    show_tokens:
+      light: l_n_target
+    profile: rainey_multiball_ball_lock
+  rainey_multiball_ball_lock_e_target:
+    switch: s_e_target
+    advance_events: friendly_neighbor_award_e
+    reset_events: multiball_rainey_multiball_started
+    show_tokens:
+      light: l_e_target
+    profile: rainey_multiball_ball_lock
+  # captive_drop:
+  #   advance_events: s_captive_ball_standup_active
+  #   reset_events:
+  #   switch: s_captive_drop
+  #   profile: captive_drop
+
+
+shot_groups:
+  qualify_mission:
+    shots: qualify_p_target, qualify_r_target, qualify_o_target
+    restart_events:
+      ball_ending: 0s
+    disable_events: qualify_mission_lit_complete, mode_base_started{current_player.mission_qualified == 1}, mode_mission_select_started, multiball_strickland_multiball_started, multiball_rainey_multiball_started, multiball_grill_mb_started, mode_wizard_mode_started, mode_beercan_carousel_started, mode_beat_the_surfer_started, mode_beer_can_named_desire_started, mode_bill_bulk_and_the_body_buddies_started, mode_bill_mini_wizard_started, mode_boom_mini_wizard_started, mode_patch_boomhauer_started, mode_dale_mini_wizard_started, mode_dog_dale_afternoon_started, mode_duke_the_dolphin_started, mode_gladstone_started, mode_hank_mini_wizard_started, mode_the_heat_waver_started
+    enable_events: stop_mode_skillshot, mode_beercan_carousel_stopped, mode_beat_the_surfer_stopped, mode_beer_can_named_desire_stopped, mode_bill_bulk_and_the_body_buddies_stopped, mode_bill_mini_wizard_stopped, mode_boom_mini_wizard_stopped, mode_patch_boomhauer_stopped, mode_dale_mini_wizard_stopped, mode_dog_dale_afternoon_stopped, mode_duke_the_dolphin_stopped, mode_gladstone_stopped, mode_hank_mini_wizard_stopped, mode_the_heat_waver_stopped, multiball_strickland_multiball_ended{current_player.mode_running == 0}, multiball_rainey_multiball_ended{current_player.mode_running == 0}, multiball_grill_mb_ended{current_player.mode_running == 0}, mode_wizard_mode_stopped
+  light_rainey_multiball_ball_lock:
+    shots: rainey_multiball_ball_lock_p2_target, rainey_multiball_ball_lock_a_target, rainey_multiball_ball_lock_n_target, rainey_multiball_ball_lock_e_target
+    enable_events:
+      - stop_mode_skillshot{current_player.rainey_mb_used_this_ball == 0}
+      - multiball_strickland_multiball_ended{current_player.rainey_mb_used_this_ball == 0}
+      - multiball_grill_mb_ended{current_player.rainey_mb_used_this_ball == 0}
+      - multiball_rainey_multiball_ended{current_player.rainey_mb_used_this_ball == 0}
+    reset_events:
+      multiball_rainey_multiball_ended: .5s
+    disable_events: mode_base_started{device.achievements.lock_lit.state == "started"}, multiball_strickland_multiball_started, multiball_rainey_multiball_started, multiball_grill_mb_started, light_rainey_multiball_ball_lock_lit_complete
+sequences:
+  strickland_multiball_sequence:
+    events:
+      - drop_target_bank_metallica_bank_down
+      - strickland_pop_allowed
+    events_when_complete: strickland_multiball_sequence_done
+    enable_events: mode_base_started, multiball_grill_mb_ended, multiball_rainey_multiball_ended
+    disable_events: multiball_grill_mb_started, multiball_rainey_multiball_started
+    reset_events: multiball_grill_mb_started, multiball_rainey_multiball_started, reset_drop_sequence
+
+    
+
+
+accruals:
+  bill_mini_wizard:
+    events:
+      - mode_bill_bulk_and_the_body_buddies_stopped
+      - mode_the_heat_waver_stopped
+    events_when_complete: bill_mini_wizard_qualified
+    reset_on_complete: false
+  dale_mini_wizard:
+    events:
+      - mode_dog_dale_afternoon_stopped
+      - mode_gladstone_stopped
+    events_when_complete: dale_mini_wizard_qualified
+    reset_on_complete: false
+  hank_mini_wizard:
+    events:
+      - beer_can_done
+      - mode_duke_the_dolphin_stopped
+    events_when_complete: hank_mini_wizard_qualified
+    reset_on_complete: false
+  boom_mini_wizard:
+    events:
+      - mode_patch_boomhauer_stopped
+      - mode_beat_the_surfer_stopped
+    events_when_complete: boom_mini_wizard_qualified
+    reset_on_complete: false
+  wizard_mode:
+    events:
+      - beat_the_surfer_done
+      - beer_can_done
+      - bill_bulk_and_the_body_buddies_done
+      - patch_boomhauer_done
+      - dog_dale_afternoon_done
+      - logicblock_duke_counter_complete
+      - gladstone_mode_complete
+      - the_heat_waver_done
+      - mode_bill_mini_wizard_stopped
+      - mode_dale_mini_wizard_stopped
+      - mode_hank_mini_wizard_stopped
+      - mode_boom_mini_wizard_stopped
+      - multiball_rainey_multiball_ended
+      - multiball_strickland_multiball_ended
+      - multiball_grill_mb_ended
+    events_when_complete: wizard_qualified
+    reset_on_complete: false
+
+achievements:
+  played_bill_bulk_and_the_body_buddies:
+    show_tokens:
+      light: l_bill_1
+    show_when_started: on
+    show_when_completed: on
+    restart_after_stop_possible: false
+    start_events: mission_select_bill_bulk_and_the_body_buddies_selected
+    complete_events: mission_select_bill_bulk_and_the_body_buddies_selected
+  played_beat_the_surfer:
+    show_tokens:
+      light: l_boom_1
+    show_when_started: on
+    show_when_completed: on
+    start_events: mission_select_beat_the_surfer_selected
+    complete_events: mission_select_beat_the_surfer_selected
+  played_beer_can_named_desire:
+    show_tokens:
+      light: l_hank_1
+    show_when_started: on
+    show_when_completed: on
+    start_events: mission_select_beer_can_named_desire_selected
+    complete_events: beer_can_done
+  played_patch_boomhauer:
+    show_tokens:
+      light: l_boom_2
+    show_when_started: on
+    show_when_completed: on
+    start_events: mission_select_patch_boomhauer_selected
+    complete_events: mission_select_patch_boomhauer_selected
+  played_dog_dale_afternoon:
+    show_tokens:
+      light: l_dale_1
+    show_when_started: on
+    show_when_completed: on
+    start_events: mission_select_dog_dale_afternoon_selected
+    complete_events: mission_select_dog_dale_afternoon_selected
+  played_duke_the_dolphin:
+    show_tokens:
+      light: l_hank_2
+    show_when_started: on
+    show_when_completed: on
+    start_events: mission_select_duke_the_dolphin_selected
+    complete_events: mission_select_duke_the_dolphin_selected
+  played_gladstone:
+    show_tokens:
+      light: l_dale_2
+    show_when_started: on
+    show_when_completed: on
+    start_events: mission_select_gladstone_selected
+    complete_events: mission_select_gladstone_selected
+  played_the_heat_waver:
+    show_tokens:
+      light: l_bill_2
+    show_when_started: on
+    show_when_completed: on
+    start_events: mission_select_the_heat_waver_selected
+    complete_events: mission_select_the_heat_waver_selected
+  lock_lit:
+    start_events: light_rainey_multiball_ball_lock_lit_complete
+    show_when_started: rainey_multiball_lock_show
+    show_when_completed: off
+    complete_events: multiball_rainey_multiball_ended
+    restart_on_next_ball_when_started: true
+  rainey_lock_1:
+    show_tokens:
+      light: l_lock_1
+    show_when_started: rainey_lock_green
+    show_when_completed: rainey_lock_green
+    start_events: logicblock_mb_counter_hit{hits==1}
+    complete_events: logicblock_mb_counter_hit{hits==1}
+    restart_on_next_ball_when_started: true
+  rainey_lock_2:
+    show_tokens:
+      light: l_lock_2
+    show_when_started: rainey_lock_green
+    start_events: logicblock_mb_counter_hit{hits==2}
+    restart_on_next_ball_when_started: true
+  rainey_multiball_finish:
+    start_events: multiball_rainey_multiball_started
+    complete_events: multiball_rainey_multiball_started
+    show_tokens:
+      lights: l_lock_1, l_lock_2
+    show_when_started: off 
+    show_when_completed: off 
+
+
+  
+
+
+
+
+      
+
+    

@@ -1,0 +1,11 @@
+#show_version=6
+
+- time: 0
+  lights:
+    l_left_ramp: FF7600
+- time: .5s
+  lights:
+    l_left_ramp: 4A1600
+- time: 1s
+  lights:
+    l_left_ramp: FF7600

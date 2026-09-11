@@ -1,0 +1,33 @@
+#config_version=6
+
+mode:
+  start_events: ball_started
+  priority: 900
+
+
+extra_balls:
+  score_one:
+    enabled: true
+    award_events: player_alamo{value>=24}
+  score_two:
+    enabled: true
+    award_events: player_score{value>=100_000_000}
+  score_three:
+    enabled: true
+    award_events: award_1
+    max_per_game: 1
+
+slide_player:
+  show_extra_ball_bobby:
+    extra_ball:
+      expire: 3.25s
+  show_extra_ball_coach:
+    extra_ball_coach:
+      expire: 2.75s
+
+random_event_player:
+  extra_ball_awarded:
+    events:
+      - show_extra_ball_bobby
+      - show_extra_ball_coach
+    force_different: true

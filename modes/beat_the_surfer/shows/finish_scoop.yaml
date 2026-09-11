@@ -1,0 +1,8 @@
+#show_version=6
+
+- duration: 250ms
+  lights:
+    l_scoop: blue
+- duration: 250ms
+  lights:
+    l_scoop: off

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxl5mn703401h"]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_d7df0"]
+[ext_resource type="Texture2D" uid="uid://clkfwska2dwkm" path="res://images/base_player_image.png" id="2_4agdl"]
+
+[node name="MPFWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_d7df0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(736, 408)
+texture = ExtResource("2_4agdl")

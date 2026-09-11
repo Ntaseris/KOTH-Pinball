@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://pt2rdibo6mtc"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_3y802"]
+[ext_resource type="VideoStream" uid="uid://cgwoh7ovumj55" path="res://images/big_points.ogv" id="2_hfid1"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_togmr"]
+[ext_resource type="Script" uid="uid://cff0owk0jvkka" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="4_vb8nq"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+script = ExtResource("1_3y802")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+color = Color(0, 0, 0, 1)
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+stream = ExtResource("2_hfid1")
+volume_db = -80.0
+autoplay = true
+script = ExtResource("4_vb8nq")
+
+[node name="Label" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_togmr")
+layout_mode = 0
+offset_top = 424.0
+offset_right = 1352.0
+offset_bottom = 672.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 100
+text = "BIG POINTS\n2,000,000"
+horizontal_alignment = 1

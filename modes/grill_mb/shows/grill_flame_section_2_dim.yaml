@@ -1,0 +1,22 @@
+#show_version=6
+
+- duration: 105ms
+  lights:
+    l_grill9: 7A2200
+    l_grill10: 541000
+    l_grill11: 8C2800
+    l_grill12: 6A1800
+    l_grill13: 842400
+    l_grill14: 481000
+    l_grill15: 963000
+    l_grill16: 701C00
+- duration: 125ms
+  lights:
+    l_grill9: 5C1400
+    l_grill10: 8C2800
+    l_grill11: 6A1800
+    l_grill12: 842400
+    l_grill13: 541000
+    l_grill14: 963000
+    l_grill15: 701C00
+    l_grill16: 7A2200

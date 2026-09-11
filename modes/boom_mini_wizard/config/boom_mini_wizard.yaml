@@ -1,0 +1,344 @@
+#config_version=6
+
+mode:
+  start_events: mission_select_boom_mini_wizard_selected{current_player.any_mb_active == 0}
+  stop_events:
+    - ball_ending
+    - ball_drain
+    - timer_boom_mini_wizard_mode_countdown_complete
+    - boom_mw_finished
+  priority: 260
+
+timers:
+  boom_mini_wizard_mode_countdown:
+    start_value: 100
+    end_value: 0
+    direction: down
+    start_running: false
+    bcp: true
+    control_events:
+      - {event: boom_mw_pursuit_started, action: start}
+      - {event: boom_mw_proposal_started, action: pause}
+      - {event: boom_mw_heartbreak_started, action: start}
+      - {event: boom_mw_pep_talk_started, action: pause}
+      - {event: boom_mw_rebound_started, action: start}
+      - {event: boom_mw_apology_started, action: pause}
+
+ball_holds:
+  boom_mw_story_scoop:
+    balls_to_hold: 1
+    hold_devices: bd_scoop
+    enable_events: boom_mw_ring_ready, boom_mw_pep_talk_ready, boom_mw_apology_ready
+    disable_events: slide_boom_mw_proposal_inactive, slide_boom_mw_pep_talk_inactive, slide_boom_mw_finale_tag_inactive, ball_ending
+    release_one_events: slide_boom_mw_proposal_inactive, slide_boom_mw_pep_talk_inactive, slide_boom_mw_finale_tag_inactive
+
+shot_profiles:
+  boom_mw_romance_shot:
+    states:
+      - name: lit
+        show: led_color
+        show_tokens: {color: FF3B9D}
+      - name: collected
+        show: "off"
+  boom_mw_rebound_shot:
+    states:
+      - name: lit
+        show: led_color
+        show_tokens: {color: 35D9FF}
+      - name: collected
+        show: "off"
+
+shots:
+  boom_mw_pursuit_left_orbit:
+    switch: s_left_orbit_enter
+    profile: boom_mw_romance_shot
+    start_enabled: false
+    enable_events: boom_mw_pursuit_started
+    disable_events: boom_mw_ring_ready
+    hit_events: pocket_sand_hit_boom_mw_pursuit_left_orbit
+    show_tokens: {light: l_left_orbit}
+  boom_mw_pursuit_left_ramp:
+    switch: s_left_ramp_exit
+    profile: boom_mw_romance_shot
+    start_enabled: false
+    enable_events: boom_mw_pursuit_started
+    disable_events: boom_mw_ring_ready
+    hit_events: pocket_sand_hit_boom_mw_pursuit_left_ramp
+    show_tokens: {light: l_left_ramp}
+  boom_mw_pursuit_center_spinner:
+    switch: s_center_spinner
+    profile: boom_mw_romance_shot
+    start_enabled: false
+    enable_events: boom_mw_pursuit_started
+    disable_events: boom_mw_ring_ready
+    hit_events: pocket_sand_hit_boom_mw_pursuit_center_spinner
+    show_tokens: {light: l_center_spinner}
+  boom_mw_pursuit_right_ramp:
+    switch: s_right_ramp_exit
+    profile: boom_mw_romance_shot
+    start_enabled: false
+    enable_events: boom_mw_pursuit_started
+    disable_events: boom_mw_ring_ready
+    hit_events: pocket_sand_hit_boom_mw_pursuit_right_ramp
+    show_tokens: {light: l_right_ramp}
+  boom_mw_pursuit_right_orbit:
+    switch: s_right_orbit_exit
+    profile: boom_mw_romance_shot
+    start_enabled: false
+    enable_events: boom_mw_pursuit_started
+    disable_events: boom_mw_ring_ready
+    hit_events: pocket_sand_hit_boom_mw_pursuit_right_orbit
+    show_tokens: {light: l_right_orbit}
+  boom_mw_story_scoop:
+    switch: s_scoop
+    start_enabled: false
+    enable_events: boom_mw_ring_ready, boom_mw_pep_talk_ready, boom_mw_apology_ready
+    disable_events: boom_mw_proposal_started, boom_mw_pep_talk_started, boom_mw_apology_started
+  boom_mw_confidence_left_spinner:
+    switch: s_left_spinner
+    start_enabled: false
+    enable_events: boom_mw_heartbreak_started
+    disable_events: boom_mw_pep_talk_ready
+  boom_mw_confidence_center_spinner:
+    switch: s_center_spinner
+    start_enabled: false
+    enable_events: boom_mw_heartbreak_started
+    disable_events: boom_mw_pep_talk_ready
+  boom_mw_confidence_left_pop:
+    switch: s_left_pop_bumper
+    start_enabled: false
+    enable_events: boom_mw_heartbreak_started
+    disable_events: boom_mw_pep_talk_ready
+  boom_mw_confidence_right_pop:
+    switch: s_right_pop_bumper
+    start_enabled: false
+    enable_events: boom_mw_heartbreak_started
+    disable_events: boom_mw_pep_talk_ready
+  boom_mw_rebound_left_orbit:
+    switch: s_left_orbit_enter
+    profile: boom_mw_rebound_shot
+    start_enabled: false
+    enable_events: boom_mw_rebound_started
+    disable_events: boom_mw_apology_ready
+    hit_events: pocket_sand_hit_boom_mw_rebound_left_orbit
+    show_tokens: {light: l_left_orbit}
+  boom_mw_rebound_left_ramp:
+    switch: s_left_ramp_exit
+    profile: boom_mw_rebound_shot
+    start_enabled: false
+    enable_events: boom_mw_rebound_started
+    disable_events: boom_mw_apology_ready
+    hit_events: pocket_sand_hit_boom_mw_rebound_left_ramp
+    show_tokens: {light: l_left_ramp}
+  boom_mw_rebound_center_spinner:
+    switch: s_center_spinner
+    profile: boom_mw_rebound_shot
+    start_enabled: false
+    enable_events: boom_mw_rebound_started
+    disable_events: boom_mw_apology_ready
+    hit_events: pocket_sand_hit_boom_mw_rebound_center_spinner
+    show_tokens: {light: l_center_spinner}
+  boom_mw_rebound_right_ramp:
+    switch: s_right_ramp_exit
+    profile: boom_mw_rebound_shot
+    start_enabled: false
+    enable_events: boom_mw_rebound_started
+    disable_events: boom_mw_apology_ready
+    hit_events: pocket_sand_hit_boom_mw_rebound_right_ramp
+    show_tokens: {light: l_right_ramp}
+  boom_mw_rebound_right_orbit:
+    switch: s_right_orbit_exit
+    profile: boom_mw_rebound_shot
+    start_enabled: false
+    enable_events: boom_mw_rebound_started
+    disable_events: boom_mw_apology_ready
+    hit_events: pocket_sand_hit_boom_mw_rebound_right_orbit
+    show_tokens: {light: l_right_orbit}
+
+shot_groups:
+  boom_mw_confidence_shots:
+    shots: boom_mw_confidence_left_spinner, boom_mw_confidence_center_spinner, boom_mw_confidence_left_pop, boom_mw_confidence_right_pop
+
+accruals:
+  boom_mw_pursuit:
+    events: boom_mw_pursuit_left_orbit_lit_hit, boom_mw_pursuit_left_ramp_lit_hit, boom_mw_pursuit_center_spinner_lit_hit, boom_mw_pursuit_right_ramp_lit_hit, boom_mw_pursuit_right_orbit_lit_hit
+    events_when_complete: boom_mw_ring_ready
+    reset_on_complete: false
+  boom_mw_rebounds:
+    events: boom_mw_rebound_left_orbit_lit_hit, boom_mw_rebound_left_ramp_lit_hit, boom_mw_rebound_center_spinner_lit_hit, boom_mw_rebound_right_ramp_lit_hit, boom_mw_rebound_right_orbit_lit_hit
+    events_when_complete: boom_mw_apology_ready
+    reset_on_complete: false
+
+counters:
+  boom_mw_confidence:
+    count_events: boom_mw_confidence_hit
+    count_complete_value: 12
+    events_when_complete: boom_mw_pep_talk_ready
+    enable_events: boom_mw_heartbreak_started
+    disable_on_complete: true
+    reset_on_complete: false
+
+variable_player:
+  mode_boom_mini_wizard_started:
+    modes: 1
+    boom_mini_wizard_completed: {int: 0, action: set}
+    boom_mw_active: {int: 1, action: set}
+    boom_mw_phase: {int: 0, action: set}
+    boom_mw_pursuit_hits: {int: 0, action: set}
+    boom_mw_confidence: {int: 0, action: set}
+    boom_mw_rebound_hits: {int: 0, action: set}
+    boom_mw_last_award: {int: 0, action: set}
+  mode_boom_mini_wizard_stopped:
+    boom_mw_active: {int: 0, action: set}
+  boom_mw_pursuit_started:
+    boom_mw_phase: {int: 1, action: set}
+  boom_mw_pursuit_shot:
+    score: 1000000 * current_player.pf_multiplier
+    boom_mw_pursuit_hits: 1
+    boom_mw_last_award: {int: 1000000 * current_player.pf_multiplier, action: set}
+  boom_mw_ring_ready:
+    boom_mw_phase: {int: 2, action: set}
+  boom_mw_proposal_started:
+    score: 5000000 * current_player.pf_multiplier
+    boom_mw_last_award: {int: 5000000 * current_player.pf_multiplier, action: set}
+  boom_mw_heartbreak_started:
+    boom_mw_phase: {int: 3, action: set}
+  boom_mw_confidence_hit:
+    score: 250000 * current_player.pf_multiplier
+    boom_mw_last_award: {int: 250000 * current_player.pf_multiplier, action: set}
+  logicblock_boom_mw_confidence_hit:
+    boom_mw_confidence: {int: device.counters.boom_mw_confidence.value, action: set}
+  boom_mw_pep_talk_ready:
+    boom_mw_phase: {int: 4, action: set}
+  boom_mw_pep_talk_started:
+    score: 5000000 * current_player.pf_multiplier
+    boom_mw_last_award: {int: 5000000 * current_player.pf_multiplier, action: set}
+  boom_mw_rebound_started:
+    boom_mw_phase: {int: 5, action: set}
+  boom_mw_rebound_shot:
+    score: 2000000 * current_player.pf_multiplier
+    boom_mw_rebound_hits: 1
+    boom_mw_last_award: {int: 2000000 * current_player.pf_multiplier, action: set}
+  boom_mw_apology_ready:
+    boom_mw_phase: {int: 6, action: set}
+  boom_mw_apology_started:
+    score: 10000000 * current_player.pf_multiplier
+    boom_mw_last_award: {int: 10000000 * current_player.pf_multiplier, action: set}
+  boom_mw_finished:
+    boom_mini_wizard_completed: {int: 1, action: set}
+  player_score{source=="boom_mini_wizard"}:
+    boom_mini_wizard_total: change
+
+event_player:
+  slide_boom_mini_wizard_inactive: boom_mw_pursuit_started
+  boom_mw_pursuit_left_orbit_lit_hit: boom_mw_pursuit_shot
+  boom_mw_pursuit_left_ramp_lit_hit: boom_mw_pursuit_shot
+  boom_mw_pursuit_center_spinner_lit_hit: boom_mw_pursuit_shot
+  boom_mw_pursuit_right_ramp_lit_hit: boom_mw_pursuit_shot
+  boom_mw_pursuit_right_orbit_lit_hit: boom_mw_pursuit_shot
+  boom_mw_story_scoop_hit{current_player.boom_mw_phase == 2}: boom_mw_proposal_started
+  slide_boom_mw_proposal_inactive: boom_mw_heartbreak_started
+  boom_mw_confidence_shots_hit{current_player.boom_mw_phase == 3}: boom_mw_confidence_hit
+  boom_mw_story_scoop_hit{current_player.boom_mw_phase == 4}: boom_mw_pep_talk_started
+  slide_boom_mw_pep_talk_inactive: boom_mw_rebound_started
+  boom_mw_rebound_left_orbit_lit_hit: boom_mw_rebound_shot
+  boom_mw_rebound_left_ramp_lit_hit: boom_mw_rebound_shot
+  boom_mw_rebound_center_spinner_lit_hit: boom_mw_rebound_shot
+  boom_mw_rebound_right_ramp_lit_hit: boom_mw_rebound_shot
+  boom_mw_rebound_right_orbit_lit_hit: boom_mw_rebound_shot
+  boom_mw_story_scoop_hit{current_player.boom_mw_phase == 6}: boom_mw_apology_started
+  slide_boom_mw_apology_inactive: boom_mw_finale_started
+  slide_boom_mw_finale_tag_inactive: boom_mw_finished
+
+  pocket_sand_mode_spot_attempt{current_player.boom_mw_phase == 1 and device.shots.boom_mw_pursuit_left_orbit.state_name == "lit"}: [pocket_sand_hit_boom_mw_pursuit_left_orbit, pocket_sand_spotted]
+  pocket_sand_mode_spot_attempt{current_player.boom_mw_phase == 1 and device.shots.boom_mw_pursuit_left_orbit.state_name != "lit" and device.shots.boom_mw_pursuit_left_ramp.state_name == "lit"}: [pocket_sand_hit_boom_mw_pursuit_left_ramp, pocket_sand_spotted]
+  pocket_sand_mode_spot_attempt{current_player.boom_mw_phase == 1 and device.shots.boom_mw_pursuit_left_orbit.state_name != "lit" and device.shots.boom_mw_pursuit_left_ramp.state_name != "lit" and device.shots.boom_mw_pursuit_center_spinner.state_name == "lit"}: [pocket_sand_hit_boom_mw_pursuit_center_spinner, pocket_sand_spotted]
+  pocket_sand_mode_spot_attempt{current_player.boom_mw_phase == 1 and device.shots.boom_mw_pursuit_left_orbit.state_name != "lit" and device.shots.boom_mw_pursuit_left_ramp.state_name != "lit" and device.shots.boom_mw_pursuit_center_spinner.state_name != "lit" and device.shots.boom_mw_pursuit_right_ramp.state_name == "lit"}: [pocket_sand_hit_boom_mw_pursuit_right_ramp, pocket_sand_spotted]
+  pocket_sand_mode_spot_attempt{current_player.boom_mw_phase == 1 and device.shots.boom_mw_pursuit_left_orbit.state_name != "lit" and device.shots.boom_mw_pursuit_left_ramp.state_name != "lit" and device.shots.boom_mw_pursuit_center_spinner.state_name != "lit" and device.shots.boom_mw_pursuit_right_ramp.state_name != "lit" and device.shots.boom_mw_pursuit_right_orbit.state_name == "lit"}: [pocket_sand_hit_boom_mw_pursuit_right_orbit, pocket_sand_spotted]
+  pocket_sand_mode_spot_attempt{current_player.boom_mw_phase == 5 and device.shots.boom_mw_rebound_left_orbit.state_name == "lit"}: [pocket_sand_hit_boom_mw_rebound_left_orbit, pocket_sand_spotted]
+  pocket_sand_mode_spot_attempt{current_player.boom_mw_phase == 5 and device.shots.boom_mw_rebound_left_orbit.state_name != "lit" and device.shots.boom_mw_rebound_left_ramp.state_name == "lit"}: [pocket_sand_hit_boom_mw_rebound_left_ramp, pocket_sand_spotted]
+  pocket_sand_mode_spot_attempt{current_player.boom_mw_phase == 5 and device.shots.boom_mw_rebound_left_orbit.state_name != "lit" and device.shots.boom_mw_rebound_left_ramp.state_name != "lit" and device.shots.boom_mw_rebound_center_spinner.state_name == "lit"}: [pocket_sand_hit_boom_mw_rebound_center_spinner, pocket_sand_spotted]
+  pocket_sand_mode_spot_attempt{current_player.boom_mw_phase == 5 and device.shots.boom_mw_rebound_left_orbit.state_name != "lit" and device.shots.boom_mw_rebound_left_ramp.state_name != "lit" and device.shots.boom_mw_rebound_center_spinner.state_name != "lit" and device.shots.boom_mw_rebound_right_ramp.state_name == "lit"}: [pocket_sand_hit_boom_mw_rebound_right_ramp, pocket_sand_spotted]
+  pocket_sand_mode_spot_attempt{current_player.boom_mw_phase == 5 and device.shots.boom_mw_rebound_left_orbit.state_name != "lit" and device.shots.boom_mw_rebound_left_ramp.state_name != "lit" and device.shots.boom_mw_rebound_center_spinner.state_name != "lit" and device.shots.boom_mw_rebound_right_ramp.state_name != "lit" and device.shots.boom_mw_rebound_right_orbit.state_name == "lit"}: [pocket_sand_hit_boom_mw_rebound_right_orbit, pocket_sand_spotted]
+
+show_player:
+  boom_mw_pursuit_started:
+    boom_mw_romance: {key: boom_mw_phase_show, loops: -1, priority: 270}
+  boom_mw_pursuit_shot:
+    boom_mw_jackpot: {loops: 1, priority: 500}
+  boom_mw_ring_ready:
+    boom_mw_phase_show: stop
+    boom_mw_ring_ready: {key: boom_mw_phase_show, loops: -1, priority: 300}
+  boom_mw_heartbreak_started:
+    boom_mw_phase_show: stop
+    boom_mw_heartbreak: {key: boom_mw_phase_show, loops: -1, priority: 270}
+  boom_mw_confidence_hit:
+    boom_mw_jackpot: {loops: 1, priority: 500}
+  boom_mw_pep_talk_ready:
+    boom_mw_phase_show: stop
+    boom_mw_pep_ready: {key: boom_mw_phase_show, loops: -1, priority: 300}
+  boom_mw_rebound_started:
+    boom_mw_phase_show: stop
+    boom_mw_rebound: {key: boom_mw_phase_show, loops: -1, priority: 280}
+  boom_mw_rebound_shot:
+    boom_mw_jackpot: {loops: 1, priority: 500}
+  boom_mw_apology_ready:
+    boom_mw_phase_show: stop
+    boom_mw_apology_ready: {key: boom_mw_phase_show, loops: -1, priority: 300}
+  mode_boom_mini_wizard_stopping:
+    boom_mw_phase_show: stop
+
+slide_player:
+  mode_boom_mini_wizard_started:
+    boom_mini_wizard: {expire: 23s, priority: 1200}
+  slide_boom_mini_wizard_inactive:
+    boom_mw_romance: {priority: 500}
+  boom_mw_proposal_started:
+    boom_mw_proposal: {expire: 38.5s, priority: 1200}
+  slide_boom_mw_proposal_inactive:
+    boom_mw_romance: {action: remove}
+    boom_mw_heartbreak: {priority: 500}
+  boom_mw_pep_talk_started:
+    boom_mw_pep_talk: {expire: 20s, priority: 1200}
+  slide_boom_mw_pep_talk_inactive:
+    boom_mw_heartbreak: {action: remove}
+    boom_mw_rebound: {priority: 500}
+  boom_mw_apology_started:
+    boom_mw_apology: {expire: 21.5s, priority: 1200}
+  boom_mw_finale_started:
+    boom_mw_apology: {action: remove}
+    boom_mw_finale_tag: {expire: 16s, priority: 1300}
+
+widget_player:
+  boom_mw_ring_ready:
+    boom_mw_ring_ready: {expire: 11s, priority: 1100}
+  boom_mw_pep_talk_ready:
+    boom_mw_pep_ready: {priority: 700}
+  boom_mw_pep_talk_started:
+    boom_mw_pep_ready: {action: remove}
+  boom_mw_apology_ready:
+    boom_mw_apology_ready: {priority: 700}
+  boom_mw_apology_started:
+    boom_mw_apology_ready: {action: remove}
+
+sound_player:
+  boom_mw_pursuit_started:
+    boom_mw_go_boomhauer:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.03, release: 0.25, release_point: 0.0}
+  boom_mw_pursuit_shot:
+    jackpot_hit: {bus: effects, volume: 0.22}
+  boom_mw_heartbreak_started:
+    boom_mw_know_how_they_felt:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.8, attack: 0.03, release: 0.25, release_point: 0.0}
+  boom_mw_confidence_hit:
+    target_tick_2: {bus: effects, volume: 0.18}
+  boom_mw_rebound_started:
+    boom_mw_hank_flirting:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.03, release: 0.25, release_point: 0.0}
+  boom_mw_rebound_shot:
+    jackpot_hit: {bus: effects, volume: 0.28}
+  boom_mw_apology_started:
+    success_sting: {bus: effects, volume: 0.36}

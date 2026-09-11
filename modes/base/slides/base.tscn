@@ -1,0 +1,395 @@
+[gd_scene load_steps=9 format=3 uid="uid://df1lg4h28w1yo"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_in8xh"]
+[ext_resource type="Texture2D" path="res://images/king_of_the_hill_fence_restoration_candidate.png" id="2_ejw4b"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_8wnra"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="3_x1er7"]
+[ext_resource type="Theme" uid="uid://b4fbuks3kqs3a" path="res://body_md.tres" id="4_23ebb"]
+[ext_resource type="PackedScene" path="res://modes/base/slides/player_badges.tscn" id="5_badges"]
+[ext_resource type="Texture2D" uid="uid://q1dqwtm558um" path="res://images/manger_babies-removebg-preview.png" id="8_gvvp8"]
+[ext_resource type="Texture2D" uid="uid://cryn6edpjvgfe" path="res://images/Your_paragraph_text-removebg-preview.png" id="9_propane_tank"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_in8xh")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(684, 384)
+scale = Vector2(0.817, 0.816)
+texture = ExtResource("2_ejw4b")
+
+[node name="score" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_8wnra")
+layout_mode = 0
+offset_left = 22.0
+offset_top = 342.0
+offset_right = 1376.0
+offset_bottom = 482.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 112
+text = "1,000,000"
+horizontal_alignment = 1
+script = ExtResource("3_x1er7")
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="BaseObjective" type="Label" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 636.0
+offset_right = 1046.0
+offset_bottom = 706.0
+theme_override_colors/font_color = Color(1, 0.72, 0.12, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.72)
+theme_override_constants/outline_size = 9
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("3_8wnra")
+theme_override_font_sizes/font_size = 34
+text = "HIT P-R-O • SCOOP STARTS AN EPISODE"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_x1er7")
+variable_name = "base_objective"
+
+[node name="PropaneRailP" type="Sprite2D" parent="."]
+z_index = -2
+modulate = Color(0.2, 0.22, 0.22, 0.78)
+position = Vector2(300, 270)
+scale = Vector2(0.42, 0.36)
+texture = ExtResource("9_propane_tank")
+
+[node name="Letter" type="Label" parent="PropaneRailP"]
+offset_left = -72.0
+offset_top = -48.0
+offset_right = 72.0
+offset_bottom = 176.0
+theme_override_colors/font_color = Color(0.58, 0.62, 0.62, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_8wnra")
+theme_override_font_sizes/font_size = 180
+text = "P"
+horizontal_alignment = 1
+
+[node name="PropaneRailR" type="Sprite2D" parent="."]
+z_index = -2
+modulate = Color(0.2, 0.22, 0.22, 0.78)
+position = Vector2(425, 270)
+scale = Vector2(0.42, 0.36)
+texture = ExtResource("9_propane_tank")
+
+[node name="Letter" type="Label" parent="PropaneRailR"]
+offset_left = -72.0
+offset_top = -48.0
+offset_right = 72.0
+offset_bottom = 176.0
+theme_override_colors/font_color = Color(0.58, 0.62, 0.62, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_8wnra")
+theme_override_font_sizes/font_size = 180
+text = "R"
+horizontal_alignment = 1
+
+[node name="PropaneRailO" type="Sprite2D" parent="."]
+z_index = -2
+modulate = Color(0.2, 0.22, 0.22, 0.78)
+position = Vector2(550, 270)
+scale = Vector2(0.42, 0.36)
+texture = ExtResource("9_propane_tank")
+
+[node name="Letter" type="Label" parent="PropaneRailO"]
+offset_left = -72.0
+offset_top = -48.0
+offset_right = 72.0
+offset_bottom = 176.0
+theme_override_colors/font_color = Color(0.58, 0.62, 0.62, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_8wnra")
+theme_override_font_sizes/font_size = 180
+text = "O"
+horizontal_alignment = 1
+
+[node name="PropaneRailP2" type="Sprite2D" parent="."]
+z_index = -2
+modulate = Color(0.2, 0.22, 0.22, 0.78)
+position = Vector2(675, 270)
+scale = Vector2(0.42, 0.36)
+texture = ExtResource("9_propane_tank")
+
+[node name="Letter" type="Label" parent="PropaneRailP2"]
+offset_left = -72.0
+offset_top = -48.0
+offset_right = 72.0
+offset_bottom = 176.0
+theme_override_colors/font_color = Color(0.58, 0.62, 0.62, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_8wnra")
+theme_override_font_sizes/font_size = 180
+text = "P"
+horizontal_alignment = 1
+
+[node name="PropaneRailA" type="Sprite2D" parent="."]
+z_index = -2
+modulate = Color(0.2, 0.22, 0.22, 0.78)
+position = Vector2(800, 270)
+scale = Vector2(0.42, 0.36)
+texture = ExtResource("9_propane_tank")
+
+[node name="Letter" type="Label" parent="PropaneRailA"]
+offset_left = -72.0
+offset_top = -48.0
+offset_right = 72.0
+offset_bottom = 176.0
+theme_override_colors/font_color = Color(0.58, 0.62, 0.62, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_8wnra")
+theme_override_font_sizes/font_size = 180
+text = "A"
+horizontal_alignment = 1
+
+[node name="PropaneRailN" type="Sprite2D" parent="."]
+z_index = -2
+modulate = Color(0.2, 0.22, 0.22, 0.78)
+position = Vector2(925, 270)
+scale = Vector2(0.42, 0.36)
+texture = ExtResource("9_propane_tank")
+
+[node name="Letter" type="Label" parent="PropaneRailN"]
+offset_left = -72.0
+offset_top = -48.0
+offset_right = 72.0
+offset_bottom = 176.0
+theme_override_colors/font_color = Color(0.58, 0.62, 0.62, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_8wnra")
+theme_override_font_sizes/font_size = 180
+text = "N"
+horizontal_alignment = 1
+
+[node name="PropaneRailE" type="Sprite2D" parent="."]
+z_index = -2
+modulate = Color(0.2, 0.22, 0.22, 0.78)
+position = Vector2(1050, 270)
+scale = Vector2(0.42, 0.36)
+texture = ExtResource("9_propane_tank")
+
+[node name="Letter" type="Label" parent="PropaneRailE"]
+offset_left = -72.0
+offset_top = -48.0
+offset_right = 72.0
+offset_bottom = 176.0
+theme_override_colors/font_color = Color(0.58, 0.62, 0.62, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_8wnra")
+theme_override_font_sizes/font_size = 180
+text = "E"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 8.0
+offset_right = 232.0
+offset_bottom = 136.0
+
+[node name="ball" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_8wnra")
+layout_mode = 2
+offset_left = 8.0
+offset_top = 57.0
+offset_right = 1368.0
+offset_bottom = 111.0
+theme = ExtResource("4_23ebb")
+theme_override_colors/font_color = Color(1, 0.82, 0.18, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 40
+text = "Ball 1"
+horizontal_alignment = 1
+script = ExtResource("3_x1er7")
+variable_name = "ball"
+template_string = "ball %s"
+
+[node name="player" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_8wnra")
+layout_mode = 2
+offset_left = 8.0
+offset_top = 2.0
+offset_right = 1368.0
+offset_bottom = 62.0
+theme = ExtResource("4_23ebb")
+theme_override_colors/font_color = Color(1, 0.82, 0.18, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 44
+text = "Player 1"
+horizontal_alignment = 1
+script = ExtResource("3_x1er7")
+variable_name = "number"
+template_string = "player %s  "
+min_players = 1
+max_players = 4
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = 120.0
+offset_right = 1368.0
+offset_bottom = 264.0
+
+[node name="PlayerBadges" parent="." instance=ExtResource("5_badges")]
+
+[node name="player1_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_8wnra")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 320.0
+offset_bottom = 128.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 38
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("3_x1er7")
+variable_type = 4
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player2_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_8wnra")
+layout_mode = 0
+offset_left = 320.0
+offset_top = 48.0
+offset_right = 624.0
+offset_bottom = 128.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 38
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("3_x1er7")
+variable_type = 5
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player3_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_8wnra")
+layout_mode = 0
+offset_left = 752.0
+offset_top = 48.0
+offset_right = 1024.0
+offset_bottom = 128.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 38
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("3_x1er7")
+variable_type = 6
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player4_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_8wnra")
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 48.0
+offset_right = 1368.0
+offset_bottom = 128.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 38
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("3_x1er7")
+variable_type = 7
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player 1" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_8wnra")
+layout_mode = 0
+offset_left = 8.0
+offset_right = 320.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 40
+text = "player 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player 2" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_8wnra")
+layout_mode = 0
+offset_left = 312.0
+offset_right = 624.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 40
+text = "player 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player 3" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_8wnra")
+layout_mode = 0
+offset_left = 752.0
+offset_right = 1024.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 40
+text = "player 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player 4" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_8wnra")
+layout_mode = 0
+offset_left = 1024.0
+offset_right = 1368.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 40
+text = "player 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(1223.5, 616.5)
+scale = Vector2(0.642, 0.578)
+texture = ExtResource("8_gvvp8")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1149.0
+offset_top = 551.0
+offset_right = 1302.0
+offset_bottom = 691.0
+color = Color(0, 0.94902, 1, 1)

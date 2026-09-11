@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4inbib6bux2i"]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_4p64e"]
+[ext_resource type="Texture2D" uid="uid://cb3dwbxbpi8ya" path="res://images/alamo beer can.png" id="2_erlyl"]
+
+[sub_resource type="Animation" id="Animation_jrd4g"]
+length = 0.8
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 6.28319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1485, -20), Vector2(-3, 524)]
+}
+
+[sub_resource type="Animation" id="Animation_vri0j"]
+resource_name = "alamo_can"
+length = 0.8
+step = 1.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 6.28319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.793015)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.78608),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-19, 244), Vector2(1429, 244)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0iw57"]
+_data = {
+&"RESET": SubResource("Animation_jrd4g"),
+&"alamo_can": SubResource("Animation_vri0j")
+}
+
+[node name="MPFWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -688.0
+offset_top = -388.0
+offset_right = 688.0
+offset_bottom = 388.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4p64e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1485, -20)
+texture = ExtResource("2_erlyl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0iw57")
+}
+autoplay = "RESET"

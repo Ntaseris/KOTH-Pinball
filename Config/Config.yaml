@@ -1,0 +1,884 @@
+#config_version=6
+
+custom_code:
+  - koth_code.grill_lock_cleanup.GrillLockCleanup
+
+mpf:
+  report_crashes: never
+
+hardware:
+  platform: fast
+
+machine:
+  min_balls: 0
+  balls_installed: 4
+
+game:
+  balls_per_game: 3
+  add_player_switch_tag: add_player
+
+   
+
+fast:
+  net:
+    controller: neuron
+    port: /dev/cu.usbmodem1301
+    io_loop: 
+      3208_upper:
+        model: FP-I/O-3208
+        order: 3
+      3208:
+        model: FP-I/O-3208
+        order: 2
+      cabinet_board:
+        model: FP-I/O-0024
+        order: 1
+    watchdog: 1s
+    baud: 921600
+    debug: false
+  exp: 
+    boards:  
+      playfield1:
+        model: FP-EXP-0071
+      playfield2:
+        model: FP-EXP-0081
+    port: /dev/cu.usbmodem1303
+    baud: 921600
+    debug: true
+      
+    
+
+  
+displays:
+  window:
+    height: 768
+    width: 1366
+    default: true
+
+light_settings:
+  default_color_correction_profile: brighter_inserts
+  color_correction_profiles:
+    brighter_inserts:
+      gamma: 1.5
+      whitepoint: [1.0, 1.0, 1.0]
+  
+playfields:
+  playfield:
+    default_source_device: bd_plunger
+    tags: default
+
+servos:
+  servo_grill:
+    servo_min: 0.0
+    servo_max: 1.0
+    positions:
+      1.0: servo_grill_open
+      0.0: servo_grill_close
+    reset_position: 0.0
+    reset_events: reset_servo_grill
+    number: playfield1-2
+  servo_grill_shelf:
+    servo_min: 0.0
+    servo_max: 1.0
+    positions:
+      0.1: servo_grill_shelf_up
+      0.9: servo_grill_shelf_down
+    reset_position: 0.9
+    reset_events: reset_servo_grill_shelf
+    number: playfield1-1
+  servo_spatula:
+    servo_min: 0.0
+    servo_max: 1.0
+    positions:
+      0.69: servo_spatula_left
+      0.5: servo_spatula_right
+    reset_position: 0.69
+    reset_events: reset_servo_spatula
+    number: playfield1-3
+
+switches:
+  #s_door_open:
+    #number:
+    #tags: service_door_open, power_off
+  #s_service_enter:
+    #number:
+    #tags: service_enter
+  #s_service_esc:
+   # number:
+    #tags: service_esc
+  #s_service_up:
+   # number:
+    #tags: service_up
+  #s_service_down:
+    #number:
+    #tags: service_down
+  s_left_flipper:
+    number: cabinet_board-8
+    tags: left_flipper
+  s_right_flipper:
+    number: cabinet_board-10
+    tags: right_flipper
+  s_tilt_bob:
+    number: cabinet_board-11
+    tags: tilt_warning
+  s_right_flipper_eos:
+    number: 3208-27
+    type: 'NC'
+  s_left_flipper_eos:
+    number: 3208-28
+    type: 'NC'
+  s_right_inlane:
+    number: 3208-25
+    type: 'NC'
+    tags: 
+  s_start:
+    number: cabinet_board-9
+    tags: start
+  s_plunger:
+    number: 3208-22
+  #s_launch_button:
+    #number: 
+  s_plunger_lane_exit:
+    number: 3208-23
+    tags: playfield_active
+  s_trough1:
+    number: 3208-15
+    type: 'NC'
+  s_trough2:
+    number: 3208-14
+    type: 'NC'
+  s_trough3:
+    number: 3208-13
+    type: 'NC'
+  s_trough4:
+    number: 3208-12
+    type: 'NC'
+  s_trough5:
+     number: 3208-11
+     type: 'NC'
+  s_trough6:
+     number: 3208-10
+     type: 'NC'
+  # s_trough_jam:
+  #   number: 3208-16
+  #   type: 'NC'
+  s_captive_ball_standup:
+    number: 3208_upper-24
+  s_p_target:
+    number: 3208_upper-28
+    debounce: quick
+    ignore_window_ms: 250
+  s_r_target:
+    number: 3208_upper-27
+    debounce: quick
+    ignore_window_ms: 250
+  s_o_target:
+    number: 3208_upper-26
+    debounce: quick
+    ignore_window_ms: 250
+  s_ladybird_target:
+    number: 3208_upper-25
+  s_p2_target:
+    number: 3208-4
+    debounce: quick
+    ignore_window_ms: 250
+  s_a_target:
+    number: 3208-5
+    debounce: quick
+    ignore_window_ms: 250
+  s_n_target:
+    number: 3208-6
+    debounce: quick
+    ignore_window_ms: 250
+  s_e_target:
+    number: 3208-7
+    debounce: quick
+    ignore_window_ms: 250
+  s_top_inline_drop:
+    number: 3208_upper-8
+    type: NC
+  s_middle_inline_drop:
+    number: 3208_upper-9
+    type: NC
+  s_bottom_inline_drop:
+    number: 3208_upper-10
+    type: NC
+  s_left_ramp_exit:
+    number: 3208_upper-16
+  # s_left_ramp_enter:
+  #   number: 12
+  s_right_ramp_exit:
+    number: 3208_upper-18
+  # s_right_ramp_enter:
+  #   number: 14
+  s_left_outlane:
+    number: 3208-31
+    type: 'NO'
+    tags: drain
+  s_left_inlane:
+    number: 3208-30
+    type: 'NO'
+  s_left_sling:
+    number: 3208-29
+  s_right_sling:
+    number: 3208-26
+    #type: 'NC'
+  s_right_outlane:
+    number: 3208-24
+    type: 'NO'
+    tags: drain
+  s_right_ramp_standup:
+    number: 3208-3
+    ignore_window_ms: 500
+  s_left_orbit_enter:
+    number: 3208_upper-7
+  s_left_spinner:
+    number: 3208_upper-19
+  s_scoop_standup_left:
+    number: 3208_upper-5
+  s_scoop_standup_right:
+    number: 3208_upper-3
+  s_center_spinner:
+    number: 3208_upper-17
+  s_left_pop_bumper:
+    number: 3208-0
+  s_right_pop_bumper:
+    number: 3208-1
+  s_left_rollover_lane:
+    number: 3208_upper-29
+  s_middle_rollover_lane:
+    number: 3208_upper-30
+  s_right_rollover_lane:
+    number: 3208_upper-31
+  s_right_orbit_exit:
+    number: 3208-2
+  s_left_inner_horseshoe:
+    number: 3208_upper-6
+  # s_right_inner_horseshoe:
+  #   number: 37
+  s_scoop:
+    number: 3208_upper-4
+    ignore_window_ms: 500
+  # s_captive_drop:
+  #   number:
+  s_luanne:
+     number: 3208_upper-2
+  s_grill1:
+     number: 3208-16
+  s_grill2:
+     number: 3208-17
+  s_grill3:
+     number: 3208-18
+  
+
+lights:
+  # l_captive_ball:
+  #   number:
+  #   platform: virtual
+  #   label:
+  #   tags:
+  l_p_target:
+    number: playfield2-3-13
+    label:
+    tags: red
+  l_r_target:
+    number: playfield2-3-14
+    label:
+    tags: red
+  l_o_target:
+    number: playfield2-3-15
+    label:
+    tags: red
+  l_p2_target:
+    number: playfield2-4-16
+    label:
+    tags: red
+  l_a_target:
+    number: playfield2-4-15
+    label:
+    tags: red
+  l_n_target:
+    number: playfield2-4-14
+    label:
+    tags: red
+  l_e_target:
+    number: playfield2-4-13
+    label:
+    tags: red
+  l_left_orbit:
+    number: playfield2-3-18
+    label:
+    tags:
+  l_left_ramp:
+    number: playfield2-3-19
+    label:
+    tags:
+  l_left_horseshoe:
+    number: playfield2-3-20
+    label:
+    tags:
+  l_scoop:
+    number: playfield2-3-22
+    label:
+    tags:
+  l_center_spinner:
+    number: playfield2-3-25
+    label:
+    tags:
+  # l_inline_drops:
+  #   number: 
+  #   platform: virtual
+  #   label:
+  #   tags:
+  l_right_ramp:
+    number: playfield2-4-20
+    label:
+    tags:
+  l_right_orbit:
+    number: playfield2-4-18
+    label:
+    tags:
+  l_boom_1:
+    number: playfield2-3-12
+    label:
+    tags:
+  l_boom_2:
+    number: playfield2-3-11
+    label:
+    tags:
+  l_boom_3:
+    number: playfield2-3-1
+    label:
+    tags:
+  l_hank_1:
+    number: playfield2-3-9
+    label:
+    tags:
+  l_hank_2:
+    number: playfield2-3-10
+    label:
+    tags:
+  l_hank_3:
+    number: playfield2-3-2
+    label:
+    tags:
+  l_dale_1:
+    number: playfield2-3-8
+    label:
+    tags:
+  l_dale_2:
+    number: playfield2-3-7
+    label:
+    tags:
+  l_dale_3:
+    number: playfield2-3-3
+    label:
+  l_h_lane:
+    number: playfield2-4-1
+    label:
+    tags:
+  l_a_lane: 
+    number: playfield2-4-2
+    label:
+    tags:
+  l_n_lane: 
+    number: playfield2-4-11
+    label:
+    tags:
+  l_k_lane: 
+    number: playfield2-4-12
+    label:
+    tags:
+  l_bill_1:
+    number: playfield2-3-5
+    label:
+    tags:
+  l_bill_2:
+    number: playfield2-3-6
+    label:
+    tags:
+  l_bill_3:
+    number: playfield2-3-4
+    label:
+    tags:
+  l_ball_save:
+     number: playfield2-2-4
+     tags: grill_again
+  l_left_rollover_lane:
+    number: playfield2-3-26
+    tags:
+  l_middle_rollover_lane:
+    number: playfield2-3-27
+    tags:
+  l_right_rollover_lane:
+    number: playfield2-3-28
+    tags:
+  l_wizard: 
+    number: playfield2-4-5
+    label:
+    tags:
+  l_lock_lit:
+    number: playfield2-3-23
+    label:
+    tags:
+  # l_BBQ_lanes:
+  #   number:
+  l_playfield_2X: 
+    number: playfield2-4-3
+  l_playfield_3X: 
+    number: playfield2-4-4
+  l_playfield_4X: 
+    number: playfield2-4-9
+  l_playfield_5X:
+    number: playfield2-4-10
+  l_playfield_10X: 
+    number: playfield2-4-7
+  l_lock_1: 
+    number: playfield2-4-6
+  l_lock_2:
+    number: playfield2-4-8
+  l_mystery:
+    number: playfield2-3-21
+  l_strickland_multiball:
+    number: playfield2-4-21
+  # l_rainey_multiball:
+  #   number:
+  #   platform: virtual
+  # l_scoop_standup_left:
+  #   number:
+  #   platform: virtual
+  # l_scoop_standup_right:
+  #   number:
+  #   platform: virtual
+  # l_bottom_drop:
+  #   number:
+  #   platform: virtual
+  # l_middle_drop:
+  #   number:
+  #   platform: virtual
+  # l_top_drop:
+  #   number:
+  #   platform: virtual
+  l_reginald:
+    number: playfield2-3-17
+  l_obediah:
+    number: playfield2-3-16
+  l_hosea:
+    number: playfield2-4-19
+  l_gurgle:
+    number: playfield2-4-17
+  l_luanne:
+    number: playfield2-3-24
+  # l_left_standup_target:
+  #   number:
+  #   platform: virtual
+  # l_right_standup_target:
+  #   number:
+  #   platform: virtual
+  # l_left_ramp_standup:
+  #   number:
+  #   platform: virtual
+  # l_right_ramp_standup:
+  #   number:
+  #   platform: virtual
+  l_gi1:
+    number: playfield2-2-1
+  l_gi2:
+    number: playfield2-2-2
+  l_gi3:
+    number: playfield2-2-3
+  l_gi4:
+    number: playfield2-2-5
+  l_gi5:
+    number: playfield2-2-6
+  l_gi6:
+    number: playfield2-2-7
+  l_gi7:
+    number: playfield2-4-23
+  l_gi8:
+    number: playfield2-4-22
+  l_grill1:
+    number: playfield1-3-1
+  l_grill2:
+    number: playfield1-3-2
+  l_grill3:
+    number: playfield1-3-3
+  l_grill4:
+    number: playfield1-3-4
+  l_grill5:
+    number: playfield1-3-5
+  l_grill6:
+    number: playfield1-3-6
+  l_grill7:
+    number: playfield1-3-7
+  l_grill8:
+    number: playfield1-3-8
+  l_grill9:
+    number: playfield1-3-9
+  l_grill10:
+    number: playfield1-3-10
+  l_grill11:
+    number: playfield1-3-11
+  l_grill12:
+    number: playfield1-3-12
+  l_grill13:
+    number: playfield1-3-13
+  l_grill14:
+    number: playfield1-3-14
+  l_grill15:
+    number: playfield1-3-15
+  l_grill16:
+    number: playfield1-3-16
+  l_grill17:
+    number: playfield1-3-17
+  l_grill18:
+    number: playfield1-3-18
+  l_grill19:
+    number: playfield1-3-19
+  l_grill20:
+    number: playfield1-3-20
+  l_grill21:
+    number: playfield1-3-21
+  l_grill22:
+    number: playfield1-3-22
+  l_grill23:
+    number: playfield1-3-23
+  l_grill24:
+    number: playfield1-3-24
+
+
+
+
+  
+  
+  
+    
+
+coils:
+  c_left_flipper_full:
+    number: 3208-0
+    default_pulse_ms: 32
+  c_left_flipper_hold:
+    number: 3208-1
+    allow_enable: true
+    default_hold_power: .5
+  c_right_flipper_full:
+    number: 3208-3
+    default_pulse_ms: 32
+  c_right_flipper_hold:
+    number: 3208-4
+    allow_enable: true
+    default_hold_power: .5
+  c_trough_eject_coil:
+    number: 3208-5
+    default_pulse_ms: 40
+  c_drop_reset:
+    number: 3208_upper-6
+    default_pulse_power: .9
+    default_pulse_ms: 60
+  c_scoop_eject:
+    number: 3208_upper-7
+    default_pulse_ms: 20
+  c_auto_plunger:
+    number: 3208-7
+    default_pulse_ms: 65
+  c_left_sling:
+    number: 3208-2
+    default_pulse_ms: 21
+  c_right_sling:
+    number: 3208-6
+    default_pulse_ms: 20
+  c_right_pop:
+    number: 3208_upper-4
+    default_pulse_ms: 15
+  c_left_pop:
+    number: 3208_upper-5 
+    default_pulse_ms: 15
+  c_up_post:
+    number: 3208_upper-0
+    default_pulse_ms: 30
+    default_hold_power: 0.09375
+    max_hold_power: 0.09375
+    max_hold_duration: 5m
+  # c_captive_drop:
+  #   number:
+
+drop_targets:
+  drop_1:
+    switch: s_bottom_inline_drop
+  drop_2:
+    switch: s_middle_inline_drop
+  drop_3:
+    switch: s_top_inline_drop
+drop_target_banks:
+  metallica_bank:
+    drop_targets: drop_1, drop_2, drop_3
+    reset_coil: c_drop_reset
+    reset_events: ball_starting, machine_reset_phase_3, reset_inline_drop_bank
+  # captive_drop:
+  #   switch: s_captive_drop
+  #   reset_coil: c_captive_drop
+  #   reset_events:
+autofire_coils:
+  left_sling:
+    coil: c_left_sling
+    switch: s_left_sling
+  right_sling:
+    coil: c_right_sling
+    switch: s_right_sling
+  pop_1:
+    coil: c_right_pop
+    switch: s_right_pop_bumper
+  pop_2:
+    coil: c_left_pop
+    switch: s_left_pop_bumper
+
+
+  
+ball_devices:
+  bd_trough:
+    ball_switches: s_trough1, s_trough2, s_trough3, s_trough4, s_trough5, s_trough6
+    tags: trough, home, drain
+    eject_coil: c_trough_eject_coil
+    eject_timeouts: 1s
+    eject_targets: bd_plunger
+    auto_fire_on_unexpected_ball: false
+  bd_grill_lock:
+    entrance_events: grill_virtual_ball_entered
+    counter:
+      class: koth_code.event_ball_counter.EventBallCounter
+      entrance_switch: []
+      ball_capacity: 3
+      settle_time_ms: 100ms
+    eject_targets: playfield
+    ejector:
+      class: mpf.devices.ball_device.event_ejector.EventEjector
+      events_when_eject_try: servo_grill_shelf_down
+    eject_all_events: multiball_grill_mb_started, grill_lock_ball_end_release
+    confirm_eject_type: fake
+    eject_timeouts: 3s
+    max_eject_attempts: 3
+  bd_plunger:
+    ball_switches: s_plunger
+    eject_coil: c_auto_plunger
+    mechanical_eject: true
+    confirm_eject_type: switch
+    confirm_eject_switch: s_plunger_lane_exit
+    eject_timeouts: 3s
+  bd_scoop:
+    eject_coil: c_scoop_eject
+    ball_switches: s_scoop
+
+ball_holds:
+  # scoop:
+  #   balls_to_hold: 1
+  #   hold_devices: bd_scoop
+  #   reset_events: mission_select_item_selected
+# bd_grill:
+#     ball_switches: s_grill1, s_grill2, s_grill3
+#     eject_coil: c_can_lock
+#     eject_timeouts: 1s
+#     eject_coil_enable_time: .18s
+
+spinners:
+  lock_spinner:
+    switch: s_center_spinner
+  steak_spinner:
+    switch: s_left_spinner
+
+
+flippers:
+  left_flipper:
+    main_coil: c_left_flipper_full
+    hold_coil: c_left_flipper_hold
+    activation_switch: s_left_flipper
+    eos_switch: s_left_flipper_eos
+    enable_events: ball_started, cmd_flippers_enable
+    disable_events: ball_will_end, service_mode_entered, cmd_flippers_disable
+    use_eos: true
+
+  right_flipper:
+    main_coil: c_right_flipper_full
+    hold_coil: c_right_flipper_hold
+    activation_switch: s_right_flipper
+    #eos_switch: s_right_flipper_eos
+    enable_events: ball_started, cmd_flippers_enable
+    disable_events: ball_will_end, service_mode_entered, cmd_flippers_disable
+    #use_eos: true
+
+
+modes:
+  - attract
+  - bonus
+  - base
+  - skillshot
+  - BBQ_rollover
+  - beat_the_surfer
+  - beer_can_named_desire
+  - bill_bulk_and_the_body_buddies
+  - patch_boomhauer
+  - dog_dale_afternoon
+  - duke_the_dolphin
+  - gladstone
+  - the_heat_waver
+  - mission_select
+  - high_score
+  - tilt
+  - tilt_bonus
+  - hank_rollover
+  - rainey_multiball
+  - extra_ball
+  - bill_mini_wizard
+  # - hank_mini_wizard
+  # - dale_mini_wizard
+  - boom_mini_wizard
+  # - wizard_mode
+  - strickland_multiball
+  - mystery
+  - super_spinners
+  - add_player
+  # - rainey_multiball2
+  # - service
+  - beercan_carousel
+  - alamo_frenzy
+  - intro
+  #- sequential_drops
+  - manger_babies
+  #- scoop_clear
+  - grill_mb
+  #- light_test
+  - ladybird_save
+  - pocket_sand
+  - whack_a_mole
+
+
+event_player:
+  bcp_clients_disconnected: shutdown
+  ball_starting:
+    - cmd_flippers_enable
+    - cmd_autofire_coils_enable
+    - reset_inline_drop_bank
+  ball_ending:
+    - cmd_flippers_disable
+    - cmd_autofire_coils_disable
+    - mb_cycle_reset
+    - servo_grill_shelf_down
+    - servo_spatula_left
+  tilt:
+    - cmd_flippers_disable
+    - cmd_autofire_coils_disable
+  slam_tilt:
+    - cmd_flippers_disable
+    - cmd_autofire_coils_disable
+  game_will_start:
+    - reset_servo_grill
+    - reset_servo_grill_shelf
+    - reset_servo_spatula
+    - reset_inline_drop_bank
+  game_ended:
+    - servo_grill_shelf_down
+    - servo_grill_open
+  mode_attract_started:
+    - servo_grill_shelf_down
+
+player_vars:
+  bill_mini_wizard_completed:
+    initial_value: 0
+    value_type: int
+  bill_mw_active:
+    initial_value: 0
+    value_type: int
+  bill_mw_failed:
+    initial_value: 0
+    value_type: int
+  bill_mw_jackpots:
+    initial_value: 0
+    value_type: int
+  bill_mw_jackpot_value:
+    initial_value: 2000000
+    value_type: int
+  bill_mw_jackpot_total:
+    initial_value: 0
+    value_type: int
+  bill_mw_last_award:
+    initial_value: 0
+    value_type: int
+  pocket_sand:
+    initial_value: 0
+    value_type: int
+  pocket_sand_can_use:
+    initial_value: 0
+    value_type: int
+  mystery_qualified:
+    initial_value: 0
+    value_type: int
+  beat_the_surfer_completed:
+    initial_value: 0
+    value_type: int
+  beer_can_named_desire_completed:
+    initial_value: 0
+    value_type: int
+  bill_bulk_and_the_body_buddies_completed:
+    initial_value: 0
+    value_type: int
+  patch_boomhauer_completed:
+    initial_value: 0
+    value_type: int
+  dog_dale_afternoon_completed:
+    initial_value: 0
+    value_type: int
+  duke_the_dolphin_completed:
+    initial_value: 0
+    value_type: int
+  gladstone_completed:
+    initial_value: 0
+    value_type: int
+  the_heat_waver_completed:
+    initial_value: 0
+    value_type: int
+  manger_babies_cashed_out_this_ball:
+    initial_value: 0
+    value_type: int
+  propane_ui_pro_complete:
+    initial_value: 0
+    value_type: int
+  propane_ui_pane_complete:
+    initial_value: 0
+    value_type: int
+
+coil_player:
+  balldevice_bd_trough_ball_eject_success:
+    c_up_post:
+      action: enable
+  left_orbit_post_release:
+    c_up_post:
+      action: disable
+  timer_up_post_raise_duration_complete:
+    c_up_post:
+      action: enable
+  pop_bumper_counter_complete:
+    c_up_post:
+      action: enable
+  ball_will_end:
+    c_up_post:
+      action: disable
+  tilt:
+    c_up_post:
+      action: disable
+  reset_inline_drop_bank:
+    c_drop_reset:
+      action: pulse
+
+
+
+shows:
+  playfield_2x_on:
+    - duration: 1
+  playfield_3x_on:
+    - duration: 1
+  playfield_4x_on:
+    - duration: 1
+  playfield_5x_on:
+    - duration: 1
+  playfield_10x_on:
+    - duration: 1

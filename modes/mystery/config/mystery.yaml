@@ -1,0 +1,120 @@
+#config_version=6
+
+mode: 
+  start_events: ball_hold_mystery_scoop_held_ball
+  stop_events: end_mystery
+  priority: 200
+
+
+slide_player:
+  mode_mystery_started:
+    mystery_reveal:
+      action: play
+  timer_mystery_reveal_complete:
+    mystery_reveal:
+      action: remove
+  mys_score_10000_points:
+    award_2:
+      expire: 3s
+  mys_score_big_points:
+    award_3:
+      expire: 3s
+  mys_weird_sound:
+    award_6:
+      expire: 3s
+  drink_beer:
+    award_4:
+      expire: 3.75s
+  super_spinners: 
+    award_5:
+      expire: 3.17s
+  mystery_whack_a_mole:
+    whack_a_mole_intro:
+      expire: 8s
+
+variable_player:
+  mys_score_10000_points:
+    score: 100_000 * current_player.pf_multiplier
+  mys_score_big_points:
+    score: 2_000_000 * current_player.pf_multiplier
+  mys_weird_sound:
+    score: 750_000 * current_player.pf_multiplier
+  drink_beer:
+    alamo:
+      int: 6
+      action: add
+    alamo_this_ball:
+      int: 6
+      action: add
+  
+sound_player:
+  mys_score_10000_points:
+    small_points_mystery:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  mys_weird_sound:
+    hank_drugs_mow_lawn:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  drink_beer:
+    hank_baby_wants_a_beer:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  mys_score_big_points:
+    gilbert_sinners_always_look_good:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  super_spinners:
+    peggy_you_are_blowing_my_mind:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+
+
+
+timers:
+  mystery_reveal:
+    start_value: 0
+    end_value: 1
+    direction: up
+    tick_interval: 750ms
+    start_running: false
+    control_events:
+      - event: mode_mystery_started
+        action: restart
+      - event: mystery_whack_a_mole
+        action: stop
+  mystery_safety:
+    start_value: 50
+    end_value: 0
+    direction: down
+    start_running: true
+    control_events:
+      - event: mode_mystery_started
+        action: restart
+
+event_player:
+  slide_award_1_removed: end_mystery
+  slide_award_2_removed: end_mystery
+  slide_award_3_removed: end_mystery
+  slide_award_4_removed: end_mystery
+  slide_award_5_removed: end_mystery
+  slide_award_6_removed: end_mystery
+  slide_whack_a_mole_intro_removed: start_whack_a_mole
+  mode_whack_a_mole_stopped: end_mystery
+  timer_mystery_safety_complete: end_mystery
+  
+
+
+
+random_event_player:
+  timer_mystery_reveal_complete:
+    events:
+      award_1: 10
+      mys_score_10000_points: 20
+      mys_score_big_points: 20
+      drink_beer: 20
+      super_spinners: 20
+      mys_weird_sound: 10
+      mystery_whack_a_mole: 10
+    force_different: true

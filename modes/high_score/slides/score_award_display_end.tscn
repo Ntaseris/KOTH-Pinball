@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgtkxrlrh3j5p"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_5utyo"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="2_mvlae"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_f6luy"]
+[ext_resource type="VideoStream" uid="uid://ioy6wcbny57o" path="res://images/drive_away.ogv" id="4_e5j4q"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+script = ExtResource("1_5utyo")
+
+[node name="MPFVariable" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_f6luy")
+top_level = true
+layout_mode = 0
+offset_top = 300.0
+offset_right = 1368.0
+offset_bottom = 425.0
+theme_override_colors/font_color = Color(1, 0.839216, 0.478431, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 104
+text = "HNK"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_mvlae")
+variable_type = 1
+variable_name = "player_name"
+
+[node name="MPFVariable2" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_f6luy")
+top_level = true
+layout_mode = 0
+offset_top = 445.0
+offset_right = 1368.0
+offset_bottom = 555.0
+theme_override_colors/font_color = Color(1, 0.839216, 0.478431, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 86
+text = "1000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_mvlae")
+variable_type = 1
+variable_name = "value"
+comma_separate = true
+
+[node name="MPFVariable3" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_f6luy")
+top_level = true
+layout_mode = 0
+offset_left = -2.0
+offset_top = 135.0
+offset_right = 1370.0
+offset_bottom = 270.0
+theme_override_colors/font_color = Color(1, 0.839216, 0.478431, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 100
+text = "Player 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_mvlae")
+variable_type = 1
+variable_name = "player_num"
+template_string = "Player %d"
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+stream = ExtResource("4_e5j4q")
+autoplay = true

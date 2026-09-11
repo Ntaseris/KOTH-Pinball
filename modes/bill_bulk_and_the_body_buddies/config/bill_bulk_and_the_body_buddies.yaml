@@ -1,0 +1,172 @@
+#config_version=6
+
+mode:
+  start_events: mission_select_bill_bulk_and_the_body_buddies_selected{current_player.any_mb_active == 0}
+  stop_events:
+    - ball_ending
+    - ball_drain
+    - mode_bonus_will_start
+    - timer_bill_bulk_and_the_body_buddies_mode_countdown_complete
+    - slide_bill_bulk_and_the_body_buddies_4_removed
+  priority: 130
+
+slide_player:
+  mode_bill_bulk_and_the_body_buddies_started:
+    bill_bulk_and_the_body_buddies_rules:
+      expire: 3s
+      priority: 1000
+  slide_bill_bulk_and_the_body_buddies_rules_inactive:
+    bill_bulk_and_the_body_buddies:
+      expire: 45s
+      priority: 500
+  bill_bulk_and_the_body_buddies_done:
+    bill_bulk_and_the_body_buddies_4:
+      action: play
+      expire: 7.3s
+      priority: 1200
+
+widget_player:
+  slide_bill_bulk_and_the_body_buddies_rules_inactive:
+    bill_bulk_progress:
+      action: play
+
+sound_player:
+  bill_bulk_play_started:
+    bodybuilder_these_guns_run_from_nothing:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  mode_bill_bulk_and_the_body_buddies_started:
+    bill_grunt:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  bill_bulk_rep_complete:
+    jackpot_hit:
+      bus: effects
+      volume: 0.2
+  bill_bulk_rep_milestone{current_player.bill_bulk_reps == 3}:
+    bill_another_physical:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  bill_bulk_rep_milestone{current_player.bill_bulk_reps == 6}:
+    bill_cant_work_out_in_public:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  timer_bill_bulk_and_the_body_buddies_mode_countdown_complete:
+    damn_cotton:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+timers:
+  bill_bulk_and_the_body_buddies_mode_countdown:
+    start_value: 45
+    end_value: 0
+    direction: down
+    start_running: false
+    bcp: true
+    control_events:
+      - action: start
+        event: bill_bulk_play_started
+      - action: stop
+        event: bill_bulk_and_the_body_buddies_done
+
+variable_player:
+  mode_bill_bulk_and_the_body_buddies_started:
+    modes: 1
+    bill_bulk_and_the_body_buddies_completed:
+      int: 0
+      action: set
+    bill_bulk_reps:
+      int: 0
+      action: set
+    bill_bulk_rep_value:
+      int: 1000000
+      action: set
+    bill_bulk_play_active:
+      int: 0
+      action: set
+  bill_bulk_play_started:
+    bill_bulk_play_active:
+      int: 1
+      action: set
+  bill_bulk_rep_complete:
+    score: current_player.bill_bulk_rep_value * current_player.pf_multiplier
+    bill_bulk_reps: 1
+    bill_bulk_rep_value: 250000
+  bill_bulk_and_the_body_buddies_done:
+    bill_bulk_and_the_body_buddies_completed:
+      int: 1
+      action: set
+    bill_bulk_play_active:
+      int: 0
+      action: set
+  timer_bill_bulk_and_the_body_buddies_mode_countdown_tick:
+    your_timer_variable_times_1:
+      int: device.timers.bill_bulk_and_the_body_buddies_mode_countdown.ticks
+      action: set
+  player_score{source=="bill_bulk_and_the_body_buddies"}:
+    bill_bulk_and_the_body_buddies_total: change
+
+shots:
+  shot_right_ramp:
+    switch: s_right_ramp_exit
+    hit_events: pocket_sand_hit_bill_right_ramp
+  shot_left_ramp:
+    switch: s_left_ramp_exit
+    hit_events: pocket_sand_hit_bill_left_ramp
+
+event_player:
+  slide_bill_bulk_and_the_body_buddies_rules_removed:
+    bill_bulk_play_started
+  shot_left_ramp_hit{current_player.bill_bulk_play_active == 1 and current_player.bill_bulk_reps % 2 == 0}:
+    bill_bulk_left_rep
+  shot_right_ramp_hit{current_player.bill_bulk_play_active == 1 and current_player.bill_bulk_reps % 2 == 1}:
+    bill_bulk_right_rep
+  bill_bulk_left_rep:
+    bill_bulk_rep_complete
+  bill_bulk_right_rep:
+    bill_bulk_rep_complete
+  bill_bulk_rep_complete{current_player.bill_bulk_reps == 2 or current_player.bill_bulk_reps == 5}:
+    bill_bulk_rep_milestone
+  bill_bulk_rep_complete{current_player.bill_bulk_reps == 8}:
+    bill_bulk_and_the_body_buddies_done
+  pocket_sand_mode_spot_attempt{current_player.bill_bulk_play_active == 1 and current_player.bill_bulk_reps % 2 == 0}:
+    - pocket_sand_hit_bill_left_ramp
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{current_player.bill_bulk_play_active == 1 and current_player.bill_bulk_reps % 2 == 1}:
+    - pocket_sand_hit_bill_right_ramp
+    - pocket_sand_spotted
+
+show_player:
+  bill_bulk_play_started:
+    left_ramp:
+      loops: -1
+      priority: 130
+  bill_bulk_left_rep:
+    left_ramp:
+      action: stop
+    bill_rep_flash:
+      loops: 1
+      priority: 132
+      show_tokens:
+        light: l_left_ramp
+    right_ramp:
+      loops: -1
+      priority: 130
+  bill_bulk_right_rep:
+    right_ramp:
+      action: stop
+    bill_rep_flash:
+      loops: 1
+      priority: 132
+      show_tokens:
+        light: l_right_ramp
+    left_ramp:
+      loops: -1
+      priority: 130
+  bill_bulk_and_the_body_buddies_done:
+    left_ramp:
+      action: stop
+    right_ramp:
+      action: stop
+    bill_workout_complete:
+      loops: 2
+      priority: 135

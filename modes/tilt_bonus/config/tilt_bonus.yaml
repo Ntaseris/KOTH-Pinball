@@ -1,0 +1,40 @@
+#config_version=6
+
+mode:
+  start_events: tilt
+  stop_events: timer_tilt_bonus_display_complete
+  priority: 600
+
+queue_relay_player:
+  ball_ending:
+    post: tilt_bonus_ball_ending
+    wait_for: tilt_bonus_complete
+
+event_player:
+  timer_tilt_bonus_display_complete: tilt_bonus_complete
+
+timers:
+  tilt_bonus_display:
+    start_value: 0
+    end_value: 3
+    direction: up
+    tick_interval: 1s
+    start_running: false
+    control_events:
+      - event: tilt_clear
+        action: start
+
+slide_player:
+  tilt_clear:
+    bonus:
+      action: play
+      priority: 10000
+      tokens: {entry: alamo_bonus, hits: 0, score: 0}
+  timer_tilt_bonus_display_tick{ticks == 1}:
+    bonus:
+      action: update
+      tokens: {entry: mode_bonus, hits: 0, score: 0}
+  timer_tilt_bonus_display_tick{ticks == 2}:
+    bonus:
+      action: update
+      tokens: {entry: total, score: 0}

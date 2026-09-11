@@ -1,0 +1,133 @@
+#show_version=6
+
+- duration: 90ms
+  lights:
+    l_grill17: orange
+    l_grill18: red
+    l_grill19: orange
+    l_grill20: orange
+    l_grill21: red
+    l_grill22: yellow
+    l_grill23: orange
+    l_grill24: 440000
+
+- duration: 40ms
+  lights:
+    l_grill17: 440000
+    l_grill18: orange
+    l_grill19: red
+    l_grill20: orange
+    l_grill21: orange
+    l_grill22: red
+    l_grill23: yellow
+    l_grill24: orange
+
+- duration: 75ms
+  lights:
+    l_grill17: orange
+    l_grill18: 440000
+    l_grill19: orange
+    l_grill20: red
+    l_grill21: orange
+    l_grill22: orange
+    l_grill23: red
+    l_grill24: yellow
+
+- duration: 35ms
+  lights:
+    l_grill17: yellow
+    l_grill18: orange
+    l_grill19: 440000
+    l_grill20: orange
+    l_grill21: red
+    l_grill22: orange
+    l_grill23: orange
+    l_grill24: red
+
+- duration: 105ms
+  lights:
+    l_grill17: red
+    l_grill18: yellow
+    l_grill19: orange
+    l_grill20: 440000
+    l_grill21: orange
+    l_grill22: red
+    l_grill23: orange
+    l_grill24: orange
+
+- duration: 45ms
+  lights:
+    l_grill17: orange
+    l_grill18: red
+    l_grill19: yellow
+    l_grill20: orange
+    l_grill21: 440000
+    l_grill22: orange
+    l_grill23: red
+    l_grill24: orange
+
+- duration: 60ms
+  lights:
+    l_grill17: red
+    l_grill18: orange
+    l_grill19: red
+    l_grill20: yellow
+    l_grill21: orange
+    l_grill22: 440000
+    l_grill23: orange
+    l_grill24: red
+
+- duration: 115ms
+  lights:
+    l_grill17: orange
+    l_grill18: red
+    l_grill19: orange
+    l_grill20: red
+    l_grill21: yellow
+    l_grill22: orange
+    l_grill23: 440000
+    l_grill24: orange
+
+- duration: 30ms
+  lights:
+    l_grill17: red
+    l_grill18: orange
+    l_grill19: red
+    l_grill20: orange
+    l_grill21: red
+    l_grill22: yellow
+    l_grill23: orange
+    l_grill24: 440000
+
+- duration: 85ms
+  lights:
+    l_grill17: 440000
+    l_grill18: red
+    l_grill19: orange
+    l_grill20: red
+    l_grill21: orange
+    l_grill22: red
+    l_grill23: yellow
+    l_grill24: orange
+
+- duration: 55ms
+  lights:
+    l_grill17: orange
+    l_grill18: 440000
+    l_grill19: red
+    l_grill20: orange
+    l_grill21: red
+    l_grill22: orange
+    l_grill23: red
+    l_grill24: yellow
+
+- duration: 100ms
+  lights:
+    l_grill17: yellow
+    l_grill18: orange
+    l_grill19: 440000
+    l_grill20: red
+    l_grill21: orange
+    l_grill22: red
+    l_grill23: orange
+    l_grill24: red

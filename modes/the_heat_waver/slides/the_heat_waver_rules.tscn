@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7g88ovesbthi"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_oe5ls"]
+[ext_resource type="Texture2D" uid="uid://dfp1juo5sldry" path="res://images/heat_waver_rules.jpeg" id="2_riwcu"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_x4g40"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 176.0
+script = ExtResource("1_oe5ls")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(704, 464)
+scale = Vector2(1.02945, 0.909621)
+texture = ExtResource("2_riwcu")
+
+[node name="Label" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_x4g40")
+layout_mode = 0
+offset_top = 64.0
+offset_right = 1376.0
+offset_bottom = 280.0
+theme_override_font_sizes/font_size = 120
+text = "the heat waver"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_x4g40")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 466.0
+offset_right = 1384.0
+offset_bottom = 698.0
+theme_override_font_sizes/font_size = 48
+text = "Wave from left to right
+Hit each shot before Bill gets sunburned
+Hotter shots are worth less"
+horizontal_alignment = 1

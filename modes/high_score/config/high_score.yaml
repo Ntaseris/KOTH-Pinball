@@ -1,0 +1,90 @@
+#config_version=6
+
+mode:
+  code: modes.high_score.code.koth_high_score.KothHighScore
+  priority: 500
+  start_events: game_ending, start_high_score
+  use_wait_queue: true
+
+sound_player:
+  high_score_enter_initials:
+    hank_you_make_me_proud:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  
+high_score:
+  _overwrite: true
+  enter_initials_timeout: 60
+  award_slide_display_time: 4.5s
+  # Safety net for any non-display client that submits an empty name.
+  filler_initials:
+    - AAA
+  # define your high score categories and the awards
+  categories: !!omap
+    - score:
+      - KING OF THE HILL
+      - HIGH SCORE 1
+      - HIGH SCORE 2
+      - HIGH SCORE 3
+    - alamo:
+      - Alamo Beer Champ
+  # set the defaults
+  defaults:
+    score:
+      - HNK: 4000000
+      - PGY: 3000000
+      - BBY: 2000000
+      - DLE: 1000000
+    alamo: 
+      - ENI: 1
+  
+  
+
+
+timers:
+  high_score:
+    start_value: 61
+    end_value: 0
+    direction: down
+    start_running: true
+    bcp: true
+
+event_player:
+  _overwrite: true
+  s_left_flipper_active:
+    text_input:
+      action: left
+  s_right_flipper_active:
+    text_input:
+      action: right
+  s_start_active:
+    text_input:
+      action: select
+
+slide_player:
+  _overwrite: true
+  mode_high_score_started:
+    game_over:
+      expire: 3s
+      priority: 10000
+  high_score_enter_initials:
+    high_score:
+      action: remove
+    score_award_display_end:
+      action: remove
+    high_score_enter_initials:
+      action: play
+  high_score_award_display:
+    high_score:
+      action: remove
+    high_score_enter_initials:
+      action: remove
+    score_award_display_end:
+      action: play
+  alamo_award_display:
+    high_score:
+      action: remove
+    high_score_enter_initials:
+      action: remove
+    score_award_display_end:
+      action: play

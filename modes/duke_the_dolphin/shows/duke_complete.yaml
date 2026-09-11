@@ -1,0 +1,58 @@
+#show_version=6
+
+- duration: 0.1s
+  lights:
+    l_left_orbit: blue
+    l_left_ramp: off
+    l_center_spinner: off
+    l_right_ramp: off
+    l_right_orbit: off
+- duration: 0.1s
+  lights:
+    l_left_orbit: cyan
+    l_left_ramp: blue
+    l_center_spinner: off
+    l_right_ramp: off
+    l_right_orbit: off
+- duration: 0.1s
+  lights:
+    l_left_orbit: white
+    l_left_ramp: cyan
+    l_center_spinner: blue
+    l_right_ramp: off
+    l_right_orbit: off
+- duration: 0.1s
+  lights:
+    l_left_orbit: off
+    l_left_ramp: white
+    l_center_spinner: cyan
+    l_right_ramp: blue
+    l_right_orbit: off
+- duration: 0.1s
+  lights:
+    l_left_orbit: off
+    l_left_ramp: off
+    l_center_spinner: white
+    l_right_ramp: cyan
+    l_right_orbit: blue
+- duration: 0.12s
+  lights:
+    l_left_orbit: off
+    l_left_ramp: off
+    l_center_spinner: off
+    l_right_ramp: white
+    l_right_orbit: cyan
+- duration: 0.12s
+  lights:
+    l_left_orbit: off
+    l_left_ramp: off
+    l_center_spinner: off
+    l_right_ramp: off
+    l_right_orbit: white
+- duration: 0.1s
+  lights:
+    l_left_orbit: off
+    l_left_ramp: off
+    l_center_spinner: off
+    l_right_ramp: off
+    l_right_orbit: off

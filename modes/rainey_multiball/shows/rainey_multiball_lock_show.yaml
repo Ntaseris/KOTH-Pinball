@@ -1,0 +1,5 @@
+#show_version=6
+- time: 0
+  duration: -1
+  lights:
+    l_lock_lit: green

@@ -1,0 +1,18 @@
+#config_version=6
+
+mode:
+  start_events: mode_base_started, mode_bill_bulk_and_the_body_buddies_started, mode_beat_the_surfer_started, mode_beer_can_named_desire_started, mode_bill_bulk_and_the_body_buddies_started, mode_dog_dale_afternoon_started, mode_duke_the_dolphin_started, mode_gladstone_started, mode_patch_boomhauer_started, mode_the_heat_waver_started
+  stop_events: qualify_mission_complete
+
+  
+  # disable_events: qualify_mission_lit_complete
+  # enable_events: mode_mission_select_started
+
+
+coil_player:
+  s_scoop_active{current_player.duke_play_active == 0 or current_player.duke_rescues < 6}:
+  # disable_events: qualify_mission_lit_complete
+  # enable_events: mode_mission_select_started
+    c_scoop_eject:
+      action: pulse
+      max_wait_ms: 500

@@ -1,0 +1,69 @@
+#show_version=6
+# Copyright (C) 2026 One More Game - All Rights Reserved
+# Unauthorized copying of this file, via any medium is strictly prohibited
+# Proprietary and confidential
+
+- duration: 85ms
+  lights:
+    l_gi1: white
+    l_gi2: white
+    l_gi3: white
+    l_gi4: white
+    l_gi5: white
+    l_gi6: white
+    l_gi7: white
+    l_gi8: white
+- duration: 85ms
+  lights:
+    l_gi1: red
+    l_gi2: blue
+    l_gi3: red
+    l_gi4: blue
+    l_gi5: red
+    l_gi6: blue
+    l_gi7: blue
+    l_gi8: blue
+    l_p_target: red
+    l_r_target: white
+    l_o_target: blue
+- duration: 85ms
+  lights:
+    l_gi1: blue
+    l_gi2: red
+    l_gi3: blue
+    l_gi4: red
+    l_gi5: blue
+    l_gi6: red
+    l_gi7: red
+    l_gi8: red
+    l_p_target: white
+    l_r_target: blue
+    l_o_target: red
+    l_left_orbit: white
+- duration: 85ms
+  lights:
+    l_gi1: white
+    l_gi2: white
+    l_gi3: white
+    l_gi4: white
+    l_gi5: white
+    l_gi6: white
+    l_gi7: white
+    l_gi8: white
+    l_left_orbit: orange
+    l_ball_save: white
+- duration: 100ms
+  lights:
+    l_gi1: off
+    l_gi2: off
+    l_gi3: off
+    l_gi4: off
+    l_gi5: off
+    l_gi6: off
+    l_gi7: off
+    l_gi8: off
+    l_p_target: off
+    l_r_target: off
+    l_o_target: off
+    l_left_orbit: off
+    l_ball_save: off

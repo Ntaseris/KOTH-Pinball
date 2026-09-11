@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=3 uid="uid://oj13o8xv403d"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_b0lbv"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_b0lbv")
+
+[node name="Match" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+layout_mode = 0
+offset_left = 8.0
+offset_top = 144.0
+offset_right = 816.0
+offset_bottom = 744.0
+theme_override_font_sizes/font_size = 38
+text = "MATCH"
+horizontal_alignment = 1
+
+[node name="Player 1" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+layout_mode = 0
+offset_left = 24.0
+offset_top = 208.0
+offset_right = 504.0
+offset_bottom = 272.0
+theme_override_font_sizes/font_size = 32
+text = "Player 1: (match_number0)"
+
+[node name="Player 2" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+layout_mode = 0
+offset_left = 344.0
+offset_top = 272.0
+offset_right = 768.0
+offset_bottom = 352.0
+theme_override_font_sizes/font_size = 32
+text = "Player 2: (match_number1)"
+
+[node name="Player 3" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+layout_mode = 0
+offset_left = 32.0
+offset_top = 336.0
+offset_right = 840.0
+offset_bottom = 440.0
+theme_override_font_sizes/font_size = 32
+text = "Player 3: (match_number2)"
+
+[node name="Player 4" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+layout_mode = 0
+offset_left = 336.0
+offset_top = 408.0
+offset_right = 1128.0
+offset_bottom = 496.0
+theme_override_font_sizes/font_size = 32
+text = "Player 4: (match_number3)"
+
+[node name="Winning number" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+layout_mode = 0
+offset_left = 8.0
+offset_top = 488.0
+offset_right = 800.0
+offset_bottom = 568.0
+theme_override_font_sizes/font_size = 32
+text = "Match number: (winner_number)"
+horizontal_alignment = 1

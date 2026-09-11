@@ -1,0 +1,125 @@
+#config_version=6
+
+mode_settings:
+  selectable_items: 
+    - companies
+    - jupiter_seattle
+    - lents_pinball
+    - koth_intro
+    - king_of_the_hill
+    - scores
+    - last_scores_1p{machine.player1_score and not machine.player2_score}
+    - last_scores_2p{machine.player2_score and not machine.player3_score}
+    - last_scores_3p{machine.player3_score and not machine.player4_score}
+    - last_scores_4p{machine.player4_score}
+    - alamo_champ
+    - credits
+  next_item_events: s_right_flipper_active, timer_attract_switch_complete
+  previous_item_events: s_left_flipper_active
+  select_item_events: s_start_active
+
+widget_player: 
+    mode_attract_started: press_start
+    
+    
+
+event_player:
+    s_start_active: sw_add_player
+
+counters:
+  attract_theme_once:
+    count_events: carousel_item_highlighted{carousel == "attract" and item == "koth_intro"}
+    count_complete_value: 1
+    events_when_complete: play_attract_theme
+    disable_on_complete: true
+    reset_events: mode_attract_started
+
+slide_player: 
+    mode_attract_started: attract
+
+
+    
+
+show_player:
+  mode_attract_started:
+    attract_bright:
+      key: attract_lights
+      loops: -1
+      speed: 4
+  gi_keyboard_test_1:
+    attract_lights: stop
+    gi_keyboard_test:
+      key: gi_keyboard_test
+      loops: -1
+      priority: 10000
+      show_tokens: {light: l_gi1}
+  gi_keyboard_test_2:
+    attract_lights: stop
+    gi_keyboard_test:
+      key: gi_keyboard_test
+      loops: -1
+      priority: 10000
+      show_tokens: {light: l_gi2}
+  gi_keyboard_test_3:
+    attract_lights: stop
+    gi_keyboard_test:
+      key: gi_keyboard_test
+      loops: -1
+      priority: 10000
+      show_tokens: {light: l_gi3}
+  gi_keyboard_test_ball_save:
+    attract_lights: stop
+    gi_keyboard_test:
+      key: gi_keyboard_test
+      loops: -1
+      priority: 10000
+      show_tokens: {light: l_ball_save}
+  gi_keyboard_test_4:
+    attract_lights: stop
+    gi_keyboard_test:
+      key: gi_keyboard_test
+      loops: -1
+      priority: 10000
+      show_tokens: {light: l_gi4}
+  gi_keyboard_test_5:
+    attract_lights: stop
+    gi_keyboard_test:
+      key: gi_keyboard_test
+      loops: -1
+      priority: 10000
+      show_tokens: {light: l_gi5}
+  gi_keyboard_test_6:
+    attract_lights: stop
+    gi_keyboard_test:
+      key: gi_keyboard_test
+      loops: -1
+      priority: 10000
+      show_tokens: {light: l_gi6}
+
+sound_player:
+  play_attract_theme:
+    koth_theme:
+      action: play
+      loops: 0
+      bus: music
+      volume: 0.45
+      fade_in: 2s
+  mode_attract_stopped:
+    koth_theme:
+      action: stop
+      bus: music
+      fade_out: 750ms
+        
+timers:
+    attract_switch:
+        end_value: 1
+        tick_interval: 5s
+        start_running: true
+        restart_on_complete: true
+        control_events:
+            - event: carousel_item_highlighted{carousel == "attract"}
+              action: restart
+            - event: flipper_cradle
+              action: stop
+            - event: flipper_cradle_release
+              action: restart

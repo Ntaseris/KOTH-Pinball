@@ -1,0 +1,252 @@
+[gd_scene load_steps=10 format=3 uid="uid://crsyr2ejvf3j3"]
+
+[ext_resource type="PackedScene" path="res://modes/base/slides/player_badges.tscn" id="10_badges"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_cdlrp"]
+[ext_resource type="VideoStream" uid="uid://bfnqtuiqa5kl1" path="res://images/beat_the_surfer_finish.ogv" id="2_3b0ys"]
+[ext_resource type="Script" uid="uid://cff0owk0jvkka" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_r8g0e"]
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="4_k0wqn"]
+[ext_resource type="Texture2D" uid="uid://cb3dwbxbpi8ya" path="res://images/alamo beer can.png" id="5_kjgl0"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="6_6qrim"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="7_1wdlf"]
+[ext_resource type="Theme" uid="uid://b4fbuks3kqs3a" path="res://body_md.tres" id="8_rp2fn"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1352.0
+offset_bottom = 768.0
+script = ExtResource("1_cdlrp")
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("2_3b0ys")
+autoplay = true
+script = ExtResource("3_r8g0e")
+preview_in_editor = true
+
+[node name="score" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("6_6qrim")
+offset_left = 22.0
+offset_top = 379.0
+offset_right = 1376.0
+offset_bottom = 498.0
+theme_override_colors/font_color = Color(1, 0.839216, 0.478431, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 112
+text = "11,000,000"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_1wdlf")
+variable_name = "beat_the_surfer_total"
+comma_separate = true
+min_digits = 1
+
+[node name="EpisodeComplete" type="Label" parent="."]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 250.0
+offset_right = 1244.0
+offset_bottom = 374.0
+theme_override_colors/font_color = Color(0.92549, 0.145098, 0.113725, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 11
+theme_override_fonts/font = ExtResource("6_6qrim")
+theme_override_font_sizes/font_size = 70
+text = "EPISODE COMPLETE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 40.0
+offset_top = 8.0
+offset_right = 232.0
+offset_bottom = 136.0
+
+[node name="ball" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_6qrim")
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 1368.0
+offset_bottom = 101.0
+theme = ExtResource("8_rp2fn")
+theme_override_font_sizes/font_size = 30
+text = "Ball 1"
+horizontal_alignment = 1
+script = ExtResource("7_1wdlf")
+variable_name = "ball"
+template_string = "ball %s"
+
+[node name="player" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_6qrim")
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 1368.0
+offset_bottom = 77.0
+theme = ExtResource("8_rp2fn")
+theme_override_font_sizes/font_size = 30
+text = "Player 1"
+horizontal_alignment = 1
+script = ExtResource("7_1wdlf")
+variable_name = "number"
+template_string = "player %s  "
+min_players = 1
+max_players = 4
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = 8.0
+offset_top = 120.0
+offset_right = 1368.0
+offset_bottom = 264.0
+
+[node name="PlayerBadges" parent="." instance=ExtResource("10_badges")]
+
+[node name="player1_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_6qrim")
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 320.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 30
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("7_1wdlf")
+variable_type = 4
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player2_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_6qrim")
+offset_left = 320.0
+offset_top = 48.0
+offset_right = 624.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 30
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("7_1wdlf")
+variable_type = 5
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player3_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_6qrim")
+offset_left = 752.0
+offset_top = 48.0
+offset_right = 1024.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 30
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("7_1wdlf")
+variable_type = 6
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player4_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_6qrim")
+offset_left = 1024.0
+offset_top = 48.0
+offset_right = 1368.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 30
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("7_1wdlf")
+variable_type = 7
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player 1" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_6qrim")
+offset_left = 8.0
+offset_right = 320.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 35
+text = "player 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player 2" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_6qrim")
+offset_left = 312.0
+offset_right = 624.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 35
+text = "player 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player 3" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_6qrim")
+offset_left = 752.0
+offset_right = 1024.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 35
+text = "player 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player 4" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_6qrim")
+offset_left = 1024.0
+offset_right = 1368.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 35
+text = "player 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="alamo_frenzy_timer" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_6qrim")
+top_level = true
+offset_left = 1248.0
+offset_top = 112.0
+offset_right = 1328.0
+offset_bottom = 176.0
+theme_override_font_sizes/font_size = 30
+text = "34"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_1wdlf")
+variable_type = 1
+variable_name = "ticks_remaining"
+update_event = "timer_alamo_frenzy_timer_tick"
+
+[node name="super_spinners_timer" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("6_6qrim")
+top_level = true
+offset_left = 1040.0
+offset_top = 112.0
+offset_right = 1208.0
+offset_bottom = 176.0
+theme_override_font_sizes/font_size = 30
+text = "SPIN 34"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_1wdlf")
+variable_type = 1
+variable_name = "ticks_remaining"
+update_event = "timer_super_spinners_mode_countdown_tick"
+template_string = "SPIN %s"

@@ -1,0 +1,22 @@
+#show_version=6
+
+- duration: 80ms
+  lights:
+    l_grill9: B83200
+    l_grill10: 5C0C00
+    l_grill11: D14800
+    l_grill12: 7A1B00
+    l_grill13: A62D00
+    l_grill14: 4A0700
+    l_grill15: C43B00
+    l_grill16: 8B2100
+- duration: 95ms
+  lights:
+    l_grill9: 681200
+    l_grill10: C43B00
+    l_grill11: 7A1B00
+    l_grill12: A62D00
+    l_grill13: 5C0C00
+    l_grill14: D14800
+    l_grill15: 8B2100
+    l_grill16: B83200

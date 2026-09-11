@@ -1,0 +1,4 @@
+#show_version=6
+- time: 0
+  lights:
+    l_scoop: off

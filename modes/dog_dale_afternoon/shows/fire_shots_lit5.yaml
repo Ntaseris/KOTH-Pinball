@@ -1,0 +1,9 @@
+#show_version=6
+
+- duration: 125ms
+  lights:
+    l_left_horseshoe: red
+- duration: 125ms
+  lights:
+    l_left_horseshoe: yellow
+- duration: 125ms

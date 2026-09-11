@@ -1,0 +1,175 @@
+#config_version=6
+
+
+mode:
+  start_events: mode_base_starting
+  stop_events: ball_ended
+  priority: 9999
+
+
+light_player:
+  mode_skillshot_stopped:
+    l_p_target:
+      color: white
+    l_r_target:
+      color: white
+    l_o_target:
+      color: white
+    l_p2_target:
+      color: white
+    l_a_target:
+      color: white
+    l_n_target:
+      color: white
+    l_e_target:
+      color: white
+    l_left_orbit:
+      color: white
+    l_left_ramp:
+      color: white
+    l_left_horseshoe:
+      color: white
+    l_scoop:
+      color: white
+    l_center_spinner:
+      color: white
+    l_right_ramp:
+      color: white
+    l_right_orbit:
+      color: white
+    l_boom_1:
+      color: white
+    l_boom_2:
+      color: white
+    l_boom_3:
+      color: white
+    l_hank_1:
+      color: white
+    l_hank_2:
+      color: white
+    l_hank_3:
+      color: white
+    l_dale_1:
+      color: white
+    l_dale_2:
+      color: white
+    l_dale_3:
+      color: white
+    l_h_lane:
+      color: white
+    l_a_lane:
+      color: white
+    l_n_lane:
+      color: white
+    l_k_lane:
+      color: white
+    l_bill_1:
+      color: white
+    l_bill_2:
+      color: white
+    l_bill_3:
+      color: white
+    l_ball_save:
+      color: white
+    l_left_rollover_lane:
+      color: white
+    l_middle_rollover_lane:
+      color: white
+    l_right_rollover_lane:
+      color: white
+    l_wizard:
+      color: white
+    l_lock_lit:
+      color: white
+    l_playfield_2X:
+      color: white
+    l_playfield_3X:
+      color: white
+    l_playfield_4X:
+      color: white
+    l_playfield_5X:
+      color: white
+    l_playfield_10X:
+      color: white
+    l_lock_1:
+      color: white
+    l_lock_2:
+      color: white
+    l_mystery:
+      color: white
+    l_strickland_multiball:
+      color: white
+    l_reginald:
+      color: white
+    l_obediah:
+      color: white
+    l_hosea:
+      color: white
+    l_gurgle:
+      color: white
+    l_luanne:
+      color: white
+    l_gi1:
+      color: white
+    l_gi2:
+      color: white
+    l_gi3:
+      color: white
+    l_gi4:
+      color: white
+    l_gi5:
+      color: white
+    l_gi6:
+      color: white
+    l_gi7:
+      color: white
+    l_gi8:
+      color: white
+    l_grill1:
+      color: white
+    l_grill2:
+      color: white
+    l_grill3:
+      color: white
+    l_grill4:
+      color: white
+    l_grill5:
+      color: white
+    l_grill6:
+      color: white
+    l_grill7:
+      color: white
+    l_grill8:
+      color: white
+    l_grill9:
+      color: white
+    l_grill10:
+      color: white
+    l_grill11:
+      color: white
+    l_grill12:
+      color: white
+    l_grill13:
+      color: white
+    l_grill14:
+      color: white
+    l_grill15:
+      color: white
+    l_grill16:
+      color: white
+    l_grill17:
+      color: white
+    l_grill18:
+      color: white
+    l_grill19:
+      color: white
+    l_grill20:
+      color: white
+    l_grill21:
+      color: white
+    l_grill22:
+      color: white
+    l_grill23:
+      color: white
+    l_grill24:
+      color: white

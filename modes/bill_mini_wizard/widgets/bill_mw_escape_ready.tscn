@@ -1,0 +1,29 @@
+; Copyright (C) 2026 One More Game - All Rights Reserved
+; Unauthorized copying of this file, via any medium is strictly prohibited
+; Proprietary and confidential
+
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_widget"]
+[ext_resource type="FontFile" path="res://fonts/King Of The Hill 2.ttf" id="2_font"]
+
+[node name="BillMWEscapeReady" type="Control"]
+offset_right = 1368.0
+offset_bottom = 768.0
+mouse_filter = 2
+script = ExtResource("1_widget")
+
+[node name="Instruction" type="Label" parent="."]
+offset_left = 140.0
+offset_top = 555.0
+offset_right = 1228.0
+offset_bottom = 695.0
+theme_override_colors/font_color = Color(1, 0.82, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0.18, 0.02, 0.2, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 68
+text = "ESCAPE THE CHATEAU - SHOOT SCOOP"
+horizontal_alignment = 1
+vertical_alignment = 1
+

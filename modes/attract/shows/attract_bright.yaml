@@ -1,0 +1,467 @@
+#show_version=6
+
+# GI establishes the always-on white baseline.
+- duration: 1
+  lights:
+    l_gi1: ffffff
+    l_gi2: ffffff
+    l_gi3: ffffff
+    l_gi4: ffffff
+    l_gi5: ffffff
+    l_gi6: ffffff
+    l_gi7: ffffff
+    l_gi8: ffffff
+
+- duration: 1
+  lights:
+    l_gi1: ffffff
+    l_gi2: ffffff
+    l_gi3: ffffff
+    l_gi4: ffffff
+    l_gi5: ffffff
+    l_gi6: ffffff
+    l_gi7: ffffff
+    l_gi8: ffffff
+
+# Character rainbow chase — boom=red, hank=orange, dale=green, bill=cyan
+- duration: 1
+  lights:
+    l_boom_1: ff0000
+    l_boom_2: ff0000
+    l_boom_3: ff0000
+
+- duration: 1
+  lights:
+    l_boom_1: 0
+    l_boom_2: 0
+    l_boom_3: 0
+    l_hank_1: ff8000
+    l_hank_2: ff8000
+    l_hank_3: ff8000
+
+- duration: 1
+  lights:
+    l_hank_1: 0
+    l_hank_2: 0
+    l_hank_3: 0
+    l_dale_1: 00ff00
+    l_dale_2: 00ff00
+    l_dale_3: 00ff00
+
+- duration: 1
+  lights:
+    l_dale_1: 0
+    l_dale_2: 0
+    l_dale_3: 0
+    l_bill_1: 00ffff
+    l_bill_2: 00ffff
+    l_bill_3: 00ffff
+
+# Cross-character chase row 1 — bill_1 stays cyan from previous step
+- duration: 1
+  lights:
+    l_bill_2: 0
+    l_bill_3: 0
+    l_boom_1: ff0000
+    l_hank_1: ff8000
+    l_dale_1: 00ff00
+
+- duration: 1
+  lights:
+    l_boom_1: 0
+    l_hank_1: 0
+    l_dale_1: 0
+    l_bill_1: 0
+    l_boom_2: ff0000
+    l_hank_2: ff8000
+    l_dale_2: 00ff00
+    l_bill_2: 00ffff
+
+- duration: 1
+  lights:
+    l_boom_2: 0
+    l_hank_2: 0
+    l_dale_2: 0
+    l_bill_2: 0
+    l_boom_3: ff0000
+    l_hank_3: ff8000
+    l_dale_3: 00ff00
+    l_bill_3: 00ffff
+
+- duration: 1
+  lights:
+    l_boom_3: 0
+    l_hank_3: 0
+    l_dale_3: 0
+    l_bill_3: 0
+
+# Orbit and ramp rainbow sweep
+- duration: 1
+  lights:
+    l_left_orbit: ff00ff
+
+- duration: 1
+  lights:
+    l_left_orbit: 0
+    l_left_ramp: ffff00
+
+- duration: 1
+  lights:
+    l_left_ramp: 0
+    l_right_ramp: ff8000
+
+- duration: 1
+  lights:
+    l_right_ramp: 0
+    l_right_orbit: 00ffff
+
+- duration: 1
+  lights:
+    l_right_orbit: 0
+    l_left_horseshoe: ff0000
+    l_center_spinner: ff0000
+
+- duration: 1
+  lights:
+    l_left_horseshoe: 0
+    l_center_spinner: 0
+
+# Grill fire sweep — orange gradient moving across all 24 grill lights
+- duration: 1
+  lights:
+    l_grill1: ff3000
+    l_grill2: ff3000
+    l_grill3: ff3000
+    l_grill4: ff3000
+    l_grill5: ff3000
+    l_grill6: ff3000
+
+- duration: 1
+  lights:
+    l_grill1: 0
+    l_grill2: 0
+    l_grill3: 0
+    l_grill4: 0
+    l_grill5: 0
+    l_grill6: 0
+    l_grill7: ff6000
+    l_grill8: ff6000
+    l_grill9: ff6000
+    l_grill10: ff6000
+    l_grill11: ff6000
+    l_grill12: ff6000
+
+- duration: 1
+  lights:
+    l_grill7: 0
+    l_grill8: 0
+    l_grill9: 0
+    l_grill10: 0
+    l_grill11: 0
+    l_grill12: 0
+    l_grill13: ffaa00
+    l_grill14: ffaa00
+    l_grill15: ffaa00
+    l_grill16: ffaa00
+    l_grill17: ffaa00
+    l_grill18: ffaa00
+
+- duration: 1
+  lights:
+    l_grill13: 0
+    l_grill14: 0
+    l_grill15: 0
+    l_grill16: 0
+    l_grill17: 0
+    l_grill18: 0
+    l_grill19: ffff00
+    l_grill20: ffff00
+    l_grill21: ffff00
+    l_grill22: ffff00
+    l_grill23: ffff00
+    l_grill24: ffff00
+
+- duration: 1
+  lights:
+    l_grill19: 0
+    l_grill20: 0
+    l_grill21: 0
+    l_grill22: 0
+    l_grill23: 0
+    l_grill24: 0
+
+# PROPANE + HANK targets — full rainbow
+- duration: 1
+  lights:
+    l_p_target: ff0000
+    l_r_target: ff8000
+    l_o_target: ffff00
+    l_p2_target: 00ff00
+    l_a_target: 00ffff
+    l_n_target: ff00ff
+    l_e_target: ffffff
+
+- duration: 1
+  lights:
+    l_p_target: 0
+    l_r_target: 0
+    l_o_target: 0
+    l_p2_target: 0
+    l_a_target: 0
+    l_n_target: 0
+    l_e_target: 0
+
+# Lane flash — HANK cyan, rollover lanes magenta
+- duration: 1
+  lights:
+    l_h_lane: 00ffff
+    l_a_lane: 00ffff
+    l_n_lane: 00ffff
+    l_k_lane: 00ffff
+    l_left_rollover_lane: ff00ff
+    l_middle_rollover_lane: ff00ff
+    l_right_rollover_lane: ff00ff
+
+- duration: 1
+  lights:
+    l_h_lane: 0
+    l_a_lane: 0
+    l_n_lane: 0
+    l_k_lane: 0
+    l_left_rollover_lane: 0
+    l_middle_rollover_lane: 0
+    l_right_rollover_lane: 0
+
+# Multiplier cascade — 2X through 10X lighting up
+- duration: 1
+  lights:
+    l_playfield_2X: ffff00
+
+- duration: 1
+  lights:
+    l_playfield_3X: ffff00
+
+- duration: 1
+  lights:
+    l_playfield_4X: ffff00
+
+- duration: 1
+  lights:
+    l_playfield_5X: ffff00
+
+- duration: 1
+  lights:
+    l_playfield_10X: ffffff
+
+- duration: 1
+  lights:
+    l_playfield_2X: 0
+    l_playfield_3X: 0
+    l_playfield_4X: 0
+    l_playfield_5X: 0
+    l_playfield_10X: 0
+
+# Crew + misc shot flash
+- duration: 1
+  lights:
+    l_reginald: ff0000
+    l_obediah: 00ff00
+    l_hosea: 0000ff
+    l_gurgle: ff00ff
+    l_luanne: ffff00
+    l_wizard: ffffff
+    l_strickland_multiball: ff8000
+    l_scoop: ff0000
+    l_mystery: 00ffff
+    l_lock_lit: ffffff
+    l_lock_1: ffffff
+    l_lock_2: ffffff
+    l_ball_save: ff0000
+
+- duration: 1
+  lights:
+    l_reginald: 0
+    l_obediah: 0
+    l_hosea: 0
+    l_gurgle: 0
+    l_luanne: 0
+    l_wizard: 0
+    l_strickland_multiball: 0
+    l_scoop: 0
+    l_mystery: 0
+    l_lock_lit: 0
+    l_lock_1: 0
+    l_lock_2: 0
+    l_ball_save: 0
+
+# Grand finale — entire playfield lit in bright colors
+- duration: 2
+  lights:
+    l_gi1: ffffff
+    l_gi2: ffffff
+    l_gi3: ffffff
+    l_gi4: ffffff
+    l_gi5: ffffff
+    l_gi6: ffffff
+    l_gi7: ffffff
+    l_gi8: ffffff
+    l_boom_1: ff0000
+    l_boom_2: ff0000
+    l_boom_3: ff0000
+    l_hank_1: ff8000
+    l_hank_2: ff8000
+    l_hank_3: ff8000
+    l_dale_1: 00ff00
+    l_dale_2: 00ff00
+    l_dale_3: 00ff00
+    l_bill_1: 00ffff
+    l_bill_2: 00ffff
+    l_bill_3: 00ffff
+    l_left_orbit: ff00ff
+    l_right_orbit: ff00ff
+    l_left_ramp: ffff00
+    l_right_ramp: ffff00
+    l_left_horseshoe: ffffff
+    l_center_spinner: ffffff
+    l_scoop: ff0000
+    l_mystery: 00ffff
+    l_lock_lit: ffff00
+    l_lock_1: ffff00
+    l_lock_2: ffff00
+    l_p_target: ff0000
+    l_r_target: ff8000
+    l_o_target: ffff00
+    l_p2_target: 00ff00
+    l_a_target: 00ffff
+    l_n_target: ff00ff
+    l_e_target: ffffff
+    l_h_lane: 00ffff
+    l_a_lane: 00ffff
+    l_n_lane: 00ffff
+    l_k_lane: 00ffff
+    l_left_rollover_lane: ff00ff
+    l_middle_rollover_lane: ff00ff
+    l_right_rollover_lane: ff00ff
+    l_wizard: ffffff
+    l_strickland_multiball: ff8000
+    l_ball_save: ffffff
+    l_reginald: ff0000
+    l_obediah: 00ff00
+    l_hosea: 0000ff
+    l_gurgle: ff00ff
+    l_luanne: ffff00
+    l_playfield_2X: ffff00
+    l_playfield_3X: ffff00
+    l_playfield_4X: ffff00
+    l_playfield_5X: ffff00
+    l_playfield_10X: ffffff
+    l_grill1: ff3000
+    l_grill2: ff3000
+    l_grill3: ff6000
+    l_grill4: ff6000
+    l_grill5: ffaa00
+    l_grill6: ffaa00
+    l_grill7: ffff00
+    l_grill8: ffff00
+    l_grill9: ff3000
+    l_grill10: ff3000
+    l_grill11: ff6000
+    l_grill12: ff6000
+    l_grill13: ffaa00
+    l_grill14: ffaa00
+    l_grill15: ffff00
+    l_grill16: ffff00
+    l_grill17: ff3000
+    l_grill18: ff3000
+    l_grill19: ff6000
+    l_grill20: ff6000
+    l_grill21: ffaa00
+    l_grill22: ffaa00
+    l_grill23: ffff00
+    l_grill24: ffff00
+
+# Insert blackout beat before looping; GI remains white.
+- duration: 1
+  lights:
+    l_gi1: ffffff
+    l_gi2: ffffff
+    l_gi3: ffffff
+    l_gi4: ffffff
+    l_gi5: ffffff
+    l_gi6: ffffff
+    l_gi7: ffffff
+    l_gi8: ffffff
+    l_boom_1: 0
+    l_boom_2: 0
+    l_boom_3: 0
+    l_hank_1: 0
+    l_hank_2: 0
+    l_hank_3: 0
+    l_dale_1: 0
+    l_dale_2: 0
+    l_dale_3: 0
+    l_bill_1: 0
+    l_bill_2: 0
+    l_bill_3: 0
+    l_left_orbit: 0
+    l_right_orbit: 0
+    l_left_ramp: 0
+    l_right_ramp: 0
+    l_left_horseshoe: 0
+    l_center_spinner: 0
+    l_scoop: 0
+    l_mystery: 0
+    l_lock_lit: 0
+    l_lock_1: 0
+    l_lock_2: 0
+    l_p_target: 0
+    l_r_target: 0
+    l_o_target: 0
+    l_p2_target: 0
+    l_a_target: 0
+    l_n_target: 0
+    l_e_target: 0
+    l_h_lane: 0
+    l_a_lane: 0
+    l_n_lane: 0
+    l_k_lane: 0
+    l_left_rollover_lane: 0
+    l_middle_rollover_lane: 0
+    l_right_rollover_lane: 0
+    l_wizard: 0
+    l_strickland_multiball: 0
+    l_ball_save: 0
+    l_reginald: 0
+    l_obediah: 0
+    l_hosea: 0
+    l_gurgle: 0
+    l_luanne: 0
+    l_playfield_2X: 0
+    l_playfield_3X: 0
+    l_playfield_4X: 0
+    l_playfield_5X: 0
+    l_playfield_10X: 0
+    l_grill1: 0
+    l_grill2: 0
+    l_grill3: 0
+    l_grill4: 0
+    l_grill5: 0
+    l_grill6: 0
+    l_grill7: 0
+    l_grill8: 0
+    l_grill9: 0
+    l_grill10: 0
+    l_grill11: 0
+    l_grill12: 0
+    l_grill13: 0
+    l_grill14: 0
+    l_grill15: 0
+    l_grill16: 0
+    l_grill17: 0
+    l_grill18: 0
+    l_grill19: 0
+    l_grill20: 0
+    l_grill21: 0
+    l_grill22: 0
+    l_grill23: 0
+    l_grill24: 0

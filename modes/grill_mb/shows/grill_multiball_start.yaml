@@ -1,0 +1,100 @@
+#show_version=6
+# Copyright (C) 2026 One More Game - All Rights Reserved
+# Unauthorized copying of this file, via any medium is strictly prohibited
+# Proprietary and confidential
+
+- duration: 100ms
+  lights:
+    l_gi1: white
+    l_gi2: white
+    l_gi3: white
+    l_gi4: white
+    l_gi5: white
+    l_gi6: white
+    l_gi7: white
+    l_gi8: white
+    l_p_target: white
+    l_r_target: white
+    l_o_target: white
+    l_p2_target: white
+    l_a_target: white
+    l_n_target: white
+    l_e_target: white
+- duration: 100ms
+  lights:
+    l_gi1: off
+    l_gi2: off
+    l_gi3: off
+    l_gi4: off
+    l_gi5: off
+    l_gi6: off
+    l_gi7: off
+    l_gi8: off
+    l_p_target: red
+    l_r_target: orange
+    l_o_target: red
+    l_p2_target: orange
+    l_a_target: red
+    l_n_target: orange
+    l_e_target: red
+- duration: 100ms
+  lights:
+    l_gi1: orange
+    l_gi2: orange
+    l_gi3: orange
+    l_gi4: orange
+    l_gi5: orange
+    l_gi6: orange
+    l_gi7: orange
+    l_gi8: orange
+    l_left_orbit: white
+    l_left_ramp: white
+    l_right_orbit: white
+    l_right_ramp: white
+- duration: 100ms
+  lights:
+    l_gi1: red
+    l_gi2: red
+    l_gi3: red
+    l_gi4: red
+    l_gi5: red
+    l_gi6: red
+    l_gi7: red
+    l_gi8: red
+    l_left_orbit: orange
+    l_left_ramp: orange
+    l_right_orbit: orange
+    l_right_ramp: orange
+- duration: 120ms
+  lights:
+    l_gi1: white
+    l_gi2: white
+    l_gi3: white
+    l_gi4: white
+    l_gi5: white
+    l_gi6: white
+    l_gi7: white
+    l_gi8: white
+    l_ball_save: white
+- duration: 100ms
+  lights:
+    l_gi1: off
+    l_gi2: off
+    l_gi3: off
+    l_gi4: off
+    l_gi5: off
+    l_gi6: off
+    l_gi7: off
+    l_gi8: off
+    l_p_target: off
+    l_r_target: off
+    l_o_target: off
+    l_p2_target: off
+    l_a_target: off
+    l_n_target: off
+    l_e_target: off
+    l_left_orbit: off
+    l_left_ramp: off
+    l_right_orbit: off
+    l_right_ramp: off
+    l_ball_save: off

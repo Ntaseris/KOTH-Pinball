@@ -1,0 +1,78 @@
+; Copyright (C) 2026 One More Game - All Rights Reserved
+; Unauthorized copying of this file, via any medium is strictly prohibited
+; Proprietary and confidential
+
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://modes/attract/scripts/attract_channel_card.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://images/attract_sponsors/jupiter_seattle.webp" id="2_image"]
+[ext_resource type="AudioStream" path="res://modes/attract/sounds/tv_channel_static.wav" id="3_static"]
+
+[sub_resource type="Shader" id="Shader_static"]
+code = "shader_type canvas_item;\n\nfloat random(vec2 coordinate) {\n    return fract(sin(dot(coordinate, vec2(12.9898, 78.233))) * 43758.5453);\n}\n\nvoid fragment() {\n    vec2 cells = floor(UV * vec2(684.0, 384.0));\n    float snow = random(cells + floor(TIME * 45.0));\n    float scanline = sin((UV.y + TIME * 0.35) * 950.0) * 0.10;\n    float roll = smoothstep(0.018, 0.0, abs(fract(UV.y - TIME * 1.8) - 0.5));\n    float level = clamp(snow + scanline + roll * 0.45, 0.0, 1.0);\n    COLOR = vec4(vec3(level), 1.0);\n}\n"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_static"]
+shader = SubResource("Shader_static")
+
+[sub_resource type="Animation" id="Animation_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("StaticOverlay:modulate")
+tracks/0/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 0, "values": [Color(1, 1, 1, 0)]}
+
+[sub_resource type="Animation" id="Animation_channel_change"]
+resource_name = "channel_change"
+length = 0.42
+tracks/0/type = "value"
+tracks/0/path = NodePath("StaticOverlay:modulate")
+tracks/0/keys = {"times": PackedFloat32Array(0, 0.08, 0.16, 0.27, 0.42), "transitions": PackedFloat32Array(1, 1, 1, 1, 1), "update": 0, "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.9), Color(1, 1, 1, 0.65), Color(1, 1, 1, 0.22), Color(1, 1, 1, 0)]}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_channel"]
+_data = {&"RESET": SubResource("Animation_reset"), &"channel_change": SubResource("Animation_channel_change")}
+
+[node name="jupiter_seattle" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Image" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_image")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StaticOverlay" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_static")
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="StaticSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_static")
+volume_db = -7.0
+bus = &"effects"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {&"": SubResource("AnimationLibrary_channel")}

@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxh4bn7320p7n"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_qv2id"]
+[ext_resource type="Texture2D" uid="uid://baa4kev70d17x" path="res://images/bill_bulk_mode_total.jpeg" id="2_2jckm"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="2_sjdjw"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_trfvj"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_qv2id")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(682.988, 382.909)
+scale = Vector2(1.00295, 0.751397)
+texture = ExtResource("2_2jckm")
+
+[node name="MPFVariable" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_trfvj")
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 776.0
+theme_override_font_sizes/font_size = 80
+text = "12345"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_sjdjw")
+variable_name = "bill_bulk_and_the_body_buddies_total"
+comma_separate = true
+min_digits = 1
+
+[node name="Label" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_trfvj")
+layout_mode = 0
+offset_top = 128.0
+offset_right = 1368.0
+offset_bottom = 328.0
+theme_override_font_sizes/font_size = 120
+text = "mode total"
+horizontal_alignment = 1
+vertical_alignment = 1

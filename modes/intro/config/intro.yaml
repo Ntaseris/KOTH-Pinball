@@ -1,0 +1,14 @@
+#config_version=6
+
+mode:
+  start_events: ball_will_start{ball==1 and player==1 and is_extra_ball==False}
+  stop_events: balldevice_bd_plunger_ball_count_changed
+  priority: 200
+  
+queue_relay_player:
+  ball_starting:
+    post: play_arlen_intro
+    wait_for: timer_arlen_intro_timer_complete
+
+event_player:
+  flipper_cancel: timer_arlen_intro_timer_complete

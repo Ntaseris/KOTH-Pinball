@@ -1,0 +1,68 @@
+#config_version=6
+
+mode:
+  start_events: start_whack_a_mole
+  stop_events: whack_a_mole_completed, whack_a_mole_failed, timer_whack_a_mole_safety_complete, ball_ending
+  priority: 500
+
+slide_player:
+  mode_whack_a_mole_started:
+    whack_a_mole:
+      priority: 1000
+  mode_whack_a_mole_stopping:
+    whack_a_mole:
+      action: remove
+
+timers:
+  whack_a_mole_safety:
+    start_value: 35
+    end_value: 0
+    direction: down
+    start_running: true
+
+variable_player:
+  mode_whack_a_mole_started:
+    whack_a_mole_hits:
+      int: 0
+      action: set
+    whack_a_mole_lives:
+      int: 3
+      action: set
+    whack_a_mole_streak:
+      int: 0
+      action: set
+  whack_a_mole_target_hit{target == "hank"}:
+    score: 50_000 * current_player.pf_multiplier
+    whack_a_mole_hits: 1
+    whack_a_mole_streak: 1
+  whack_a_mole_target_hit{target == "peggy"}:
+    score: 50_000 * current_player.pf_multiplier
+    whack_a_mole_hits: 1
+    whack_a_mole_streak: 1
+  whack_a_mole_target_hit{target == "bobby"}:
+    score: 200_000 * current_player.pf_multiplier
+    whack_a_mole_hits: 1
+    whack_a_mole_streak: 1
+  whack_a_mole_target_missed:
+    whack_a_mole_streak:
+      int: 0
+      action: set
+  whack_a_mole_tom_hit:
+    whack_a_mole_lives: -1
+    whack_a_mole_streak:
+      int: 0
+      action: set
+  whack_a_mole_streak_bonus{streak == 5}:
+    score: 100_000 * current_player.pf_multiplier
+  whack_a_mole_streak_bonus{streak == 10}:
+    score: 250_000 * current_player.pf_multiplier
+  whack_a_mole_streak_bonus{streak == 15}:
+    score: 500_000 * current_player.pf_multiplier
+  whack_a_mole_streak_bonus{streak == 20}:
+    score: 1_000_000 * current_player.pf_multiplier
+  whack_a_mole_perfect:
+    score: 2_500_000 * current_player.pf_multiplier
+
+event_player:
+  mode_whack_a_mole_started: cmd_flippers_disable
+  mode_whack_a_mole_stopping: cmd_flippers_enable

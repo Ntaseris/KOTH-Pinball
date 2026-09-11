@@ -1,0 +1,749 @@
+#config_version=6
+
+mode:
+  start_events: ball_starting
+  stop_events: multiball_rainey_multiball_ended
+  priority: 250
+
+# Rainey Multiball rules:
+# 1. Qualify/start Rainey MB the same way as before.
+# 2. During MB, collect all 4 character jackpots:
+#    Left Orbit, Left Ramp, Right Ramp, Right Orbit.
+# 3. After all 4 are collected, collect beers from standups.
+# 4. First cycle needs 6 beers, second needs 12, third and later need 18.
+# 5. Scoop collects Super Jackpot, then the whole cycle resets.
+
+multiballs:
+  rainey_multiball:
+    ball_count: 3
+    ball_count_type: total
+    shoot_again: 30s
+    start_events: logicblock_mb_counter_complete{current_player.any_mb_active == 0}
+
+show_player:
+  light_rainey_multiball_ball_lock_lit_complete:
+    rainey_qualified:
+      loops: 1
+      priority: 335
+
+  logicblock_mb_counter_hit:
+    rainey_lock_hit:
+      loops: 2
+      priority: 345
+
+  ball_save_rainey_multiball_timer_start:
+    flash_color:
+      key: ball_save
+      loops: -1
+      speed: 7
+      priority: 500
+      show_tokens:
+        lights: l_ball_save
+        color: cyan
+
+  multiball_rainey_multiball_shoot_again:
+    flash_color:
+      key: rainey_ball_save_burst
+      loops: 3
+      speed: 7
+      priority: 800
+      show_tokens:
+        lights: "l_ball_save, l_gi1, l_gi2, l_gi3, l_gi4, l_gi5, l_gi6, l_gi7, l_gi8"
+        color: white
+
+  multiball_rainey_multiball_shoot_again_ended:
+    ball_save:
+      action: stop
+
+  multiball_rainey_multiball_started:
+    "off":
+      key: rainey_other_multiball_suppression
+      priority: 260
+      show_tokens:
+        lights: l_lock_lit, l_strickland_multiball
+    rainey_multiball_start:
+      loops: 1
+      speed: 2
+      priority: 360
+    rainey_neighborhood_ambience:
+      key: rainey_neighborhood_ambience
+      loops: -1
+      priority: 255
+    flash_color:
+      key: rainey_left_orbit
+      speed: 4
+      show_tokens:
+        lights: l_left_orbit
+        color: blue
+    flash_color_2:
+      show: flash_color
+      key: rainey_left_ramp
+      speed: 4
+      show_tokens:
+        lights: l_left_ramp
+        color: blue
+    flash_color_3:
+      show: flash_color
+      key: rainey_right_ramp
+      speed: 4
+      show_tokens:
+        lights: l_right_ramp
+        color: blue
+    flash_color_4:
+      show: flash_color
+      key: rainey_right_orbit
+      speed: 4
+      show_tokens:
+        lights: l_right_orbit
+        color: blue
+
+  rainey_left_orbit_jackpot:
+    rainey_left_orbit:
+      action: stop
+    rainey_character_jackpot:
+      loops: 2
+      priority: 350
+      show_tokens:
+        light: l_left_orbit
+
+  rainey_left_ramp_jackpot:
+    rainey_left_ramp:
+      action: stop
+    rainey_character_jackpot:
+      loops: 2
+      priority: 350
+      show_tokens:
+        light: l_left_ramp
+
+  rainey_right_ramp_jackpot:
+    rainey_right_ramp:
+      action: stop
+    rainey_character_jackpot:
+      loops: 2
+      priority: 350
+      show_tokens:
+        light: l_right_ramp
+
+  rainey_right_orbit_jackpot:
+    rainey_right_orbit:
+      action: stop
+    rainey_character_jackpot:
+      loops: 2
+      priority: 350
+      show_tokens:
+        light: l_right_orbit
+
+  rainey_all_characters_collected:
+    rainey_neighborhood_ambience:
+      action: stop
+    rainey_left_orbit:
+      action: stop
+    rainey_left_ramp:
+      action: stop
+    rainey_right_ramp:
+      action: stop
+    rainey_right_orbit:
+      action: stop
+    rainey_beer_ambience:
+      key: rainey_beer_phase
+      loops: -1
+      priority: 260
+    rainey_beer_collect:
+      loops: 3
+      priority: 355
+
+  rainey_beer_collected:
+    rainey_beer_collect:
+      loops: 1
+      priority: 345
+
+  rainey_super_jackpot_lit:
+    rainey_beer_phase:
+      action: stop
+    rainey_super_ready:
+      key: rainey_super_jackpot
+      loops: -1
+      priority: 365
+
+  rainey_super_jackpot_collected:
+    rainey_super_jackpot:
+      action: stop
+    rainey_super_jackpot_sweep:
+      loops: 3
+      priority: 2000
+
+  rainey_reset_cycle:
+    rainey_beer_phase:
+      action: stop
+    rainey_neighborhood_ambience:
+      key: rainey_neighborhood_ambience
+      loops: -1
+      priority: 255
+    flash_color:
+      key: rainey_left_orbit
+      speed: 4
+      show_tokens:
+        lights: l_left_orbit
+        color: blue
+    flash_color_2:
+      show: flash_color
+      key: rainey_left_ramp
+      speed: 4
+      show_tokens:
+        lights: l_left_ramp
+        color: blue
+    flash_color_3:
+      show: flash_color
+      key: rainey_right_ramp
+      speed: 4
+      show_tokens:
+        lights: l_right_ramp
+        color: blue
+    flash_color_4:
+      show: flash_color
+      key: rainey_right_orbit
+      speed: 4
+      show_tokens:
+        lights: l_right_orbit
+        color: blue
+
+  multiball_rainey_multiball_ended:
+    rainey_other_multiball_suppression: stop
+    rainey_neighborhood_ambience:
+      action: stop
+    ball_save:
+      action: stop
+    rainey_left_orbit:
+      action: stop
+    rainey_left_ramp:
+      action: stop
+    rainey_right_ramp:
+      action: stop
+    rainey_right_orbit:
+      action: stop
+    rainey_super_jackpot:
+      action: stop
+    rainey_beer_phase:
+      action: stop
+
+light_player:
+  logicblock_mb_counter_hit{hits==1}:
+    l_lock_1:
+      color: green
+
+  logicblock_mb_counter_hit{hits==2}:
+    l_lock_2:
+      color: green
+
+  multiball_rainey_multiball_started:
+    l_lock_1: stop
+    l_lock_2: stop
+    l_lock_lit: off
+
+  light_rainey_multiball_ball_lock_lit_complete{current_player.rainey_mb_used_this_ball == 0}:
+    l_lock_lit:
+      color: green
+
+
+counters:
+  mb_counter:
+    enable_events:
+      - light_rainey_multiball_ball_lock_lit_complete{current_player.rainey_mb_used_this_ball == 0}
+      - multiball_grill_mb_ended{device.achievements.lock_lit.state == "started"}
+      - multiball_strickland_multiball_ended{device.achievements.lock_lit.state == "started"}
+    count_events: spinner_lock_spinner_active
+    count_complete_value: 3
+    persist_state: true
+    disable_events: multiball_grill_mb_started, multiball_strickland_multiball_started
+
+  rainey_character_counter:
+    enable_events:
+      - multiball_rainey_multiball_started
+      - rainey_reset_cycle
+    count_events: rainey_character_jackpot_collected
+    count_complete_value: 4
+    persist_state: false
+    disable_on_complete: true
+    reset_events:
+      - multiball_rainey_multiball_started
+      - rainey_reset_cycle
+      - multiball_rainey_multiball_ended
+
+  rainey_beer_counter:
+    enable_events: rainey_all_characters_collected
+    count_events: rainey_beer_collected
+    count_complete_value: 18
+    persist_state: false
+    reset_events:
+      - rainey_all_characters_collected
+      - rainey_super_jackpot_collected
+      - multiball_rainey_multiball_ended
+
+variable_player:
+  multiball_rainey_multiball_started:
+    rainey_mb_active:
+      action: set
+      int: 1
+    rainey_phase:
+      action: set
+      int: 1
+    rainey_beer_requirement:
+      action: set
+      int: 6
+    rainey_left_orbit_done:
+      action: set
+      int: 0
+    rainey_left_ramp_done:
+      action: set
+      int: 0
+    rainey_right_ramp_done:
+      action: set
+      int: 0
+    rainey_right_orbit_done:
+      action: set
+      int: 0
+    rainey_super_lit:
+      action: set
+      int: 0
+    rainey_characters_collected:
+      action: set
+      int: 0
+    rainey_beers_collected:
+      action: set
+      int: 0
+    rainey_last_super_award:
+      action: set
+      int: 0
+
+  rainey_reset_cycle:
+    rainey_phase:
+      action: set
+      int: 1
+    rainey_left_orbit_done:
+      action: set
+      int: 0
+    rainey_left_ramp_done:
+      action: set
+      int: 0
+    rainey_right_ramp_done:
+      action: set
+      int: 0
+    rainey_right_orbit_done:
+      action: set
+      int: 0
+    rainey_super_lit:
+      action: set
+      int: 0
+    rainey_characters_collected:
+      action: set
+      int: 0
+    rainey_beers_collected:
+      action: set
+      int: 0
+
+  rainey_character_jackpot_collected:
+    rainey_characters_collected:
+      action: add
+      int: 1
+
+  rainey_left_orbit_jackpot:
+    score: 500000 * current_player.pf_multiplier
+    rainey_left_orbit_done:
+      action: set
+      int: 1
+
+  rainey_left_ramp_jackpot:
+    score: 500000 * current_player.pf_multiplier
+    rainey_left_ramp_done:
+      action: set
+      int: 1
+
+  rainey_right_ramp_jackpot:
+    score: 500000 * current_player.pf_multiplier
+    rainey_right_ramp_done:
+      action: set
+      int: 1
+
+  rainey_right_orbit_jackpot:
+    score: 500000 * current_player.pf_multiplier
+    rainey_right_orbit_done:
+      action: set
+      int: 1
+
+  rainey_all_characters_collected:
+    rainey_phase:
+      action: set
+      int: 2
+
+  rainey_beer_collected:
+    score: 100000 * current_player.pf_multiplier
+    rainey_beers_collected:
+      action: add
+      int: 1
+
+  rainey_super_jackpot_lit:
+    rainey_phase:
+      action: set
+      int: 3
+    rainey_super_lit:
+      action: set
+      int: 1
+
+  rainey_super_jackpot_collected:
+    rainey_last_super_award:
+      action: set
+      int: 5000000 * current_player.pf_multiplier
+    score: 5000000 * current_player.pf_multiplier
+    rainey_super_lit:
+      action: set
+      int: 0
+
+  rainey_set_beers_12:
+    rainey_beer_requirement:
+      action: set
+      int: 12
+
+  rainey_set_beers_18:
+    rainey_beer_requirement:
+      action: set
+      int: 18
+
+  multiball_rainey_multiball_ended:
+    rainey_mb_active:
+      action: set
+      int: 0
+    rainey_phase:
+      action: set
+      int: 0
+    rainey_super_lit:
+      action: set
+      int: 0
+
+slide_player:
+  multiball_rainey_multiball_started:
+    rainey_neighborhood_launch:
+      priority: 1200
+
+  rainey_show_rules:
+    rainey_multiball_rules:
+      priority: 1100
+    rainey_neighborhood_launch:
+      action: remove
+
+  rainey_show_playfield:
+    rainey_multiball2:
+      priority: 500
+    rainey_multiball_rules:
+      action: remove
+
+  logicblock_mb_counter_hit{hits==1}:
+    ball_lock_one:
+      expire: 4.7s
+
+  logicblock_mb_counter_hit{hits==2}:
+    ball_lock_two:
+      expire: 3.7s
+
+  rainey_super_jackpot_collected:
+    rainey_super_chaos:
+      expire: 4.7s
+      priority: 1300
+
+  slide_rainey_super_chaos_inactive{current_player.rainey_mb_active == 1}:
+    rainey_multiball2:
+      priority: 500
+
+widget_player:
+  slide_rainey_multiball2_active{current_player.rainey_phase == 1}:
+    rainey_character_phase:
+      slide: rainey_multiball2
+
+  slide_rainey_multiball2_active{current_player.rainey_phase == 2}:
+    rainey_beer_phase:
+      slide: rainey_multiball2
+
+  slide_rainey_multiball2_active{current_player.rainey_phase == 3}:
+    rainey_super_phase:
+      slide: rainey_multiball2
+
+  rainey_all_characters_collected:
+    rainey_character_phase:
+      slide: rainey_multiball2
+      action: remove
+    rainey_beer_phase:
+      slide: rainey_multiball2
+
+  rainey_super_jackpot_lit:
+    rainey_beer_phase:
+      slide: rainey_multiball2
+      action: remove
+    rainey_super_phase:
+      slide: rainey_multiball2
+
+  rainey_reset_cycle:
+    rainey_beer_phase:
+      slide: rainey_multiball2
+      action: remove
+    rainey_super_phase:
+      slide: rainey_multiball2
+      action: remove
+    rainey_character_phase:
+      slide: rainey_multiball2
+
+  multiball_rainey_multiball_ended:
+    rainey_character_phase:
+      action: remove
+    rainey_beer_phase:
+      action: remove
+    rainey_super_phase:
+      action: remove
+
+sound_player:
+  multiball_rainey_multiball_started:
+    koth_theme:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.28
+      fade_in: 500ms
+  multiball_rainey_multiball_ended:
+    koth_theme:
+      action: stop
+      bus: music
+      fade_out: 500ms
+    dale_wake_me_when_its_over:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  rainey_left_orbit_jackpot:
+    kahn_bluffing_finish_her:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  rainey_left_ramp_jackpot:
+    minh_rainey_too_pretty_for_jail:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  rainey_right_ramp_jackpot:
+    joseph_rainey_im_ready:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  rainey_right_orbit_jackpot:
+    connie_rainey_not_anymore_jerk:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  rainey_all_characters_collected:
+    nancy_rainey_thank_god_for_holidays:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  rainey_beer_collected:
+    target_tick_2:
+      bus: effects
+      volume: 0.22
+  rainey_beer_instruction:
+    hank_baby_wants_a_beer:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  rainey_super_jackpot_collected:
+    peggy_ho_yeah_boggle_championship:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+event_player:
+  pocket_sand_multiball_spot_attempt{current_player.rainey_mb_active == 1 and current_player.rainey_phase == 1 and current_player.rainey_left_orbit_done == 0}:
+    - rainey_left_orbit_jackpot
+    - rainey_character_jackpot_collected
+    - pocket_sand_spotted
+  pocket_sand_multiball_spot_attempt{current_player.rainey_mb_active == 1 and current_player.rainey_phase == 1 and current_player.rainey_left_orbit_done == 1 and current_player.rainey_left_ramp_done == 0}:
+    - rainey_left_ramp_jackpot
+    - rainey_character_jackpot_collected
+    - pocket_sand_spotted
+  pocket_sand_multiball_spot_attempt{current_player.rainey_mb_active == 1 and current_player.rainey_phase == 1 and current_player.rainey_left_orbit_done == 1 and current_player.rainey_left_ramp_done == 1 and current_player.rainey_right_ramp_done == 0}:
+    - rainey_right_ramp_jackpot
+    - rainey_character_jackpot_collected
+    - pocket_sand_spotted
+  pocket_sand_multiball_spot_attempt{current_player.rainey_mb_active == 1 and current_player.rainey_phase == 1 and current_player.rainey_left_orbit_done == 1 and current_player.rainey_left_ramp_done == 1 and current_player.rainey_right_ramp_done == 1 and current_player.rainey_right_orbit_done == 0}:
+    - rainey_right_orbit_jackpot
+    - rainey_character_jackpot_collected
+    - pocket_sand_spotted
+  pocket_sand_multiball_spot_attempt{current_player.rainey_mb_active == 1 and current_player.rainey_phase == 2}:
+    - rainey_beer_collected
+    - pocket_sand_spotted
+  pocket_sand_multiball_spot_attempt{current_player.rainey_mb_active == 1 and current_player.rainey_phase == 3 and current_player.rainey_super_lit == 1}:
+    - rainey_super_jackpot_collected
+    - pocket_sand_spotted
+  multiball_rainey_multiball_started:
+    - rainey_show_rules|3s
+    - rainey_show_playfield|5400ms
+
+  s_left_orbit_enter_active{current_player.rainey_mb_active == 1 and current_player.rainey_phase == 1 and current_player.rainey_left_orbit_done == 0}:
+    - rainey_left_orbit_jackpot
+    - rainey_character_jackpot_collected
+
+  s_left_ramp_exit_active{current_player.rainey_mb_active == 1 and current_player.rainey_phase == 1 and current_player.rainey_left_ramp_done == 0}:
+    - rainey_left_ramp_jackpot
+    - rainey_character_jackpot_collected
+
+  s_right_ramp_exit_active{current_player.rainey_mb_active == 1 and current_player.rainey_phase == 1 and current_player.rainey_right_ramp_done == 0}:
+    - rainey_right_ramp_jackpot
+    - rainey_character_jackpot_collected
+
+  s_right_orbit_exit_active{current_player.rainey_mb_active == 1 and current_player.rainey_phase == 1 and current_player.rainey_right_orbit_done == 0}:
+    - rainey_right_orbit_jackpot
+    - rainey_character_jackpot_collected
+
+  logicblock_rainey_character_counter_complete:
+    - rainey_all_characters_collected
+
+  rainey_all_characters_collected:
+    - rainey_beer_instruction|1400ms
+
+  s_scoop_standup_left_active{current_player.rainey_mb_active == 1 and current_player.rainey_phase == 2}:
+    - rainey_beer_collected
+
+  s_scoop_standup_right_active{current_player.rainey_mb_active == 1 and current_player.rainey_phase == 2}:
+    - rainey_beer_collected
+
+  s_right_ramp_standup_active{current_player.rainey_mb_active == 1 and current_player.rainey_phase == 2}:
+    - rainey_beer_collected
+
+  logicblock_rainey_beer_counter_hit{count==6 and current_player.rainey_beer_requirement == 6}:
+    - rainey_super_jackpot_lit
+
+  logicblock_rainey_beer_counter_hit{count==12 and current_player.rainey_beer_requirement == 12}:
+    - rainey_super_jackpot_lit
+
+  logicblock_rainey_beer_counter_complete{current_player.rainey_beer_requirement == 18}:
+    - rainey_super_jackpot_lit
+
+  s_scoop_active{current_player.rainey_mb_active == 1 and current_player.rainey_phase == 3 and current_player.rainey_super_lit == 1}:
+    - rainey_super_jackpot_collected
+
+  rainey_super_jackpot_collected{current_player.rainey_beer_requirement == 6}:
+    - rainey_set_beers_12
+    - rainey_reset_cycle
+
+  rainey_super_jackpot_collected{current_player.rainey_beer_requirement >= 12}:
+    - rainey_set_beers_18
+    - rainey_reset_cycle
+
+
+shows:
+  rainey_super_jackpot_sweep:
+    - duration: 50ms
+      lights:
+        l_scoop: yellow
+
+    - duration: 50ms
+      lights:
+        l_center_spinner: yellow
+        l_mystery: yellow
+        l_lock_lit: yellow
+
+    - duration: 50ms
+      lights:
+        l_left_horseshoe: yellow
+        l_right_ramp: yellow
+        l_left_ramp: yellow
+
+    - duration: 50ms
+      lights:
+        l_left_orbit: yellow
+        l_right_orbit: yellow
+        l_strickland_multiball: yellow
+
+    - duration: 50ms
+      lights:
+        l_p_target: yellow
+        l_r_target: yellow
+        l_o_target: yellow
+        l_p2_target: yellow
+        l_a_target: yellow
+        l_n_target: yellow
+        l_e_target: yellow
+
+    - duration: 50ms
+      lights:
+        l_boom_1: yellow
+        l_boom_2: yellow
+        l_boom_3: yellow
+        l_hank_1: yellow
+        l_hank_2: yellow
+        l_hank_3: yellow
+
+    - duration: 50ms
+      lights:
+        l_dale_1: yellow
+        l_dale_2: yellow
+        l_dale_3: yellow
+        l_bill_1: yellow
+        l_bill_2: yellow
+        l_bill_3: yellow
+
+    - duration: 50ms
+      lights:
+        l_h_lane: yellow
+        l_a_lane: yellow
+        l_n_lane: yellow
+        l_k_lane: yellow
+        l_left_rollover_lane: yellow
+        l_middle_rollover_lane: yellow
+        l_right_rollover_lane: yellow
+
+    - duration: 50ms
+      lights:
+        l_reginald: yellow
+        l_obediah: yellow
+        l_hosea: yellow
+        l_gurgle: yellow
+        l_luanne: yellow
+
+    - duration: 50ms
+      lights:
+        l_playfield_2X: yellow
+        l_playfield_3X: yellow
+        l_playfield_4X: yellow
+        l_playfield_5X: yellow
+        l_playfield_10X: yellow
+        l_lock_1: yellow
+        l_lock_2: yellow
+        l_wizard: yellow
+
+    - duration: 50ms
+      lights:
+        l_gi1: yellow
+        l_gi2: yellow
+        l_gi3: yellow
+        l_gi4: yellow
+        l_ball_save: yellow
+
+    - duration: 50ms
+      lights:
+        l_grill1: yellow
+        l_grill2: yellow
+        l_grill3: yellow
+        l_grill4: yellow
+        l_grill5: yellow
+        l_grill6: yellow
+        l_grill7: yellow
+        l_grill8: yellow
+
+    - duration: 50ms
+      lights:
+        l_grill9: yellow
+        l_grill10: yellow
+        l_grill11: yellow
+        l_grill12: yellow
+        l_grill13: yellow
+        l_grill14: yellow
+        l_grill15: yellow
+        l_grill16: yellow
+
+    - duration: 50ms
+      lights:
+        l_grill17: yellow
+        l_grill18: yellow
+        l_grill19: yellow
+        l_grill20: yellow
+        l_grill21: yellow
+        l_grill22: yellow
+        l_grill23: yellow
+        l_grill24: yellow

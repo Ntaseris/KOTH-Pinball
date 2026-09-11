@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=3 uid="uid://dkt2ktrh6mnby"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_sg58b"]
+[ext_resource type="VideoStream" uid="uid://c6twn2burhxsb" path="res://images/bill_bulk_clips/King.of.the.Hill.S11E11.Bill.Bulk.and.the.Body.Buddies.1080p.Hulu.WEB-DL.AAC2.0.H.264-QOQ-00.11.23.666-00.11.33.900-seg2.ogv" id="2_77fb4"]
+[ext_resource type="Script" uid="uid://cff0owk0jvkka" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_sux8m"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="4_alm2g"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_ic5nl"]
+[ext_resource type="Theme" uid="uid://b4fbuks3kqs3a" path="res://body_md.tres" id="6_0rgww"]
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="7_7j8ak"]
+[ext_resource type="Texture2D" uid="uid://cb3dwbxbpi8ya" path="res://images/alamo beer can.png" id="8_5mj6k"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_sg58b")
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+stream = ExtResource("2_77fb4")
+autoplay = true
+loop = true
+script = ExtResource("3_sux8m")
+
+[node name="score" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("4_alm2g")
+layout_mode = 0
+offset_top = 256.0
+offset_right = 1360.0
+offset_bottom = 384.0
+theme_override_font_sizes/font_size = 114
+text = "1,000,000"
+horizontal_alignment = 1
+script = ExtResource("5_ic5nl")
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="timer" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("4_alm2g")
+layout_mode = 0
+offset_left = 720.0
+offset_top = 8.0
+offset_right = 800.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 50
+text = "45"
+horizontal_alignment = 1
+script = ExtResource("5_ic5nl")
+variable_type = 1
+variable_name = "ticks_remaining"
+initialize_empty = false
+update_event = "timer_bill_bulk_and_the_body_buddies_mode_countdown_tick"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 36.0
+
+[node name="player" type="Label" parent="HBoxContainer"]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("4_alm2g")
+layout_mode = 2
+theme = ExtResource("6_0rgww")
+theme_override_font_sizes/font_size = 26
+text = "Player 1"
+script = ExtResource("5_ic5nl")
+variable_name = "number"
+template_string = "player %s  "
+min_players = 2
+max_players = 4
+
+[node name="ball" type="Label" parent="HBoxContainer"]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("4_alm2g")
+layout_mode = 2
+theme = ExtResource("6_0rgww")
+theme_override_font_sizes/font_size = 24
+text = "Ball 1"
+script = ExtResource("5_ic5nl")
+variable_name = "ball"
+template_string = "ball %s"

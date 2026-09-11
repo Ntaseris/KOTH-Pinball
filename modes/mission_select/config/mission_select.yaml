@@ -1,0 +1,244 @@
+#config_version=6
+
+mode:
+  start_events: mode_scoop_hit{current_player.any_mb_active == 0}
+  stop_events: mode_mission_select_will_stop, ball_drain, player_selected_mission, multiball_strickland_multiball_started, multiball_rainey_multiball_started, multiball_grill_mb_started
+  game_mode: true
+  code: mpf.modes.carousel.code.carousel.Carousel
+  priority: 300
+
+mode_settings:
+  selectable_items: 
+    - beat_the_surfer{not device.achievements.played_beat_the_surfer.state=='completed'}
+    - beer_can_named_desire{not device.achievements.played_beer_can_named_desire.state=='completed'}
+    - bill_bulk_and_the_body_buddies{not device.achievements.played_bill_bulk_and_the_body_buddies.state=='completed'}
+    - patch_boomhauer{not device.achievements.played_patch_boomhauer.state=='completed'}
+    - dog_dale_afternoon{not device.achievements.played_dog_dale_afternoon.state=='completed'}
+    - duke_the_dolphin{not device.achievements.played_duke_the_dolphin.state=='completed'}
+    - gladstone{not device.achievements.played_gladstone.state=='completed'}
+    - the_heat_waver{not device.achievements.played_the_heat_waver.state=='completed'}
+    - boom_mini_wizard{device.accruals.boom_mini_wizard.completed}
+  
+  select_item_events: flipper_cancel, timer_mission_select_timeout_complete
+  next_item_events: s_right_flipper_active
+  previous_item_events: s_left_flipper_active
+
+timers:
+  mission_select_timeout:
+    start_value: 15
+    end_value: 0
+    direction: down
+    start_running: true
+    control_events:
+      - event: s_left_flipper_active
+        action: restart
+      - event: s_right_flipper_active
+        action: restart
+
+sound_player:
+  carousel_item_highlighted{carousel == "mission_select"}:
+    target_tick_1:
+      bus: effects
+      volume: 0.18
+  carousel_item_selected{carousel == "mission_select"}:
+    award_chime:
+      bus: effects
+      volume: 0.3
+
+
+slide_player:
+  mode_mission_select_started: mission_select
+
+show_player:
+  mode_mission_select_started: mission_select_light_off
+  carousel_item_highlighted{carousel == "mission_select" and item == "beat_the_surfer"}:
+    mission_select_insert_pulse:
+      key: mission_select_mode_insert
+      loops: -1
+      priority: 310
+      show_tokens: {light: l_boom_1}
+  carousel_item_highlighted{carousel == "mission_select" and item == "beer_can_named_desire"}:
+    mission_select_insert_pulse:
+      key: mission_select_mode_insert
+      loops: -1
+      priority: 310
+      show_tokens: {light: l_hank_1}
+  carousel_item_highlighted{carousel == "mission_select" and item == "bill_bulk_and_the_body_buddies"}:
+    mission_select_insert_pulse:
+      key: mission_select_mode_insert
+      loops: -1
+      priority: 310
+      show_tokens: {light: l_bill_1}
+  carousel_item_highlighted{carousel == "mission_select" and item == "patch_boomhauer"}:
+    mission_select_insert_pulse:
+      key: mission_select_mode_insert
+      loops: -1
+      priority: 310
+      show_tokens: {light: l_boom_2}
+  carousel_item_highlighted{carousel == "mission_select" and item == "dog_dale_afternoon"}:
+    mission_select_insert_pulse:
+      key: mission_select_mode_insert
+      loops: -1
+      priority: 310
+      show_tokens: {light: l_dale_1}
+  carousel_item_highlighted{carousel == "mission_select" and item == "duke_the_dolphin"}:
+    mission_select_insert_pulse:
+      key: mission_select_mode_insert
+      loops: -1
+      priority: 310
+      show_tokens: {light: l_hank_2}
+  carousel_item_highlighted{carousel == "mission_select" and item == "gladstone"}:
+    mission_select_insert_pulse:
+      key: mission_select_mode_insert
+      loops: -1
+      priority: 310
+      show_tokens: {light: l_dale_2}
+  carousel_item_highlighted{carousel == "mission_select" and item == "the_heat_waver"}:
+    mission_select_insert_pulse:
+      key: mission_select_mode_insert
+      loops: -1
+      priority: 310
+      show_tokens: {light: l_bill_2}
+  carousel_item_highlighted{carousel == "mission_select" and item == "boom_mini_wizard"}:
+    mission_select_insert_pulse:
+      key: mission_select_mode_insert
+      loops: -1
+      priority: 310
+      show_tokens: {light: l_boom_1}
+  mode_mission_select_stopping:
+    mission_select_mode_insert: stop
+
+
+event_player:
+  carousel_item_selected{carousel == "mission_select" and item == "beat_the_surfer"}:
+    - mission_select_beat_the_surfer_selected
+    - player_selected_mission
+  carousel_item_selected{carousel == "mission_select" and item == "beer_can_named_desire"}:
+    - mission_select_beer_can_named_desire_selected
+    - player_selected_mission
+  carousel_item_selected{carousel == "mission_select" and item == "bill_bulk_and_the_body_buddies"}:
+    - mission_select_bill_bulk_and_the_body_buddies_selected
+    - player_selected_mission
+  carousel_item_selected{carousel == "mission_select" and item == "patch_boomhauer"}:
+    - mission_select_patch_boomhauer_selected
+    - player_selected_mission
+  carousel_item_selected{carousel == "mission_select" and item == "dog_dale_afternoon"}:
+    - mission_select_dog_dale_afternoon_selected
+    - player_selected_mission
+  carousel_item_selected{carousel == "mission_select" and item == "duke_the_dolphin"}:
+    - mission_select_duke_the_dolphin_selected
+    - player_selected_mission
+  carousel_item_selected{carousel == "mission_select" and item == "gladstone"}:
+    - mission_select_gladstone_selected
+    - player_selected_mission
+  carousel_item_selected{carousel == "mission_select" and item == "the_heat_waver"}:
+    - mission_select_the_heat_waver_selected
+    - player_selected_mission
+  carousel_item_selected{carousel == "mission_select" and item == "bill_mini_wizard"}:
+    - mission_select_bill_mini_wizard_selected
+    - player_selected_mission
+  carousel_item_selected{carousel == "mission_select" and item == "hank_mini_wizard"}:
+    - mission_select_hank_mini_wizard_selected
+    - player_selected_mission
+  carousel_item_selected{carousel == "mission_select" and item == "dale_mini_wizard"}:
+    - mission_select_dale_mini_wizard_selected
+    - player_selected_mission
+  carousel_item_selected{carousel == "mission_select" and item == "boom_mini_wizard"}:
+    - mission_select_boom_mini_wizard_selected
+    - player_selected_mission
+  carousel_item_selected{carousel == "mission_select" and item == "wizard_mode"}:
+    - mission_select_wizard_mode_selected
+    - player_selected_mission
+  carousel_item_highlighted{carousel == "mission_select" and item == "beat_the_surfer"}: mission_select_beat_the_surfer_highlighted
+  carousel_item_highlighted{carousel == "mission_select" and item == "beer_can_named_desire"}: mission_select_beer_can_named_desire_highlighted
+  carousel_item_highlighted{carousel == "mission_select" and item == "bill_bulk_and_the_body_buddies"}: mission_select_bill_bulk_and_the_body_buddies_highlighted
+  carousel_item_highlighted{carousel == "mission_select" and item == "patch_boomhauer"}: mission_select_patch_boomhauer_highlighted
+  carousel_item_highlighted{carousel == "mission_select" and item == "dog_dale_afternoon"}: mission_select_dog_dale_afternoon_highlighted
+  carousel_item_highlighted{carousel == "mission_select" and item == "duke_the_dolphin"}: mission_select_duke_the_dolphin_highlighted
+  carousel_item_highlighted{carousel == "mission_select" and item == "gladstone"}: mission_select_gladstone_highlighted
+  carousel_item_highlighted{carousel == "mission_select" and item == "the_heat_waver"}: mission_select_the_heat_waver_highlighted
+
+
+
+variable_player:
+  mission_select_beat_the_surfer_selected:
+    selected_mission:
+      string: "beat the surfer"
+      action: set
+  mission_select_beer_can_named_desire_selected:
+    selected_mission:
+      string: "beer can named desire"
+      action: set
+  mission_select_bill_bulk_and_the_body_buddies_selected:
+    selected_mission:
+      string: "bill bulk and the body buddies"
+      action: set
+  mission_select_patch_boomhauer_selected:
+    selected_mission:
+      string: "patch boomhauer"
+      action: set
+  mission_select_dog_dale_afternoon_selected:
+    selected_mission:
+      string: "dog dale afternoon"
+      action: set
+  mission_select_duke_the_dolphin_selected:
+    selected_mission:
+      string: "duke the dolphin"
+      action: set
+  mission_select_gladstone_selected:
+    selected_mission:
+      string: "gladstone"
+      action: set
+  mission_select_the_heat_waver_selected:
+    selected_mission:
+      string: "the heat waver"
+      action: set  
+  mission_select_beat_the_surfer_highlighted:
+    highlighted_mission:
+      string: "beat the surfer"
+      action: set
+  mission_select_beer_can_named_desire_highlighted:
+    highlighted_mission:
+      string: "beer can named desire"
+      action: set
+  mission_select_bill_bulk_and_the_body_buddies_highlighted:
+    highlighted_mission:
+      string: "bill bulk and the body buddies"
+      action: set
+  mission_select_patch_boomhauer_highlighted:
+    highlighted_mission:
+      string: "patch_boomhauer"
+      action: set
+  mission_select_dog_dale_afternoon_highlighted:
+    highlighted_mission:
+      string: "dog dale afternoon"
+      action: set
+  mission_select_duke_the_dolphin_highlighted:
+    highlighted_mission:
+      string: "duke the dolphin"
+      action: set
+  mission_select_gladstone_highlighted:
+    highlighted_mission:
+      string: "gladstone"
+      action: set
+  mission_select_the_heat_waver_highlighted:
+    highlighted_mission:
+      string: "the heat waver"
+      action: set
+  mission_select_bill_mini_wizard_selected:
+    selected_mission:
+      string: "bill_mini_wizard"
+      action: set
+  mission_select_hank_mini_wizard_selected:
+    selected_mission:
+      string: "hank_mini_wizard"
+      action: set
+  mission_select_boom_mini_wizard_selected:
+    selected_mission:
+      string: "boom_mini_wizard"
+      action: set
+  mission_select_dale_mini_wizard_selected:
+    selected_mission:
+      string: "dale_mini_wizard"
+      action: set
+ 

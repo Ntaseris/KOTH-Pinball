@@ -1,0 +1,31 @@
+; Copyright (C) 2026 One More Game - All Rights Reserved
+; Unauthorized copying of this file, via any medium is strictly prohibited
+; Proprietary and confidential
+
+[gd_scene load_steps=3 format=3]
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_widget"]
+[ext_resource type="FontFile" path="res://fonts/King Of The Hill 2.ttf" id="2_font"]
+[node name="ApologyReady" type="Control"]
+offset_right = 1368.0
+offset_bottom = 768.0
+mouse_filter = 2
+script = ExtResource("1_widget")
+[node name="Panel" type="ColorRect" parent="."]
+offset_left = 80.0
+offset_top = 565.0
+offset_right = 1288.0
+offset_bottom = 730.0
+color = Color(0.04, 0.05, 0.02, 0.8)
+[node name="Instruction" type="Label" parent="."]
+offset_left = 90.0
+offset_top = 575.0
+offset_right = 1278.0
+offset_bottom = 715.0
+theme_override_colors/font_color = Color(1, 0.8, 0.24, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.02, 0, 1)
+theme_override_constants/outline_size = 11
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 66
+text = "SHOOT SCOOP TO APOLOGIZE"
+horizontal_alignment = 1
+vertical_alignment = 1

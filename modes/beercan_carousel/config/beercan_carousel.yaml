@@ -1,0 +1,76 @@
+#config_version=6
+
+mode:
+  start_events: slide_beer_can_named_desire_rules_removed{current_player.any_mb_active == 0}
+  stop_events: beercan_carousel_hank_hill_selected, beercan_carousel_dandy_don_selected, mode_beer_can_named_desire_started, mode_beer_can_named_desire_stopped
+  game_mode: true
+  code: mpf.modes.carousel.code.carousel.Carousel
+  priority: 300
+
+mode_settings:
+  selectable_items: 
+    - hank_hill
+    - dandy_don
+  
+  select_item_events: flipper_cancel
+  next_item_events: s_right_flipper_active
+  previous_item_events: s_left_flipper_active
+
+
+#slide_player:
+  #mode_beercan_carousel_started: 
+    #beer_can_named_desire_rules:
+      #expire: 3s
+  #slide_beer_can_named_desire_rules_removed: make_your_choice
+
+show_player:
+  mode_mission_select_started: mission_select_light_off
+
+event_player:
+  carousel_item_selected{carousel == "beercan_carousel" and item == "hank_hill"}: beercan_carousel_hank_hill_selected
+  carousel_item_selected{carousel == "beercan_carousel" and item == "dandy_don"}: beercan_carousel_dandy_don_selected
+
+widget_player:
+  carousel_item_highlighted{carousel == "beercan_carousel" and item == "dandy_don"}: don_choice
+  carousel_item_highlighted{carousel == "beercan_carousel" and item != "dandy_don"}:
+    don_choice:
+      action: remove
+  carousel_item_highlighted{carousel == "beercan_carousel" and item == "hank_hill"}: hank_choice
+  carousel_item_highlighted{carousel == "beercan_carousel" and item != "hank_hill"}:
+    hank_choice:
+      action: remove
+  mode_beercan_carousel_stopped:
+    don_choice:
+      action: remove
+    hank_choice:
+      action: remove
+  mode_beer_can_named_desire_started:
+    don_choice:
+      action: remove
+    hank_choice:
+      action: remove
+  mode_beer_can_named_desire_stopped:
+    don_choice:
+      action: remove
+    hank_choice:
+      action: remove
+  
+  
+
+
+variable_player:
+  beercan_carousel_dandy_don_selected: 
+    score: 3_000_000 * current_player.pf_multiplier
+    beer_can_dandy_total:
+      action: set
+      int: 3_000_000 * current_player.pf_multiplier
+    modes: 1
+
+sound_player:
+  beercan_carousel_dandy_don_selected:
+    award_chime:
+      bus: effects
+      volume: 0.4
+    opening_beer:
+      bus: effects
+      volume: 0.35

@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://c35jgk3mxt7yf"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_lnc63"]
+[ext_resource type="Texture2D" uid="uid://xaycs6e4qas6" path="res://images/beat_the_surfer_mode_total.jpeg" id="2_o6g3e"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_56bji"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="4_qfpfm"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_lnc63")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(679.428, 389.916)
+scale = Vector2(1.00816, 0.753334)
+texture = ExtResource("2_o6g3e")
+
+[node name="MPFVariable" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_56bji")
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 776.0
+theme_override_font_sizes/font_size = 80
+text = "12345"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_qfpfm")
+variable_name = "beat_the_surfer_total"
+comma_separate = true
+min_digits = 1
+
+[node name="Label" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_56bji")
+layout_mode = 0
+offset_top = 8.0
+offset_right = 1368.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 120
+text = "mode total"
+horizontal_alignment = 1
+vertical_alignment = 1

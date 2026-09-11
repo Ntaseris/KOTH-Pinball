@@ -1,0 +1,196 @@
+#config_version=6
+
+mode:
+  start_events: ball_will_start
+  stop_events: stop_mode_skillshot, stop_mode_super_skill_shot
+  priority: 250
+
+slide_player:
+  play_arlen_intro: arlen_intro
+  timer_arlen_intro_timer_complete:
+    arlen_intro: 
+      action: remove
+    skillshot:
+      action: play
+  mode_skillshot_started: 
+    skillshot:
+      action: play
+
+
+
+sound_player:
+  play_arlen_intro:
+    hank_propane_honor_and_dignity:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  player_added{num==2}:
+    bobby_intro:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  player_added{num==3}:
+    peggy_intro:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  player_added{num==4}:
+    dale_intro:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+show_player:
+  mode_skillshot_started:
+    skillshot_ready:
+      key: skillshot_ready
+      loops: -1
+      priority: 255
+  skillshot_launch_committed:
+    skillshot_ready: stop
+    skillshot_launch:
+      loops: 1
+      priority: 330
+  skillshot_lit_hit:
+    skillshot_ready: stop
+    skillshot_success:
+      loops: 1
+      priority: 370
+  skillshot_off_hit:
+    skillshot_ready: stop
+    skillshot_miss:
+      loops: 1
+      priority: 360
+  mode_skillshot_stopping:
+    skillshot_ready: stop
+
+  
+
+
+
+event_player:
+  mode_skillshot_started:
+    - reset_skillshot
+    - advance_skillshot_1|100ms
+  timer_skillshot_rotate_stopped:
+    # Whichever skillshot is on when rotation stops, advance to lit (flashing)
+    - advance_skillshot_1{device.shots.skillshot_p_target.state==1}
+    - advance_skillshot_2{device.shots.skillshot_r_target.state==1}
+    - advance_skillshot_3{device.shots.skillshot_o_target.state==1}
+    - advance_skillshot_4{device.shots.skillshot_p2_target.state==1}
+    - advance_skillshot_5{device.shots.skillshot_a_target.state==1}
+    - advance_skillshot_6{device.shots.skillshot_n_target.state==1}
+    - advance_skillshot_7{device.shots.skillshot_e_target.state==1}
+  skillshot_hit: stop_mode_skillshot
+  timer_skillshot_window_complete: stop_mode_skillshot
+
+
+counters:
+  skillshot_launch_once:
+    count_events:
+      - s_plunger_lane_exit_inactive
+      - balldevice_bd_plunger_ball_eject_success
+    count_complete_value: 1
+    events_when_complete: skillshot_launch_committed
+    disable_on_complete: true
+    reset_events: mode_skillshot_started
+
+
+shot_groups:
+  skillshot:
+    shots:
+      - skillshot_p_target
+      - skillshot_r_target
+      - skillshot_o_target
+      - skillshot_p2_target
+      - skillshot_a_target
+      - skillshot_n_target
+      - skillshot_e_target
+    rotate_events: timer_skillshot_rotate_tick
+
+shots:
+  skillshot_p_target:
+    switch: s_p_target
+    advance_events: advance_skillshot_1
+    reset_events: reset_skillshot
+    profile: skillshot_profile
+    show_tokens:
+      light: l_p_target
+  skillshot_r_target:
+    switch: s_r_target
+    advance_events: advance_skillshot_2
+    reset_events: reset_skillshot
+    profile: skillshot_profile
+    show_tokens:
+      light: l_r_target
+  skillshot_o_target:
+    switch: s_o_target
+    advance_events: advance_skillshot_3
+    reset_events: reset_skillshot
+    profile: skillshot_profile
+    show_tokens:
+      light: l_o_target
+  skillshot_p2_target:
+    switch: s_p2_target
+    advance_events: advance_skillshot_4
+    reset_events: reset_skillshot
+    profile: skillshot_profile
+    show_tokens:
+      light: l_p2_target
+  skillshot_a_target:
+    switch: s_a_target
+    advance_events: advance_skillshot_5
+    reset_events: reset_skillshot
+    profile: skillshot_profile
+    show_tokens:
+      light: l_a_target
+  skillshot_n_target:
+    switch: s_n_target
+    advance_events: advance_skillshot_6
+    reset_events: reset_skillshot
+    profile: skillshot_profile
+    show_tokens:
+      light: l_n_target
+  skillshot_e_target:
+    switch: s_e_target
+    advance_events: advance_skillshot_7
+    reset_events: reset_skillshot
+    profile: skillshot_profile
+    show_tokens:
+      light: l_e_target
+
+shot_profiles:
+  skillshot_profile:
+    advance_on_hit: false
+    states:
+      - name: off
+        show: off
+      - name: on
+        show: on
+      - name: lit
+        show: flash
+
+timers:
+  skillshot_rotate:
+    tick_interval: 1000ms
+    start_running: true
+    control_events:
+      - event: skillshot_launch_committed
+        action: stop
+  skillshot_window:
+    start_value: 12
+    end_value: 0
+    direction: down
+    start_running: false
+    control_events:
+      - event: skillshot_launch_committed
+        action: restart
+  arlen_intro_timer:
+    start_value: 16
+    control_events:
+      - action: start
+        event: play_arlen_intro
+    direction: down
+    start_running: false
+    bcp: true
+
+
+variable_player:
+  skillshot_lit_hit:
+    score: 1_000_000 * current_player.pf_multiplier

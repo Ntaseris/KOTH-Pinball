@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc4p5uh7giykv"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_q3wb4"]
+[ext_resource type="VideoStream" uid="uid://ca2glng5qi0f5" path="res://images/lock_is_lit.ogv" id="2_v7v0i"]
+[ext_resource type="Script" uid="uid://cff0owk0jvkka" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_dsib4"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="4_75v0m"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_q3wb4")
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("2_v7v0i")
+autoplay = true
+script = ExtResource("3_dsib4")
+
+[node name="Label" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("4_75v0m")
+layout_mode = 0
+offset_top = 128.0
+offset_right = 1368.0
+offset_bottom = 464.0
+theme_override_font_sizes/font_size = 120
+text = "lock is lit"
+horizontal_alignment = 1

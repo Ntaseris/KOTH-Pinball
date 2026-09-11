@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://33kk4n627ru7"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_arndt"]
+[ext_resource type="Texture2D" uid="uid://dja4sao2fpbow" path="res://images/attract_still.jpeg" id="2_c8gh3"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_arndt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(688, 384)
+scale = Vector2(1.35871, 1)
+texture = ExtResource("2_c8gh3")

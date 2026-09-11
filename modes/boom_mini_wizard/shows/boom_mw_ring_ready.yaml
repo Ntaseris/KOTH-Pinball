@@ -1,0 +1,14 @@
+#show_version=6
+
+- duration: 180ms
+  lights:
+    l_scoop: FF3B9D
+    l_boom_1: FFC83D
+    l_boom_2: FFC83D
+    l_boom_3: FFC83D
+- duration: 180ms
+  lights:
+    l_scoop: white
+    l_boom_1: white
+    l_boom_2: white
+    l_boom_3: white

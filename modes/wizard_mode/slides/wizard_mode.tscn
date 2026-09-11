@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://dkeh1kyt7h2wr"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_d0g46"]
+[ext_resource type="Script" uid="uid://cff0owk0jvkka" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="2_0oo8s"]
+[ext_resource type="VideoStream" uid="uid://cexmcw1185qh2" path="res://images/theme_song_intro.ogv" id="2_qmoe4"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_v7c7d"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="4_j2jkk"]
+[ext_resource type="Theme" uid="uid://b4fbuks3kqs3a" path="res://body_md.tres" id="5_ktveq"]
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="6_5pqpc"]
+[ext_resource type="Texture2D" uid="uid://cb3dwbxbpi8ya" path="res://images/alamo beer can.png" id="7_08ohb"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_d0g46")
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+stream = ExtResource("2_qmoe4")
+autoplay = true
+loop = true
+script = ExtResource("2_0oo8s")
+
+[node name="Sprite2D" type="Sprite2D" parent="MPFVideoPlayer"]
+position = Vector2(720, 480)
+scale = Vector2(1.1375, 1.07018)
+
+[node name="score" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_v7c7d")
+layout_mode = 0
+offset_top = 256.0
+offset_right = 1360.0
+offset_bottom = 384.0
+theme_override_font_sizes/font_size = 114
+text = "1,000,000"
+horizontal_alignment = 1
+script = ExtResource("4_j2jkk")
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="timer" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_v7c7d")
+layout_mode = 0
+offset_left = 720.0
+offset_top = 8.0
+offset_right = 800.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 50
+text = "45"
+horizontal_alignment = 1
+script = ExtResource("4_j2jkk")
+variable_type = 1
+variable_name = "ticks_remaining"
+initialize_empty = false
+update_event = "timer_wizard_mode_countdown_tick"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 36.0
+
+[node name="player" type="Label" parent="HBoxContainer"]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_v7c7d")
+layout_mode = 2
+theme = ExtResource("5_ktveq")
+theme_override_font_sizes/font_size = 26
+text = "Player 1"
+script = ExtResource("4_j2jkk")
+variable_name = "number"
+template_string = "player %s  "
+min_players = 2
+max_players = 4
+
+[node name="ball" type="Label" parent="HBoxContainer"]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_v7c7d")
+layout_mode = 2
+theme = ExtResource("5_ktveq")
+theme_override_font_sizes/font_size = 24
+text = "Ball 1"
+script = ExtResource("4_j2jkk")
+variable_name = "ball"
+template_string = "ball %s"

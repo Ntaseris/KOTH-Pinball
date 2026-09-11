@@ -1,0 +1,13 @@
+#show_version=6
+- duration: 0.1
+  lights:
+    l_luanne: white
+- duration: 0.2
+  lights:
+    l_luanne: off
+- duration: 0.2
+  lights:
+    l_luanne: white
+- duration: 0.5
+  lights:
+    l_luanne: off

@@ -1,0 +1,8 @@
+#show_version=6
+
+- duration: 0.55s
+  lights:
+    (light): white
+- duration: 0.55s
+  lights:
+    (light): 262626

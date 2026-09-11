@@ -1,0 +1,11 @@
+#show_version=6
+
+- time: 0
+  lights:
+    l_left_orbit: B80000
+- time: .5s
+  lights:
+    l_left_orbit: 320000
+- time: 1s
+  lights:
+    l_left_orbit: B80000

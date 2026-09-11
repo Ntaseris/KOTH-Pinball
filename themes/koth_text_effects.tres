@@ -1,0 +1,22 @@
+[gd_resource type="Theme" format=3]
+
+[resource]
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 6
+Label/constants/shadow_offset_x = -8
+Label/constants/shadow_offset_y = 8
+Label/constants/shadow_outline_size = 4
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/outline_size = 6
+RichTextLabel/constants/shadow_offset_x = -8
+RichTextLabel/constants/shadow_offset_y = 8
+RichTextLabel/constants/shadow_outline_size = 4
+KothSmallText/base_type = &"Label"
+KothSmallText/colors/font_outline_color = Color(0, 0, 0, 1)
+KothSmallText/colors/font_shadow_color = Color(0, 0, 0, 1)
+KothSmallText/constants/outline_size = 3
+KothSmallText/constants/shadow_offset_x = -3
+KothSmallText/constants/shadow_offset_y = 3
+KothSmallText/constants/shadow_outline_size = 2

@@ -1,0 +1,110 @@
+; Copyright (C) 2026 One More Game - All Rights Reserved
+; Unauthorized copying of this file, via any medium is strictly prohibited
+; Proprietary and confidential
+
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_widget"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="2_font"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="3_variable"]
+
+[node name="super_spinners_status" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+mouse_filter = 2
+script = ExtResource("1_widget")
+
+[node name="Title" type="Label" parent="."]
+offset_left = 274.0
+offset_top = 140.0
+offset_right = 1094.0
+offset_bottom = 208.0
+theme_override_colors/font_color = Color(0.15, 0.95, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 48
+text = "SUPER SPINNERS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Objective" type="Label" parent="."]
+offset_left = 214.0
+offset_top = 198.0
+offset_right = 1154.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(1, 0.35, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 32
+text = "ALTERNATE LEFT AND CENTER FOR CROSS BONUSES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spins" type="Label" parent="."]
+offset_left = 120.0
+offset_top = 258.0
+offset_right = 430.0
+offset_bottom = 326.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 36
+text = "SPINS 0"
+horizontal_alignment = 1
+script = ExtResource("3_variable")
+variable_name = "super_spinner_spins"
+template_string = "SPINS %s"
+
+[node name="Value" type="Label" parent="."]
+offset_left = 430.0
+offset_top = 258.0
+offset_right = 938.0
+offset_bottom = 326.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 36
+text = "VALUE 25,000"
+horizontal_alignment = 1
+script = ExtResource("3_variable")
+variable_name = "super_spinner_value"
+comma_separate = true
+template_string = "VALUE %s"
+
+[node name="Time" type="Label" parent="."]
+offset_left = 938.0
+offset_top = 258.0
+offset_right = 1248.0
+offset_bottom = 326.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 36
+text = "TIME 30"
+horizontal_alignment = 1
+script = ExtResource("3_variable")
+variable_type = 1
+variable_name = "ticks_remaining"
+update_event = "timer_super_spinners_mode_countdown_tick"
+template_string = "TIME %s"
+
+[node name="Total" type="Label" parent="."]
+offset_left = 370.0
+offset_top = 326.0
+offset_right = 998.0
+offset_bottom = 380.0
+theme_override_colors/font_color = Color(1, 0.82, 0.18, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 34
+text = "TOTAL 0"
+horizontal_alignment = 1
+script = ExtResource("3_variable")
+variable_name = "super_spinners_total"
+comma_separate = true
+template_string = "TOTAL %s"

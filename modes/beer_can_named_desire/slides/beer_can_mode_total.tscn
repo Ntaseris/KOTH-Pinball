@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cctl08ni2li7"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_2s1k4"]
+[ext_resource type="Texture2D" uid="uid://okr80aajx6fq" path="res://images/beer_can_mode_total.jpeg" id="2_wkww7"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_fbd4m"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="4_rpwgn"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_2s1k4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(680, 384)
+scale = Vector2(1.33529, 1)
+texture = ExtResource("2_wkww7")
+
+[node name="MPFVariable" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_fbd4m")
+offset_right = 1368.0
+offset_bottom = 776.0
+theme_override_font_sizes/font_size = 80
+text = "12345"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_rpwgn")
+variable_name = "beer_can_named_desire_total"
+comma_separate = true
+min_digits = 1
+
+[node name="Label" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_fbd4m")
+offset_left = -8.0
+offset_top = 104.0
+offset_right = 1360.0
+offset_bottom = 416.0
+theme_override_font_sizes/font_size = 120
+text = "mode total"
+horizontal_alignment = 1
+vertical_alignment = 1

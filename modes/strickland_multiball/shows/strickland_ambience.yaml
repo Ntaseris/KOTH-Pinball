@@ -1,0 +1,53 @@
+#show_version=6
+# Copyright (C) 2026 One More Game - All Rights Reserved
+# Unauthorized copying of this file, via any medium is strictly prohibited
+# Proprietary and confidential
+
+- duration: 210ms
+  lights:
+    l_gi1: 300606
+    l_gi2: "061030"
+    l_gi3: 180303
+    l_gi4: "030818"
+    l_gi5: 240404
+    l_gi6: "041024"
+    l_gi7: "041024"
+    l_gi8: "041024"
+    l_p_target: 380808
+    l_r_target: 101840
+    l_o_target: 240404
+    l_hank_1: 380808
+    l_hank_2: "081438"
+    l_hank_3: 180303
+- duration: 210ms
+  lights:
+    l_gi1: "041024"
+    l_gi2: 300606
+    l_gi3: "061030"
+    l_gi4: 180303
+    l_gi5: "030818"
+    l_gi6: 240404
+    l_gi7: 240404
+    l_gi8: 240404
+    l_p_target: 101840
+    l_r_target: 380808
+    l_o_target: "061030"
+    l_hank_1: "081438"
+    l_hank_2: 180303
+    l_hank_3: 380808
+- duration: 210ms
+  lights:
+    l_gi1: 240404
+    l_gi2: "041024"
+    l_gi3: 300606
+    l_gi4: "061030"
+    l_gi5: 180303
+    l_gi6: "030818"
+    l_gi7: "030818"
+    l_gi8: "030818"
+    l_p_target: 240404
+    l_r_target: "061030"
+    l_o_target: 380808
+    l_hank_1: 180303
+    l_hank_2: 380808
+    l_hank_3: "081438"

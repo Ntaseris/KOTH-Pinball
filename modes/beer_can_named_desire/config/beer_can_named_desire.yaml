@@ -1,0 +1,112 @@
+#config_version=6
+
+mode:
+  start_events: beercan_carousel_hank_hill_selected{current_player.any_mb_active == 0}
+  stop_events: ball_ended, timer_beer_can_named_desire_mode_countdown_complete, ball_drain, beercan_carousel_dandy_don_selected, shot_beercan_right_ramp_hit
+  priority: 130
+
+
+slide_player:
+  mode_beer_can_named_desire_started:
+    beer_can_hank_ready:
+      expire: 2.4s
+  slide_beer_can_hank_ready_inactive: beer_can_named_desire
+  mode_beer_can_named_desire_stopped:
+    beer_can_hank_ready:
+      action: remove
+    beer_can_named_desire:
+      action: remove
+  mode_beer_can_named_desire_will_stop:
+    beer_can_named_desire:
+      action: remove
+  timer_beer_can_named_desire_mode_countdown_complete:
+    beer_can_named_desire:
+      action: remove
+  shot_beercan_right_ramp_hit:
+    beer_can_named_desire:
+      action: remove
+
+sound_player:
+  mode_beer_can_named_desire_started:
+    hank_intro:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  beer_can_hank_go:
+    don_ten_yards_one_shot:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  shot_beercan_right_ramp_hit:
+    hank_my_aim_is_deadly:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  timer_beer_can_named_desire_mode_countdown_complete:
+    hank_youre_a_loser:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+show_player:
+  beer_can_hank_go:
+    flash_color:
+      key: beer_can_hank_right_ramp
+      speed: 5
+      show_tokens:
+        lights: l_right_ramp
+        color: yellow
+  shot_beercan_right_ramp_hit:
+    beer_can_hank_right_ramp:
+      action: stop
+  timer_beer_can_named_desire_mode_countdown_complete:
+    beer_can_hank_right_ramp:
+      action: stop
+  mode_beer_can_named_desire_stopped:
+    beer_can_hank_right_ramp:
+      action: stop
+
+
+timers:
+  beer_can_named_desire_mode_countdown:
+    start_value: 10
+    end_value: 0
+    direction: down
+    start_running: false
+    control_events:
+      - event: beer_can_hank_go
+        action: start
+    bcp: true
+
+shots:
+  shot_beercan_right_ramp:
+    switch: s_right_ramp_exit
+    hit_events: pocket_sand_hit_beercan_right_ramp
+    start_enabled: false
+    enable_events: beer_can_hank_go
+    disable_events: shot_beercan_right_ramp_hit, timer_beer_can_named_desire_mode_countdown_complete
+
+variable_player:
+  mode_beer_can_named_desire_started:
+    modes: 1
+    beer_can_hank_value:
+      int: 10000000
+      action: set
+    beer_can_named_desire_completed:
+      int: 0
+      action: set
+  timer_beer_can_named_desire_mode_countdown_tick{ticks > 0 and ticks < 10}:
+    beer_can_hank_value: -500000
+  shot_beercan_right_ramp_hit: 
+    score: current_player.beer_can_hank_value * current_player.pf_multiplier
+    beer_can_named_desire_completed:
+      int: 1
+      action: set
+  player_score{source=="beer_can_named_desire"}:
+    beer_can_named_desire_total: change
+
+
+event_player:
+  mode_beer_can_named_desire_started:
+    - stop_mode_beercan_carousel
+  slide_beer_can_hank_ready_inactive:
+    - beer_can_hank_go
+  pocket_sand_mode_spot_attempt{device.shots.shot_beercan_right_ramp.enabled == True}:
+    - pocket_sand_hit_beercan_right_ramp
+    - pocket_sand_spotted

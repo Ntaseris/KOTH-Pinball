@@ -1,0 +1,97 @@
+#config_version=6
+
+mode:
+  start_events: start_mode_sequential_drops
+  stop_events: stop_mode_sequential_drops
+  priority: 200
+
+shots:
+  # Bottom inline drop: always first in the sequence
+  drop_1:
+    switch: s_bottom_inline_drop
+    profile: drop_sequence
+    # advance once to light it, and again when it's hit while lit to mark it down
+    advance_events: advance_drop_1, drop_1_lit_hit
+    # if the bank is reset, this shot goes back to "off"
+    reset_events: reset_inline_drop_bank
+    
+
+  # Middle inline drop: second in the sequence
+  drop_2:
+    switch: s_middle_inline_drop
+    profile: drop_sequence
+    # when 1 is hit lit, light 2; when 2 is hit lit, drop it down
+    advance_events: drop_1_lit_hit, drop_2_lit_hit
+    reset_events: reset_inline_drop_bank
+   
+
+  # Top inline drop: third in the sequence
+  drop_3:
+    switch: s_top_inline_drop
+    profile: drop_sequence
+    # when 2 is hit lit, light 3; when 3 is hit lit, drop it down
+    advance_events: drop_2_lit_hit, drop_3_lit_hit
+    reset_events: reset_inline_drop_bank
+   
+
+shot_profiles:
+  drop_sequence:
+    advance_on_hit: false
+    states:
+      - name: off
+        show: off
+      - name: lit
+        show: flash
+      - name: down
+        show: on
+
+sequences:
+  # Tracks a clean 1 -> 2 -> 3 lit-hit sequence
+  drop_sequence:
+    restart_events: reset_drop_sequence
+    events:
+      - drop_1_lit_hit
+      - drop_2_lit_hit
+      - drop_3_lit_hit
+    events_when_complete: strickland_drops_complete
+
+  
+
+shot_groups:
+  # Disable all three drops while Rainey multiball is running
+  strickland_drops:
+    shots: drop_1, drop_2, drop_3
+    disable_events: multiball_rainey_multiball_started
+    enable_events: multiball_rainey_multiball_ended
+
+event_player:
+  # When the mode starts: stand the bank up and light drop 1
+  mode_sequential_drops_started:
+    - reset_inline_drop_bank
+    - reset_drop_sequence
+  ball_will_end:
+    - reset_inline_drop_bank
+    - reset_drop_sequence
+
+  # Start or restart the sequence by advancing drop_1 from off -> lit
+  reset_drop_sequence: advance_drop_1
+
+  # WRONG-ORDER hits: only drop_2 and drop_3 matter, since 1 is always first
+  drop_2_off_hit:
+    - reset_inline_drop_bank
+    - reset_drop_sequence
+  drop_3_off_hit:
+    - reset_inline_drop_bank
+    - reset_drop_sequence
+
+  # The right-ramp standup is the single deliberate risk shot for progress.
+  s_right_ramp_standup_active:
+    - reset_inline_drop_bank
+    - reset_drop_sequence
+  
+
+variable_player:
+  logicblock_drop_sequence_hit:
+    score: 1000
+  logicblock_drop_sequence_complete:
+    score: 50_000

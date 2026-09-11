@@ -1,0 +1,626 @@
+#config_version=6
+
+mode:
+  start_events: ball_starting
+  stop_events: multiball_grill_mb_ended
+  priority: 250
+
+multiballs:
+  grill_mb:
+    ball_count: 3
+    ball_count_type: total
+    shoot_again: 15s
+    ball_locks: bd_grill_lock
+    start_events: grill_mb_multiball_launch
+
+multiball_locks:
+  grill_lock:
+    balls_to_lock: 3
+    balls_to_replace: 2
+    lock_devices: bd_grill_lock
+    locked_ball_counting_strategy: virtual_only
+    enable_events:
+      - logicblock_grill_mb_counter_complete
+      - grill_replacement_ball_launched
+      - multiball_rainey_multiball_ended
+      - multiball_strickland_multiball_ended
+    disable_events:
+      - multiball_lock_grill_lock_locked_ball
+      - multiball_grill_mb_started
+      - multiball_rainey_multiball_started
+      - multiball_strickland_multiball_started
+    reset_count_for_current_player_events:
+      - multiball_grill_mb_started
+      - multiball_rainey_multiball_started
+      - multiball_strickland_multiball_started
+      - ball_will_end
+    empty_lock_devices_on_ball_end: false
+
+shots:
+  grill_order_left_orbit:
+    switch: s_left_orbit_enter
+    enable_events: multiball_grill_mb_started, grill_reset_cycle
+    disable_events: grill_order_left_orbit_hit, multiball_grill_mb_ended
+
+  grill_order_left_ramp:
+    switch: s_left_ramp_exit
+    enable_events: multiball_grill_mb_started, grill_reset_cycle
+    disable_events: grill_order_left_ramp_hit, multiball_grill_mb_ended
+
+  grill_order_right_orbit:
+    switch: s_right_orbit_exit
+    enable_events: multiball_grill_mb_started, grill_reset_cycle
+    disable_events: grill_order_right_orbit_hit, multiball_grill_mb_ended
+
+shot_groups:
+  grill_order_shots:
+    shots: grill_order_left_orbit, grill_order_left_ramp, grill_order_right_orbit
+
+counters:
+  grill_mb_counter:
+    enable_events: mode_grill_mb_started, multiball_rainey_multiball_ended, multiball_strickland_multiball_ended
+    disable_events: multiball_grill_mb_started, multiball_rainey_multiball_started, multiball_strickland_multiball_started
+    count_events:
+      - s_center_spinner_active
+      - s_left_spinner_active
+    count_complete_value: 5
+    persist_state: true
+    reset_events:
+      - multiball_grill_mb_started
+
+  grill_order_counter:
+    count_events: grill_order_shots_hit
+    count_complete_value: 3
+    enable_events: multiball_grill_mb_started, grill_reset_cycle
+    disable_events: logicblock_grill_order_counter_complete, multiball_grill_mb_ended
+    reset_events: multiball_grill_mb_started, grill_reset_cycle
+    persist_state: false
+
+slide_player:
+  multiball_lock_grill_lock_full:
+    grill_mb_rules:
+      expire: 3.2s
+      priority: 1100
+
+  multiball_grill_mb_started:
+    grill_grilloff_intro:
+      expire: 8.8s
+      priority: 1200
+  slide_grill_grilloff_intro_inactive{current_player.grill_mb_active == 1}:
+    grill_mb:
+      priority: 500
+  grill_jackpot_collected:
+    grill_propane_protest:
+      expire: 12.1s
+      priority: 1300
+  slide_grill_propane_protest_inactive{current_player.grill_mb_active == 1}:
+    grill_mb:
+      priority: 500
+  ball_will_end:
+    grill_mb:
+      action: remove
+
+widget_player:
+  multiball_lock_grill_lock_locked_ball{total_balls_locked == 1}:
+    grill_lock_1:
+      slide: base
+      expire: 3.2s
+      priority: 1200
+  multiball_lock_grill_lock_locked_ball{total_balls_locked == 2}:
+    grill_lock_2:
+      slide: base
+      expire: 3s
+      priority: 1200
+
+sound_player:
+  grill_order_shots_hit:
+    target_tick_2:
+      bus: effects
+      volume: 0.22
+  grill_jackpot_collected:
+    jackpot_hit:
+      bus: effects
+      volume: 0.65
+  multiball_lock_grill_lock_locked_ball{total_balls_locked == 1}:
+    luanne_propane_better_than_charcoal:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  multiball_lock_grill_lock_locked_ball{total_balls_locked == 2}:
+    hank_propane_push_back:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  logicblock_grill_order_counter_complete:
+    luanne_grill_with_propane:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  multiball_grill_mb_started:
+    koth_theme:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.28
+      fade_in: 500ms
+  multiball_grill_mb_ended:
+    koth_theme:
+      action: stop
+      bus: music
+      fade_out: 500ms
+    hank_somethings_gotta_give:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+show_player:
+  logicblock_grill_mb_counter_complete:
+    grill_qualified:
+      loops: 1
+      priority: 335
+
+  grill_lock_confirmed:
+    grill_lock_burst:
+      loops: 2
+      priority: 345
+
+  multiball_grill_mb_started:
+    "off":
+      key: grill_other_multiball_suppression
+      priority: 260
+      show_tokens:
+        lights: l_lock_lit, l_strickland_multiball
+    grill_flicker:
+      action: stop
+    grill_flicker2:
+      action: stop
+    grill_flicker3:
+      action: stop
+    grill_multiball_start:
+      loops: 2
+      priority: 360
+    grill_ambience:
+      key: grill_ambience
+      loops: -1
+      priority: 255
+    grill_order_left_orbit_cue:
+      show: flash_color
+      key: grill_order_left_orbit
+      speed: 1.5
+      show_tokens:
+        lights: l_left_orbit
+        color: orange
+    grill_order_left_ramp_cue:
+      show: flash_color
+      key: grill_order_left_ramp
+      speed: 1.5
+      show_tokens:
+        lights: l_left_ramp
+        color: orange
+    grill_order_right_orbit_cue:
+      show: flash_color
+      key: grill_order_right_orbit
+      speed: 1.5
+      show_tokens:
+        lights: l_right_orbit
+        color: orange
+
+  ball_save_grill_mb_timer_start:
+    flash_color:
+      key: ball_save
+      loops: -1
+      speed: 7
+      priority: 500
+      show_tokens:
+        lights: l_ball_save
+        color: cyan
+
+  multiball_grill_mb_shoot_again_ended:
+    ball_save:
+      action: stop
+
+  multiball_grill_mb_shoot_again:
+    flash_color:
+      key: grill_ball_save_burst
+      loops: 3
+      speed: 7
+      priority: 800
+      show_tokens:
+        lights: "l_ball_save, l_gi1, l_gi2, l_gi3, l_gi4, l_gi5, l_gi6, l_gi7, l_gi8"
+        color: white
+
+  multiball_lock_grill_lock_locked_ball{total_balls_locked == 1}:
+    grill_flicker3:
+      loops: -1
+      speed: 1
+
+  multiball_lock_grill_lock_locked_ball{total_balls_locked == 2}:
+    grill_flicker2:
+      loops: -1
+      speed: 1
+
+  multiball_lock_grill_lock_full:
+    grill_flicker:
+      loops: -1
+      speed: 1
+
+  grill_order_left_orbit_hit:
+    grill_order_left_orbit:
+      action: stop
+
+  grill_order_left_ramp_hit:
+    grill_order_left_ramp:
+      action: stop
+
+  grill_order_right_orbit_hit:
+    grill_order_right_orbit:
+      action: stop
+
+  grill_order_shots_hit:
+    grill_order_hit:
+      loops: 2
+      priority: 330
+
+  grill_heat_hit:
+    grill_heat_pulse:
+      loops: 1
+      priority: 315
+
+  logicblock_grill_order_counter_hit{count == 1 and current_player.grill_heat < 10}:
+    grill_flame_section_1_dim:
+      key: grill_flame_section_1
+      loops: -1
+
+  logicblock_grill_order_counter_hit{count == 2 and current_player.grill_heat < 10}:
+    grill_flame_section_2_dim:
+      key: grill_flame_section_2
+      loops: -1
+
+  logicblock_grill_order_counter_hit{count == 3 and current_player.grill_heat < 10}:
+    grill_flame_section_3_dim:
+      key: grill_flame_section_3
+      loops: -1
+
+  logicblock_grill_order_counter_hit{count == 1 and current_player.grill_heat >= 10 and current_player.grill_heat < 20}:
+    grill_flame_section_1_medium:
+      key: grill_flame_section_1
+      loops: -1
+
+  logicblock_grill_order_counter_hit{count == 2 and current_player.grill_heat >= 10 and current_player.grill_heat < 20}:
+    grill_flame_section_2_medium:
+      key: grill_flame_section_2
+      loops: -1
+
+  logicblock_grill_order_counter_hit{count == 3 and current_player.grill_heat >= 10 and current_player.grill_heat < 20}:
+    grill_flame_section_3_medium:
+      key: grill_flame_section_3
+      loops: -1
+
+  logicblock_grill_order_counter_hit{count == 1 and current_player.grill_heat >= 20}:
+    grill_flicker:
+      key: grill_flame_section_1
+      loops: -1
+
+  logicblock_grill_order_counter_hit{count == 2 and current_player.grill_heat >= 20}:
+    grill_flicker2:
+      key: grill_flame_section_2
+      loops: -1
+
+  logicblock_grill_order_counter_hit{count == 3 and current_player.grill_heat >= 20}:
+    grill_flicker3:
+      key: grill_flame_section_3
+      loops: -1
+
+  grill_heat_hit{current_player.grill_heat == 9 and current_player.grill_order_progress >= 1}:
+    grill_flame_section_1_medium:
+      key: grill_flame_section_1
+      loops: -1
+
+  grill_heat_hit{current_player.grill_heat == 9 and current_player.grill_order_progress >= 2}:
+    grill_flame_section_2_medium:
+      key: grill_flame_section_2
+      loops: -1
+
+  grill_heat_hit{current_player.grill_heat == 9 and current_player.grill_order_progress >= 3}:
+    grill_flame_section_3_medium:
+      key: grill_flame_section_3
+      loops: -1
+
+  grill_heat_hit{current_player.grill_heat == 19 and current_player.grill_order_progress >= 1}:
+    grill_flicker:
+      key: grill_flame_section_1
+      loops: -1
+
+  grill_heat_hit{current_player.grill_heat == 19 and current_player.grill_order_progress >= 2}:
+    grill_flicker2:
+      key: grill_flame_section_2
+      loops: -1
+
+  grill_heat_hit{current_player.grill_heat == 19 and current_player.grill_order_progress >= 3}:
+    grill_flicker3:
+      key: grill_flame_section_3
+      loops: -1
+
+  logicblock_grill_order_counter_complete:
+    grill_jackpot_ready:
+      key: grill_jackpot_ready
+      loops: -1
+      priority: 340
+
+  grill_jackpot_collected:
+    grill_jackpot_ready:
+      action: stop
+    grill_flame_section_1:
+      action: stop
+    grill_flame_section_2:
+      action: stop
+    grill_flame_section_3:
+      action: stop
+    grill_jackpot_collect:
+      loops: 3
+      priority: 380
+
+  grill_reset_cycle:
+    grill_order_left_orbit_cue:
+      show: flash_color
+      key: grill_order_left_orbit
+      speed: 1.5
+      show_tokens:
+        lights: l_left_orbit
+        color: orange
+    grill_order_left_ramp_cue:
+      show: flash_color
+      key: grill_order_left_ramp
+      speed: 1.5
+      show_tokens:
+        lights: l_left_ramp
+        color: orange
+    grill_order_right_orbit_cue:
+      show: flash_color
+      key: grill_order_right_orbit
+      speed: 1.5
+      show_tokens:
+        lights: l_right_orbit
+        color: orange
+
+  multiball_grill_mb_ended:
+    grill_ambience:
+      action: stop
+    grill_other_multiball_suppression:
+      action: stop
+    grill_flicker:
+      action: stop
+    grill_flicker2:
+      action: stop
+    grill_flicker3:
+      action: stop
+    grill_order_left_orbit:
+      action: stop
+    grill_order_left_ramp:
+      action: stop
+    grill_order_right_orbit:
+      action: stop
+    grill_jackpot_ready:
+      action: stop
+    grill_flame_section_1:
+      action: stop
+    grill_flame_section_2:
+      action: stop
+    grill_flame_section_3:
+      action: stop
+
+variable_player:
+  mode_grill_mb_started:
+    grill_mb_used_this_ball:
+      action: set
+      int: 0
+    grill_replace_pending:
+      action: set
+      int: 0
+    grill_lock_ready:
+      action: set
+      int: 0
+    grill_balls_locked:
+      action: set
+      int: 0
+    grill_mb_active:
+      action: set
+      int: 0
+
+  grill_order_shots_hit:
+    grill_order_progress:
+      action: add
+      int: 1
+    score: 250000 * current_player.pf_multiplier
+
+  grill_heat_hit:
+    grill_heat:
+      action: add
+      int: 1
+    grill_jackpot_value:
+      action: add
+      int: 25000
+
+  grill_jackpot_collected:
+    grill_last_jackpot_award:
+      action: set
+      int: current_player.grill_jackpot_value * current_player.pf_multiplier
+    score: current_player.grill_jackpot_value * current_player.pf_multiplier
+    grill_jackpot_base:
+      action: add
+      int: 500000
+    grill_jackpot_cycle:
+      action: add
+      int: 1
+
+  grill_reset_cycle:
+    grill_order_progress:
+      action: set
+      int: 0
+    grill_heat:
+      action: set
+      int: 0
+    grill_jackpot_value:
+      action: set
+      int: current_player.grill_jackpot_base
+
+  multiball_grill_mb_ended:
+    grill_mb_active:
+      action: set
+      int: 0
+
+  multiball_lock_grill_lock_locked_ball{total_balls_locked == 1}:
+    grill_replace_pending:
+      action: set
+      int: 1
+    grill_lock_ready:
+      action: set
+      int: 0
+    grill_balls_locked:
+      action: set
+      int: 1
+
+  multiball_lock_grill_lock_locked_ball{total_balls_locked == 2}:
+    grill_replace_pending:
+      action: set
+      int: 1
+    grill_lock_ready:
+      action: set
+      int: 0
+    grill_balls_locked:
+      action: set
+      int: 2
+
+  grill_replacement_ball_launched:
+    grill_replace_pending:
+      action: set
+      int: 0
+    grill_lock_ready:
+      action: set
+      int: 1
+
+  multiball_lock_grill_lock_full:
+    grill_mb_used_this_ball:
+      action: set
+      int: 1
+
+  logicblock_grill_mb_counter_complete:
+    grill_lock_ready:
+      action: set
+      int: 1
+
+  multiball_grill_mb_started:
+    grill_mb_used_this_ball:
+      action: set
+      int: 1
+    grill_replace_pending:
+      action: set
+      int: 0
+    grill_lock_ready:
+      action: set
+      int: 0
+    grill_balls_locked:
+      action: set
+      int: 0
+    grill_mb_active:
+      action: set
+      int: 1
+    grill_order_progress:
+      action: set
+      int: 0
+    grill_heat:
+      action: set
+      int: 0
+    grill_jackpot_base:
+      action: set
+      int: 1000000
+    grill_jackpot_value:
+      action: set
+      int: 1000000
+    grill_jackpot_cycle:
+      action: set
+      int: 1
+    grill_last_jackpot_award:
+      action: set
+      int: 0
+
+  ball_will_end:
+    grill_replace_pending:
+      action: set
+      int: 0
+    grill_lock_ready:
+      action: set
+      int: 0
+
+# Native lock flow:
+# 1st and 2nd physical locks request replacement balls from the trough.
+# The 3rd physical lock starts Grill Multiball immediately and is not replaced.
+
+event_player:
+  s_right_ramp_exit_active{current_player.grill_lock_ready == 1 and current_player.any_mb_active == 0}:
+    - grill_virtual_ball_entered
+
+  pocket_sand_multiball_spot_attempt{current_player.grill_mb_active == 1 and current_player.grill_order_progress < 3}:
+    - grill_order_shots_hit
+    - pocket_sand_spotted
+  pocket_sand_multiball_spot_attempt{current_player.grill_mb_active == 1 and current_player.grill_order_progress == 3}:
+    - grill_jackpot_collected
+    - pocket_sand_spotted
+  balldevice_bd_plunger_ball_eject_success{current_player.grill_replace_pending == 1}:
+    - grill_replacement_ball_launched
+
+  multiball_lock_grill_lock_locked_ball:
+    - grill_lock_confirmed
+
+  s_left_spinner_active{current_player.grill_mb_active == 1}:
+    - grill_heat_hit
+
+  s_center_spinner_active{current_player.grill_mb_active == 1}:
+    - grill_heat_hit
+
+  s_right_ramp_exit_active{current_player.grill_mb_active == 1 and current_player.grill_order_progress == 3}:
+    - grill_jackpot_collected
+
+  grill_jackpot_collected:
+    - grill_reset_cycle
+
+  multiball_lock_grill_lock_full:
+    - grill_mb_multiball_launch
+
+  logicblock_grill_mb_counter_complete{current_player.any_mb_active == 0}:
+    - servo_grill_open
+    - servo_spatula_right
+    - servo_grill_shelf_up
+
+  multiball_grill_mb_started:
+    - servo_spatula_left
+    - servo_grill_shelf_down
+
+  multiball_grill_mb_ended:
+    - servo_grill_shelf_down
+    - servo_spatula_left
+
+  # Other multiballs use the trough for their requested balls. Keep the grill
+  # physically locked and reset this player's virtual Grill lock progress.
+  multiball_rainey_multiball_started:
+    - servo_spatula_right
+    - servo_grill_shelf_up
+
+  multiball_strickland_multiball_started:
+    - servo_spatula_right
+    - servo_grill_shelf_up
+
+timers:
+  grill_timer:
+    control_events:
+      - action: start
+        event: logicblock_grill_mb_counter_complete
+      - action: stop
+        event: multiball_grill_mb_started
+      - action: stop
+        event: ball_will_end
+      - action: stop
+        event: multiball_rainey_multiball_started
+      - action: stop
+        event: multiball_strickland_multiball_started
+    start_value: 30
+    end_value: 0
+    direction: down
+    start_running: false
+    bcp: true

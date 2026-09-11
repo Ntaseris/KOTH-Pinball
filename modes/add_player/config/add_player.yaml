@@ -1,0 +1,10 @@
+#config_version=6
+
+mode:
+  start_events: ball_starting{ball==1 and player==1}
+  stop_events: s_plunger_lane_exit_active, balldevice_bd_plunger_ball_eject_success
+  priority: 300
+
+
+event_player:
+  s_start_active{current_player.pocket_sand_can_use == 0}: sw_add_player

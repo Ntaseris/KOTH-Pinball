@@ -1,0 +1,373 @@
+#config_version=6
+
+mode:
+  start_events:
+    - manger_babies_ball_ready{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - mode_beat_the_surfer_stopped{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - mode_beer_can_named_desire_stopped{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - mode_bill_bulk_and_the_body_buddies_stopped{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - mode_patch_boomhauer_stopped{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - mode_dog_dale_afternoon_stopped{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - mode_duke_the_dolphin_stopped{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - mode_gladstone_stopped{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - mode_the_heat_waver_stopped{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - mode_bill_mini_wizard_stopped{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - mode_hank_mini_wizard_stopped{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - mode_dale_mini_wizard_stopped{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - mode_boom_mini_wizard_stopped{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - mode_wizard_mode_stopped{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - mode_beercan_carousel_stopped{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - mode_alamo_frenzy_stopped{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - multiball_strickland_multiball_ended{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - multiball_rainey_multiball_ended{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+    - multiball_grill_mb_ended{current_player.mode_running == 0 and current_player.any_mb_active == 0 and current_player.manger_babies_cashed_out_this_ball == 0}
+  stop_events:
+    - mode_mission_select_started
+    - mode_beat_the_surfer_started
+    - mode_beer_can_named_desire_started
+    - mode_bill_bulk_and_the_body_buddies_started
+    - mode_patch_boomhauer_started
+    - mode_dog_dale_afternoon_started
+    - mode_duke_the_dolphin_started
+    - mode_gladstone_started
+    - mode_the_heat_waver_started
+    - mode_bill_mini_wizard_started
+    - mode_hank_mini_wizard_started
+    - mode_dale_mini_wizard_started
+    - mode_boom_mini_wizard_started
+    - mode_wizard_mode_started
+    - mode_beercan_carousel_started
+    - mode_alamo_frenzy_started
+    - multiball_strickland_multiball_started
+    - multiball_rainey_multiball_started
+    - multiball_grill_mb_started
+    - mb_cashout_this_ball
+    - ball_ended
+  priority: 90
+
+variable_player:
+  mode_manger_babies_started{device.counters.mb_completed_tracker.value == 0}:
+    manger_babies_completed:
+      int: 0
+      action: set
+    manger_babies_cashout_value:
+      int: 0
+      action: set
+  counter_mb_reginald_hit{count == 1}:
+    score: 250000 * current_player.pf_multiplier
+  counter_mb_reginald_hit{count == 2}:
+    score: 500000 * current_player.pf_multiplier
+  counter_mb_reginald_hit{count == 3}:
+    score: 750000 * current_player.pf_multiplier
+  mb_reginald_complete:
+    score: 1000000 * current_player.pf_multiplier
+  counter_mb_obediah_hit{count == 1}:
+    score: 250000 * current_player.pf_multiplier
+  counter_mb_obediah_hit{count == 2}:
+    score: 500000 * current_player.pf_multiplier
+  counter_mb_obediah_hit{count == 3}:
+    score: 750000 * current_player.pf_multiplier
+  mb_obediah_complete:
+    score: 1000000 * current_player.pf_multiplier
+  counter_mb_hosea_hit{count == 1}:
+    score: 250000 * current_player.pf_multiplier
+  counter_mb_hosea_hit{count == 2}:
+    score: 500000 * current_player.pf_multiplier
+  counter_mb_hosea_hit{count == 3}:
+    score: 750000 * current_player.pf_multiplier
+  mb_hosea_complete:
+    score: 1000000 * current_player.pf_multiplier
+  counter_mb_gurgle_hit{count == 1}:
+    score: 250000 * current_player.pf_multiplier
+  counter_mb_gurgle_hit{count == 2}:
+    score: 500000 * current_player.pf_multiplier
+  counter_mb_gurgle_hit{count == 3}:
+    score: 750000 * current_player.pf_multiplier
+  mb_gurgle_complete:
+    score: 1000000 * current_player.pf_multiplier
+  luanne_cashout_1:
+    score: 1000000 * current_player.pf_multiplier
+  luanne_cashout_2:
+    score: 3000000 * current_player.pf_multiplier
+  luanne_cashout_3:
+    score: 6000000 * current_player.pf_multiplier
+  luanne_cashout_4:
+    score: 10000000 * current_player.pf_multiplier
+  logicblock_mb_completed_tracker_updated{value == 1}:
+    manger_babies_completed:
+      int: 1
+      action: set
+    manger_babies_cashout_value:
+      int: 1000000
+      action: set
+  logicblock_mb_completed_tracker_updated{value == 2}:
+    manger_babies_completed:
+      int: 2
+      action: set
+    manger_babies_cashout_value:
+      int: 3000000
+      action: set
+  logicblock_mb_completed_tracker_updated{value == 3}:
+    manger_babies_completed:
+      int: 3
+      action: set
+    manger_babies_cashout_value:
+      int: 6000000
+      action: set
+  logicblock_mb_completed_tracker_updated{value == 4}:
+    manger_babies_completed:
+      int: 4
+      action: set
+    manger_babies_cashout_value:
+      int: 10000000
+      action: set
+  mb_cycle_reset:
+    manger_babies_completed:
+      int: 0
+      action: set
+    manger_babies_cashout_value:
+      int: 0
+      action: set
+  mb_cashout_this_ball:
+    manger_babies_cashed_out_this_ball:
+      int: 1
+      action: set
+  player_score{source == "manger_babies"}:
+    manger_babies_total: change
+
+counters:
+  mb_reginald:
+    count_events: s_left_orbit_enter_active
+    starting_count: 0
+    count_complete_value: 4
+    persist_state: true
+    reset_on_complete: false
+    reset_events: mb_cycle_reset
+    events_when_complete: mb_reginald_complete
+  mb_obediah:
+    count_events: s_left_ramp_exit_active
+    starting_count: 0
+    count_complete_value: 4
+    persist_state: true
+    reset_on_complete: false
+    reset_events: mb_cycle_reset
+    events_when_complete: mb_obediah_complete
+  mb_hosea:
+    count_events: s_right_ramp_exit_active
+    starting_count: 0
+    count_complete_value: 4
+    persist_state: true
+    reset_on_complete: false
+    reset_events: mb_cycle_reset
+    events_when_complete: mb_hosea_complete
+  mb_gurgle:
+    count_events: s_right_orbit_exit_active
+    starting_count: 0
+    count_complete_value: 4
+    persist_state: true
+    reset_on_complete: false
+    reset_events: mb_cycle_reset
+    events_when_complete: mb_gurgle_complete
+  mb_luanne_ready:
+    count_events: mb_any_baby_complete
+    starting_count: 0
+    count_complete_value: 1
+    persist_state: true
+    reset_on_complete: false
+    reset_events: mb_cycle_reset
+    events_when_complete: mb_enable_luanne
+  mb_completed_tracker:
+    count_events: mb_any_baby_complete
+    starting_count: 0
+    count_complete_value: 4
+    persist_state: true
+    reset_on_complete: false
+    reset_events: mb_cycle_reset
+
+show_player:
+  mb_start_reginald_pulse:
+    mb_baby_blink:
+      key: mb_reginald_pulse
+      show_tokens: {light: l_reginald}
+      loops: -1
+  mb_start_obediah_pulse:
+    mb_baby_blink:
+      key: mb_obediah_pulse
+      show_tokens: {light: l_obediah}
+      loops: -1
+  mb_start_hosea_pulse:
+    mb_baby_blink:
+      key: mb_hosea_pulse
+      show_tokens: {light: l_hosea}
+      loops: -1
+  mb_start_gurgle_pulse:
+    mb_baby_blink:
+      key: mb_gurgle_pulse
+      show_tokens: {light: l_gurgle}
+      loops: -1
+  mb_stop_reginald_pulse:
+    mb_baby_blink:
+      action: stop
+      key: mb_reginald_pulse
+  mb_stop_obediah_pulse:
+    mb_baby_blink:
+      action: stop
+      key: mb_obediah_pulse
+  mb_stop_hosea_pulse:
+    mb_baby_blink:
+      action: stop
+      key: mb_hosea_pulse
+  mb_stop_gurgle_pulse:
+    mb_baby_blink:
+      action: stop
+      key: mb_gurgle_pulse
+  mb_reginald_complete:
+    mb_baby_solid:
+      key: mb_reginald_solid
+      show_tokens: {light: l_reginald}
+  mb_restore_reginald:
+    mb_baby_solid:
+      key: mb_reginald_solid
+      show_tokens: {light: l_reginald}
+  mb_obediah_complete:
+    mb_baby_solid:
+      key: mb_obediah_solid
+      show_tokens: {light: l_obediah}
+  mb_restore_obediah:
+    mb_baby_solid:
+      key: mb_obediah_solid
+      show_tokens: {light: l_obediah}
+  mb_hosea_complete:
+    mb_baby_solid:
+      key: mb_hosea_solid
+      show_tokens: {light: l_hosea}
+  mb_restore_hosea:
+    mb_baby_solid:
+      key: mb_hosea_solid
+      show_tokens: {light: l_hosea}
+  mb_gurgle_complete:
+    mb_baby_solid:
+      key: mb_gurgle_solid
+      show_tokens: {light: l_gurgle}
+  mb_restore_gurgle:
+    mb_baby_solid:
+      key: mb_gurgle_solid
+      show_tokens: {light: l_gurgle}
+  mb_enable_luanne:
+    mb_luanne_blink:
+      key: mb_luanne_pulse
+      loops: -1
+  mb_cycle_reset:
+    mb_luanne_blink:
+      action: stop
+      key: mb_luanne_pulse
+    mb_baby_solid:
+      action: stop
+      key: mb_reginald_solid
+    mb_baby_solid2:
+      show: mb_baby_solid
+      action: stop
+      key: mb_obediah_solid
+    mb_baby_solid3:
+      show: mb_baby_solid
+      action: stop
+      key: mb_hosea_solid
+    mb_baby_solid4:
+      show: mb_baby_solid
+      action: stop
+      key: mb_gurgle_solid
+  luanne_cashout_1: mb_luanne_flash
+  luanne_cashout_2: mb_luanne_flash
+  luanne_cashout_3: mb_luanne_flash
+  luanne_cashout_4: mb_luanne_flash
+  mode_manger_babies_stopped:
+    mb_luanne_blink:
+      action: stop
+      key: mb_luanne_pulse
+    mb_baby_blink:
+      action: stop
+      key: mb_reginald_pulse
+    mb_baby_blink2:
+      show: mb_baby_blink
+      action: stop
+      key: mb_obediah_pulse
+    mb_baby_blink3:
+      show: mb_baby_blink
+      action: stop
+      key: mb_hosea_pulse
+    mb_baby_blink4:
+      show: mb_baby_blink
+      action: stop
+      key: mb_gurgle_pulse
+    mb_baby_solid:
+      action: stop
+      key: mb_reginald_solid
+    mb_baby_solid2:
+      show: mb_baby_solid
+      action: stop
+      key: mb_obediah_solid
+    mb_baby_solid3:
+      show: mb_baby_solid
+      action: stop
+      key: mb_hosea_solid
+    mb_baby_solid4:
+      show: mb_baby_solid
+      action: stop
+      key: mb_gurgle_solid
+
+event_player:
+  mode_manger_babies_started{device.counters.mb_reginald.value < 4}: mb_start_reginald_pulse
+  mode_manger_babies_started{device.counters.mb_obediah.value < 4}: mb_start_obediah_pulse
+  mode_manger_babies_started{device.counters.mb_hosea.value < 4}: mb_start_hosea_pulse
+  mode_manger_babies_started{device.counters.mb_gurgle.value < 4}: mb_start_gurgle_pulse
+  mode_manger_babies_started{device.counters.mb_reginald.value == 4}: mb_restore_reginald
+  mode_manger_babies_started{device.counters.mb_obediah.value == 4}: mb_restore_obediah
+  mode_manger_babies_started{device.counters.mb_hosea.value == 4}: mb_restore_hosea
+  mode_manger_babies_started{device.counters.mb_gurgle.value == 4}: mb_restore_gurgle
+  mode_manger_babies_started{device.counters.mb_completed_tracker.value > 0}: mb_enable_luanne
+  mb_reginald_complete: [mb_any_baby_complete, mb_stop_reginald_pulse]
+  mb_obediah_complete: [mb_any_baby_complete, mb_stop_obediah_pulse]
+  mb_hosea_complete: [mb_any_baby_complete, mb_stop_hosea_pulse]
+  mb_gurgle_complete: [mb_any_baby_complete, mb_stop_gurgle_pulse]
+  s_luanne_active{device.counters.mb_completed_tracker.value == 1}: luanne_cashout_1
+  s_luanne_active{device.counters.mb_completed_tracker.value == 2}: luanne_cashout_2
+  s_luanne_active{device.counters.mb_completed_tracker.value == 3}: luanne_cashout_3
+  s_luanne_active{device.counters.mb_completed_tracker.value >= 4}: luanne_cashout_4
+  luanne_cashout_1: [mb_cycle_reset, mb_cashout_this_ball]
+  luanne_cashout_2: [mb_cycle_reset, mb_cashout_this_ball]
+  luanne_cashout_3: [mb_cycle_reset, mb_cashout_this_ball]
+  luanne_cashout_4: [mb_cycle_reset, mb_cashout_this_ball]
+
+sound_player:
+  mb_any_baby_complete:
+    jackpot_hit:
+      bus: effects
+      volume: 0.22
+  luanne_cashout_1:
+    luanne_i_call_it_the_manger_babies:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+    award_chime:
+      bus: effects
+      volume: 0.25
+  luanne_cashout_2:
+    luanne_i_call_it_the_manger_babies:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+    award_chime:
+      bus: effects
+      volume: 0.3
+  luanne_cashout_3:
+    luanne_i_call_it_the_manger_babies:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+    success_sting:
+      bus: effects
+      volume: 0.28
+  luanne_cashout_4:
+    luanne_i_call_it_the_manger_babies:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+    success_sting:
+      bus: effects
+      volume: 0.36

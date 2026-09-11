@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://3k3vq58c2rw1"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_aqmr7"]
+[ext_resource type="Texture2D" uid="uid://dhjua8665kewb" path="res://images/dtp_logo.JPG" id="2_d63i7"]
+
+[node name="dtp_logo_attract" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_aqmr7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+color = Color(0, 0, 0, 1)
+
+[node name="DTP Logo" type="Sprite2D" parent="."]
+position = Vector2(672, 360)
+scale = Vector2(0.423438, 0.347039)
+texture = ExtResource("2_d63i7")

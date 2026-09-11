@@ -1,0 +1,11 @@
+#show_version=6
+
+- time: 0
+  lights:
+    l_right_orbit: white
+- time: .5s
+  lights:
+    l_right_orbit: 555555
+- time: 1s
+  lights:
+    l_right_orbit: white

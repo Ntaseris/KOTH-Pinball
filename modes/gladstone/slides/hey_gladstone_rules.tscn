@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxjjn777oydyd"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_1jotv"]
+[ext_resource type="Texture2D" uid="uid://d1h6pnsq7myjd" path="res://images/gladstone_rules.jpeg" id="2_cpas6"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_n1eqb"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_1jotv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(672, 380)
+scale = Vector2(1.4407, 0.989583)
+texture = ExtResource("2_cpas6")
+
+[node name="Label" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_n1eqb")
+layout_mode = 0
+offset_top = 64.0
+offset_right = 1376.0
+offset_bottom = 280.0
+theme_override_font_sizes/font_size = 120
+text = "hey gladstone"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_n1eqb")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 488.0
+offset_right = 1384.0
+offset_bottom = 608.0
+theme_override_font_sizes/font_size = 60
+text = "Fire all 7 red employees
+Shoot the right ramp for a mass layoff
+Complete 3 mass layoffs"
+horizontal_alignment = 1

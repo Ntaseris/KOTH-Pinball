@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1pnfbhg5f61m"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_ihjv4"]
+[ext_resource type="VideoStream" uid="uid://bfh07nol1b3jx" path="res://images/Bobbykicknew.ogv" id="2_ty1w5"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_l7e68"]
+[ext_resource type="Script" uid="uid://cff0owk0jvkka" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="4_sikpl"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1304.0
+offset_bottom = 952.0
+script = ExtResource("1_ihjv4")
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_right = 1376.0
+offset_bottom = 768.0
+stream = ExtResource("2_ty1w5")
+volume_db = -80.0
+autoplay = true
+script = ExtResource("4_sikpl")
+
+[node name="Label" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_l7e68")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 256.0
+offset_right = 1360.0
+offset_bottom = 544.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 100
+text = "EXTRA BALL"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true

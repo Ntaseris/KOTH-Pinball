@@ -1,0 +1,282 @@
+[gd_scene load_steps=11 format=3 uid="uid://dy8mgfsv1b5uf"]
+
+[ext_resource type="PackedScene" path="res://modes/base/slides/player_badges.tscn" id="10_badges"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_n1t0d"]
+[ext_resource type="Texture2D" uid="uid://bivcs7ircufsh" path="res://images/strickland.jpeg" id="2_ql2mf"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_yxbmm"]
+[ext_resource type="Texture2D" uid="uid://cb3dwbxbpi8ya" path="res://images/alamo beer can.png" id="4_uypfs"]
+[ext_resource type="Texture2D" path="res://images/king_of_the_hill_fence_restoration_candidate.png" id="5_by8wp"]
+[ext_resource type="Texture2D" uid="uid://clkfwska2dwkm" path="res://images/base_player_image.png" id="6_tl7cu"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="7_wciyr"]
+[ext_resource type="Theme" uid="uid://b4fbuks3kqs3a" path="res://body_md.tres" id="8_rrdw6"]
+[ext_resource type="Texture2D" uid="uid://q1dqwtm558um" path="res://images/manger_babies-removebg-preview.png" id="9_ronfr"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+script = ExtResource("1_n1t0d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(682.589, 384)
+scale = Vector2(1.31978, 0.999363)
+texture = ExtResource("2_ql2mf")
+
+[node name="Label" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_yxbmm")
+layout_mode = 0
+offset_left = -4.0
+offset_top = 285.0
+offset_right = 1369.0
+offset_bottom = 395.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 93
+text = "SKILLSHOT"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Label2" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_yxbmm")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 620.0
+offset_right = 1368.0
+offset_bottom = 744.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 42
+text = "TIME YOUR PLUNGE - HIT THE FLASHING PROPANE LETTER"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+visible = false
+top_level = true
+position = Vector2(88, 632)
+scale = Vector2(0.909794, 0.790541)
+texture = ExtResource("4_uypfs")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(684, 384)
+scale = Vector2(0.817, 0.816)
+texture = ExtResource("5_by8wp")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(672, 120)
+texture = ExtResource("6_tl7cu")
+
+[node name="score" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_yxbmm")
+layout_mode = 0
+offset_left = 22.0
+offset_top = 420.0
+offset_right = 1376.0
+offset_bottom = 555.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 108
+text = "1,000,000"
+horizontal_alignment = 1
+script = ExtResource("7_wciyr")
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 8.0
+offset_right = 232.0
+offset_bottom = 136.0
+
+[node name="ball" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_yxbmm")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 1368.0
+offset_bottom = 101.0
+theme = ExtResource("8_rrdw6")
+theme_override_font_sizes/font_size = 30
+text = "Ball 1"
+horizontal_alignment = 1
+script = ExtResource("7_wciyr")
+variable_name = "ball"
+template_string = "ball %s"
+
+[node name="player" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_yxbmm")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 1368.0
+offset_bottom = 77.0
+theme = ExtResource("8_rrdw6")
+theme_override_font_sizes/font_size = 30
+text = "Player 1"
+horizontal_alignment = 1
+script = ExtResource("7_wciyr")
+variable_name = "number"
+template_string = "player %s  "
+min_players = 1
+max_players = 4
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = 120.0
+offset_right = 1368.0
+offset_bottom = 264.0
+
+[node name="PlayerBadges" parent="." instance=ExtResource("10_badges")]
+
+[node name="player1_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_yxbmm")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 320.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 30
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("7_wciyr")
+variable_type = 4
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player2_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_yxbmm")
+layout_mode = 0
+offset_left = 320.0
+offset_top = 48.0
+offset_right = 624.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 30
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("7_wciyr")
+variable_type = 5
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player3_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_yxbmm")
+layout_mode = 0
+offset_left = 752.0
+offset_top = 48.0
+offset_right = 1024.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 30
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("7_wciyr")
+variable_type = 6
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player4_score" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_yxbmm")
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 48.0
+offset_right = 1368.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 30
+text = "123456789"
+horizontal_alignment = 1
+script = ExtResource("7_wciyr")
+variable_type = 7
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+
+[node name="player 1" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_yxbmm")
+layout_mode = 0
+offset_left = 8.0
+offset_right = 320.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 35
+text = "player 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player 2" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_yxbmm")
+layout_mode = 0
+offset_left = 312.0
+offset_right = 624.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 35
+text = "player 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player 3" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_yxbmm")
+layout_mode = 0
+offset_left = 752.0
+offset_right = 1024.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 35
+text = "player 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player 4" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("3_yxbmm")
+layout_mode = 0
+offset_left = 1024.0
+offset_right = 1368.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 35
+text = "player 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_yxbmm")
+visible = false
+layout_mode = 0
+offset_left = 144.0
+offset_top = 648.0
+offset_right = 320.0
+offset_bottom = 807.0
+theme_override_font_sizes/font_size = 60
+text = "X"
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1223.5, 616.5)
+scale = Vector2(0.642, 0.578)
+texture = ExtResource("9_ronfr")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1149.0
+offset_top = 551.0
+offset_right = 1302.0
+offset_bottom = 691.0
+color = Color(0, 0.94902, 1, 1)

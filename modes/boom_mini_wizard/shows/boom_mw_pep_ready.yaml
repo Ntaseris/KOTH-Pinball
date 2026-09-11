@@ -1,0 +1,14 @@
+#show_version=6
+
+- duration: 260ms
+  lights:
+    l_scoop: 35D9FF
+    l_bill_1: "001840"
+    l_bill_2: 35D9FF
+    l_bill_3: "001840"
+- duration: 260ms
+  lights:
+    l_scoop: white
+    l_bill_1: 35D9FF
+    l_bill_2: "001840"
+    l_bill_3: 35D9FF

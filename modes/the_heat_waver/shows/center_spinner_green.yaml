@@ -1,0 +1,11 @@
+#show_version=6
+
+- time: 0
+  lights:
+    l_center_spinner: white
+- time: .5s
+  lights:
+    l_center_spinner: 555555
+- time: 1s
+  lights:
+    l_center_spinner: white

@@ -1,0 +1,11 @@
+#show_version=6
+
+- time: 0
+  lights:
+    l_left_ramp: white
+- time: .5s
+  lights:
+    l_left_ramp: 555555
+- time: 1s
+  lights:
+    l_left_ramp: white

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd1yduhgaf6h0"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_oagxf"]
+[ext_resource type="Shader" uid="uid://crnb233asknix" path="res://shader.gdshader" id="2_uno4j"]
+[ext_resource type="Texture2D" uid="uid://dja4sao2fpbow" path="res://images/attract_still.jpeg" id="3_vujhw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_isi07"]
+resource_local_to_scene = true
+shader = ExtResource("2_uno4j")
+shader_parameter/subdivisions = 2
+shader_parameter/movement = 0.0
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_oagxf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_isi07")
+position = Vector2(512, 392)
+texture = ExtResource("3_vujhw")

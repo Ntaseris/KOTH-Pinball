@@ -1,0 +1,11 @@
+#show_version=6
+
+- time: 0
+  lights:
+    l_center_spinner: B80000
+- time: .5s
+  lights:
+    l_center_spinner: 320000
+- time: 1s
+  lights:
+    l_center_spinner: B80000

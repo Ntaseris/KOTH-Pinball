@@ -1,0 +1,54 @@
+; Copyright (C) 2026 One More Game - All Rights Reserved
+; Unauthorized copying of this file, via any medium is strictly prohibited
+; Proprietary and confidential
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_slide"]
+[ext_resource type="Texture2D" uid="uid://dosp74cbb6js7" path="res://images/peggy_alamo.jpg" id="2_background"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_font"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="4_variable"]
+
+[node name="AlamoFrenzyModeTotal" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1368.0
+offset_bottom = 776.0
+script = ExtResource("1_slide")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(683.75, 385.5)
+scale = Vector2(2.58696, 1.94162)
+texture = ExtResource("2_background")
+modulate = Color(0.45, 0.3, 0.16, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_top = 90.0
+offset_right = 1368.0
+offset_bottom = 250.0
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_colors/font_color = Color(1, 0.65, 0, 1)
+theme_override_colors/font_outline_color = Color(0.15, 0.03, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 105
+text = "ALAMO FRENZY TOTAL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Total" type="Label" parent="."]
+layout_mode = 0
+offset_top = 250.0
+offset_right = 1368.0
+offset_bottom = 620.0
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.03, 0, 1)
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 125
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_variable")
+variable_name = "alamo_frenzy_total"
+comma_separate = true
+min_digits = 1

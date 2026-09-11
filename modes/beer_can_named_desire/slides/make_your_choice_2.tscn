@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://nkbkgyirgu6a"]
+
+[ext_resource type="Script" uid="uid://dru3usokwlhd3" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_hfe7i"]
+[ext_resource type="Texture2D" uid="uid://con8t3mdm6vnv" path="res://images/beercan_bg.jpeg" id="2_p0uri"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_j5ay8"]
+[ext_resource type="Script" uid="uid://dpe3dq8axt3g7" path="res://addons/mpf-gmc/classes/mpf_carousel.gd" id="4_5636f"]
+[ext_resource type="Texture2D" uid="uid://xc6qq2jcwtou" path="res://images/hank_hill.jpg" id="5_awjks"]
+[ext_resource type="Texture2D" uid="uid://cdiqp021etmf4" path="res://images/dandy_don.webp" id="6_bkw41"]
+
+[node name="Control" type="Control" unique_id=1758829455]
+layout_mode = 3
+anchor_left = 0.01
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hfe7i")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1913270114]
+position = Vector2(678.34, 384)
+scale = Vector2(1.35285, 1)
+texture = ExtResource("2_p0uri")
+
+[node name="ColorRect" type="Sprite2D" parent="Sprite2D" unique_id=1236027860]
+position = Vector2(-249.864, 7.37502)
+scale = Vector2(0.616199, 0.565938)
+texture = ExtResource("6_bkw41")
+
+[node name="ColorRect2" type="ColorRect" parent="Sprite2D" unique_id=406218677]
+offset_left = 20.6971
+offset_top = -192.0
+offset_right = 493.697
+offset_bottom = 208.0
+
+[node name="Label" type="Label" parent="Sprite2D" unique_id=1524122469]
+theme_override_fonts/font = ExtResource("3_j5ay8")
+offset_left = 21.0
+offset_top = 208.0
+offset_right = 495.0
+offset_bottom = 324.0
+theme_override_font_sizes/font_size = 110
+text = "Hank hill"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Label" type="Label" parent="." unique_id=1392642312]
+theme_override_fonts/font = ExtResource("3_j5ay8")
+layout_mode = 0
+offset_left = -14.0
+offset_top = 9.0
+offset_right = 1362.0
+offset_bottom = 152.0
+theme_override_font_sizes/font_size = 120
+text = "make your choice"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Label3" type="Label" parent="." unique_id=2060489678]
+theme_override_fonts/font = ExtResource("3_j5ay8")
+layout_mode = 0
+offset_left = 1242.34
+offset_top = 320.0
+offset_right = 1330.34
+offset_bottom = 477.0
+theme_override_font_sizes/font_size = 150
+text = ">"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=529764022]
+theme_override_fonts/font = ExtResource("3_j5ay8")
+layout_mode = 0
+offset_left = 18.34
+offset_top = 320.0
+offset_right = 106.34
+offset_bottom = 477.0
+theme_override_font_sizes/font_size = 150
+text = "<"
+horizontal_alignment = 1
+
+[node name="MPFCarousel" type="Control" parent="." unique_id=222473132]
+anchors_preset = 0
+script = ExtResource("4_5636f")
+carousel_name = "beercan_carousel"
+
+[node name="hank_hill" type="Sprite2D" parent="MPFCarousel" unique_id=969799498]
+position = Vector2(1026.34, 392)
+scale = Vector2(0.443958, 0.367411)
+texture = ExtResource("5_awjks")
+
+[node name="dandy_don" type="Sprite2D" parent="MPFCarousel" unique_id=1152220928]
+position = Vector2(338.34, 392)
+scale = Vector2(0.83291, 0.554453)
+texture = ExtResource("6_bkw41")
+
+[node name="Label4" type="Label" parent="." unique_id=241997183]
+theme_override_fonts/font = ExtResource("3_j5ay8")
+layout_mode = 0
+offset_left = 18.0
+offset_top = 592.0
+offset_right = 658.0
+offset_bottom = 710.0
+theme_override_font_sizes/font_size = 110
+text = "Dandy Don"
+horizontal_alignment = 1
+uppercase = true

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://xsu377u25x5"]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_3bv31"]
+[ext_resource type="Texture2D" uid="uid://c0ij80twfs3kb" path="res://images/gurgle.png" id="3_53kt7"]
+
+[node name="MPFWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_3bv31")
+metadata/_custom_type_script = "uid://bxyndbnvgf15b"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+top_level = true
+position = Vector2(1288, 576)
+scale = Vector2(0.494898, 0.462121)
+texture = ExtResource("3_53kt7")

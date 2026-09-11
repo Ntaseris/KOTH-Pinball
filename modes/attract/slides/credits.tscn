@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxuy2h8hwm2ls"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_hpu17"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="2_jnutj"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+script = ExtResource("1_hpu17")
+
+[node name="MPFVariable" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1360.0
+offset_bottom = 768.0
+theme_override_font_sizes/font_size = 80
+text = "1234"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_jnutj")
+variable_type = 2
+variable_name = "credits_string"

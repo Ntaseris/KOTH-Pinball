@@ -1,0 +1,7 @@
+#show_version=6
+- duration: 0.7
+  lights:
+    (light): FF4FA3
+- duration: 0.7
+  lights:
+    (light): 260818

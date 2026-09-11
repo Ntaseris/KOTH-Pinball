@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://dip8bgaoqgkpm"]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_010o8"]
+[ext_resource type="Texture2D" uid="uid://cryn6edpjvgfe" path="res://images/Your_paragraph_text-removebg-preview.png" id="2_lmpb8"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_j67eo"]
+
+[sub_resource type="Animation" id="Animation_iwsgh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_t0a4v"]
+resource_name = "created"
+length = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.16, 0.1, -0.05, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c2xcm"]
+_data = {
+&"RESET": SubResource("Animation_iwsgh"),
+&"created": SubResource("Animation_t0a4v")
+}
+
+[node name="propane_widget_n" type="Control" node_paths=PackedStringArray("animation_player")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1360.0
+offset_bottom = 768.0
+script = ExtResource("1_010o8")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+top_level = true
+z_index = -1
+position = Vector2(925, 270)
+scale = Vector2(0.42, 0.36)
+texture = ExtResource("2_lmpb8")
+
+[node name="Label" type="Label" parent="Sprite2D"]
+theme_override_fonts/font = ExtResource("3_j67eo")
+offset_left = -72.0
+offset_top = -48.0
+offset_right = 72.0
+offset_bottom = 176.0
+theme_override_colors/font_color = Color(0.92, 0.08, 0.06, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 180
+text = "N"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c2xcm")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.321569)
+layout_mode = 0
+offset_top = 120.0
+offset_right = 1360.0
+offset_bottom = 264.0

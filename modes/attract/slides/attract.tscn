@@ -1,0 +1,536 @@
+[gd_scene load_steps=17 format=3 uid="uid://nwugj0qg5frm"]
+
+[ext_resource type="Script" uid="uid://dru3usokwlhd3" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_6k5bn"]
+[ext_resource type="Script" uid="uid://dpe3dq8axt3g7" path="res://addons/mpf-gmc/classes/mpf_carousel.gd" id="2_hpcpb"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_tck3x"]
+[ext_resource type="Script" uid="uid://bfvhmv2eirpua" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="4_gf3gu"]
+[ext_resource type="Texture2D" uid="uid://dhjua8665kewb" path="res://images/dtp_logo.JPG" id="5_mo3g3"]
+[ext_resource type="Texture2D" uid="uid://duoa4eqytshb6" path="res://images/free_play.jpeg" id="5_tq37w"]
+[ext_resource type="Texture2D" uid="uid://ccxv15bbnwxpb" path="res://images/high_scores.jpeg" id="7_ie02i"]
+[ext_resource type="Texture2D" uid="uid://dcxwhqc3ad5r0" path="res://images/king_of_the_hill.jpeg" id="8_ctxny"]
+[ext_resource type="Texture2D" uid="uid://blixehc8twkf8" path="res://images/dales_dead_bug.jpeg" id="8_mshnd"]
+[ext_resource type="Texture2D" uid="uid://enhs74qudbss" path="res://images/mpf-logo-full.png" id="10_53mvs"]
+[ext_resource type="Texture2D" uid="uid://d0c0o5hdom7t" path="res://images/alamo_champ.jpeg" id="11_i05ep"]
+[ext_resource type="Texture2D" path="res://images/fast_pinball_logo.jpeg" id="19_fast"]
+[ext_resource type="Texture2D" path="res://images/housera_amusements_logo.png" id="20_housera"]
+[ext_resource type="PackedScene" path="res://modes/attract/slides/jupiter_channel.tscn" id="21_jupiter"]
+[ext_resource type="PackedScene" path="res://modes/attract/slides/lents_channel.tscn" id="22_lents"]
+[ext_resource type="PackedScene" path="res://modes/attract/slides/koth_intro_channel.tscn" id="23_koth_intro"]
+
+[node name="attract" type="Control" unique_id=317640002]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1928.0
+offset_bottom = 1080.0
+script = ExtResource("1_6k5bn")
+
+[node name="MPFCarousel" type="Control" parent="." unique_id=912788990]
+anchors_preset = 0
+script = ExtResource("2_hpcpb")
+carousel_name = "attract"
+
+[node name="jupiter_seattle" parent="MPFCarousel" instance=ExtResource("21_jupiter")]
+
+[node name="lents_pinball" parent="MPFCarousel" instance=ExtResource("22_lents")]
+
+[node name="credits" type="Label" parent="MPFCarousel" unique_id=433779754]
+visible = false
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+theme_override_constants/line_spacing = 6
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 120
+text = "1234"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "credits_string"
+
+[node name="Sprite2D" type="Sprite2D" parent="MPFCarousel/credits" unique_id=96297428]
+show_behind_parent = true
+position = Vector2(680, 328)
+scale = Vector2(1.3481, 1.14583)
+texture = ExtResource("5_tq37w")
+
+[node name="companies" type="Control" parent="MPFCarousel" unique_id=1400798310]
+visible = false
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+
+[node name="ColorRect" type="ColorRect" parent="MPFCarousel/companies" unique_id=1211222864]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+color = Color(0, 0, 0, 1)
+
+[node name="HouseraLogo" type="Sprite2D" parent="MPFCarousel/companies"]
+position = Vector2(684, 280)
+scale = Vector2(0.36, 0.36)
+texture = ExtResource("20_housera")
+
+[node name="DTPLogo" type="Sprite2D" parent="MPFCarousel/companies"]
+position = Vector2(270, 650)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("5_mo3g3")
+
+[node name="MPFBackground" type="ColorRect" parent="MPFCarousel/companies"]
+layout_mode = 0
+offset_left = 569.0
+offset_top = 536.0
+offset_right = 799.0
+offset_bottom = 704.0
+color = Color(1, 1, 1, 1)
+mouse_filter = 2
+
+[node name="MPFLogo" type="Sprite2D" parent="MPFCarousel/companies" unique_id=1454404691]
+position = Vector2(684, 620)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("10_53mvs")
+
+[node name="FastLogo" type="Sprite2D" parent="MPFCarousel/companies"]
+position = Vector2(1080, 650)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("19_fast")
+
+[node name="scores" type="Sprite2D" parent="MPFCarousel" unique_id=1373137128]
+visible = false
+position = Vector2(672, 384)
+scale = Vector2(1.30015, 1)
+texture = ExtResource("7_ie02i")
+
+[node name="High score 1" type="Label" parent="MPFCarousel/scores" unique_id=94612453]
+offset_left = -519.0
+offset_top = -296.0
+offset_right = -25.0
+offset_bottom = -209.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 80
+text = "# 1"
+horizontal_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "score2_label"
+min_digits = 1
+
+[node name="MPFVariable3" type="Label" parent="MPFCarousel/scores" unique_id=1631605209]
+offset_left = -516.865
+offset_top = -216.0
+offset_right = -22.8651
+offset_bottom = -152.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 60
+text = "Hank"
+horizontal_alignment = 1
+visible_characters = 4
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "score2_name"
+min_digits = 1
+
+[node name="MPFVariable4" type="Label" parent="MPFCarousel/scores" unique_id=1457920967]
+offset_left = -516.865
+offset_top = -160.0
+offset_right = -24.8651
+offset_bottom = -64.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 60
+text = "1,000,000"
+horizontal_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "score2_value"
+comma_separate = true
+min_digits = 2
+
+[node name="high score 2" type="Label" parent="MPFCarousel/scores" unique_id=2058346686]
+offset_left = -30.7659
+offset_top = -160.0
+offset_right = 511.234
+offset_bottom = -73.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 80
+text = "# 2"
+horizontal_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "score3_label"
+min_digits = 1
+
+[node name="MPFVariable5" type="Label" parent="MPFCarousel/scores" unique_id=1491325310]
+offset_left = -18.4595
+offset_top = -88.0
+offset_right = 516.54
+offset_bottom = -16.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 60
+text = "Hank"
+horizontal_alignment = 1
+visible_characters = 4
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "score3_name"
+min_digits = 1
+
+[node name="MPFVariable6" type="Label" parent="MPFCarousel/scores" unique_id=549877962]
+offset_left = -18.4595
+offset_top = -32.0
+offset_right = 516.54
+offset_bottom = 32.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 60
+text = "1,000,000"
+horizontal_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "score3_value"
+comma_separate = true
+min_digits = 2
+
+[node name="high score 3" type="Label" parent="MPFCarousel/scores" unique_id=275009032]
+offset_left = -517.0
+offset_top = 64.0
+offset_right = -25.0
+offset_bottom = 160.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 80
+text = "# 3
+"
+horizontal_alignment = 1
+visible_characters = 16
+visible_ratio = 4.0
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "score4_label"
+min_digits = 1
+
+[node name="MPFVariable7" type="Label" parent="MPFCarousel/scores" unique_id=2059771470]
+offset_left = -516.865
+offset_top = 144.0
+offset_right = -24.8651
+offset_bottom = 216.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 60
+text = "Hank"
+horizontal_alignment = 1
+visible_characters = 4
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "score4_name"
+min_digits = 1
+
+[node name="MPFVariable8" type="Label" parent="MPFCarousel/scores" unique_id=1246068093]
+offset_left = -516.865
+offset_top = 200.0
+offset_right = -30.8651
+offset_bottom = 344.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 60
+text = "1,000,000"
+horizontal_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "score4_value"
+comma_separate = true
+min_digits = 2
+
+[node name="last_scores_1p" type="Node2D" parent="MPFCarousel" unique_id=1105943129]
+visible = false
+
+[node name="player1_score" type="Label" parent="MPFCarousel/last_scores_1p" unique_id=568134664]
+offset_right = 704.0
+offset_bottom = 448.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 80
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "player1_score"
+comma_separate = true
+min_digits = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MPFCarousel/last_scores_1p" unique_id=1173603268]
+show_behind_parent = true
+position = Vector2(688, 384)
+scale = Vector2(1.32943, 1)
+texture = ExtResource("8_mshnd")
+
+[node name="last_scores_2p" type="Node2D" parent="MPFCarousel" unique_id=1886338812]
+visible = false
+
+[node name="player1_score" type="Label" parent="MPFCarousel/last_scores_2p" unique_id=320332127]
+offset_right = 704.0
+offset_bottom = 448.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 80
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "player1_score"
+comma_separate = true
+min_digits = 2
+
+[node name="player2_score" type="Label" parent="MPFCarousel/last_scores_2p" unique_id=248470712]
+offset_left = 640.0
+offset_right = 1360.0
+offset_bottom = 448.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 80
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "player2_score"
+comma_separate = true
+min_digits = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MPFCarousel/last_scores_2p" unique_id=1290223565]
+show_behind_parent = true
+position = Vector2(688, 384)
+scale = Vector2(1.32943, 1)
+texture = ExtResource("8_mshnd")
+
+[node name="last_scores_3p" type="Node2D" parent="MPFCarousel" unique_id=1835768202]
+visible = false
+
+[node name="player1_score" type="Label" parent="MPFCarousel/last_scores_3p" unique_id=1192866018]
+offset_right = 640.0
+offset_bottom = 384.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 80
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "player1_score"
+comma_separate = true
+min_digits = 2
+
+[node name="player2_score" type="Label" parent="MPFCarousel/last_scores_3p" unique_id=286697994]
+offset_left = 640.0
+offset_right = 1360.0
+offset_bottom = 384.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 80
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "player2_score"
+comma_separate = true
+min_digits = 2
+
+[node name="player3_score" type="Label" parent="MPFCarousel/last_scores_3p" unique_id=1572446534]
+offset_left = 8.0
+offset_top = 384.0
+offset_right = 640.0
+offset_bottom = 768.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 80
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "player3_score"
+comma_separate = true
+min_digits = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MPFCarousel/last_scores_3p" unique_id=1925979567]
+show_behind_parent = true
+position = Vector2(688, 384)
+scale = Vector2(1.32943, 1)
+texture = ExtResource("8_mshnd")
+
+[node name="last_scores_4p" type="Node2D" parent="MPFCarousel" unique_id=1815398732]
+
+[node name="player1_score" type="Label" parent="MPFCarousel/last_scores_4p" unique_id=1006100339]
+offset_right = 640.0
+offset_bottom = 384.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 80
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "player1_score"
+comma_separate = true
+min_digits = 2
+
+[node name="player2_score" type="Label" parent="MPFCarousel/last_scores_4p" unique_id=2128518690]
+offset_left = 640.0
+offset_right = 1360.0
+offset_bottom = 384.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 80
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "player2_score"
+comma_separate = true
+min_digits = 2
+
+[node name="player3_score" type="Label" parent="MPFCarousel/last_scores_4p" unique_id=1058074970]
+offset_left = 8.0
+offset_top = 384.0
+offset_right = 640.0
+offset_bottom = 768.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 80
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "player3_score"
+comma_separate = true
+min_digits = 2
+
+[node name="player4_score" type="Label" parent="MPFCarousel/last_scores_4p" unique_id=989440792]
+offset_left = 640.0
+offset_top = 384.0
+offset_right = 1344.0
+offset_bottom = 768.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 80
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "player4_score"
+comma_separate = true
+min_digits = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MPFCarousel/last_scores_4p" unique_id=98562310]
+show_behind_parent = true
+position = Vector2(688, 384)
+scale = Vector2(1.32943, 1)
+texture = ExtResource("8_mshnd")
+
+[node name="koth_intro" parent="MPFCarousel" instance=ExtResource("23_koth_intro")]
+
+[node name="king_of_the_hill" type="Sprite2D" parent="MPFCarousel" unique_id=365993199]
+visible = false
+position = Vector2(684, 384)
+scale = Vector2(1.306, 1)
+texture = ExtResource("8_ctxny")
+
+[node name="GC" type="Label" parent="MPFCarousel/king_of_the_hill" unique_id=1573216114]
+offset_left = -524.0
+offset_top = -376.0
+offset_right = 523.0
+offset_bottom = -271.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 120
+text = "king of the hill"
+horizontal_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "score1_label"
+min_digits = 1
+
+[node name="MPFVariable" type="Label" parent="MPFCarousel/king_of_the_hill" unique_id=1273530336]
+offset_left = -523.735
+offset_top = 40.0
+offset_right = 523.265
+offset_bottom = 144.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 100
+text = "Hank"
+horizontal_alignment = 1
+visible_characters = 4
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "score1_name"
+min_digits = 1
+
+[node name="MPFVariable2" type="Label" parent="MPFCarousel/king_of_the_hill" unique_id=1554203966]
+offset_left = -530.0
+offset_top = 128.0
+offset_right = 530.0
+offset_bottom = 216.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 100
+text = "1,000,000"
+horizontal_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "score1_value"
+comma_separate = true
+min_digits = 2
+
+[node name="mpf_logo" type="Sprite2D" parent="MPFCarousel" unique_id=693254505]
+visible = false
+show_behind_parent = true
+top_level = true
+position = Vector2(680, 384)
+scale = Vector2(2.22, 1.70548)
+texture = ExtResource("10_53mvs")
+
+[node name="ColorRect" type="ColorRect" parent="MPFCarousel/mpf_logo" unique_id=707912774]
+show_behind_parent = true
+offset_left = -306.0
+offset_top = -225.0
+offset_right = 310.0
+offset_bottom = 225.0
+
+[node name="alamo_champ" type="Sprite2D" parent="MPFCarousel" unique_id=249470436]
+visible = false
+position = Vector2(688, 384)
+texture = ExtResource("11_i05ep")
+
+[node name="alamo_label" type="Label" parent="MPFCarousel/alamo_champ" unique_id=2100802557]
+offset_left = -672.0
+offset_top = -136.0
+offset_right = 680.0
+offset_bottom = 32.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 80
+text = "alamo champ"
+horizontal_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "alamo1_label"
+min_digits = 1
+
+[node name="alamo_name" type="Label" parent="MPFCarousel/alamo_champ" unique_id=204924348]
+offset_left = -680.0
+offset_top = -40.0
+offset_right = 672.0
+offset_bottom = 128.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 60
+text = "ENI"
+horizontal_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "alamo1_name"
+min_digits = 1
+
+[node name="alamo_value" type="Label" parent="MPFCarousel/alamo_champ" unique_id=845862450]
+offset_left = -672.0
+offset_top = 24.0
+offset_right = 680.0
+offset_bottom = 192.0
+theme_override_fonts/font = ExtResource("3_tck3x")
+theme_override_font_sizes/font_size = 60
+text = "24"
+horizontal_alignment = 1
+script = ExtResource("4_gf3gu")
+variable_type = 2
+variable_name = "alamo1_value"
+min_digits = 1

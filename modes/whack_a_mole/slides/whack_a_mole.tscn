@@ -1,0 +1,334 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_slide"]
+[ext_resource type="Script" path="res://modes/whack_a_mole/scripts/whack_a_mole_game.gd" id="2_game"]
+[ext_resource type="Texture2D" path="res://images/whack_a_mole/three_hole_backdrop.png" id="3_backdrop"]
+[ext_resource type="Texture2D" path="res://images/whack_a_mole/hank_mole_large.png" id="4_hank"]
+[ext_resource type="Texture2D" path="res://images/whack_a_mole/bobby_mole_large.png" id="5_bobby"]
+[ext_resource type="Texture2D" path="res://images/whack_a_mole/peggy_mole_large.png" id="6_peggy"]
+[ext_resource type="Texture2D" path="res://images/whack_a_mole/tom_mole_large.png" id="7_tom"]
+[ext_resource type="AudioStream" path="res://sounds/voice/whack_a_mole/keep_heads_down.wav" id="8_start"]
+[ext_resource type="AudioStream" path="res://sounds/voice/whack_a_mole/bobby_mole.wav" id="9_bobby_callout"]
+[ext_resource type="AudioStream" path="res://sounds/voice/whack_a_mole/not_every_time.wav" id="10_tom_callout"]
+[ext_resource type="AudioStream" path="res://sounds/voice/whack_a_mole/everything_fine.wav" id="11_perfect"]
+[ext_resource type="AudioStream" path="res://sounds/effects/whack_a_mole_hit.wav" id="12_whack"]
+[ext_resource type="FontFile" path="res://fonts/King Of The Hill 2.ttf" id="13_font"]
+
+[sub_resource type="AtlasTexture" id="ForegroundAtlas"]
+atlas = ExtResource("3_backdrop")
+region = Rect2(0, 500, 1366, 268)
+
+[sub_resource type="StyleBoxFlat" id="FinalPanelStyle"]
+bg_color = Color(0.07, 0.012, 0.025, 0.94)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.63, 0.06, 1)
+corner_radius_top_left = 36
+corner_radius_top_right = 36
+corner_radius_bottom_right = 36
+corner_radius_bottom_left = 36
+
+[node name="MPFSlide" type="Control"]
+offset_right = 1366.0
+offset_bottom = 768.0
+script = ExtResource("1_slide")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1366.0
+offset_bottom = 768.0
+mouse_filter = 2
+texture = ExtResource("3_backdrop")
+expand_mode = 1
+
+[node name="Game" type="Control" parent="."]
+offset_right = 1366.0
+offset_bottom = 768.0
+script = ExtResource("2_game")
+target_textures = Array[Texture2D]([ExtResource("4_hank"), ExtResource("5_bobby"), ExtResource("6_peggy"), ExtResource("7_tom")])
+start_callout = ExtResource("8_start")
+bobby_callout = ExtResource("9_bobby_callout")
+tom_callout = ExtResource("10_tom_callout")
+final_callout = ExtResource("11_perfect")
+whack_sound = ExtResource("12_whack")
+
+[node name="Targets" type="Control" parent="Game"]
+mouse_filter = 2
+
+[node name="LeftTarget" type="TextureRect" parent="Game/Targets"]
+visible = false
+offset_right = 460.0
+offset_bottom = 460.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+pivot_offset = Vector2(230, 230)
+
+[node name="MiddleTarget" type="TextureRect" parent="Game/Targets"]
+visible = false
+offset_right = 460.0
+offset_bottom = 460.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+pivot_offset = Vector2(230, 230)
+
+[node name="RightTarget" type="TextureRect" parent="Game/Targets"]
+visible = false
+offset_right = 460.0
+offset_bottom = 460.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+pivot_offset = Vector2(230, 230)
+
+[node name="Foreground" type="TextureRect" parent="Game"]
+offset_top = 500.0
+offset_right = 1366.0
+offset_bottom = 768.0
+mouse_filter = 2
+texture = SubResource("ForegroundAtlas")
+expand_mode = 1
+
+[node name="Hammers" type="Node2D" parent="Game"]
+
+[node name="LeftHammer" type="Node2D" parent="Game/Hammers"]
+visible = false
+position = Vector2(322, 246)
+
+[node name="Handle" type="Polygon2D" parent="Game/Hammers/LeftHammer"]
+polygon = PackedVector2Array(-15, -125, 15, -125, 15, 40, -15, 40)
+color = Color(0.34, 0.12, 0.035, 1)
+
+[node name="Grip" type="Polygon2D" parent="Game/Hammers/LeftHammer"]
+polygon = PackedVector2Array(-20, -130, 20, -130, 20, -75, -20, -75)
+color = Color(0.72, 0.32, 0.08, 1)
+
+[node name="PaddedHead" type="Polygon2D" parent="Game/Hammers/LeftHammer"]
+polygon = PackedVector2Array(-96, 48, -82, 25, -65, 17, 65, 17, 82, 25, 96, 48, 96, 91, 82, 114, 65, 122, -65, 122, -82, 114, -96, 91)
+color = Color(0.92, 0.16, 0.07, 1)
+
+[node name="HeadHighlight" type="Polygon2D" parent="Game/Hammers/LeftHammer"]
+polygon = PackedVector2Array(-76, 47, -62, 36, 62, 36, 76, 47, 76, 70, -76, 70)
+color = Color(1, 0.48, 0.16, 1)
+
+[node name="MiddleHammer" type="Node2D" parent="Game/Hammers"]
+visible = false
+position = Vector2(683, 246)
+
+[node name="Handle" type="Polygon2D" parent="Game/Hammers/MiddleHammer"]
+polygon = PackedVector2Array(-15, -125, 15, -125, 15, 40, -15, 40)
+color = Color(0.34, 0.12, 0.035, 1)
+
+[node name="Grip" type="Polygon2D" parent="Game/Hammers/MiddleHammer"]
+polygon = PackedVector2Array(-20, -130, 20, -130, 20, -75, -20, -75)
+color = Color(0.72, 0.32, 0.08, 1)
+
+[node name="PaddedHead" type="Polygon2D" parent="Game/Hammers/MiddleHammer"]
+polygon = PackedVector2Array(-96, 48, -82, 25, -65, 17, 65, 17, 82, 25, 96, 48, 96, 91, 82, 114, 65, 122, -65, 122, -82, 114, -96, 91)
+color = Color(0.92, 0.16, 0.07, 1)
+
+[node name="HeadHighlight" type="Polygon2D" parent="Game/Hammers/MiddleHammer"]
+polygon = PackedVector2Array(-76, 47, -62, 36, 62, 36, 76, 47, 76, 70, -76, 70)
+color = Color(1, 0.48, 0.16, 1)
+
+[node name="RightHammer" type="Node2D" parent="Game/Hammers"]
+visible = false
+position = Vector2(1038, 246)
+
+[node name="Handle" type="Polygon2D" parent="Game/Hammers/RightHammer"]
+polygon = PackedVector2Array(-15, -125, 15, -125, 15, 40, -15, 40)
+color = Color(0.34, 0.12, 0.035, 1)
+
+[node name="Grip" type="Polygon2D" parent="Game/Hammers/RightHammer"]
+polygon = PackedVector2Array(-20, -130, 20, -130, 20, -75, -20, -75)
+color = Color(0.72, 0.32, 0.08, 1)
+
+[node name="PaddedHead" type="Polygon2D" parent="Game/Hammers/RightHammer"]
+polygon = PackedVector2Array(-96, 48, -82, 25, -65, 17, 65, 17, 82, 25, 96, 48, 96, 91, 82, 114, 65, 122, -65, 122, -82, 114, -96, 91)
+color = Color(0.92, 0.16, 0.07, 1)
+
+[node name="HeadHighlight" type="Polygon2D" parent="Game/Hammers/RightHammer"]
+polygon = PackedVector2Array(-76, 47, -62, 36, 62, 36, 76, 47, 76, 70, -76, 70)
+color = Color(1, 0.48, 0.16, 1)
+
+[node name="Title" type="Label" parent="Game"]
+theme_override_fonts/font = ExtResource("13_font")
+offset_left = 440.0
+offset_top = 183.0
+offset_right = 926.0
+offset_bottom = 237.0
+theme_override_colors/font_color = Color(1, 0.85, 0.18, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.015, 0.01, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 38
+text = "WHACK-A-MOLE"
+horizontal_alignment = 1
+
+[node name="Instructions" type="Label" parent="Game"]
+theme_override_fonts/font = ExtResource("13_font")
+offset_left = 310.0
+offset_top = 235.0
+offset_right = 1056.0
+offset_bottom = 272.0
+theme_override_colors/font_color = Color(1, 0.9, 0.55, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "LEFT     •     BOTH = MIDDLE     •     RIGHT"
+horizontal_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="Game"]
+theme_override_fonts/font = ExtResource("13_font")
+offset_left = 26.0
+offset_top = 18.0
+offset_right = 176.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(1, 0.32, 0.18, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 64
+text = "30"
+
+[node name="ScoreLabel" type="Label" parent="Game"]
+theme_override_fonts/font = ExtResource("13_font")
+offset_left = 1050.0
+offset_top = 21.0
+offset_right = 1338.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(1, 0.91, 0.3, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 42
+text = "0"
+horizontal_alignment = 2
+
+[node name="StreakLabel" type="Label" parent="Game"]
+theme_override_fonts/font = ExtResource("13_font")
+offset_left = 1028.0
+offset_top = 82.0
+offset_right = 1338.0
+offset_bottom = 126.0
+theme_override_colors/font_color = Color(0.4, 0.9, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 28
+text = "STREAK 0"
+horizontal_alignment = 2
+
+[node name="LivesLabel" type="Label" parent="Game"]
+theme_override_fonts/font = ExtResource("13_font")
+offset_left = 26.0
+offset_top = 105.0
+offset_right = 330.0
+offset_bottom = 150.0
+theme_override_colors/font_color = Color(1, 0.45, 0.28, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 26
+text = "LIVES ●●●"
+
+[node name="MessageLabel" type="Label" parent="Game"]
+theme_override_fonts/font = ExtResource("13_font")
+offset_left = 90.0
+offset_top = 710.0
+offset_right = 1276.0
+offset_bottom = 762.0
+theme_override_colors/font_color = Color(1, 0.84, 0.18, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "HANK/PEGGY 50K  •  BOBBY 200K  •  AVOID TOM"
+horizontal_alignment = 1
+
+[node name="Bonks" type="Control" parent="Game"]
+mouse_filter = 2
+
+[node name="LeftBonk" type="Label" parent="Game/Bonks"]
+theme_override_fonts/font = ExtResource("13_font")
+visible = false
+offset_left = 208.0
+offset_top = 350.0
+offset_right = 438.0
+offset_bottom = 430.0
+theme_override_colors/font_color = Color(1, 0.93, 0.1, 1)
+theme_override_colors/font_outline_color = Color(0.75, 0.05, 0.02, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 54
+text = "BONK!"
+horizontal_alignment = 1
+pivot_offset = Vector2(115, 40)
+
+[node name="MiddleBonk" type="Label" parent="Game/Bonks"]
+theme_override_fonts/font = ExtResource("13_font")
+visible = false
+offset_left = 568.0
+offset_top = 350.0
+offset_right = 798.0
+offset_bottom = 430.0
+theme_override_colors/font_color = Color(1, 0.93, 0.1, 1)
+theme_override_colors/font_outline_color = Color(0.75, 0.05, 0.02, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 54
+text = "BONK!"
+horizontal_alignment = 1
+pivot_offset = Vector2(115, 40)
+
+[node name="RightBonk" type="Label" parent="Game/Bonks"]
+theme_override_fonts/font = ExtResource("13_font")
+visible = false
+offset_left = 924.0
+offset_top = 350.0
+offset_right = 1154.0
+offset_bottom = 430.0
+theme_override_colors/font_color = Color(1, 0.93, 0.1, 1)
+theme_override_colors/font_outline_color = Color(0.75, 0.05, 0.02, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 54
+text = "BONK!"
+horizontal_alignment = 1
+pivot_offset = Vector2(115, 40)
+
+[node name="FinalPanel" type="Panel" parent="Game"]
+visible = false
+offset_left = 238.0
+offset_top = 180.0
+offset_right = 1128.0
+offset_bottom = 630.0
+theme_override_styles/panel = SubResource("FinalPanelStyle")
+
+[node name="FinalTitle" type="Label" parent="Game/FinalPanel"]
+theme_override_fonts/font = ExtResource("13_font")
+offset_left = 45.0
+offset_top = 48.0
+offset_right = 845.0
+offset_bottom = 155.0
+theme_override_colors/font_color = Color(1, 0.82, 0.16, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 70
+text = "TIME!"
+horizontal_alignment = 1
+
+[node name="FinalScore" type="Label" parent="Game/FinalPanel"]
+theme_override_fonts/font = ExtResource("13_font")
+offset_left = 45.0
+offset_top = 165.0
+offset_right = 845.0
+offset_bottom = 380.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 72
+text = "FINAL SCORE\n0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CalloutPlayer" type="AudioStreamPlayer" parent="Game"]
+bus = &"voice"
+volume_db = 8.0
+
+[node name="EffectsPlayer" type="AudioStreamPlayer" parent="Game"]
+bus = &"effects"
+volume_db = 5.0

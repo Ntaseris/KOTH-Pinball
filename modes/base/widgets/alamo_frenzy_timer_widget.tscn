@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://doqyphyygjh"]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_rjxii"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="2_hxcnk"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="3_qpwxg"]
+
+[node name="alamo_frenzy_timer_widget" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1224.0
+offset_top = 96.0
+offset_right = 1352.0
+offset_bottom = 208.0
+script = ExtResource("1_rjxii")
+
+[node name="alamo_frenzy_timer_variable2" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("2_hxcnk")
+top_level = true
+layout_mode = 0
+offset_left = 1248.0
+offset_top = 128.0
+offset_right = 1328.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 30
+text = "34"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_qpwxg")
+variable_type = 1
+variable_name = "ticks_remaining"
+update_event = "timer_alamo_frenzy_mode_countdown_tick"

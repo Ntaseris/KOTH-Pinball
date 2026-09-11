@@ -1,0 +1,26 @@
+#show_version=6
+
+- duration: 0.14s
+  lights:
+    l_p2_target: yellow
+    l_a_target: yellow
+    l_n_target: yellow
+    l_e_target: yellow
+    l_right_orbit: yellow
+    l_right_ramp: yellow
+- duration: 0.14s
+  lights:
+    l_p2_target: white
+    l_a_target: white
+    l_n_target: white
+    l_e_target: white
+    l_right_orbit: white
+    l_right_ramp: white
+- duration: 0.14s
+  lights:
+    l_p2_target: off
+    l_a_target: off
+    l_n_target: off
+    l_e_target: off
+    l_right_orbit: off
+    l_right_ramp: off

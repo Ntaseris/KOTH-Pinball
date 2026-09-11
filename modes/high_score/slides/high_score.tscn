@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwex264myt4fl"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_adeqt"]
+[ext_resource type="Script" uid="uid://bih7rh22x0mra" path="res://addons/mpf-gmc/classes/mpf_text_input.gd" id="2_6uslk"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_hdxjt"]
+
+[node name="HighScore" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_adeqt")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 691.0
+offset_top = 104.0
+offset_right = 1356.0
+offset_bottom = 246.0
+
+[node name="MPFTextInput" type="HFlowContainer" parent="." node_paths=PackedStringArray("display_node")]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 320.0
+offset_right = 1208.0
+offset_bottom = 506.0
+script = ExtResource("2_6uslk")
+grid_width = 30
+display_node = NodePath("../RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+theme_override_fonts/normal_font = ExtResource("3_hdxjt")
+layout_mode = 0
+offset_left = 440.0
+offset_top = 192.0
+offset_right = 912.0
+offset_bottom = 452.0
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[pulse freq=3.0 color=#ff00ffff ease=-1.0]A[/pulse]"

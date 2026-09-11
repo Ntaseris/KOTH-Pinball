@@ -1,0 +1,117 @@
+#config_version=6
+
+mode:
+  start_events: ball_starting
+  stop_events: ball_ending
+  priority: 180
+
+# Ladybird Save:
+# Hit the Ladybird target 3 times to light a one-time left outlane save.
+# If the ball enters the left outlane while lit, a short ball save is enabled,
+# the left outlane light turns off. It can be earned and used once per ball.
+
+counters:
+  ladybird_save_counter:
+    enable_events: mode_ladybird_save_started
+    count_events: s_ladybird_target_active
+    count_complete_value: 3
+    persist_state: false
+    disable_on_complete: true
+    reset_events:
+      - mode_ladybird_save_started
+      - ladybird_save_used
+      - ball_will_end
+
+ball_saves:
+  ladybird_save:
+    active_time: 6s
+    hurry_up_time: 0s
+    grace_period: 2s
+    enable_events: ladybird_save_start
+    auto_launch: true
+    balls_to_save: 1
+
+variable_player:
+  mode_ladybird_save_started:
+    ladybird_save_lit:
+      action: set
+      int: 0
+    ladybird_save_used_this_ball:
+      action: set
+      int: 0
+
+  logicblock_ladybird_save_counter_complete{current_player.ladybird_save_used_this_ball == 0}:
+    ladybird_save_lit:
+      action: set
+      int: 1
+
+  ladybird_save_used:
+    ladybird_save_lit:
+      action: set
+      int: 0
+    ladybird_save_used_this_ball:
+      action: set
+      int: 1
+
+  ball_will_end:
+    ladybird_save_lit:
+      action: set
+      int: 0
+
+widget_player:
+  logicblock_ladybird_save_counter_complete{current_player.ladybird_save_used_this_ball == 0}:
+    ladybird_save_ready:
+      slide: base
+      expire: 6s
+  ladybird_save_used:
+    ladybird_save_used:
+      slide: base
+      expire: 3.5s
+      priority: 1200
+
+sound_player:
+  logicblock_ladybird_save_counter_updated{value < 3}:
+    target_tick_1:
+      bus: effects
+      volume: 0.2
+  logicblock_ladybird_save_counter_complete{current_player.ladybird_save_used_this_ball == 0}:
+    award_chime:
+      bus: effects
+      volume: 0.3
+    hank_ladybird_beautiful_dancer:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  ladybird_save_used:
+    success_sting:
+      bus: effects
+      volume: 0.28
+    hank_ladybird_good_girl:
+      bus: voice
+      ducking: {bus: music, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+show_player:
+  logicblock_ladybird_save_counter_complete{current_player.ladybird_save_used_this_ball == 0}:
+    flash_color:
+      key: ladybird_save_lit
+      speed: 4
+      priority: 1000
+      show_tokens:
+        lights: l_h_lane
+        color: white
+
+  ladybird_save_used:
+    ladybird_save_lit:
+      action: stop
+
+  ball_will_end:
+    ladybird_save_lit:
+      action: stop
+
+  mode_ladybird_save_stopping:
+    ladybird_save_lit:
+      action: stop
+
+event_player:
+  s_left_outlane_active{current_player.ladybird_save_lit == 1}:
+    - ladybird_save_start
+    - ladybird_save_used

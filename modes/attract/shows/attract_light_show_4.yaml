@@ -1,0 +1,18 @@
+#show_version=6
+
+- duration: 1
+  lights:
+    l_k_lane: 0
+    l_h_lane: red
+- duration: 1
+  lights:
+    l_h_lane: 0
+    l_a_lane: red
+- duration: 1
+  lights:
+    l_a_lane: 0
+    l_n_lane: red
+- duration: 1
+  lights:
+    l_n_lane: 0
+    l_k_lane: red

@@ -1,0 +1,9 @@
+#show_version=6
+
+- time: .5s
+  lights:
+    l_left_orbit: yellow
+- time: +.5s
+  lights:
+    l_left_orbit: off
+- time: +.5s 

@@ -1,0 +1,83 @@
+#show_version=6
+
+- duration: 0.1s
+  lights:
+    l_p_target: red
+    l_r_target: off
+    l_o_target: off
+    l_p2_target: off
+    l_a_target: off
+    l_n_target: off
+    l_e_target: off
+- duration: 0.1s
+  lights:
+    l_p_target: white
+    l_r_target: red
+    l_o_target: off
+    l_p2_target: off
+    l_a_target: off
+    l_n_target: off
+    l_e_target: off
+- duration: 0.1s
+  lights:
+    l_p_target: off
+    l_r_target: white
+    l_o_target: red
+    l_p2_target: off
+    l_a_target: off
+    l_n_target: off
+    l_e_target: off
+- duration: 0.1s
+  lights:
+    l_p_target: off
+    l_r_target: off
+    l_o_target: white
+    l_p2_target: red
+    l_a_target: off
+    l_n_target: off
+    l_e_target: off
+- duration: 0.1s
+  lights:
+    l_p_target: off
+    l_r_target: off
+    l_o_target: off
+    l_p2_target: white
+    l_a_target: red
+    l_n_target: off
+    l_e_target: off
+- duration: 0.1s
+  lights:
+    l_p_target: off
+    l_r_target: off
+    l_o_target: off
+    l_p2_target: off
+    l_a_target: white
+    l_n_target: red
+    l_e_target: off
+- duration: 0.1s
+  lights:
+    l_p_target: off
+    l_r_target: off
+    l_o_target: off
+    l_p2_target: off
+    l_a_target: off
+    l_n_target: white
+    l_e_target: red
+- duration: 0.12s
+  lights:
+    l_p_target: off
+    l_r_target: off
+    l_o_target: off
+    l_p2_target: off
+    l_a_target: off
+    l_n_target: off
+    l_e_target: white
+- duration: 0.1s
+  lights:
+    l_p_target: off
+    l_r_target: off
+    l_o_target: off
+    l_p2_target: off
+    l_a_target: off
+    l_n_target: off
+    l_e_target: off

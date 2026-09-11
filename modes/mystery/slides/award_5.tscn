@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm1hr5gd5lh0s"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_lcmc3"]
+[ext_resource type="VideoStream" uid="uid://dpco4bp8a2mu5" path="res://images/super_spinners_mystery.ogv" id="2_xc2to"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_vlx2i"]
+[ext_resource type="Script" uid="uid://cff0owk0jvkka" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="4_fhnhq"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+script = ExtResource("1_lcmc3")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+color = Color(0, 0, 0, 1)
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+stream = ExtResource("2_xc2to")
+volume_db = -80.0
+autoplay = true
+script = ExtResource("4_fhnhq")
+
+[node name="Label" type="Label" parent="MPFVideoPlayer"]
+theme_override_fonts/font = ExtResource("3_vlx2i")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 384.0
+offset_right = 1384.0
+offset_bottom = 704.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 100
+text = "SUPER SPINNERS\n30 SECONDS"
+horizontal_alignment = 1

@@ -1,0 +1,14 @@
+#show_version=6
+
+- duration: 0.08s
+  lights:
+    (light): white
+- duration: 0.1s
+  lights:
+    (light): orange
+- duration: 0.08s
+  lights:
+    (light): white
+- duration: 0.1s
+  lights:
+    (light): off

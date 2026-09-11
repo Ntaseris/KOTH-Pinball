@@ -1,0 +1,23 @@
+#show_version=6
+# Copyright (C) 2026 One More Game - All Rights Reserved
+# Unauthorized copying of this file, via any medium is strictly prohibited
+# Proprietary and confidential
+
+- duration: 120ms
+  lights:
+    l_left_orbit: red
+    l_left_ramp: red
+    l_left_horseshoe: red
+    l_scoop: red
+    l_center_spinner: red
+    l_right_ramp: red
+    l_right_orbit: red
+- duration: 120ms
+  lights:
+    l_left_orbit: off
+    l_left_ramp: off
+    l_left_horseshoe: off
+    l_scoop: off
+    l_center_spinner: off
+    l_right_ramp: off
+    l_right_orbit: off

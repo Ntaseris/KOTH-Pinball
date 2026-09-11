@@ -1,0 +1,41 @@
+#show_version=6
+
+- duration: 140ms
+  lights:
+    l_gi1: 35D9FF
+    l_gi2: "062A38"
+    l_gi3: "102018"
+    l_gi4: "281800"
+    l_gi5: FFC83D
+    l_gi6: "281800"
+    l_gi7: "281800"
+    l_gi8: "281800"
+    l_boom_1: 35D9FF
+    l_boom_2: FFC83D
+    l_boom_3: "102838"
+- duration: 140ms
+  lights:
+    l_gi1: FFC83D
+    l_gi2: 35D9FF
+    l_gi3: "062A38"
+    l_gi4: "102018"
+    l_gi5: "281800"
+    l_gi6: FFC83D
+    l_gi7: FFC83D
+    l_gi8: FFC83D
+    l_boom_1: "102838"
+    l_boom_2: 35D9FF
+    l_boom_3: FFC83D
+- duration: 140ms
+  lights:
+    l_gi1: "281800"
+    l_gi2: FFC83D
+    l_gi3: 35D9FF
+    l_gi4: "062A38"
+    l_gi5: "102018"
+    l_gi6: "281800"
+    l_gi7: "281800"
+    l_gi8: "281800"
+    l_boom_1: FFC83D
+    l_boom_2: "102838"
+    l_boom_3: 35D9FF

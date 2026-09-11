@@ -1,0 +1,30 @@
+#show_version=6
+
+- duration: 1
+  lights:
+    l_e_target: 0
+    l_p_target: blue
+- duration: 1
+  lights:
+    l_p_target: 0
+    l_r_target: blue
+- duration: 1
+  lights:
+    l_r_target: 0
+    l_o_target: blue
+- duration: 1
+  lights:
+    l_o_target: 0
+    l_p2_target: blue
+- duration: 1
+  lights:
+    l_p2_target: 0
+    l_a_target: blue
+- duration: 1
+  lights:
+    l_a_target: 0
+    l_n_target: blue
+- duration: 1
+  lights:
+    l_n_target: 0
+    l_e_target: blue

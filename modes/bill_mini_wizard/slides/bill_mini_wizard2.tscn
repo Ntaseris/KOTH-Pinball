@@ -1,0 +1,115 @@
+; Copyright (C) 2026 One More Game - All Rights Reserved
+; Unauthorized copying of this file, via any medium is strictly prohibited
+; Proprietary and confidential
+
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_slide"]
+[ext_resource type="VideoStream" path="res://images/bill_mini_wizardnew.ogv" id="2_video"]
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_player"]
+[ext_resource type="FontFile" path="res://fonts/King Of The Hill 2.ttf" id="4_font"]
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_variable"]
+
+[node name="BillMiniWizard" type="Control"]
+offset_right = 1368.0
+offset_bottom = 768.0
+script = ExtResource("1_slide")
+
+[node name="Video" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+offset_right = 1368.0
+offset_bottom = 768.0
+stream = ExtResource("2_video")
+volume_db = -80.0
+autoplay = true
+loop = true
+script = ExtResource("3_player")
+
+[node name="Title" type="Label" parent="."]
+offset_left = 300.0
+offset_top = 20.0
+offset_right = 1068.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(1, 0.82, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.02, 0.14, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 48
+text = "BLOODLINE MULTIBALL"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="."]
+offset_left = 80.0
+offset_top = 285.0
+offset_right = 1288.0
+offset_bottom = 425.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.02, 0.14, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 104
+text = "1,000,000"
+horizontal_alignment = 1
+script = ExtResource("5_variable")
+variable_name = "score"
+comma_separate = true
+
+[node name="Progress" type="Label" parent="."]
+offset_left = 290.0
+offset_top = 505.0
+offset_right = 1078.0
+offset_bottom = 590.0
+theme_override_colors/font_color = Color(1, 0.82, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.02, 0.14, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 52
+text = "JACKPOTS 0 / 6"
+horizontal_alignment = 1
+script = ExtResource("5_variable")
+variable_name = "bill_mw_jackpots"
+template_string = "JACKPOTS %s / 6"
+
+[node name="JackpotValue" type="Label" parent="."]
+offset_left = 290.0
+offset_top = 575.0
+offset_right = 1078.0
+offset_bottom = 650.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.02, 0.14, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 42
+text = "NEXT JACKPOT 2,000,000"
+horizontal_alignment = 1
+script = ExtResource("5_variable")
+variable_name = "bill_mw_jackpot_value"
+template_string = "NEXT JACKPOT %s"
+comma_separate = true
+
+[node name="Warning" type="Label" parent="."]
+offset_left = 290.0
+offset_top = 650.0
+offset_right = 1078.0
+offset_bottom = 730.0
+theme_override_colors/font_color = Color(0.9, 0.35, 1, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0, 0.1, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 44
+text = "AVOID PURPLE VIOLETTA"
+horizontal_alignment = 1
+
+[node name="Player" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 280.0
+offset_bottom = 72.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 30
+text = "PLAYER 1"
+script = ExtResource("5_variable")
+variable_name = "number"
+template_string = "PLAYER %s"

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bheb56wkgleax"]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_f3bqm"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="2_7icmm"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="3_b2tn8"]
+
+[node name="super_spinners_timer_widget" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_f3bqm")
+
+[node name="super_spinners_timer_variable2" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("2_7icmm")
+top_level = true
+layout_mode = 0
+offset_left = 128.0
+offset_top = 328.0
+offset_right = 224.0
+offset_bottom = 392.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 34
+text = "34"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_b2tn8")
+variable_type = 1
+variable_name = "ticks_remaining"
+update_event = "timer_super_spinners_mode_countdown_tick"

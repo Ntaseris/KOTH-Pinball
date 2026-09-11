@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://7kgqmyjhccle"]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_1x7ka"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="2_8y58g"]
+
+[node name="TimerWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_1x7ka")
+
+[node name="timer_variable" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+layout_mode = 0
+offset_left = 67.0
+offset_top = 51.0
+offset_right = 205.0
+offset_bottom = 168.0
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+script = ExtResource("2_8y58g")
+variable_type = 1
+variable_name = "ticks_remaining"
+update_event = "timer_attract_overlay_tick"

@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5ga64xmv8c8x"]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_bb7ud"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_rsj4h"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="4_ht6mw"]
+[ext_resource type="Texture2D" uid="uid://cb3dwbxbpi8ya" path="res://images/alamo beer can.png" id="5_alamo"]
+
+[node name="MPFWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_bb7ud")
+
+[node name="AlamoCan" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(88, 632)
+scale = Vector2(0.909794, 0.790541)
+texture = ExtResource("5_alamo")
+
+[node name="Multiplier" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_rsj4h")
+layout_mode = 0
+offset_left = 118.0
+offset_top = 652.0
+offset_right = 178.0
+offset_bottom = 732.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 48
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MPFVariable" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_rsj4h")
+layout_mode = 0
+offset_left = 174.0
+offset_top = 648.0
+offset_right = 320.0
+offset_bottom = 784.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 60
+text = "1"
+horizontal_alignment = 1
+script = ExtResource("4_ht6mw")
+variable_name = "alamo"

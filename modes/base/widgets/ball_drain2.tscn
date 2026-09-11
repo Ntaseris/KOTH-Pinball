@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://68andpf4svxa"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_bbi18"]
+[ext_resource type="VideoStream" uid="uid://cs4ujhjkg078x" path="res://images/hank_wd40.ogv" id="2_tv4o4"]
+[ext_resource type="Script" uid="uid://cff0owk0jvkka" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_2o4gx"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_bbi18")
+metadata/_custom_type_script = "uid://30oouok838l"
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("2_tv4o4")
+autoplay = true
+script = ExtResource("3_2o4gx")
+metadata/_custom_type_script = "uid://cff0owk0jvkka"

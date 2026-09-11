@@ -1,0 +1,33 @@
+; Copyright (C) 2026 One More Game - All Rights Reserved
+; Unauthorized copying of this file, via any medium is strictly prohibited
+; Proprietary and confidential
+
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_widget"]
+[ext_resource type="VideoStream" path="res://images/dang_ol_love_clips/ring_ready.ogv" id="2_video"]
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_player"]
+[ext_resource type="FontFile" path="res://fonts/King Of The Hill 2.ttf" id="4_font"]
+[node name="RingReady" type="Control"]
+offset_right = 1368.0
+offset_bottom = 768.0
+mouse_filter = 2
+script = ExtResource("1_widget")
+[node name="Video" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+offset_right = 1368.0
+offset_bottom = 768.0
+stream = ExtResource("2_video")
+autoplay = true
+script = ExtResource("3_player")
+[node name="Instruction" type="Label" parent="."]
+offset_left = 90.0
+offset_top = 545.0
+offset_right = 1278.0
+offset_bottom = 700.0
+theme_override_colors/font_color = Color(1, 0.25, 0.62, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0, 0.08, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 80
+text = "SHOOT SCOOP TO PROPOSE"
+horizontal_alignment = 1

@@ -1,0 +1,137 @@
+#show_version=6
+
+# Warm GI breathing. No full-black strobe.
+- duration: 1.5
+  lights:
+    l_gi1: FF9A40
+    l_gi2: FF9A40
+    l_gi3: FF9A40
+    l_gi4: FF9A40
+- duration: 1.5
+  lights:
+    l_gi1: 4A1D08
+    l_gi2: 4A1D08
+    l_gi3: 4A1D08
+    l_gi4: 4A1D08
+
+# Character columns sweep deliberately across the lower playfield.
+- duration: 1
+  lights:
+    l_boom_1: FF3030
+    l_boom_2: FF3030
+    l_boom_3: FF3030
+- duration: 1
+  lights:
+    l_boom_1: 190303
+    l_boom_2: 190303
+    l_boom_3: 190303
+    l_hank_1: FF8A20
+    l_hank_2: FF8A20
+    l_hank_3: FF8A20
+- duration: 1
+  lights:
+    l_hank_1: 1F0B02
+    l_hank_2: 1F0B02
+    l_hank_3: 1F0B02
+    l_dale_1: 40D060
+    l_dale_2: 40D060
+    l_dale_3: 40D060
+- duration: 1
+  lights:
+    l_dale_1: 041A08
+    l_dale_2: 041A08
+    l_dale_3: 041A08
+    l_bill_1: 30B8E8
+    l_bill_2: 30B8E8
+    l_bill_3: 30B8E8
+- duration: 1
+  lights:
+    l_bill_1: 03141A
+    l_bill_2: 03141A
+    l_bill_3: 03141A
+
+# Main-shot chase from left to right.
+- duration: .8
+  lights:
+    l_left_orbit: FF4FA3
+    l_right_orbit: 100008
+- duration: .8
+  lights:
+    l_left_orbit: 100008
+    l_left_ramp: FF4FA3
+- duration: .8
+  lights:
+    l_left_ramp: 100008
+    l_left_horseshoe: FF4FA3
+- duration: .8
+  lights:
+    l_left_horseshoe: 100008
+    l_center_spinner: FF4FA3
+- duration: .8
+  lights:
+    l_center_spinner: 100008
+    l_scoop: FF4FA3
+- duration: .8
+  lights:
+    l_scoop: 100008
+    l_right_ramp: FF4FA3
+- duration: .8
+  lights:
+    l_right_ramp: 100008
+    l_right_orbit: FF4FA3
+
+# Target banks travel as groups instead of unrelated flashes.
+- duration: 1
+  lights:
+    l_p_target: 4090FF
+    l_r_target: 4090FF
+    l_o_target: 4090FF
+    l_p2_target: 100420
+    l_a_target: 100420
+    l_n_target: 100420
+    l_e_target: 100420
+- duration: 1
+  lights:
+    l_p_target: 100420
+    l_r_target: 100420
+    l_o_target: 100420
+    l_p2_target: 4090FF
+    l_a_target: 4090FF
+    l_n_target: 4090FF
+    l_e_target: 4090FF
+- duration: 1
+  lights:
+    l_p2_target: 100420
+    l_a_target: 100420
+    l_n_target: 100420
+    l_e_target: 100420
+    l_h_lane: FFD040
+    l_a_lane: FFD040
+    l_n_lane: FFD040
+    l_k_lane: FFD040
+
+# Controlled finale, then return to the warm breath.
+- duration: 1.5
+  lights:
+    l_wizard: FFFFFF
+    l_strickland_multiball: FFFFFF
+    l_ball_save: FFFFFF
+    l_lock_1: FFFFFF
+    l_lock_2: FFFFFF
+    l_playfield_2X: FFD040
+    l_playfield_3X: FFD040
+    l_playfield_4X: FFD040
+    l_playfield_5X: FFD040
+    l_playfield_10X: FFD040
+- duration: 1
+  lights:
+    l_wizard: 0
+    l_strickland_multiball: 0
+    l_ball_save: 0
+    l_lock_1: 0
+    l_lock_2: 0
+    l_playfield_2X: 0
+    l_playfield_3X: 0
+    l_playfield_4X: 0
+    l_playfield_5X: 0
+    l_playfield_10X: 0

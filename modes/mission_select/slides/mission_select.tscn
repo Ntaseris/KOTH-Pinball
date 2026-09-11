@@ -1,0 +1,413 @@
+[gd_scene format=3 uid="uid://dpigg7v4w7kg5"]
+
+[ext_resource type="Script" uid="uid://dru3usokwlhd3" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_tccj5"]
+[ext_resource type="Script" uid="uid://dpe3dq8axt3g7" path="res://addons/mpf-gmc/classes/mpf_carousel.gd" id="2_2r8qi"]
+[ext_resource type="Texture2D" uid="uid://dlxla2mahwn4s" path="res://images/king of the hill base display background.jpeg" id="3_rbg34"]
+[ext_resource type="VideoStream" uid="uid://dmy8qdgc3jniw" path="res://images/mode select vids/beatthesurfer.ogv" id="5_sbu3a"]
+[ext_resource type="VideoStream" uid="uid://b2oemp08te2nq" path="res://images/bill_bulk_clips/King.of.the.Hill.S11E11.Bill.Bulk.and.the.Body.Buddies.1080p.Hulu.WEB-DL.AAC2.0.H.264-QOQ-00.11.11.967-00.11.23.666-seg1.ogv" id="7_f4sy1"]
+[ext_resource type="VideoStream" uid="uid://b1xh7aviv10pq" path="res://images/mode select vids/beercannameddesire.ogv" id="7_k6imk"]
+[ext_resource type="Script" uid="uid://bov7mrgxslshq" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="8_tompn"]
+[ext_resource type="VideoStream" uid="uid://b24w3omqlcw71" path="res://images/patch_carousel.ogv" id="9_higo4"]
+[ext_resource type="VideoStream" uid="uid://6p5skmknes6h" path="res://images/mode select vids/dogdaleafternoon.ogv" id="10_x3j03"]
+[ext_resource type="VideoStream" uid="uid://be34bkimxa13x" path="res://images/mode select vids/dukethedolphin.ogv" id="11_eh4wb"]
+[ext_resource type="VideoStream" uid="uid://lmuh18xxolv7" path="res://images/mode select vids/heatwaver1.ogv" id="12_4s6e6"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="12_q3lwm"]
+[ext_resource type="Texture2D" uid="uid://ct32uaepsvvn0" path="res://images/bill_mini_wizard.jpeg" id="13_f8axg"]
+[ext_resource type="VideoStream" uid="uid://cci751jpr36pl" path="res://images/mode select vids/gladstone.ogv" id="13_j10my"]
+[ext_resource type="Texture2D" uid="uid://dd11wod4ue1sx" path="res://images/hank_mini_wizard.jpeg" id="14_6rfse"]
+[ext_resource type="Texture2D" uid="uid://cdcxy7dgqjbdy" path="res://images/dale_mini_wizard.jpeg" id="15_xg6e2"]
+[ext_resource type="Texture2D" uid="uid://b2hcmc632c4y3" path="res://images/boom_mini_wizard.jpeg" id="16_0yllu"]
+[ext_resource type="Texture2D" uid="uid://clm2cl8ln7ql2" path="res://images/wizard_mode.jpeg" id="17_0gdor"]
+[ext_resource type="Texture2D" uid="uid://d4nm5cker1gu" path="res://images/arrow-right-png-white-11564468677itl3bqcr6z-removebg-preview.png" id="19_witfv"]
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="20_timer"]
+
+[node name="Control" type="Control" unique_id=1633096215]
+layout_mode = 3
+anchor_left = 0.01
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tccj5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1571755905]
+position = Vector2(670.34, 383.75)
+scale = Vector2(5.34351, 3.98187)
+texture = ExtResource("3_rbg34")
+
+[node name="Label" type="Label" parent="." unique_id=682629791]
+theme_override_fonts/font = ExtResource("12_q3lwm")
+layout_mode = 0
+offset_left = -14.0
+offset_top = 9.0
+offset_right = 1362.0
+offset_bottom = 152.0
+theme_override_font_sizes/font_size = 120
+text = "mode select"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="MPFCarousel" type="Control" parent="." unique_id=409658919]
+anchors_preset = 0
+script = ExtResource("2_2r8qi")
+carousel_name = "mission_select"
+
+[node name="beat_the_surfer" type="VideoStreamPlayer" parent="MPFCarousel" unique_id=474346733]
+volume_db = -7.0
+bus = &"video"
+layout_mode = 0
+offset_left = 178.34
+offset_top = 128.0
+offset_right = 1554.34
+offset_bottom = 896.0
+scale = Vector2(0.73, 0.759)
+stream = ExtResource("5_sbu3a")
+autoplay = true
+loop = true
+script = ExtResource("8_tompn")
+
+[node name="Label" type="Label" parent="MPFCarousel/beat_the_surfer" unique_id=1377941868]
+theme_override_fonts/font = ExtResource("12_q3lwm")
+layout_mode = 0
+offset_left = -263.014
+offset_top = 685.112
+offset_right = 1621.99
+offset_bottom = 811.112
+theme_override_font_sizes/font_size = 120
+text = "beat the surfer"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="beer_can_named_desire" type="VideoStreamPlayer" parent="MPFCarousel" unique_id=588574915]
+volume_db = -7.0
+bus = &"video"
+layout_mode = 0
+offset_left = 178.34
+offset_top = 128.0
+offset_right = 1554.34
+offset_bottom = 896.0
+scale = Vector2(0.73, 0.75)
+stream = ExtResource("7_k6imk")
+autoplay = true
+loop = true
+script = ExtResource("8_tompn")
+preview_in_editor = true
+
+[node name="Label2" type="Label" parent="MPFCarousel/beer_can_named_desire" unique_id=1002674039]
+theme_override_fonts/font = ExtResource("12_q3lwm")
+layout_mode = 0
+offset_left = -241.096
+offset_top = 693.333
+offset_right = 1643.91
+offset_bottom = 948.328
+theme_override_font_sizes/font_size = 120
+text = "beer can named desire"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="bill_bulk_and_the_body_buddies" type="VideoStreamPlayer" parent="MPFCarousel" unique_id=131162480]
+volume_db = -7.0
+bus = &"video"
+layout_mode = 0
+offset_left = 178.34
+offset_top = 128.0
+offset_right = 1554.34
+offset_bottom = 896.0
+scale = Vector2(0.73, 0.75)
+stream = ExtResource("7_f4sy1")
+autoplay = true
+loop = true
+script = ExtResource("8_tompn")
+preview_in_editor = true
+
+[node name="Label" type="Label" parent="MPFCarousel/bill_bulk_and_the_body_buddies" unique_id=1694457502]
+theme_override_fonts/font = ExtResource("12_q3lwm")
+layout_mode = 0
+offset_left = -274.0
+offset_top = 690.0
+offset_right = 1611.0
+offset_bottom = 945.0
+theme_override_font_sizes/font_size = 120
+text = "Bill, bulk, and the body buddies"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="patch_boomhauer" type="VideoStreamPlayer" parent="MPFCarousel" unique_id=707942444]
+volume_db = -7.0
+bus = &"video"
+layout_mode = 0
+offset_left = 178.34
+offset_top = 128.0
+offset_right = 1554.34
+offset_bottom = 896.0
+scale = Vector2(0.73, 0.75)
+stream = ExtResource("9_higo4")
+autoplay = true
+loop = true
+script = ExtResource("8_tompn")
+
+[node name="Label" type="Label" parent="MPFCarousel/patch_boomhauer" unique_id=1707000584]
+theme_override_fonts/font = ExtResource("12_q3lwm")
+layout_mode = 0
+offset_left = -274.0
+offset_top = 690.0
+offset_right = 1611.0
+offset_bottom = 945.0
+theme_override_font_sizes/font_size = 120
+text = "patch boomhauer"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="dog_dale_afternoon" type="VideoStreamPlayer" parent="MPFCarousel" unique_id=1407170115]
+bus = &"video"
+layout_mode = 0
+offset_left = 178.34
+offset_top = 128.0
+offset_right = 1554.34
+offset_bottom = 896.0
+scale = Vector2(0.73, 0.75)
+stream = ExtResource("10_x3j03")
+volume_db = -7.0
+autoplay = true
+loop = true
+script = ExtResource("8_tompn")
+
+[node name="Label" type="Label" parent="MPFCarousel/dog_dale_afternoon" unique_id=925654269]
+theme_override_fonts/font = ExtResource("12_q3lwm")
+layout_mode = 0
+offset_left = -263.014
+offset_top = 693.333
+offset_right = 1621.99
+offset_bottom = 819.333
+theme_override_font_sizes/font_size = 120
+text = "dog dale afternoon"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="duke_the_dolphin" type="VideoStreamPlayer" parent="MPFCarousel" unique_id=895517911]
+volume_db = -7.0
+bus = &"video"
+layout_mode = 0
+offset_left = 178.34
+offset_top = 128.0
+offset_right = 1554.34
+offset_bottom = 896.0
+scale = Vector2(0.73, 0.75)
+stream = ExtResource("11_eh4wb")
+autoplay = true
+loop = true
+script = ExtResource("8_tompn")
+
+[node name="Label" type="Label" parent="MPFCarousel/duke_the_dolphin" unique_id=2099779347]
+theme_override_fonts/font = ExtResource("12_q3lwm")
+layout_mode = 0
+offset_left = -263.014
+offset_top = 693.333
+offset_right = 1610.99
+offset_bottom = 819.333
+theme_override_font_sizes/font_size = 120
+text = "duke the dolphin"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="the_heat_waver" type="VideoStreamPlayer" parent="MPFCarousel" unique_id=1586314944]
+volume_db = -7.0
+bus = &"video"
+layout_mode = 0
+offset_left = 178.34
+offset_top = 128.0
+offset_right = 1570.34
+offset_bottom = 896.0
+scale = Vector2(0.73, 0.75)
+stream = ExtResource("12_4s6e6")
+autoplay = true
+loop = true
+script = ExtResource("8_tompn")
+
+[node name="Label" type="Label" parent="MPFCarousel/the_heat_waver" unique_id=502384625]
+theme_override_fonts/font = ExtResource("12_q3lwm")
+layout_mode = 0
+offset_left = -263.014
+offset_top = 693.333
+offset_right = 1621.99
+offset_bottom = 822.333
+theme_override_font_sizes/font_size = 120
+text = "the heat waver"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="gladstone" type="VideoStreamPlayer" parent="MPFCarousel" unique_id=307627255]
+volume_db = -7.0
+bus = &"video"
+layout_mode = 0
+offset_left = 178.34
+offset_top = 128.0
+offset_right = 1554.34
+offset_bottom = 896.0
+scale = Vector2(0.73, 0.75)
+stream = ExtResource("13_j10my")
+autoplay = true
+loop = true
+script = ExtResource("8_tompn")
+
+[node name="Label" type="Label" parent="MPFCarousel/gladstone" unique_id=1354855612]
+theme_override_fonts/font = ExtResource("12_q3lwm")
+layout_mode = 0
+offset_left = -252.055
+offset_top = 693.333
+offset_right = 1610.95
+offset_bottom = 819.333
+theme_override_font_sizes/font_size = 120
+text = "hey gladstone"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="bill_mini_wizard" type="Sprite2D" parent="MPFCarousel" unique_id=1177771529]
+visible = false
+position = Vector2(686.34, 428)
+scale = Vector2(3.79923, 2.92783)
+texture = ExtResource("13_f8axg")
+
+[node name="Label" type="Label" parent="MPFCarousel/bill_mini_wizard" unique_id=1046392132]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("12_q3lwm")
+anchors_preset = -1
+anchor_left = -3.35859
+anchor_top = -0.638594
+anchor_right = -3.35859
+anchor_bottom = -0.638593
+offset_left = -238.52
+offset_top = 43.2814
+offset_right = 1000.48
+offset_bottom = 241.281
+theme_override_font_sizes/font_size = 34
+text = "Chateau 
+Dauterive"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="hank_mini_wizard" type="Sprite2D" parent="MPFCarousel" unique_id=1361796719]
+visible = false
+position = Vector2(687.34, 426)
+scale = Vector2(3.27333, 3.40476)
+texture = ExtResource("14_6rfse")
+
+[node name="Label" type="Label" parent="MPFCarousel/hank_mini_wizard" unique_id=1032659426]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("12_q3lwm")
+offset_left = -148.0
+offset_top = -33.0
+offset_right = 150.0
+offset_bottom = -10.0
+theme_override_font_sizes/font_size = 34
+text = "hank mini"
+horizontal_alignment = 1
+
+[node name="boom_mini_wizard" type="Sprite2D" parent="MPFCarousel" unique_id=1029268336]
+visible = false
+position = Vector2(689.59, 423.5)
+scale = Vector2(3.77413, 2.89174)
+texture = ExtResource("16_0yllu")
+
+[node name="Label" type="Label" parent="MPFCarousel/boom_mini_wizard" unique_id=487224065]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("12_q3lwm")
+offset_left = -127.0
+offset_top = -55.0
+offset_right = 127.0
+offset_bottom = -32.0
+theme_override_font_sizes/font_size = 34
+text = "DANG OL' LOVE"
+horizontal_alignment = 1
+
+[node name="dale_mini_wizard" type="Sprite2D" parent="MPFCarousel" unique_id=354889889]
+visible = false
+position = Vector2(685.34, 427.25)
+scale = Vector2(6.0122, 1.95704)
+texture = ExtResource("15_xg6e2")
+
+[node name="Label" type="Label" parent="MPFCarousel/dale_mini_wizard" unique_id=370885770]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("12_q3lwm")
+offset_left = -83.0
+offset_top = -59.0
+offset_right = 83.0
+offset_bottom = -2.0
+theme_override_font_sizes/font_size = 34
+text = "dale mini"
+horizontal_alignment = 1
+
+[node name="wizard_mode" type="Sprite2D" parent="MPFCarousel" unique_id=1704017762]
+visible = false
+position = Vector2(689.59, 427.5)
+scale = Vector2(3.83591, 2.93299)
+texture = ExtResource("17_0gdor")
+
+[node name="Label" type="Label" parent="MPFCarousel/wizard_mode" unique_id=1882346635]
+theme_type_variation = &"KothSmallText"
+theme_override_fonts/font = ExtResource("12_q3lwm")
+offset_left = -131.0
+offset_top = -58.0
+offset_right = 130.0
+offset_bottom = -35.0
+theme_override_font_sizes/font_size = 34
+text = "wizard mode"
+horizontal_alignment = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=2114417508]
+position = Vector2(1274.34, 392)
+scale = Vector2(0.348178, 0.372277)
+texture = ExtResource("19_witfv")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=475840457]
+position = Vector2(74.34, 392)
+rotation = 3.14159
+scale = Vector2(0.348178, 0.372277)
+texture = ExtResource("19_witfv")
+
+[node name="Instructions" type="Label" parent="."]
+theme_override_colors/font_color = Color(1, 0.839216, 0.478431, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("12_q3lwm")
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 292.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 25
+text = "FLIPPERS: CHANGE\nBOTH: SELECT"
+
+[node name="SelectTimerLabel" type="Label" parent="."]
+theme_override_colors/font_color = Color(1, 0.839216, 0.478431, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("12_q3lwm")
+layout_mode = 0
+offset_left = 1190.0
+offset_top = 14.0
+offset_right = 1348.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 23
+text = "SELECT IN"
+horizontal_alignment = 1
+
+[node name="SelectTimer" type="Label" parent="."]
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("12_q3lwm")
+layout_mode = 0
+offset_left = 1190.0
+offset_top = 42.0
+offset_right = 1348.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 54
+text = "15"
+horizontal_alignment = 1
+script = ExtResource("20_timer")
+variable_type = 1
+variable_name = "ticks_remaining"
+initialize_empty = false
+update_event = "timer_mission_select_timeout_tick"

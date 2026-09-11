@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwu6tp18jxo64"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_f228w"]
+[ext_resource type="Texture2D" uid="uid://b43ugpc4c557l" path="res://images/beat the surfer.jpeg" id="2_0socs"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_f228w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(403, 309)
+scale = Vector2(2.64667, 3.44048)
+texture = ExtResource("2_0socs")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 200.0
+offset_right = 802.0
+offset_bottom = 362.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 38
+text = "BEAT THE SURFER"
+horizontal_alignment = 1
+uppercase = true

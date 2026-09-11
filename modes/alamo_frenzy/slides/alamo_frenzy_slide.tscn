@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=3 uid="uid://8paw3p5xfhdv"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_j0vi0"]
+[ext_resource type="Texture2D" uid="uid://dosp74cbb6js7" path="res://images/peggy_alamo.jpg" id="2_lknwo"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_ghfkd"]
+
+[sub_resource type="Animation" id="Animation_s3j4u"]
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.16, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:visible_characters")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+
+[sub_resource type="Animation" id="Animation_xiu34"]
+resource_name = "alamo_frenzy"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:visible_characters")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-1, -1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ybt4o"]
+_data = {
+&"RESET": SubResource("Animation_s3j4u"),
+&"alamo_frenzy": SubResource("Animation_xiu34")
+}
+
+[node name="MPFSlide" type="Control" node_paths=PackedStringArray("animation_player")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1352.0
+offset_bottom = 776.0
+script = ExtResource("1_j0vi0")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(683.75, 385.5)
+scale = Vector2(2.58696, 1.94162)
+texture = ExtResource("2_lknwo")
+
+[node name="Label" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_ghfkd")
+modulate = Color(1, 1, 1, 0)
+top_level = true
+offset_left = 8.0
+offset_top = 408.0
+offset_right = 1376.0
+offset_bottom = 568.0
+rotation = -0.199605
+theme_override_font_sizes/font_size = 120
+text = "alamo frenzy"
+horizontal_alignment = 1
+visible_ratio = -0.0833333
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ybt4o")
+}
+autoplay = "alamo_frenzy"

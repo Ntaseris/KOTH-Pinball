@@ -1,0 +1,13 @@
+#show_version=6
+# Copyright (C) 2026 One More Game - All Rights Reserved
+# Unauthorized copying of this file, via any medium is strictly prohibited
+# Proprietary and confidential
+
+- duration: 180ms
+  lights:
+    l_left_orbit: cyan
+    l_center_spinner: "180018"
+- duration: 180ms
+  lights:
+    l_left_orbit: "001818"
+    l_center_spinner: magenta

@@ -1,0 +1,176 @@
+#config_version=6
+
+mode:
+  start_events: mission_select_dog_dale_afternoon_selected{current_player.any_mb_active == 0}
+  stop_events: ball_ended, ball_drain, timer_dog_dale_afternoon_mode_countdown_complete, dog_dale_afternoon_done
+  priority: 130
+
+slide_player:
+  mode_dog_dale_afternoon_started: 
+    dog_dale_afternoon_rules:
+      expire: 3s
+  slide_dog_dale_afternoon_rules_inactive:
+    dog_dale_afternoon:
+      expire: 45s
+
+sound_player:
+  mode_dog_dale_afternoon_started:
+    dog_dale_intro:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  timer_dog_dale_afternoon_mode_countdown_complete:
+    hank_dog_dale_did_our_best:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  timer_dog_dale_afternoon_mode_countdown_tick{ticks == 10}:
+    hank_dog_dale_this_is_it_girl:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  dog_dale_afternoon_done:
+    announcer_dog_dale_amazing:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+
+
+timers:
+  dog_dale_afternoon_mode_countdown:
+    start_value: 46
+    end_value: 0
+    direction: down
+    start_running: false
+    control_events:
+      - action: start
+        event: slide_dog_dale_afternoon_rules_removed
+    bcp: true
+  fire_shots_timer:
+    start_value: 46
+    end_value: 0
+    direction: down
+    tick_interval: .5s
+    start_running: true
+    bcp: true
+
+show_player:
+  timer_fire_shots_timer_tick{current_player.shots_on_fire == 13}: fire_shots_lit
+  timer_fire_shots_timer_tick{current_player.shots_on_fire == 12}: fire_shots_lit2
+  timer_fire_shots_timer_tick{current_player.shots_on_fire == 9}: fire_shots_lit7
+  timer_fire_shots_timer_tick{current_player.shots_on_fire == 8}: fire_shots_lit6
+  timer_fire_shots_timer_tick{current_player.shots_on_fire == 6}: fire_shots_lit5
+  
+  right_orbit_dog_dale_hit{current_player.shots_on_fire <= 6}:
+    fire_shots_lit:
+      action: stop
+  right_ramp_dog_dale_hit{current_player.shots_on_fire <= 6}:
+    fire_shots_lit2:
+      action: stop
+  left_horseshoe_dog_dale_hit{current_player.shots_on_fire <= 6}:
+    fire_shots_lit5:
+      action: stop
+  left_ramp_dog_dale_hit{current_player.shots_on_fire <= 6}:
+    fire_shots_lit6:
+      action: stop
+  left_orbit_dog_dale_hit{current_player.shots_on_fire <= 6}:
+    fire_shots_lit7:
+      action: stop
+shot_profiles:
+  dog_dale_shot:
+    states:
+      - name: lit
+        show: "on"
+      - name: unlit
+        show: "off"
+
+
+shots:
+  right_orbit_dog_dale:
+    switch: s_right_orbit_exit
+    hit_events: pocket_sand_hit_dog_dale_right_orbit
+    profile: dog_dale_shot
+  right_ramp_dog_dale:
+    switch: s_right_ramp_exit
+    hit_events: pocket_sand_hit_dog_dale_right_ramp
+    profile: dog_dale_shot
+  left_horseshoe_dog_dale:
+    switch: s_left_inner_horseshoe
+    hit_events: pocket_sand_hit_dog_dale_left_horseshoe
+    profile: dog_dale_shot
+  left_ramp_dog_dale:
+    switch: s_left_ramp_exit
+    hit_events: pocket_sand_hit_dog_dale_left_ramp
+    profile: dog_dale_shot
+  left_orbit_dog_dale:
+    switch: s_left_orbit_enter
+    hit_events: pocket_sand_hit_dog_dale_left_orbit
+    profile: dog_dale_shot
+
+shot_groups:
+  dog_dale_mode_shots:
+    shots: right_orbit_dog_dale, right_ramp_dog_dale, left_horseshoe_dog_dale, left_ramp_dog_dale, left_orbit_dog_dale
+    disable_events: ball_ended, ball_drain, timer_dog_dale_afternoon_mode_countdown_complete, dog_dale_afternoon_done
+
+
+variable_player:
+  s_center_spinner_active:
+    dog_dale_fire_value:
+      int: 250000
+      action: add
+
+  mode_dog_dale_afternoon_started:
+    dog_dale_afternoon_completed:
+      int: 0
+      action: set
+    dog_dale_fire_value:
+      int: 500000
+      action: set
+
+  dog_dale_mode_shots_lit_hit:
+    score: current_player.dog_dale_fire_value * current_player.pf_multiplier
+
+  timer_fire_shots_timer_tick{ticks>0}:        
+    shots_on_fire:
+      int: device.timers.fire_shots_timer.ticks
+      action: set
+  player_score{source=="dog_dale_afternoon"}:
+    dog_dale_afternoon_total: change
+  dog_dale_afternoon_done:
+    dog_dale_afternoon_completed:
+      int: 1
+      action: set
+  right_ramp_dog_dale_unlit_hit{current_player.shots_on_fire <= 6}:
+    score: 100000 * current_player.pf_multiplier
+  right_orbit_dog_dale_unlit_hit{current_player.shots_on_fire <= 6}:
+    score: 100000 * current_player.pf_multiplier
+  left_horseshoe_dog_dale_unlit_hit{current_player.shots_on_fire <= 6}:
+    score: 100000 * current_player.pf_multiplier
+  left_ramp_dog_dale_unlit_hit{current_player.shots_on_fire <= 6}:
+    score: 100000 * current_player.pf_multiplier
+  left_orbit_dog_dale_unlit_hit{current_player.shots_on_fire <= 6}:
+    score: 100000 * current_player.pf_multiplier
+event_player:
+  pocket_sand_mode_spot_attempt{device.shots.right_orbit_dog_dale.state_name == "lit"}:
+    - pocket_sand_hit_dog_dale_right_orbit
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{device.shots.right_orbit_dog_dale.state_name != "lit" and device.shots.right_ramp_dog_dale.state_name == "lit"}:
+    - pocket_sand_hit_dog_dale_right_ramp
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{device.shots.right_orbit_dog_dale.state_name != "lit" and device.shots.right_ramp_dog_dale.state_name != "lit" and device.shots.left_horseshoe_dog_dale.state_name == "lit"}:
+    - pocket_sand_hit_dog_dale_left_horseshoe
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{device.shots.right_orbit_dog_dale.state_name != "lit" and device.shots.right_ramp_dog_dale.state_name != "lit" and device.shots.left_horseshoe_dog_dale.state_name != "lit" and device.shots.left_ramp_dog_dale.state_name == "lit"}:
+    - pocket_sand_hit_dog_dale_left_ramp
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{device.shots.right_orbit_dog_dale.state_name != "lit" and device.shots.right_ramp_dog_dale.state_name != "lit" and device.shots.left_horseshoe_dog_dale.state_name != "lit" and device.shots.left_ramp_dog_dale.state_name != "lit" and device.shots.left_orbit_dog_dale.state_name == "lit"}:
+    - pocket_sand_hit_dog_dale_left_orbit
+    - pocket_sand_spotted
+
+accruals:
+  finish_dog_dale_afternoon:
+    events:
+      - right_orbit_dog_dale_lit_hit
+      - right_ramp_dog_dale_lit_hit
+      - left_horseshoe_dog_dale_lit_hit
+      - left_ramp_dog_dale_lit_hit
+      - left_orbit_dog_dale_lit_hit
+    events_when_complete: dog_dale_afternoon_done
+    reset_on_complete: false

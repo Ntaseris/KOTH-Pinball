@@ -1,0 +1,110 @@
+#config_version=6
+
+mode:
+  start_events: ball_started
+  priority: 200
+
+counters:
+  lb_BBQ_complete_count:
+    count_events: BBQ_lanes_lit_complete
+    events_when_hit: BBQ_lanes_done
+    starting_count: 1
+    direction: up
+    persist_state: false
+
+shots:
+  left_rollover_lane:
+    switch: s_left_rollover_lane
+    show_tokens:
+      light: l_left_rollover_lane
+  middle_rollover_lane:
+    switch: s_middle_rollover_lane
+    show_tokens:
+      light: l_middle_rollover_lane
+  right_rollover_lane:
+    switch: s_right_rollover_lane
+    show_tokens:
+      light: l_right_rollover_lane
+
+shot_groups:
+  BBQ_lanes:
+    shots: left_rollover_lane, middle_rollover_lane, right_rollover_lane
+    rotate_left_events: s_left_flipper_active
+    rotate_right_events: s_right_flipper_active
+    reset_events:
+      BBQ_lanes_lit_complete: 1s
+variable_player:
+  mode_BBQ_rollover_started:
+    bonus_multiplier:
+      int: 1
+      action: set
+  BBQ_lanes_done{count==2}:
+    bonus_multiplier:
+      int: 2
+      action: set
+  BBQ_lanes_done{count==3}:
+    bonus_multiplier:
+      int: 3
+      action: set
+  BBQ_lanes_done{count==4}:
+    bonus_multiplier:
+      int: 4
+      action: set
+  BBQ_lanes_done{count==5}:
+    bonus_multiplier:
+      int: 5
+      action: set
+  BBQ_lanes_done{count==6}:
+    bonus_multiplier:
+      int: 10
+      action: set
+  BBQ_lanes_complete:
+    score: 250000 * current_player.pf_multiplier
+
+event_player:
+  BBQ_lanes_done{count==2}:
+    bbq_bonus_advanced: {multiplier: 2}
+  BBQ_lanes_done{count==3}:
+    bbq_bonus_advanced: {multiplier: 3}
+  BBQ_lanes_done{count==4}:
+    bbq_bonus_advanced: {multiplier: 4}
+  BBQ_lanes_done{count==5}:
+    bbq_bonus_advanced: {multiplier: 5}
+  BBQ_lanes_done{count==6}:
+    bbq_bonus_advanced: {multiplier: 10}
+
+widget_player:
+  bbq_bonus_advanced:
+    bbq_bonus_advanced:
+      slide: base
+      expire: 2s
+
+sound_player:
+  bbq_bonus_advanced:
+    award_chime:
+      bus: effects
+      volume: 0.28
+# show_player:
+#   BBQ_lanes_lit_complete:
+#     flash:
+#       loops: 4
+#       speed: 4
+#       show_tokens:
+#         lights: BBQ_lanes
+
+light_player:
+  BBQ_lanes_done{count==2}:
+    l_playfield_2X:
+      color: orange
+  BBQ_lanes_done{count==3}:
+    l_playfield_2X, l_playfield_3X:
+      color: orange
+  BBQ_lanes_done{count==4}:
+   l_playfield_2X, l_playfield_3X, l_playfield_4X:
+      color: orange
+  BBQ_lanes_done{count==5}:
+    l_playfield_2X, l_playfield_3X, l_playfield_4X, l_playfield_5X:
+      color: orange
+  BBQ_lanes_done{count>=6}:
+    l_playfield_2X, l_playfield_3X, l_playfield_4X, l_playfield_5X, l_playfield_10X:
+      color: orange

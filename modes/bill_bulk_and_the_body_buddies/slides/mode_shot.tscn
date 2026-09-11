@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://qaxj0sxim8nx"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_n2f2l"]
+[ext_resource type="VideoStream" uid="uid://c513w7krmcbgh" path="res://images/Curl animation for mode shot.ogv" id="2_1scpf"]
+[ext_resource type="Script" uid="uid://cff0owk0jvkka" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_y58vj"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_n2f2l")
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("2_1scpf")
+volume_db = -80.0
+autoplay = true
+script = ExtResource("3_y58vj")

@@ -1,0 +1,9 @@
+#show_version=6
+
+- duration: 125ms
+  lights:
+    l_center_spinner: red
+- duration: 125ms
+  lights:
+    l_center_spinner: yellow
+- duration: 125ms

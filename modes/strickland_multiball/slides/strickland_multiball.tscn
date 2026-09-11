@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcmipngc6thlr"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_msanr"]
+[ext_resource type="Texture2D" uid="uid://rlejb7t21kvv" path="res://images/strickland_propane.jpeg" id="2_f8ua1"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="2_gf8tq"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -8.0
+offset_right = 1368.0
+offset_bottom = 760.0
+script = ExtResource("1_msanr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(686.271, 392.799)
+scale = Vector2(0.998139, 0.747709)
+texture = ExtResource("2_f8ua1")
+
+[node name="Label" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("2_gf8tq")
+layout_mode = 0
+offset_top = 72.0
+offset_right = 1368.0
+offset_bottom = 344.0
+theme_override_font_sizes/font_size = 120
+text = "strickland multiball"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("2_gf8tq")
+layout_mode = 0
+offset_top = 632.0
+offset_right = 1368.0
+offset_bottom = 792.0
+theme_override_font_sizes/font_size = 65
+text = "HIT POPS TO BUILD THE PROPANE JACKPOT\nSHOOT THE LEFT ORBIT WHEN LIT TO COLLECT"
+horizontal_alignment = 1

@@ -1,0 +1,21 @@
+#config_version=6
+
+mode:
+  start_events: mission_select_dale_mini_wizard_selected{current_player.any_mb_active == 0}
+  stop_events: ball_ended, timer_dale_mini_wizard_mode_countdown_complete
+  priority: 130
+
+slide_player:
+  mode_dale_mini_wizard_started: dale_mini_wizard
+
+timers:
+  dale_mini_wizard_mode_countdown:
+    start_value: 5
+    end_value: 0
+    direction: down
+    start_running: true
+    bcp: true
+
+variable_player:
+  timer_dale_mini_wizard_mode_countdown_complete:
+    modes: 1

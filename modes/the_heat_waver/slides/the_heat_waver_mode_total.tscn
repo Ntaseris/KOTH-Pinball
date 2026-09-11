@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhj5nui6jkn1g"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_ubwsi"]
+[ext_resource type="Texture2D" uid="uid://c0edeon68nhk8" path="res://images/the_heat_waver_mode_total.jpeg" id="2_8c0b0"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_o6150"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="4_xn4et"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ubwsi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(684, 384)
+scale = Vector2(1.00146, 0.749268)
+texture = ExtResource("2_8c0b0")
+
+[node name="MPFVariable" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_o6150")
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 776.0
+theme_override_font_sizes/font_size = 80
+text = "12345"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_xn4et")
+variable_name = "the_heat_waver_total"
+comma_separate = true
+min_digits = 1
+
+[node name="Label" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_o6150")
+layout_mode = 0
+offset_top = 128.0
+offset_right = 1368.0
+offset_bottom = 328.0
+theme_override_font_sizes/font_size = 120
+text = "mode total"
+horizontal_alignment = 1
+vertical_alignment = 1

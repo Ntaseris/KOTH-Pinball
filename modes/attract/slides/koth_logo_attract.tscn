@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://foxhosfjkv38"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_1ioxg"]
+[ext_resource type="VideoStream" uid="uid://b86ex5wfu26ay" path="res://images/KOTH_intro_video.ogv" id="2_3vj0c"]
+[ext_resource type="Script" uid="uid://cff0owk0jvkka" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_m6llk"]
+
+[node name="koth_logo_attract" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_1ioxg")
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("2_3vj0c")
+autoplay = true
+script = ExtResource("3_m6llk")

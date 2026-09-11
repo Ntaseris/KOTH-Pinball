@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfnkp22qpodys"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_f62hh"]
+[ext_resource type="VideoStream" uid="uid://d0rvfxxt8dikr" path="res://images/extra_ball_mystery.ogv" id="2_yfh31"]
+[ext_resource type="Script" uid="uid://cff0owk0jvkka" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_ndvfu"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_sku1k"]
+
+[node name="MPFSlide" type="Control" node_paths=PackedStringArray("animation_player")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+script = ExtResource("1_f62hh")
+animation_player = NodePath("")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+color = Color(0, 0, 0, 1)
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+stream = ExtResource("2_yfh31")
+volume_db = -80.0
+autoplay = true
+script = ExtResource("3_ndvfu")
+
+[node name="Label" type="Label" parent="MPFVideoPlayer"]
+theme_override_fonts/font = ExtResource("3_sku1k")
+layout_mode = 0
+offset_top = 248.0
+offset_right = 1368.0
+offset_bottom = 568.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 120
+text = "EXTRA BALL"
+horizontal_alignment = 1

@@ -1,0 +1,108 @@
+#config_version=6
+
+mode:
+  start_events: ball_starting
+  stop_events: ball_will_end
+  priority: 500
+
+variable_player:
+  mode_pocket_sand_started:
+    pocket_sand: 1
+    pocket_sand_can_use:
+      int: 0
+      action: set
+  s_plunger_lane_exit_active:
+    pocket_sand_can_use:
+      int: 1
+      action: set
+  balldevice_bd_plunger_ball_eject_success:
+    pocket_sand_can_use:
+      int: 1
+      action: set
+  pocket_sand_spotted:
+    pocket_sand: -1
+  ball_will_end:
+    pocket_sand_can_use:
+      int: 0
+      action: set
+  pocket_sand_disable:
+    pocket_sand_can_use:
+      int: 0
+      action: set
+
+event_player:
+  s_start_active{current_player.pocket_sand > 0 and current_player.pocket_sand_can_use == 1 and current_player.any_mb_active == 0}:
+    - pocket_sand_mode_spot_attempt
+  s_start_active{current_player.pocket_sand > 0 and current_player.pocket_sand_can_use == 1 and current_player.any_mb_active > 0}:
+    - pocket_sand_multiball_spot_attempt
+  tilt:
+    - pocket_sand_disable
+
+sound_player:
+  pocket_sand_spotted:
+    dale_pocket_sand:
+      bus: voice
+      volume: 1.25
+      action: replace
+      max_queue_time: 10s
+      ducking: {bus: music, attenuation: 0.8, attack: 0.02, release: 0.2, release_point: 0.0}
+
+widget_player:
+  mode_pocket_sand_started:
+    pocket_sand_inventory:
+      slide: base
+  slide_base_active:
+    pocket_sand_inventory:
+      slide: base
+  slide_beat_the_surfer_active:
+    pocket_sand_inventory:
+      slide: beat_the_surfer
+  slide_beer_can_named_desire_active:
+    pocket_sand_inventory:
+      slide: beer_can_named_desire
+  slide_bill_bulk_and_the_body_buddies_active:
+    pocket_sand_inventory:
+      slide: bill_bulk_and_the_body_buddies
+  slide_patch_boomhauer_active:
+    pocket_sand_inventory:
+      slide: patch_boomhauer
+  slide_dog_dale_afternoon_active:
+    pocket_sand_inventory:
+      slide: dog_dale_afternoon
+  slide_duke_the_dolphin_active:
+    pocket_sand_inventory:
+      slide: duke_the_dolphin
+  slide_gladstone_active:
+    pocket_sand_inventory:
+      slide: gladstone
+  slide_the_heat_waver_active:
+    pocket_sand_inventory:
+      slide: the_heat_waver
+  slide_strickland_multiball_2_active:
+    pocket_sand_inventory:
+      slide: strickland_multiball_2
+  slide_rainey_multiball2_active:
+    pocket_sand_inventory:
+      slide: rainey_multiball2
+  slide_grill_mb_active:
+    pocket_sand_inventory:
+      slide: grill_mb
+  slide_bill_mini_wizard2_active:
+    pocket_sand_inventory:
+      slide: bill_mini_wizard2
+  slide_alamo_frenzy_slide_active:
+    pocket_sand_inventory:
+      slide: alamo_frenzy_slide
+  pocket_sand_spotted:
+    pocket_sand_used:
+      expire: 4.15s
+      priority: 1800
+  ball_will_end:
+    pocket_sand_inventory:
+      action: remove
+
+show_player:
+  pocket_sand_spotted:
+    pocket_sand_throw:
+      loops: 1
+      priority: 1800

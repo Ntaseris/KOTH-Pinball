@@ -1,0 +1,290 @@
+#show_version=6
+- time: 0
+#No change this frame - take another step
+- time: '+0.08'
+    
+- time: '+0.08'
+  lights:
+    l_ball_save: '0000C8'
+    
+- time: '+0.08'
+  lights:
+    l_lock_2: '5C034D'
+    
+- time: '+0.08'
+  lights:
+    l_ball_save: '0000BE'
+    l_lock_2: 'BF06A0'
+    l_n_lane: 'C70101'
+    l_playfield_10X: '0E0515'
+    l_strickland_multiball: '14071E'
+    
+- time: '+0.08'
+  lights:
+    l_ball_save: '000000'
+    l_playfield_10X: '7A2AB9'
+    l_playfield_4X: 'BF06A0'
+    l_playfield_5X: 'C70101'
+    l_strickland_multiball: '7A2AB9'
+    
+- time: '+0.08'
+  lights:
+    l_k_lane: 'C7401E'
+    l_lock_2: 'BE06A1'
+    l_n_lane: 'C71B0D'
+    l_strickland_multiball: '0000C8'
+    l_wizard: 'BF06A0'
+    
+- time: '+0.08'
+  lights:
+    l_bill_3: 'C70101'
+    l_dale_3: 'BF06A0'
+    l_k_lane: 'C8401F'
+    l_lock_1: '7A2AB9'
+    l_lock_2: '7A2AB9'
+    l_n_lane: 'C8401F'
+    l_wizard: '7A2AB9'
+    
+- time: '+0.08'
+  lights:
+    l_bill_1: 'C70101'
+    l_dale_1: 'BF06A0'
+    l_hank_3: '230C35'
+    l_k_lane: '000000'
+    l_lock_1: '0000C8'
+    l_lock_2: '0000C8'
+    l_playfield_10X: '0000C8'
+    
+- time: '+0.08'
+  lights:
+    l_bill_2: 'C70101'
+    l_dale_2: 'BF06A0'
+    l_e_target: 'C03D1D'
+    l_hank_1: 'BF06A0'
+    l_hank_3: '7A2AB9'
+    l_lock_2: '0051B6'
+    l_n_lane: 'C87900'
+    l_playfield_3X: '7A2AB9'
+    l_playfield_4X: 'C70106'
+    l_playfield_5X: 'C8401F'
+    l_strickland_multiball: '0051B6'
+    
+- time: '+0.08'
+  lights:
+    l_bill_3: 'C8401F'
+    l_e_target: 'C8401F'
+    l_hank_1: '7A2AB9'
+    l_hank_2: 'BF06A0'
+    l_lock_2: '1B593C'
+    l_playfield_10X: '0051B6'
+    l_playfield_3X: '0000C8'
+    l_playfield_4X: 'C87900'
+    l_playfield_5X: 'C87900'
+    l_wizard: '0000C8'
+    
+- time: '+0.08'
+  lights:
+    l_bill_1: 'C8401F'
+    l_bill_2: 'C83F1E'
+    l_dale_1: 'C5022D'
+    l_dale_2: 'C0058F'
+    l_hank_2: '7A29B9'
+    l_lock_1: '004BB7'
+    l_n_lane: 'C67800'
+    l_playfield_4X: '1B593C'
+    l_strickland_multiball: '000000'
+    
+- time: '+0.08'
+  lights:
+    l_bill_2: 'C8401F'
+    l_bill_3: 'C87900'
+    l_boom_1: '7A2AB9'
+    l_boom_2: '632296'
+    l_boom_3: '0000C8'
+    l_dale_1: 'C70101'
+    l_dale_2: 'C70101'
+    l_dale_3: '6A6820'
+    l_e_target: '000000'
+    l_hank_2: '7A2AB9'
+    l_hank_3: '0000C8'
+    l_lock_1: '0051B6'
+    l_n_lane: '000000'
+    l_wizard: '0051B6'
+    
+- time: '+0.08'
+  lights:
+    l_bill_1: 'C87900'
+    l_boom_1: '0000C8'
+    l_boom_2: '7A2AB9'
+    l_dale_1: 'C87900'
+    l_dale_2: 'C8401F'
+    l_dale_3: '1B593C'
+    l_hank_1: '0000C8'
+    l_lock_1: '000000'
+    l_lock_2: '133F2A'
+    l_playfield_10X: '000000'
+    
+- time: '+0.08'
+  lights:
+    l_bill_2: 'C87900'
+    l_boom_2: '0000C8'
+    l_dale_1: '676721'
+    l_dale_2: 'C87900'
+    l_hank_2: '0000C8'
+    l_hank_3: '0051B6'
+    l_lock_2: '000000'
+    l_playfield_3X: '0051B6'
+    l_playfield_5X: '000000'
+    l_wizard: '0352A9'
+    
+- time: '+0.08'
+  lights:
+    l_bill_3: '000000'
+    l_dale_1: '1B593C'
+    l_hank_1: '0051B6'
+    l_hank_2: '0051B6'
+    l_playfield_3X: '000000'
+    l_playfield_4X: '000000'
+    l_wizard: '1B593C'
+    
+- time: '+0.08'
+  lights:
+    l_bill_1: '000000'
+    l_bill_2: '0D0800'
+    l_boom_1: '0006C7'
+    l_boom_3: '0051B5'
+    l_dale_2: '1B593C'
+    l_p_target: '4016C0'
+    l_r_target: '7A2AB9'
+    l_wizard: '000000'
+    
+- time: '+0.08'
+  lights:
+    l_bill_2: '000000'
+    l_boom_1: '0051B6'
+    l_boom_2: '0051B6'
+    l_boom_3: '000000'
+    l_dale_3: '000000'
+    l_left_ramp: 'BF06A0'
+    l_o_target: '7A2AB9'
+    l_p_target: '0000C8'
+    l_r_target: '0000C8'
+    
+- time: '+0.08'
+  lights:
+    l_boom_1: '000000'
+    l_dale_1: '000000'
+    l_hank_1: '1B593C'
+    l_hank_2: '1B593C'
+    l_hank_3: '000000'
+    l_left_orbit: '7A2AB9'
+    l_o_target: '0000C8'
+    
+- time: '+0.08'
+  lights:
+    l_boom_2: '000000'
+    l_dale_2: '000000'
+    l_hank_1: '000000'
+    l_hank_2: '185036'
+    l_left_ramp: '7A2AB9'
+    
+- time: '+0.08'
+  lights:
+    l_hank_2: '000000'
+    l_left_horseshoe: 'BF06A0'
+    l_mystery: 'C70101'
+    l_p_target: '0051B6'
+    
+- time: '+0.08'
+  lights:
+    l_left_orbit: '0000C8'
+    l_left_ramp: '0000C8'
+    l_o_target: '0047B8'
+    l_p_target: '000000'
+    l_r_target: '0051B6'
+    l_scoop: 'C70101'
+    
+- time: '+0.08'
+  lights:
+    l_left_ramp: '0051B6'
+    l_o_target: '0051B6'
+    l_r_target: '000000'
+    
+- time: '+0.08'
+  lights:
+    l_left_horseshoe: 'C70101'
+    l_left_orbit: '0051B6'
+    l_mystery: 'C8401F'
+    l_o_target: '000000'
+    
+- time: '+0.08'
+  lights:
+    l_left_ramp: '13575F'
+    l_scoop: 'C8401F'
+    
+- time: '+0.08'
+  lights:
+    l_left_horseshoe: 'C85A11'
+    l_left_ramp: '1B593C'
+    l_mystery: 'C87900'
+    
+- time: '+0.08'
+  lights:
+    l_left_horseshoe: 'C87900'
+    l_left_orbit: '000000'
+    l_scoop: 'C87900'
+    
+- time: '+0.08'
+  lights:
+    l_left_horseshoe: '1B593C'
+    l_left_ramp: '000000'
+    
+- time: '+0.08'
+  lights:
+    l_mystery: '000000'
+    
+- time: '+0.08'
+  lights:
+    l_scoop: '000000'
+    
+- time: '+0.08'
+  lights:
+    l_left_horseshoe: '000000'
+    
+- time: '+0.08'
+    
+
+- time: '+0.02'
+  lights:
+    l_ball_save: '000000'
+    l_lock_2: '000000'
+    l_n_lane: '000000'
+    l_playfield_10X: '000000'
+    l_strickland_multiball: '000000'
+    l_playfield_4X: '000000'
+    l_playfield_5X: '000000'
+    l_k_lane: '000000'
+    l_wizard: '000000'
+    l_bill_3: '000000'
+    l_dale_3: '000000'
+    l_lock_1: '000000'
+    l_bill_1: '000000'
+    l_dale_1: '000000'
+    l_hank_3: '000000'
+    l_bill_2: '000000'
+    l_dale_2: '000000'
+    l_e_target: '000000'
+    l_hank_1: '000000'
+    l_playfield_3X: '000000'
+    l_hank_2: '000000'
+    l_boom_1: '000000'
+    l_boom_2: '000000'
+    l_boom_3: '000000'
+    l_p_target: '000000'
+    l_r_target: '000000'
+    l_left_ramp: '000000'
+    l_o_target: '000000'
+    l_left_orbit: '000000'
+    l_left_horseshoe: '000000'
+    l_mystery: '000000'
+    l_scoop: '000000'

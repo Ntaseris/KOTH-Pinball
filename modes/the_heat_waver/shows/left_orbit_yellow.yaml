@@ -1,0 +1,11 @@
+#show_version=6
+
+- time: 0
+  lights:
+    l_left_orbit: FF7600
+- time: .5s
+  lights:
+    l_left_orbit: 4A1600
+- time: 1s
+  lights:
+    l_left_orbit: FF7600

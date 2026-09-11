@@ -1,0 +1,26 @@
+#show_version=6
+
+- duration: 0.14s
+  lights:
+    l_p_target: red
+    l_r_target: red
+    l_o_target: red
+    l_left_orbit: red
+    l_left_ramp: red
+    l_left_horseshoe: red
+- duration: 0.14s
+  lights:
+    l_p_target: white
+    l_r_target: white
+    l_o_target: white
+    l_left_orbit: white
+    l_left_ramp: white
+    l_left_horseshoe: white
+- duration: 0.14s
+  lights:
+    l_p_target: off
+    l_r_target: off
+    l_o_target: off
+    l_left_orbit: off
+    l_left_ramp: off
+    l_left_horseshoe: off

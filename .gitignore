@@ -1,0 +1,36 @@
+# Godot engine folders and files to ignore
+.godot/
+export/
+.import/
+
+# Media and private working-material folders are not part of the public portfolio.
+images/
+sounds/
+logs/
+data/
+fonts/
+art/
+artifacts/
+out/
+voice_transcripts/
+
+# Local development-assistant configuration is not part of the public project.
+.agents/
+.claude/
+
+# Local archives and generated reports
+*.zip
+*.docx
+mpf_log.txt
+
+# Python cache and bytecode files
+__pycache__/
+*.py[cod]
+
+# macOS system files
+.DS_Store
+
+# Editor backups and temp files
+*.swp
+*~
+.godot_backup/

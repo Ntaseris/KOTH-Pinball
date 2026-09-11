@@ -1,0 +1,342 @@
+#config_version=6
+
+mode:
+  start_events: mission_select_patch_boomhauer_selected{current_player.any_mb_active == 0}
+  stop_events:
+    - ball_ending
+    - ball_drain
+    - mode_bonus_will_start
+    - timer_patch_boomhauer_mode_countdown_complete
+    - slide_patch_wins_removed
+    - slide_boomhauer_wins_removed
+  priority: 130
+
+slide_player:
+  mode_patch_boomhauer_started:
+    patch_boomhauer_rules:
+      expire: 3s
+      priority: 1000
+  slide_patch_boomhauer_rules_inactive:
+    patch_boomhauer:
+      expire: 67.5s
+      priority: 500
+  patch_wins:
+    patch_wins:
+      action: play
+      expire: 5s
+      priority: 1100
+  boomhauer_wins:
+    boomhauer_wins:
+      action: play
+      expire: 5s
+      priority: 1100
+
+sound_player:
+  mode_patch_boomhauer_started:
+    boom_intro:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  slide_patch_boomhauer_rules_inactive:
+    patch_no_pain_no_gain:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  patch_fight_hit:
+    jackpot_hit:
+      bus: effects
+      volume: 0.18
+  boom_fight_hit:
+    jackpot_hit:
+      bus: effects
+      volume: 0.18
+  player_boom_hits{value == 5}:
+    boomhauer_hit_surprise:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  patch_wins:
+    success_sting:
+      bus: effects
+      volume: 0.34
+    peggy_ho_yeah_leanne_fight:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  boomhauer_wins:
+    success_sting:
+      bus: effects
+      volume: 0.34
+    boomhauer_destiny:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  timer_patch_boomhauer_mode_countdown_complete:
+    dont_listen_hank:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+timers:
+  patch_boomhauer_mode_countdown:
+    start_value: 70
+    end_value: 0
+    direction: down
+    start_running: true
+    bcp: true
+    control_events:
+      - event: patch_wins
+        action: stop
+      - event: boomhauer_wins
+        action: stop
+
+variable_player:
+  mode_patch_boomhauer_started:
+    modes: 1
+    patch_boomhauer_completed:
+      int: 0
+      action: set
+    patch_hits:
+      int: 0
+      action: set
+    boom_hits:
+      int: 0
+      action: set
+    patch_last_shot:
+      int: 0
+      action: set
+    boom_last_shot:
+      int: 0
+      action: set
+    patch_boom_play_active:
+      int: 1
+      action: set
+    patch_boom_winner:
+      string: ""
+      action: set
+  patch_fight_hit:
+    score: 750000 * current_player.pf_multiplier
+    patch_hits: 1
+  boom_fight_hit:
+    score: 750000 * current_player.pf_multiplier
+    boom_hits: 1
+  patch_variety_1:
+    score: 250000 * current_player.pf_multiplier
+    patch_last_shot:
+      int: 1
+      action: set
+  patch_variety_2:
+    score: 250000 * current_player.pf_multiplier
+    patch_last_shot:
+      int: 2
+      action: set
+  patch_variety_3:
+    score: 250000 * current_player.pf_multiplier
+    patch_last_shot:
+      int: 3
+      action: set
+  patch_variety_4:
+    score: 250000 * current_player.pf_multiplier
+    patch_last_shot:
+      int: 4
+      action: set
+  patch_variety_5:
+    score: 250000 * current_player.pf_multiplier
+    patch_last_shot:
+      int: 5
+      action: set
+  patch_variety_6:
+    score: 250000 * current_player.pf_multiplier
+    patch_last_shot:
+      int: 6
+      action: set
+  boom_variety_1:
+    score: 250000 * current_player.pf_multiplier
+    boom_last_shot:
+      int: 1
+      action: set
+  boom_variety_2:
+    score: 250000 * current_player.pf_multiplier
+    boom_last_shot:
+      int: 2
+      action: set
+  boom_variety_3:
+    score: 250000 * current_player.pf_multiplier
+    boom_last_shot:
+      int: 3
+      action: set
+  boom_variety_4:
+    score: 250000 * current_player.pf_multiplier
+    boom_last_shot:
+      int: 4
+      action: set
+  boom_variety_5:
+    score: 250000 * current_player.pf_multiplier
+    boom_last_shot:
+      int: 5
+      action: set
+  boom_variety_6:
+    score: 250000 * current_player.pf_multiplier
+    boom_last_shot:
+      int: 6
+      action: set
+  patch_wins:
+    score: 2000000 * current_player.pf_multiplier
+    patch_boomhauer_completed:
+      int: 1
+      action: set
+    patch_boom_play_active:
+      int: 0
+      action: set
+    patch_boom_winner:
+      string: "PATCH"
+      action: set
+  boomhauer_wins:
+    score: 5000000 * current_player.pf_multiplier
+    patch_boomhauer_completed:
+      int: 1
+      action: set
+    patch_boom_play_active:
+      int: 0
+      action: set
+    patch_boom_winner:
+      string: "BOOMHAUER"
+      action: set
+  player_score{source=="patch_boomhauer"}:
+    patch_boomhauer_total: change
+
+shots:
+  patch1:
+    switch: s_p_target
+  patch2:
+    switch: s_r_target
+  patch3:
+    switch: s_o_target
+  patch4:
+    switch: s_left_orbit_enter
+  patch5:
+    switch: s_left_ramp_exit
+  patch6:
+    switch: s_left_inner_horseshoe
+  boom1:
+    switch: s_p2_target
+  boom2:
+    switch: s_a_target
+  boom3:
+    switch: s_n_target
+  boom4:
+    switch: s_e_target
+  boom5:
+    switch: s_right_orbit_exit
+  boom6:
+    switch: s_right_ramp_exit
+
+shot_groups:
+  patch_shots:
+    shots: patch1, patch2, patch3, patch4, patch5, patch6
+  boom_shots:
+    shots: boom1, boom2, boom3, boom4, boom5, boom6
+
+counters:
+  patch_shot_counter:
+    count_events: patch_fight_hit
+    count_complete_value: 10
+    events_when_complete: patch_wins
+  boom_shot_counter:
+    count_events: boom_fight_hit
+    count_complete_value: 10
+    events_when_complete: boomhauer_wins
+
+event_player:
+  patch_wins: patch_boomhauer_done
+  boomhauer_wins: patch_boomhauer_done
+  patch_shots_hit{current_player.patch_boom_play_active == 1}:
+    patch_fight_hit
+  boom_shots_hit{current_player.patch_boom_play_active == 1}:
+    boom_fight_hit
+  patch1_hit{current_player.patch_boom_play_active == 1 and current_player.patch_last_shot != 1}: patch_variety_1
+  patch2_hit{current_player.patch_boom_play_active == 1 and current_player.patch_last_shot != 2}: patch_variety_2
+  patch3_hit{current_player.patch_boom_play_active == 1 and current_player.patch_last_shot != 3}: patch_variety_3
+  patch4_hit{current_player.patch_boom_play_active == 1 and current_player.patch_last_shot != 4}: patch_variety_4
+  patch5_hit{current_player.patch_boom_play_active == 1 and current_player.patch_last_shot != 5}: patch_variety_5
+  patch6_hit{current_player.patch_boom_play_active == 1 and current_player.patch_last_shot != 6}: patch_variety_6
+  boom1_hit{current_player.patch_boom_play_active == 1 and current_player.boom_last_shot != 1}: boom_variety_1
+  boom2_hit{current_player.patch_boom_play_active == 1 and current_player.boom_last_shot != 2}: boom_variety_2
+  boom3_hit{current_player.patch_boom_play_active == 1 and current_player.boom_last_shot != 3}: boom_variety_3
+  boom4_hit{current_player.patch_boom_play_active == 1 and current_player.boom_last_shot != 4}: boom_variety_4
+  boom5_hit{current_player.patch_boom_play_active == 1 and current_player.boom_last_shot != 5}: boom_variety_5
+  boom6_hit{current_player.patch_boom_play_active == 1 and current_player.boom_last_shot != 6}: boom_variety_6
+  pocket_sand_mode_spot_attempt{current_player.patch_boom_play_active == 1}:
+    - boom_fight_hit
+    - pocket_sand_spotted
+
+show_player:
+  mode_patch_boomhauer_started:
+    patch_shot_pulse:
+      loops: -1
+      priority: 130
+    boom_shot_pulse:
+      loops: -1
+      priority: 130
+  patch1_hit:
+    patch_boom_impact:
+      loops: 1
+      priority: 132
+      show_tokens: {light: l_p_target, color: red}
+  patch2_hit:
+    patch_boom_impact:
+      loops: 1
+      priority: 132
+      show_tokens: {light: l_r_target, color: red}
+  patch3_hit:
+    patch_boom_impact:
+      loops: 1
+      priority: 132
+      show_tokens: {light: l_o_target, color: red}
+  patch4_hit:
+    patch_boom_impact:
+      loops: 1
+      priority: 132
+      show_tokens: {light: l_left_orbit, color: red}
+  patch5_hit:
+    patch_boom_impact:
+      loops: 1
+      priority: 132
+      show_tokens: {light: l_left_ramp, color: red}
+  patch6_hit:
+    patch_boom_impact:
+      loops: 1
+      priority: 132
+      show_tokens: {light: l_left_horseshoe, color: red}
+  boom1_hit:
+    patch_boom_impact:
+      loops: 1
+      priority: 132
+      show_tokens: {light: l_p2_target, color: yellow}
+  boom2_hit:
+    patch_boom_impact:
+      loops: 1
+      priority: 132
+      show_tokens: {light: l_a_target, color: yellow}
+  boom3_hit:
+    patch_boom_impact:
+      loops: 1
+      priority: 132
+      show_tokens: {light: l_n_target, color: yellow}
+  boom4_hit:
+    patch_boom_impact:
+      loops: 1
+      priority: 132
+      show_tokens: {light: l_e_target, color: yellow}
+  boom5_hit:
+    patch_boom_impact:
+      loops: 1
+      priority: 132
+      show_tokens: {light: l_right_orbit, color: yellow}
+  boom6_hit:
+    patch_boom_impact:
+      loops: 1
+      priority: 132
+      show_tokens: {light: l_right_ramp, color: yellow}
+  patch_wins:
+    patch_shot_pulse: {action: stop}
+    boom_shot_pulse: {action: stop}
+    patch_winner: {loops: 2, priority: 135}
+  boomhauer_wins:
+    patch_shot_pulse: {action: stop}
+    boom_shot_pulse: {action: stop}
+    boom_winner: {loops: 2, priority: 135}

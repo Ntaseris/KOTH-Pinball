@@ -1,0 +1,106 @@
+#config_version=6
+
+mode_settings:
+  keep_multiplier: False
+  end_bonus_event: finish_bonus_after_callouts
+  bonus_entries:
+      - entry: alamo_bonus
+        text: "Alamos This Ball"
+        score: 25000
+        player_score_entry: alamo_this_ball
+        reset_player_score_entry: True
+      - entry: mode_bonus
+        text: "Modes Played This Game"
+        score: 500000
+        player_score_entry: modes
+        reset_player_score_entry: False
+
+sound_player:
+  play_bonus_opening_do_with_your_life:
+    do_with_your_life_hank:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  play_bonus_opening_end_of_ball:
+    hank_end_of_ball_bonus1:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  bonus_entry{entry == "alamo_bonus"}:
+    target_tick_1:
+      bus: effects
+      volume: 0.22
+  bonus_entry{entry == "mode_bonus"}:
+    target_tick_2:
+      bus: effects
+      volume: 0.25
+  bonus_entry{entry == "subtotal"}:
+    award_chime:
+      bus: effects
+      volume: 0.24
+  bonus_entry{entry == "multiplier"}:
+    success_sting:
+      bus: effects
+      volume: 0.28
+  bonus_entry{entry == "total"}:
+    hank_end_of_ball_bonus2:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+    award_chime:
+      bus: effects
+      volume: 0.34
+
+show_player:
+  mode_bonus_started:
+    bonus_open:
+      loops: 1
+      priority: 320
+  bonus_entry{entry == "alamo_bonus"}:
+    bonus_alamo_count:
+      loops: 1
+      priority: 325
+  bonus_entry{entry == "mode_bonus"}:
+    bonus_mode_count:
+      loops: 1
+      priority: 325
+  bonus_entry{entry == "subtotal"}:
+    bonus_subtotal:
+      loops: 1
+      priority: 330
+  bonus_entry{entry == "multiplier"}:
+    bonus_multiplier:
+      loops: 1
+      priority: 335
+  bonus_entry{entry == "total"}:
+    bonus_total:
+      loops: 1
+      priority: 350
+
+random_event_player:
+  mode_bonus_started{current_player.tilt_warnings < 3}:
+    events:
+      - play_bonus_opening_do_with_your_life
+      - play_bonus_opening_end_of_ball
+
+timers:
+  bonus_callout_hold:
+    start_value: 0
+    end_value: 1
+    direction: up
+    tick_interval: 3.6s
+    start_running: false
+    control_events:
+      - event: bonus_entry{entry == "total"}
+        action: restart
+
+event_player:
+  timer_bonus_callout_hold_complete: finish_bonus_after_callouts
+
+slide_player:
+  mode_bonus_started{current_player.tilt_warnings < 3}: bonus
+  bonus_start:
+      bonus: 
+        action: update
+        tokens:
+          entry: initial
+  bonus_entry:
+    bonus:
+      action: update

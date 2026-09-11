@@ -1,0 +1,396 @@
+#config_version=6
+
+mode:
+  start_events: mission_select_the_heat_waver_selected{current_player.any_mb_active == 0}
+  stop_events: ball_ended, timer_the_heat_waver_mode_countdown_complete, the_heat_waver_done
+  priority: 130
+
+slide_player:
+  mode_the_heat_waver_started: 
+    the_heat_waver_rules:
+      expire: 3s
+      priority: 1000
+  slide_the_heat_waver_rules_inactive:
+    the_heat_waver:
+      expire: 45s
+      priority: 500
+
+
+  
+event_player:
+  pocket_sand_mode_spot_attempt{device.state_machines.the_heat_waver.state=="start"}:
+    - shot_left_orbit_heat_hit
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{device.state_machines.the_heat_waver.state=="shot2"}:
+    - shot_left_ramp_heat_hit
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{device.state_machines.the_heat_waver.state=="shot3"}:
+    - shot_center_spinner_heat_hit
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{device.state_machines.the_heat_waver.state=="shot4"}:
+    - shot_right_ramp_heat_hit
+    - pocket_sand_spotted
+  pocket_sand_mode_spot_attempt{device.state_machines.the_heat_waver.state=="shot5"}:
+    - shot_right_orbit_heat_hit
+    - pocket_sand_spotted
+  shot_left_orbit_heat_hit{device.state_machines.the_heat_waver.state=="start"}: heat_waver_valid_shot
+  shot_left_ramp_heat_hit{device.state_machines.the_heat_waver.state=="shot2"}: heat_waver_valid_shot
+  shot_center_spinner_heat_hit{device.state_machines.the_heat_waver.state=="shot3"}: heat_waver_valid_shot
+  shot_right_ramp_heat_hit{device.state_machines.the_heat_waver.state=="shot4"}: heat_waver_valid_shot
+  shot_right_orbit_heat_hit{device.state_machines.the_heat_waver.state=="shot5"}: heat_waver_valid_shot
+  player_state_machine_the_heat_waver{device.state_machines.the_heat_waver.state!="end"}: heat_waver_fresh
+  timer_shot_timer_start_tick{ticks == 34}: heat_waver_warming
+  timer_shot_timer_start_tick{ticks == 19}: heat_waver_sunburned
+  timer_shot_timer_shot2_tick{ticks == 34}: heat_waver_warming
+  timer_shot_timer_shot2_tick{ticks == 19}: heat_waver_sunburned
+  timer_shot_timer_shot3_tick{ticks == 34}: heat_waver_warming
+  timer_shot_timer_shot3_tick{ticks == 19}: heat_waver_sunburned
+  timer_shot_timer_shot4_tick{ticks == 34}: heat_waver_warming
+  timer_shot_timer_shot4_tick{ticks == 19}: heat_waver_sunburned
+  timer_shot_timer_shot5_tick{ticks == 34}: heat_waver_warming
+  timer_shot_timer_shot5_tick{ticks == 19}: heat_waver_sunburned
+
+sound_player:
+  mode_the_heat_waver_started:
+    bobby_heat_help:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  heat_waver_valid_shot:
+    jackpot_hit:
+      bus: effects
+      volume: 0.18
+  player_state_machine_the_heat_waver{device.state_machines.the_heat_waver.state=="shot5"}:
+    bobby_heat_almost_friday:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  the_heat_waver_done:
+    bobby_heat_happy_half_day:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  timer_the_heat_waver_mode_countdown_complete:
+    hank_pain_is_unbearable:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+timers:
+  the_heat_waver_mode_countdown:
+    start_value: 46
+    control_events:
+      - action: start
+        event: slide_the_heat_waver_rules_removed
+    end_value: 0
+    direction: down
+    start_running: false
+    bcp: true
+  shot_timer_start:
+    start_value: 45
+    control_events:
+      - action: start
+        event: player_state_machine_the_heat_waver{device.state_machines.the_heat_waver.state=="start"}
+      - action: stop
+        event: player_state_machine_the_heat_waver{device.state_machines.the_heat_waver.state!="start"}
+    end_value: 0
+    direction: down
+    start_running: false
+    bcp: true
+  shot_timer_shot2:
+    start_value: 45
+    control_events:
+      - action: start
+        event: player_state_machine_the_heat_waver{device.state_machines.the_heat_waver.state=="shot2"}
+      - action: stop
+        event: player_state_machine_the_heat_waver{device.state_machines.the_heat_waver.state!="shot2"}
+    end_value: 0
+    direction: down
+    start_running: false
+    bcp: true
+  shot_timer_shot3:
+    start_value: 45
+    control_events:
+      - action: start
+        event: player_state_machine_the_heat_waver{device.state_machines.the_heat_waver.state=="shot3"}
+      - action: stop
+        event: player_state_machine_the_heat_waver{device.state_machines.the_heat_waver.state!="shot3"}
+    end_value: 0
+    direction: down
+    start_running: false
+    bcp: true
+  shot_timer_shot4:
+    start_value: 45
+    control_events:
+      - action: start
+        event: player_state_machine_the_heat_waver{device.state_machines.the_heat_waver.state=="shot4"}
+      - action: stop
+        event: player_state_machine_the_heat_waver{device.state_machines.the_heat_waver.state!="shot4"}
+    end_value: 0
+    direction: down
+    start_running: false
+    bcp: true
+  shot_timer_shot5:
+    start_value: 45
+    control_events:
+      - action: start
+        event: player_state_machine_the_heat_waver{device.state_machines.the_heat_waver.state=="shot5"}
+      - action: stop
+        event: player_state_machine_the_heat_waver{device.state_machines.the_heat_waver.state!="shot5"}
+    end_value: 0
+    direction: down
+    start_running: false
+    bcp: true
+  
+
+variable_player:
+  mode_the_heat_waver_started:
+    modes: 1
+    the_heat_waver_completed:
+      int: 0
+      action: set
+    heat_waver_shots:
+      int: 0
+      action: set
+    heat_waver_value:
+      int: 3000000
+      action: set
+  timer_shot_timer_start_tick{ticks>0}:        # update shot_color every tick
+   shot_color:
+      int: device.timers.shot_timer_start.ticks
+      action: set
+  timer_shot_timer_shot2_tick{ticks>0}:        # update shot_color every tick
+   shot_color2:
+      int: device.timers.shot_timer_shot2.ticks
+      action: set
+  timer_shot_timer_shot3_tick{ticks>0}:        # update shot_color every tick
+   shot_color3:
+      int: device.timers.shot_timer_shot3.ticks
+      action: set
+  timer_shot_timer_shot4_tick{ticks>0}:        # update shot_color every tick
+   shot_color4:
+      int: device.timers.shot_timer_shot4.ticks
+      action: set
+  timer_shot_timer_shot5_tick{ticks>0}:        # update shot_color every tick
+   shot_color5:
+      int: device.timers.shot_timer_shot5.ticks
+      action: set
+  shot_left_orbit_heat_hit{current_player.shot_color >= 35 and device.state_machines.the_heat_waver.state=="start"}:
+    score: 3000000 * current_player.pf_multiplier
+  shot_left_orbit_heat_hit{current_player.shot_color >= 20 and current_player.shot_color < 35 and device.state_machines.the_heat_waver.state=="start"}:
+    score: 1000000 * current_player.pf_multiplier
+  shot_left_orbit_heat_hit{current_player.shot_color < 20 and device.state_machines.the_heat_waver.state=="start"}:
+    score: 250000 * current_player.pf_multiplier
+  shot_left_ramp_heat_hit{current_player.shot_color2 >= 35 and device.state_machines.the_heat_waver.state=="shot2"}:
+    score: 3000000 * current_player.pf_multiplier
+  shot_left_ramp_heat_hit{current_player.shot_color2 >= 20 and current_player.shot_color2 < 35 and device.state_machines.the_heat_waver.state=="shot2"}:
+    score: 1000000 * current_player.pf_multiplier
+  shot_left_ramp_heat_hit{current_player.shot_color2 < 20 and device.state_machines.the_heat_waver.state=="shot2"}:
+    score: 250000 * current_player.pf_multiplier
+  shot_center_spinner_heat_hit{current_player.shot_color3 >= 35 and device.state_machines.the_heat_waver.state=="shot3"}:
+    score: 3000000 * current_player.pf_multiplier
+  shot_center_spinner_heat_hit{current_player.shot_color3 >= 20 and current_player.shot_color3 < 35 and device.state_machines.the_heat_waver.state=="shot3"}:
+    score: 1000000 * current_player.pf_multiplier
+  shot_center_spinner_heat_hit{current_player.shot_color3 < 20 and device.state_machines.the_heat_waver.state=="shot3"}:
+    score: 250000 * current_player.pf_multiplier
+  shot_right_ramp_heat_hit{current_player.shot_color4 >= 35 and device.state_machines.the_heat_waver.state=="shot4"}:
+    score: 3000000 * current_player.pf_multiplier
+  shot_right_ramp_heat_hit{current_player.shot_color4 >= 20 and current_player.shot_color4 < 35 and device.state_machines.the_heat_waver.state=="shot4"}:
+    score: 1000000 * current_player.pf_multiplier
+  shot_right_ramp_heat_hit{current_player.shot_color4 < 20 and device.state_machines.the_heat_waver.state=="shot4"}:
+    score: 250000 * current_player.pf_multiplier
+  shot_right_orbit_heat_hit{current_player.shot_color5 >= 35 and device.state_machines.the_heat_waver.state=="shot5"}:
+    score: 3000000 * current_player.pf_multiplier
+  shot_right_orbit_heat_hit{current_player.shot_color5 >= 20 and current_player.shot_color5 < 35 and device.state_machines.the_heat_waver.state=="shot5"}:
+    score: 1000000 * current_player.pf_multiplier
+  shot_right_orbit_heat_hit{current_player.shot_color5 < 20 and device.state_machines.the_heat_waver.state=="shot5"}:
+    score: 250000 * current_player.pf_multiplier
+  heat_waver_valid_shot:
+    heat_waver_shots: 1
+  heat_waver_fresh:
+    heat_waver_value:
+      int: 3000000
+      action: set
+  heat_waver_warming:
+    heat_waver_value:
+      int: 1000000
+      action: set
+  heat_waver_sunburned:
+    heat_waver_value:
+      int: 250000
+      action: set
+  the_heat_waver_done:
+    score: 5000000 * current_player.pf_multiplier
+    the_heat_waver_completed:
+      int: 1
+      action: set
+  player_score{source=="the_heat_waver"}:
+    the_heat_waver_total: change
+
+
+state_machines:
+  the_heat_waver:
+    persist_state: True
+    states:
+      start:
+        label: left orbit lit
+      shot2:
+        label: left ramp lit
+      shot3:
+        label: center spinner lit
+      shot4:
+        label: right ramp lit
+      shot5:
+        label: right orbit lit
+      end:
+        label: end
+      
+    transitions:
+      - source: start
+        target: shot2
+        events: shot_left_orbit_heat_hit
+      - source: shot2
+        target: shot3
+        events: shot_left_ramp_heat_hit
+      - source: shot3
+        target: shot4
+        events: shot_center_spinner_heat_hit
+      - source: shot4
+        target: shot5
+        events: shot_right_ramp_heat_hit
+      - source: shot5
+        target: end
+        events: shot_right_orbit_heat_hit
+
+sequences:
+  finish_the_heat_waver:
+    events:
+      - shot_left_orbit_heat_hit
+      - shot_left_ramp_heat_hit
+      - shot_center_spinner_heat_hit
+      - shot_right_ramp_heat_hit
+      - shot_right_orbit_heat_hit
+    events_when_complete: the_heat_waver_done
+
+shots:
+  shot_left_orbit_heat:
+    switch: s_left_orbit_enter
+  shot_left_ramp_heat:
+    switch: s_left_ramp_exit
+  shot_center_spinner_heat:
+    switch: s_center_spinner
+  shot_right_ramp_heat:
+    switch: s_right_ramp_exit
+  shot_right_orbit_heat:
+    switch: s_right_orbit_exit
+
+show_player:
+  timer_shot_timer_start_tick{current_player.shot_color >= 35}: left_orbit_green
+  timer_shot_timer_start_tick{current_player.shot_color < 35}:
+    left_orbit_green:
+      action: stop
+  timer_shot_timer_start_tick{current_player.shot_color < 20}:
+    left_orbit_yellow:
+      action: stop
+    left_orbit_red:
+      action: play
+  timer_shot_timer_start_tick{current_player.shot_color < 1}: 
+    left_orbit_red:
+      action: stop
+  timer_shot_timer_start_tick{current_player.shot_color >= 20 and current_player.shot_color < 35}: left_orbit_yellow
+  shot_left_orbit_heat_hit{current_player.shot_color >= 35 and device.state_machines.the_heat_waver.state=="start"}:
+    left_orbit_green:
+      action: stop
+  shot_left_orbit_heat_hit{current_player.shot_color >= 20 and current_player.shot_color < 35 and device.state_machines.the_heat_waver.state=="start"}:
+    left_orbit_yellow:
+      action: stop
+  shot_left_orbit_heat_hit{current_player.shot_color < 20 and device.state_machines.the_heat_waver.state=="start"}:
+    left_orbit_red:
+      action: stop
+  timer_shot_timer_shot2_tick{current_player.shot_color2 >= 35}: left_ramp_green
+  timer_shot_timer_shot2_tick{current_player.shot_color2 >= 20 and current_player.shot_color2 < 35}: left_ramp_yellow
+  timer_shot_timer_shot2_tick{current_player.shot_color2 < 35}: 
+    left_ramp_green:
+      action: stop
+  timer_shot_timer_shot2_tick{current_player.shot_color2 < 20}:
+    left_ramp_yellow:
+      action: stop
+    left_ramp_red:
+      action: play
+  timer_shot_timer_shot2_tick{current_player.shot_color2 < 1}: 
+    left_ramp_red:
+      action: stop
+  shot_left_ramp_heat_hit{current_player.shot_color2 >= 35 and device.state_machines.the_heat_waver.state=="shot2"}:
+    left_ramp_green:
+      action: stop
+  shot_left_ramp_heat_hit{current_player.shot_color2 >= 20 and current_player.shot_color2 < 35 and device.state_machines.the_heat_waver.state=="shot2"}:
+    left_ramp_yellow:
+      action: stop
+  shot_left_ramp_heat_hit{current_player.shot_color2 < 20 and device.state_machines.the_heat_waver.state=="shot2"}:
+    left_ramp_red:
+      action: stop
+  timer_shot_timer_shot3_tick{current_player.shot_color3 >= 35}: center_spinner_green
+  timer_shot_timer_shot3_tick{current_player.shot_color3 >= 20 and current_player.shot_color3 < 35}: center_spinner_yellow
+  timer_shot_timer_shot3_tick{current_player.shot_color3 < 35}: 
+    center_spinner_green:
+      action: stop
+  timer_shot_timer_shot3_tick{current_player.shot_color3 < 20}:
+    center_spinner_yellow:
+      action: stop
+    center_spinner_red:
+      action: play
+  timer_shot_timer_shot3_tick{current_player.shot_color3 < 1}:  
+    center_spinner_red:
+      action: stop
+  shot_center_spinner_heat_hit{current_player.shot_color3 >= 35 and device.state_machines.the_heat_waver.state=="shot3"}:
+    center_spinner_green:
+      action: stop
+  shot_center_spinner_heat_hit{current_player.shot_color3 >= 20 and current_player.shot_color3 < 35 and device.state_machines.the_heat_waver.state=="shot3"}:
+    center_spinner_yellow:
+      action: stop
+  shot_center_spinner_heat_hit{current_player.shot_color3 < 20 and device.state_machines.the_heat_waver.state=="shot3"}:
+    center_spinner_red:
+      action: stop
+  timer_shot_timer_shot4_tick{current_player.shot_color4 >= 35}: right_ramp_green
+  timer_shot_timer_shot4_tick{current_player.shot_color4 >= 20 and current_player.shot_color4 < 35}: right_ramp_yellow
+  timer_shot_timer_shot4_tick{current_player.shot_color4 < 35}: 
+    right_ramp_green:
+      action: stop
+  timer_shot_timer_shot4_tick{current_player.shot_color4 < 20}:
+    right_ramp_yellow:
+      action: stop
+    right_ramp_red:
+      action: play
+  timer_shot_timer_shot4_tick{current_player.shot_color4 < 1}: 
+    right_ramp_red:
+      action: stop
+  shot_right_ramp_heat_hit{current_player.shot_color4 >= 35 and device.state_machines.the_heat_waver.state=="shot4"}:
+    right_ramp_green:
+      action: stop
+  shot_right_ramp_heat_hit{current_player.shot_color4 >= 20 and current_player.shot_color4 < 35 and device.state_machines.the_heat_waver.state=="shot4"}:
+    right_ramp_yellow:
+      action: stop
+  shot_right_ramp_heat_hit{current_player.shot_color4 < 20 and device.state_machines.the_heat_waver.state=="shot4"}:
+    right_ramp_red:
+      action: stop
+  timer_shot_timer_shot5_tick{current_player.shot_color5 >= 35}: right_orbit_green
+  timer_shot_timer_shot5_tick{current_player.shot_color5 >= 20 and current_player.shot_color5 < 35}: right_orbit_yellow
+  timer_shot_timer_shot5_tick{current_player.shot_color5 < 35}: 
+    right_orbit_green:
+      action: stop
+  timer_shot_timer_shot5_tick{current_player.shot_color5 < 20}:
+    right_orbit_yellow:
+      action: stop
+    right_orbit_red:
+      action: play
+  timer_shot_timer_shot5_tick{current_player.shot_color5 < 1}: 
+    right_orbit_red:
+      action: stop
+  shot_right_orbit_heat_hit{current_player.shot_color5 >= 35 and device.state_machines.the_heat_waver.state=="shot5"}:
+    right_orbit_green:
+      action: stop
+  shot_right_orbit_heat_hit{current_player.shot_color5 >= 20 and current_player.shot_color5 < 35 and device.state_machines.the_heat_waver.state=="shot5"}:
+    right_orbit_yellow:
+      action: stop
+  shot_right_orbit_heat_hit{current_player.shot_color5 < 20 and device.state_machines.the_heat_waver.state=="shot5"}:
+    right_orbit_red:
+      action: stop
+
+
+  

@@ -1,0 +1,25 @@
+#config_version=6
+
+mode:
+  start_events: mode_skillshot_started
+  stop_events: stop_mode_super_skill_shot
+  priority: 250
+
+event_player:
+  super_skill_shot_lit_hit: stop_mode_super_skill_shot
+  playfield_active: stop_mode_super_skill_shot|4s
+
+shots:
+  super_skill_shot:
+    disable_events: skillshot_lit_hit
+    profile: super_skillshot_profile
+    switch: s_right_ramp_exit
+
+shot_profiles:
+  super_skillshot_profile:
+    advance_on_hit: true
+    states:
+      - name: lit
+        show: off
+      - name: off
+        show: off

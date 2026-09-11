@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://17vtrj8pgxte"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_lopf2"]
+[ext_resource type="Texture2D" uid="uid://dsli02s44eabg" path="res://images/raineymb.jpeg" id="2_f85lf"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_jja46"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 808.0
+offset_bottom = 600.0
+script = ExtResource("1_lopf2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(683, 384.96)
+scale = Vector2(1, 1.0001)
+texture = ExtResource("2_f85lf")
+
+[node name="Label" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_jja46")
+layout_mode = 0
+offset_top = 200.0
+offset_right = 1360.0
+offset_bottom = 449.0
+theme_override_font_sizes/font_size = 117
+text = "rainey street
+ multiball"
+horizontal_alignment = 1
+uppercase = true

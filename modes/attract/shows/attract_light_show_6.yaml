@@ -1,0 +1,10 @@
+#show_version=6
+
+- time: .5s
+  lights:
+    l_ball_save: yellow
+- time: +.5s
+  lights:
+    l_ball_save: off
+- time: +.5s 
+    

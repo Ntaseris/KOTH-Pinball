@@ -1,0 +1,30 @@
+; Copyright (C) 2026 One More Game - All Rights Reserved
+; Unauthorized copying of this file, via any medium is strictly prohibited
+; Proprietary and confidential
+
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_widget"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="2_font"]
+
+[node name="duke_final_rescue" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+mouse_filter = 2
+script = ExtResource("1_widget")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 190.0
+offset_top = 560.0
+offset_right = 1178.0
+offset_bottom = 640.0
+theme_override_colors/font_color = Color(1, 0.78, 0.12, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 52
+text = "FINAL RESCUE - SHOOT THE SCOOP"
+horizontal_alignment = 1
+vertical_alignment = 1

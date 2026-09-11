@@ -1,0 +1,41 @@
+#config_version=6
+
+mode:
+  start_events: ball_started
+  priority: 200
+
+counters:
+  lb_hank_complete_count:
+    count_events: hank_lanes_lit_complete
+    events_when_hit: hank_lanes_done
+    starting_count: 0
+    direction: up
+    persist_state: false
+
+shots:
+  h_rollover_lane:
+    switch: s_left_outlane
+    show_tokens:
+      light: l_h_lane
+  a_rollover_lane:
+    switch: s_left_inlane
+    show_tokens:
+      light: l_a_lane
+  n_rollover_lane:
+    switch: s_right_inlane
+    show_tokens:
+      light: l_n_lane
+  k_rollover_lane:
+    switch: s_right_outlane
+    show_tokens:
+      light: l_k_lane
+
+shot_groups:
+  hank_lanes:
+    shots: h_rollover_lane, a_rollover_lane, n_rollover_lane, k_rollover_lane
+    rotate_left_events: s_left_flipper_active
+    rotate_right_events: s_right_flipper_active
+    reset_events:
+      hank_lanes_lit_complete: 1s
+    
+

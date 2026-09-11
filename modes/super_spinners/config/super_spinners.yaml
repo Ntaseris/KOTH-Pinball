@@ -1,0 +1,133 @@
+#config_version=6
+
+mode:
+  start_events: slide_award_5_removed
+  stop_events:
+    - ball_ending
+    - timer_super_spinners_mode_countdown_complete
+    - ball_drain
+    - mode_bonus_will_start
+  priority: 200
+
+timers:
+  super_spinners_mode_countdown:
+    start_value: 30
+    end_value: 0
+    direction: down
+    start_running: true
+    bcp: true
+
+variable_player:
+  mode_super_spinners_started:
+    super_spinner_spins:
+      int: 0
+      action: set
+    super_spinner_value:
+      int: 25000
+      action: set
+    super_spinners_total:
+      int: 0
+      action: set
+    super_spinner_last:
+      string: ""
+      action: set
+  super_spinner_left_hit:
+    score: current_player.super_spinner_value * current_player.pf_multiplier
+    super_spinner_spins: 1
+    super_spinner_last:
+      string: "LEFT"
+      action: set
+  super_spinner_center_hit:
+    score: current_player.super_spinner_value * current_player.pf_multiplier
+    super_spinner_spins: 1
+    super_spinner_last:
+      string: "CENTER"
+      action: set
+  super_spinner_cross_spin:
+    score: 250000 * current_player.pf_multiplier
+  super_spinner_milestone_10:
+    score: 500000 * current_player.pf_multiplier
+  super_spinner_milestone_25:
+    score: 1500000 * current_player.pf_multiplier
+  super_spinner_milestone_50:
+    score: 5000000 * current_player.pf_multiplier
+  player_super_spinner_spins{value > 0 and value % 10 == 0}:
+    super_spinner_value: 25000
+  player_score{source == "super_spinners"}:
+    super_spinners_total: change
+
+event_player:
+  s_left_spinner_active: super_spinner_left_hit
+  s_center_spinner_active: super_spinner_center_hit
+  s_left_spinner_active{current_player.super_spinner_last == "CENTER"}: super_spinner_cross_spin
+  s_center_spinner_active{current_player.super_spinner_last == "LEFT"}: super_spinner_cross_spin
+  player_super_spinner_spins{value == 10}: super_spinner_milestone_10
+  player_super_spinner_spins{value == 25}: super_spinner_milestone_25
+  player_super_spinner_spins{value == 50}: super_spinner_milestone_50
+
+sound_player:
+  mode_super_spinners_started:
+    award_chime:
+      bus: effects
+      volume: 0.28
+  super_spinner_cross_spin:
+    jackpot_hit:
+      bus: effects
+      volume: 0.14
+  super_spinner_milestone_10:
+    award_chime:
+      bus: effects
+      volume: 0.2
+  super_spinner_milestone_25:
+    award_chime:
+      bus: effects
+      volume: 0.26
+  super_spinner_milestone_50:
+    success_sting:
+      bus: effects
+      volume: 0.3
+  timer_super_spinners_mode_countdown_complete:
+    award_chime:
+      bus: effects
+      volume: 0.2
+
+show_player:
+  mode_super_spinners_started:
+    super_spinners_ambience:
+      key: super_spinners_ambience
+      loops: -1
+      priority: 285
+  super_spinner_left_hit:
+    base_target_pulse:
+      loops: 1
+      priority: 310
+      show_tokens: {light: l_left_orbit, color: cyan}
+  super_spinner_center_hit:
+    base_target_pulse:
+      loops: 1
+      priority: 310
+      show_tokens: {light: l_center_spinner, color: magenta}
+  super_spinner_cross_spin:
+    base_qualification_celebration:
+      loops: 1
+      speed: 2.5
+      priority: 320
+      show_tokens: {color: purple}
+  super_spinner_milestone_10:
+    base_qualification_celebration:
+      loops: 1
+      priority: 330
+      show_tokens: {color: cyan}
+  super_spinner_milestone_25:
+    base_qualification_celebration:
+      loops: 2
+      priority: 340
+      show_tokens: {color: magenta}
+  super_spinner_milestone_50:
+    base_qualification_celebration:
+      loops: 3
+      priority: 350
+      show_tokens: {color: white}
+  mode_super_spinners_stopped:
+    super_spinners_ambience:
+      action: stop

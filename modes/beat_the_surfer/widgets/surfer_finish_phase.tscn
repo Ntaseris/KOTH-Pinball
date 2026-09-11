@@ -1,0 +1,31 @@
+; Copyright (C) 2026 One More Game - All Rights Reserved
+; Unauthorized copying of this file, via any medium is strictly prohibited
+; Proprietary and confidential
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_widget"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="2_font"]
+
+[node name="MPFWidget" type="Control"]
+layout_mode = 3
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_widget")
+
+[node name="Label" type="Label" parent="."]
+theme_override_colors/font_color = Color(0.3, 0.72, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.72)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_font")
+layout_mode = 0
+offset_left = 315.0
+offset_top = 635.0
+offset_right = 1061.0
+offset_bottom = 725.0
+theme_override_font_sizes/font_size = 55
+text = "SHOOT THE BLUE SCOOP!"
+horizontal_alignment = 1

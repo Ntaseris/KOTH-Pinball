@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcjdgrykgbety"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_v0haw"]
+[ext_resource type="Texture2D" uid="uid://b71tc86ip5gjc" path="res://images/gladstone_mode_total.jpeg" id="2_02fdq"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="3_s1fdg"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="4_kfetl"]
+
+[node name="MPFSlide" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_v0haw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(684.746, 384)
+scale = Vector2(1.34005, 1.0007)
+texture = ExtResource("2_02fdq")
+
+[node name="MPFVariable" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_s1fdg")
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 776.0
+theme_override_font_sizes/font_size = 80
+text = "12345"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_kfetl")
+variable_name = "gladstone_total"
+comma_separate = true
+min_digits = 1
+
+[node name="Label" type="Label" parent="."]
+theme_override_fonts/font = ExtResource("3_s1fdg")
+layout_mode = 0
+offset_top = 128.0
+offset_right = 1368.0
+offset_bottom = 328.0
+theme_override_font_sizes/font_size = 120
+text = "mode total"
+horizontal_alignment = 1
+vertical_alignment = 1

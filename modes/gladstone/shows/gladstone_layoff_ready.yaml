@@ -1,0 +1,8 @@
+#show_version=6
+
+- duration: 0.38s
+  lights:
+    l_right_ramp: orange
+- duration: 0.24s
+  lights:
+    l_right_ramp: off

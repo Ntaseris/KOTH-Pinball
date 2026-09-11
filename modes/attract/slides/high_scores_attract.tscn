@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3f3034kvh7jn"]
+
+[ext_resource type="Script" uid="uid://30oouok838l" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_27084"]
+
+[node name="High_score_attract" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_27084")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 1360.0
+offset_bottom = 768.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+theme_type_variation = &"KothSmallText"
+layout_mode = 0
+offset_top = 112.0
+offset_right = 1368.0
+offset_bottom = 848.0
+theme_override_font_sizes/font_size = 36
+text = "High Scores
+Grand Champ
+Moes
+#1 Hank - 4,000,000
+
+#2 Peggy - 3,000,000
+
+#3 Bobby - 2,000,000
+
+#4 Luanne - 1,000,000"
+horizontal_alignment = 1

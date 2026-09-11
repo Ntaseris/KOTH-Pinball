@@ -1,0 +1,7 @@
+#show_version=6
+- duration: 0.55
+  lights:
+    l_luanne: white
+- duration: 0.55
+  lights:
+    l_luanne: 403000

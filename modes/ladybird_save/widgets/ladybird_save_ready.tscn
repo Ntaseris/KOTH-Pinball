@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_widget"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="2_font"]
+[ext_resource type="VideoStream" path="res://images/ladybird_save_clips/ladybird_dance.ogv" id="3_video"]
+[ext_resource type="Script" uid="uid://cff0owk0jvkka" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="4_video_player"]
+
+[node name="MPFWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+script = ExtResource("1_widget")
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+layout_mode = 0
+offset_right = 1368.0
+offset_bottom = 768.0
+stream = ExtResource("3_video")
+volume_db = -80.0
+autoplay = true
+script = ExtResource("4_video_player")
+
+[node name="Label" type="Label" parent="."]
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("2_font")
+layout_mode = 0
+offset_left = 220.0
+offset_top = 178.0
+offset_right = 1148.0
+offset_bottom = 274.0
+theme_override_font_sizes/font_size = 61
+text = "LADYBIRD SAVE LIT"
+horizontal_alignment = 1

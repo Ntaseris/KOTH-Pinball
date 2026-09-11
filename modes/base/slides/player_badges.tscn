@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="1_variable"]
+[ext_resource type="Texture2D" path="res://images/player_1_hank_badge.png" id="2_hank"]
+[ext_resource type="Texture2D" path="res://images/player_2_bobby_badge.png" id="3_bobby"]
+[ext_resource type="Texture2D" path="res://images/player_3_peggy_badge.png" id="4_peggy"]
+[ext_resource type="Texture2D" path="res://images/player_4_dale_badge.png" id="5_dale"]
+
+[node name="PlayerBadges" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="Player1Dim" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.28)
+position = Vector2(160, 70)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_hank")
+
+[node name="Player2Dim" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.28)
+position = Vector2(472, 70)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_bobby")
+
+[node name="Player3Dim" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.28)
+position = Vector2(888, 70)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_peggy")
+
+[node name="Player4Dim" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.28)
+position = Vector2(1196, 70)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_dale")
+
+[node name="Player1Active" type="Sprite2D" parent="."]
+modulate = Color(1.15, 1.15, 1.15, 0.68)
+position = Vector2(160, 70)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_hank")
+
+[node name="Player2Active" type="Label" parent="."]
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+script = ExtResource("1_variable")
+variable_name = "number"
+initialize_empty = false
+min_players = 2
+
+[node name="Badge" type="Sprite2D" parent="Player2Active"]
+modulate = Color(1.15, 1.15, 1.15, 0.68)
+position = Vector2(472, 70)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_bobby")
+
+[node name="Player3Active" type="Label" parent="."]
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+script = ExtResource("1_variable")
+variable_name = "number"
+initialize_empty = false
+min_players = 3
+
+[node name="Badge" type="Sprite2D" parent="Player3Active"]
+modulate = Color(1.15, 1.15, 1.15, 0.68)
+position = Vector2(888, 70)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_peggy")
+
+[node name="Player4Active" type="Label" parent="."]
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+script = ExtResource("1_variable")
+variable_name = "number"
+initialize_empty = false
+min_players = 4
+
+[node name="Badge" type="Sprite2D" parent="Player4Active"]
+modulate = Color(1.15, 1.15, 1.15, 0.68)
+position = Vector2(1196, 70)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_dale")

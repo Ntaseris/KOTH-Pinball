@@ -1,0 +1,49 @@
+#show_version=6
+# Copyright (C) 2026 One More Game - All Rights Reserved
+# Unauthorized copying of this file, via any medium is strictly prohibited
+# Proprietary and confidential
+
+- duration: 80ms
+  lights:
+    l_left_orbit: FFA000
+    l_right_orbit: FFA000
+    l_gi1: FFA000
+- duration: 80ms
+  lights:
+    l_left_orbit: off
+    l_right_orbit: off
+    l_gi1: off
+    l_left_ramp: red
+    l_right_ramp: red
+    l_gi2: red
+- duration: 80ms
+  lights:
+    l_left_ramp: off
+    l_right_ramp: off
+    l_gi2: off
+    l_left_horseshoe: white
+    l_center_spinner: white
+    l_gi3: white
+- duration: 80ms
+  lights:
+    l_left_horseshoe: off
+    l_center_spinner: off
+    l_gi3: off
+    l_p_target: FFA000
+    l_r_target: red
+    l_o_target: white
+    l_p2_target: FFA000
+    l_a_target: red
+    l_n_target: white
+    l_e_target: FFA000
+    l_gi4: FFA000
+- duration: 1ms
+  lights:
+    l_p_target: off
+    l_r_target: off
+    l_o_target: off
+    l_p2_target: off
+    l_a_target: off
+    l_n_target: off
+    l_e_target: off
+    l_gi4: off

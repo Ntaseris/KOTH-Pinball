@@ -1,0 +1,60 @@
+; Copyright (C) 2026 One More Game - All Rights Reserved
+; Unauthorized copying of this file, via any medium is strictly prohibited
+; Proprietary and confidential
+
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_widget"]
+[ext_resource type="VideoStream" path="res://images/bill_mini_wizard_clips/jackpot_robert.ogv" id="2_video"]
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_player"]
+[ext_resource type="FontFile" path="res://fonts/King Of The Hill 2.ttf" id="4_font"]
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_variable"]
+
+[node name="BillMWJackpot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_widget")
+
+[node name="Video" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+offset_right = 1368.0
+offset_bottom = 768.0
+stream = ExtResource("2_video")
+volume_db = -80.0
+autoplay = true
+script = ExtResource("3_player")
+
+[node name="Title" type="Label" parent="."]
+offset_left = 100.0
+offset_top = 68.0
+offset_right = 1268.0
+offset_bottom = 205.0
+theme_override_colors/font_color = Color(1, 0.82, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.02, 0.14, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 92
+text = "DAUTERIVE JACKPOT"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="."]
+offset_left = 120.0
+offset_top = 525.0
+offset_right = 1248.0
+offset_bottom = 690.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.02, 0.14, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 92
+text = "2,000,000"
+horizontal_alignment = 1
+script = ExtResource("5_variable")
+variable_name = "bill_mw_last_award"
+comma_separate = true
+

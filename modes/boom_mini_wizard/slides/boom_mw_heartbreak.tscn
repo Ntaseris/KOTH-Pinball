@@ -1,0 +1,109 @@
+; Copyright (C) 2026 One More Game - All Rights Reserved
+; Unauthorized copying of this file, via any medium is strictly prohibited
+; Proprietary and confidential
+
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_slide"]
+[ext_resource type="VideoStream" path="res://images/dang_ol_love_clips/heartbreak_loop.ogv" id="2_video"]
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_player"]
+[ext_resource type="FontFile" path="res://fonts/King Of The Hill 2.ttf" id="4_font"]
+[ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_var"]
+[ext_resource type="PackedScene" path="res://modes/base/slides/player_badges.tscn" id="6_badges"]
+
+[node name="DangOlLoveHeartbreak" type="Control"]
+offset_right = 1368.0
+offset_bottom = 768.0
+script = ExtResource("1_slide")
+
+[node name="Video" type="VideoStreamPlayer" parent="."]
+bus = &"video"
+offset_right = 1368.0
+offset_bottom = 768.0
+stream = ExtResource("2_video")
+volume_db = -80.0
+autoplay = true
+loop = true
+script = ExtResource("3_player")
+
+[node name="Shade" type="ColorRect" parent="."]
+offset_right = 1368.0
+offset_bottom = 768.0
+color = Color(0, 0.025, 0.12, 0.46)
+mouse_filter = 2
+
+[node name="PlayerBadges" parent="." instance=ExtResource("6_badges")]
+
+[node name="Title" type="Label" parent="."]
+offset_left = 330.0
+offset_top = 20.0
+offset_right = 1038.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(0.3, 0.7, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0.02, 0.1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 64
+text = "HEARTBREAK"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="."]
+offset_left = 80.0
+offset_top = 325.0
+offset_right = 1288.0
+offset_bottom = 485.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0.02, 0.1, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 112
+text = "1,000,000"
+horizontal_alignment = 1
+script = ExtResource("5_var")
+variable_name = "score"
+comma_separate = true
+
+[node name="Progress" type="Label" parent="."]
+offset_left = 250.0
+offset_top = 570.0
+offset_right = 1118.0
+offset_bottom = 650.0
+theme_override_colors/font_color = Color(0.3, 0.7, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0.02, 0.1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 56
+text = "CONFIDENCE 0 / 12"
+horizontal_alignment = 1
+script = ExtResource("5_var")
+variable_name = "boom_mw_confidence"
+template_string = "CONFIDENCE %s / 12"
+
+[node name="Instruction" type="Label" parent="."]
+offset_left = 120.0
+offset_top = 650.0
+offset_right = 1248.0
+offset_bottom = 730.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0.02, 0.1, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 48
+text = "HIT POPS AND SPINNERS"
+horizontal_alignment = 1
+
+[node name="Timer" type="Label" parent="."]
+offset_left = 624.0
+offset_top = 105.0
+offset_right = 744.0
+offset_bottom = 175.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 52
+text = "75"
+horizontal_alignment = 1
+script = ExtResource("5_var")
+variable_type = 1
+variable_name = "ticks_remaining"
+update_event = "timer_boom_mini_wizard_mode_countdown_tick"

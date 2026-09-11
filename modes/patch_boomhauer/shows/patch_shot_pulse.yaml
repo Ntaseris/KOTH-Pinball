@@ -1,0 +1,18 @@
+#show_version=6
+
+- duration: 0.65s
+  lights:
+    l_p_target: red
+    l_r_target: red
+    l_o_target: red
+    l_left_orbit: red
+    l_left_ramp: red
+    l_left_horseshoe: red
+- duration: 0.65s
+  lights:
+    l_p_target: 330000
+    l_r_target: 330000
+    l_o_target: 330000
+    l_left_orbit: 330000
+    l_left_ramp: 330000
+    l_left_horseshoe: 330000

@@ -1,0 +1,251 @@
+#config_version=6
+
+mode:
+  start_events: mission_select_beat_the_surfer_selected{current_player.any_mb_active == 0}
+  stop_events: 
+    - ball_ending 
+    - timer_beat_the_surfer_mode_countdown_complete
+    - ball_drain
+    - mode_bonus_will_start
+    - slide_beat_the_surfer_finish_removed
+  priority: 130
+
+
+slide_player:
+  mode_beat_the_surfer_started: 
+    beat_the_surfer_rules:
+      expire: 3s
+      priority: 1000
+  slide_beat_the_surfer_rules_inactive:
+    beat_the_surfer:
+      expire: 45s
+      priority: 500
+  beat_the_surfer_done:
+    beat_the_surfer_finish: 
+      expire: 6s
+      priority: 1100
+
+ball_holds:
+  surfer_finish:
+    balls_to_hold: 1
+    hold_devices: bd_scoop
+    enable_events: light_scoop_accrual_done
+    disable_events: slide_beat_the_surfer_finish_removed
+    release_one_events: slide_beat_the_surfer_finish_removed
+
+sound_player:
+  mode_beat_the_surfer_started: 
+    surfer_intro:
+      bus: music
+  surfer_bully_cleared:
+    jackpot_hit:
+      bus: effects
+      volume: 0.22
+  beat_the_surfer_done:
+    boomhauer_destiny:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+  timer_beat_the_surfer_mode_countdown_complete:
+    no_goals_hank:
+      bus: voice
+      ducking: {bus: video, attenuation: 0.75, attack: 0.05, release: 0.25, release_point: 0.0}
+
+timers:
+  beat_the_surfer_mode_countdown:
+    start_value: 45
+    control_events:
+      - action: start
+        event: slide_beat_the_surfer_rules_removed
+    end_value: 0
+    direction: down
+    start_running: false
+    bcp: true
+
+shot_profiles:
+  beat_the_surfer:
+    states:
+      - name: red
+        show: led_color
+        show_tokens:
+          color: red
+      - name: unlit
+        show: "off"
+
+
+shots:
+  shot_left_orbit_surfer:
+    switch: s_left_orbit_enter
+    hit_events: pocket_sand_hit_left_orbit_surfer
+    show_tokens:
+      light: l_left_orbit
+    profile: beat_the_surfer
+  shot_left_ramp_surfer:
+    switch: s_left_ramp_exit
+    hit_events: pocket_sand_hit_left_ramp_surfer
+    show_tokens:
+      light: l_left_ramp
+    profile: beat_the_surfer
+  shot_left_horseshoe_surfer:
+    switch: s_left_inner_horseshoe
+    hit_events: pocket_sand_hit_left_horseshoe_surfer
+    show_tokens:
+      light: l_left_horseshoe
+    profile: beat_the_surfer
+  shot_center_spinner_surfer:
+    switch: s_center_spinner
+    hit_events: pocket_sand_hit_center_spinner_surfer
+    show_tokens:
+      light: l_center_spinner
+    profile: beat_the_surfer
+  shot_right_ramp_surfer:
+    switch: s_right_ramp_exit
+    hit_events: pocket_sand_hit_right_ramp_surfer
+    show_tokens:
+      light: l_right_ramp
+    profile: beat_the_surfer
+  shot_right_orbit_surfer:
+    switch: s_right_orbit_exit
+    hit_events: pocket_sand_hit_right_orbit_surfer
+    show_tokens:
+      light: l_right_orbit
+    profile: beat_the_surfer
+  shot_scoop_finish_surfer:
+    switch: s_scoop
+    start_enabled: false
+    enable_events: light_scoop_accrual_done
+    disable_events: beat_the_surfer_done
+
+variable_player: 
+  surfer_bully_cleared:
+    score: 1000000 * current_player.pf_multiplier
+    surfer_bullies_cleared:
+      action: add
+      int: 1
+  shot_scoop_finish_surfer_hit:
+    score: 5000000 * current_player.pf_multiplier
+  mode_beat_the_surfer_started:
+    modes: 1
+    beat_the_surfer_completed:
+      action: set
+      int: 0
+    surfer_bullies_cleared:
+      action: set
+      int: 0
+  beat_the_surfer_done:
+    beat_the_surfer_completed:
+      action: set
+      int: 1
+  player_score{source=="beat_the_surfer"}:
+    beat_the_surfer_total: change
+
+
+
+show_player:
+  shot_left_orbit_surfer_red_hit:
+    surfer_shot_clear:
+      loops: 1
+      show_tokens:
+        light: l_left_orbit
+  shot_left_ramp_surfer_red_hit:
+    surfer_shot_clear:
+      loops: 1
+      show_tokens:
+        light: l_left_ramp
+  shot_left_horseshoe_surfer_red_hit:
+    surfer_shot_clear:
+      loops: 1
+      show_tokens:
+        light: l_left_horseshoe
+  shot_center_spinner_surfer_red_hit:
+    surfer_shot_clear:
+      loops: 1
+      show_tokens:
+        light: l_center_spinner
+  shot_right_ramp_surfer_red_hit:
+    surfer_shot_clear:
+      loops: 1
+      show_tokens:
+        light: l_right_ramp
+  shot_right_orbit_surfer_red_hit:
+    surfer_shot_clear:
+      loops: 1
+      show_tokens:
+        light: l_right_orbit
+  light_scoop_accrual_done:
+    surfer_all_clear:
+      loops: 1
+      priority: 1000
+    finish_scoop:
+      key: surfer_finish_scoop
+      priority: 300
+  beat_the_surfer_done:
+    surfer_finish_scoop:
+      action: stop
+
+
+
+shot_groups:
+  light_scoop_finish:
+    shots: shot_scoop_finish_surfer
+    disable_events: beat_the_surfer_done
+    enable_events: light_scoop_accrual_done
+
+accruals:
+  light_scoop_accrual:
+    events:
+      - shot_left_orbit_surfer_red_hit
+      - shot_left_ramp_surfer_red_hit
+      - shot_left_horseshoe_surfer_red_hit
+      - shot_center_spinner_surfer_red_hit
+      - shot_right_ramp_surfer_red_hit
+      - shot_right_orbit_surfer_red_hit
+    events_when_complete: light_scoop_accrual_done
+    reset_on_complete: false
+
+
+event_player:
+  shot_left_orbit_surfer_red_hit: surfer_bully_cleared
+  shot_left_ramp_surfer_red_hit: surfer_bully_cleared
+  shot_left_horseshoe_surfer_red_hit: surfer_bully_cleared
+  shot_center_spinner_surfer_red_hit: surfer_bully_cleared
+  shot_right_ramp_surfer_red_hit: surfer_bully_cleared
+  shot_right_orbit_surfer_red_hit: surfer_bully_cleared
+  shot_scoop_finish_surfer_hit: beat_the_surfer_done
+
+  pocket_sand_mode_spot_attempt{device.shots.shot_left_orbit_surfer.state_name == "red"}:
+    - pocket_sand_hit_left_orbit_surfer
+    - pocket_sand_spotted
+
+  pocket_sand_mode_spot_attempt{device.shots.shot_left_ramp_surfer.state_name == "red" and device.shots.shot_left_orbit_surfer.state_name != "red"}:
+    - pocket_sand_hit_left_ramp_surfer
+    - pocket_sand_spotted
+
+  pocket_sand_mode_spot_attempt{device.shots.shot_left_horseshoe_surfer.state_name == "red" and device.shots.shot_left_orbit_surfer.state_name != "red" and device.shots.shot_left_ramp_surfer.state_name != "red"}:
+    - pocket_sand_hit_left_horseshoe_surfer
+    - pocket_sand_spotted
+
+  pocket_sand_mode_spot_attempt{device.shots.shot_center_spinner_surfer.state_name == "red" and device.shots.shot_left_orbit_surfer.state_name != "red" and device.shots.shot_left_ramp_surfer.state_name != "red" and device.shots.shot_left_horseshoe_surfer.state_name != "red"}:
+    - pocket_sand_hit_center_spinner_surfer
+    - pocket_sand_spotted
+
+  pocket_sand_mode_spot_attempt{device.shots.shot_right_ramp_surfer.state_name == "red" and device.shots.shot_left_orbit_surfer.state_name != "red" and device.shots.shot_left_ramp_surfer.state_name != "red" and device.shots.shot_left_horseshoe_surfer.state_name != "red" and device.shots.shot_center_spinner_surfer.state_name != "red"}:
+    - pocket_sand_hit_right_ramp_surfer
+    - pocket_sand_spotted
+
+  pocket_sand_mode_spot_attempt{device.shots.shot_right_orbit_surfer.state_name == "red" and device.shots.shot_left_orbit_surfer.state_name != "red" and device.shots.shot_left_ramp_surfer.state_name != "red" and device.shots.shot_left_horseshoe_surfer.state_name != "red" and device.shots.shot_center_spinner_surfer.state_name != "red" and device.shots.shot_right_ramp_surfer.state_name != "red"}:
+    - pocket_sand_hit_right_orbit_surfer
+    - pocket_sand_spotted
+
+widget_player:
+  slide_beat_the_surfer_active:
+    surfer_progress:
+      slide: beat_the_surfer
+  light_scoop_accrual_done:
+    surfer_progress:
+      slide: beat_the_surfer
+      action: remove
+    surfer_finish_phase:
+      slide: beat_the_surfer
+  beat_the_surfer_done:
+    surfer_finish_phase:
+      action: remove

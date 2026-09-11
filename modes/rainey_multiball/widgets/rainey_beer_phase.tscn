@@ -1,0 +1,69 @@
+; Copyright (C) 2026 One More Game - All Rights Reserved
+; Unauthorized copying of this file, via any medium is strictly prohibited
+; Proprietary and confidential
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_widget"]
+[ext_resource type="FontFile" uid="uid://d075awu727u3j" path="res://fonts/King Of The Hill 2.ttf" id="2_font"]
+[ext_resource type="Script" uid="uid://g0trwbclovy6" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="3_variable"]
+
+[node name="RaineyBeerPhase" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1368.0
+offset_bottom = 776.0
+script = ExtResource("1_widget")
+
+[node name="Instruction" type="Label" parent="."]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 520.0
+offset_right = 1088.0
+offset_bottom = 600.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_colors/font_color = Color(1, 0.62, 0, 1)
+theme_override_colors/font_outline_color = Color(0.16, 0.04, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 52
+text = "HIT THE 3 BEER TARGETS"
+horizontal_alignment = 1
+
+[node name="Progress" type="Label" parent="."]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 610.0
+offset_right = 700.0
+offset_bottom = 700.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 2
+script = ExtResource("3_variable")
+variable_name = "rainey_beers_collected"
+
+[node name="Separator" type="Label" parent="."]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 610.0
+offset_right = 750.0
+offset_bottom = 700.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 50
+text = "/"
+horizontal_alignment = 1
+
+[node name="Requirement" type="Label" parent="."]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 610.0
+offset_right = 868.0
+offset_bottom = 700.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "6"
+script = ExtResource("3_variable")
+variable_name = "rainey_beer_requirement"
