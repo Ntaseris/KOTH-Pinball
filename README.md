@@ -77,11 +77,17 @@ a clone will not reproduce the complete machine.
 
 ## License
 
-Copyright © 2026 Nick Taseris. All rights reserved. The code is published for
-viewing, evaluation, and educational reference under the repository's
-proprietary [source code license](LICENSE). Permission for other uses may be
-requested from Houseball Amusements LLC at
-[nick@houseballamusements.com](mailto:nick@houseballamusements.com).
+The original source code in this repository is available under the
+[PolyForm Noncommercial License 1.0.0](LICENSE). You may study, copy, modify,
+use, and share it for permitted noncommercial purposes under the license terms.
+Commercial use requires separate written permission from Houseball Amusements
+LLC at [nick@houseballamusements.com](mailto:nick@houseballamusements.com).
+
+The license applies only to original material owned by Nick Taseris. It does
+not grant rights to third-party characters, names, trademarks, artwork, music,
+video, audio, fonts, software, or other intellectual property. *King of the
+Hill* and its related intellectual property remain the property of their
+respective rights holders.
 
 ## Project Status
 
