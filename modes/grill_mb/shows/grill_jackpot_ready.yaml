@@ -1,8 +1,4 @@
 #show_version=6
-# Copyright (C) 2026 One More Game - All Rights Reserved
-# Unauthorized copying of this file, via any medium is strictly prohibited
-# Proprietary and confidential
-
 - duration: 170ms
   lights:
     l_right_ramp: white

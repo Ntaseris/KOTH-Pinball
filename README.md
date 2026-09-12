@@ -100,6 +100,9 @@ played and developed.
 This project is made possible by the open-source pinball community and the
 people behind MPF, MPF-GMC, Godot, and FAST Pinball hardware.
 
+Additional development contributors are acknowledged in
+[CONTRIBUTORS.md](CONTRIBUTORS.md).
+
 *King of the Hill* and its characters are the property of their respective
 rights holders. This is an unofficial fan project and is not affiliated with
 or endorsed by them.

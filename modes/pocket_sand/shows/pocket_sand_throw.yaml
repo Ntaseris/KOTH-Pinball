@@ -1,8 +1,4 @@
 #show_version=6
-# Copyright (C) 2026 One More Game - All Rights Reserved
-# Unauthorized copying of this file, via any medium is strictly prohibited
-# Proprietary and confidential
-
 # A compact center-out burst followed by two grainy, inverted full-insert
 # flashes. Brown is intentionally bright enough to remain readable on RGB LEDs.
 - duration: 65ms

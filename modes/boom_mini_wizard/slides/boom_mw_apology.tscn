@@ -1,7 +1,3 @@
-; Copyright (C) 2026 One More Game - All Rights Reserved
-; Unauthorized copying of this file, via any medium is strictly prohibited
-; Proprietary and confidential
-
 [gd_scene load_steps=5 format=3]
 [ext_resource type="Script" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_slide"]
 [ext_resource type="VideoStream" path="res://images/dang_ol_love_clips/apology.ogv" id="2_video"]

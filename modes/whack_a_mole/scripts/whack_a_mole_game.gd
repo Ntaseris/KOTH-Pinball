@@ -1,7 +1,3 @@
-# Copyright (C) 2026 One More Game - All Rights Reserved
-# Unauthorized copying of this file, via any medium is strictly prohibited
-# Proprietary and confidential
-
 extends Control
 
 const ROUND_SECONDS := 30.0

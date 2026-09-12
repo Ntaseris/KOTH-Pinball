@@ -1,7 +1,3 @@
-; Copyright (C) 2026 One More Game - All Rights Reserved
-; Unauthorized copying of this file, via any medium is strictly prohibited
-; Proprietary and confidential
-
 [gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" uid="uid://bxyndbnvgf15b" path="res://addons/mpf-gmc/classes/mpf_widget.gd" id="1_widget"]
