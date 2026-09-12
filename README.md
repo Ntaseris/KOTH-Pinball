@@ -75,6 +75,14 @@ This is a reference and portfolio, not a ready-to-run distribution. Most
 licensed video, music, voice, and image assets are intentionally excluded, so
 a clone will not reproduce the complete machine.
 
+## License
+
+Copyright © 2026 Nick Taseris. All rights reserved. The code is published for
+viewing, evaluation, and educational reference under the repository's
+proprietary [source code license](LICENSE). Permission for other uses may be
+requested from Houseball Amusements LLC at
+[nick@houseballamusements.com](mailto:nick@houseballamusements.com).
+
 ## Project Status
 
 King of the Hill Pinball is an active project. I continue to refine its rules,
