@@ -1,6 +1,3 @@
-# Copyright (C) 2026 One More Game - All Rights Reserved
-# Unauthorized copying of this file, via any medium is strictly prohibited
-# Proprietary and confidential
 """Tests for Alamo Frenzy qualification, scoring, and mode interaction."""
 
 from tests.koth_test_case import KothTestCase

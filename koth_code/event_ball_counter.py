@@ -1,7 +1,3 @@
-# Copyright (C) 2026 One More Game - All Rights Reserved
-# Unauthorized copying of this file, via any medium is strictly prohibited
-# Proprietary and confidential
-
 """Ball-device counter driven exclusively by entrance events."""
 
 from mpf.devices.ball_device.entrance_switch_counter import EntranceSwitchCounter
